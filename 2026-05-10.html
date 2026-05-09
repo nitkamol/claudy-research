@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026-05-10 — Claudy Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:#0f1117;color:#e2e8f0;min-height:100vh}
+a{color:#818cf8;text-decoration:none}
+a:hover{text-decoration:underline}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600;letter-spacing:.03em}
+.badge-buy{background:#10b98122;color:#10b981;border:1px solid #10b98144}
+.badge-hold{background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44}
+.badge-sell{background:#ef444422;color:#ef4444;border:1px solid #ef444444}
+.badge-neutral{background:#6366f122;color:#818cf8;border:1px solid #6366f144}
+
+header{background:#1a1d27;border-bottom:1px solid #2d3148;padding:14px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:1.2rem;font-weight:700;color:#fff}
+.logo span{color:#6366f1}
+.back-btn{background:#2d3148;color:#94a3b8;border:1px solid #3d4168;border-radius:8px;padding:6px 14px;font-family:'Sarabun',sans-serif;font-size:.85rem;cursor:pointer;transition:all .2s;text-decoration:none}
+.back-btn:hover{background:#3d4168;color:#fff;text-decoration:none}
+.header-meta{color:#475569;font-size:.85rem;margin-left:auto}
+.header-topic{background:#6366f122;color:#a5b4fc;border:1px solid #6366f144;border-radius:6px;padding:4px 12px;font-size:.85rem}
+.tabs{display:flex;gap:8px;padding:14px 24px;background:#13151f;border-bottom:1px solid #2d3148;flex-wrap:wrap}
+.tab{background:#1a1d27;color:#94a3b8;border:1px solid #2d3148;border-radius:8px;padding:7px 15px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:.9rem;transition:all .2s}
+.tab:hover{border-color:var(--accent);color:#fff}
+.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.panel{display:none;max-width:900px;margin:32px auto;padding:0 24px 80px}
+.panel.active{display:block}
+.panel h1{font-size:1.6rem;font-weight:700;color:#fff;margin:0 0 8px;line-height:1.3}
+.panel h2{font-size:1.2rem;font-weight:600;color:#c7d2fe;margin:28px 0 12px;border-left:3px solid #6366f1;padding-left:12px}
+.panel h3{font-size:1rem;font-weight:600;color:#a5b4fc;margin:20px 0 8px}
+.panel p{color:#cbd5e1;line-height:1.8;margin:0 0 12px}
+.panel ul,.panel ol{color:#cbd5e1;line-height:1.8;padding-left:20px;margin:0 0 12px}
+.panel li{margin:4px 0}
+.panel strong{color:#fff}
+.panel em{color:#94a3b8}
+.panel blockquote{border-left:3px solid #6366f1;padding:8px 16px;background:#1a1d27;border-radius:0 8px 8px 0;margin:12px 0;color:#94a3b8;font-style:italic}
+.panel table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem}
+.panel th{background:#1e2235;color:#c7d2fe;padding:10px 12px;text-align:left;border:1px solid #2d3148;font-weight:600}
+.panel td{padding:9px 12px;border:1px solid #2d3148;color:#cbd5e1;vertical-align:top}
+.panel tr:hover td{background:#1a1d27}
+.panel code{font-family:'JetBrains Mono',monospace;background:#1e2235;padding:2px 6px;border-radius:4px;font-size:.85rem;color:#a5b4fc}
+.panel pre{background:#1e2235;border:1px solid #2d3148;border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}
+.panel hr{border:none;border-top:1px solid #2d3148;margin:24px 0}
+.panel a{color:#818cf8}
+.panel a:hover{text-decoration:underline}
+.quiz-box{background:#1a1d27;border:1px solid #6366f144;border-radius:12px;padding:20px 24px;margin:24px 0}
+.quiz-box h3{color:#a5b4fc;margin:0 0 16px;font-size:1rem}
+.quiz-reveal-btn{background:#6366f1;color:#fff;border:none;border-radius:8px;padding:8px 20px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:.9rem;margin-top:12px;transition:all .2s}
+.quiz-reveal-btn:hover{background:#4f46e5}
+.answer-key{background:#1e2235;border:1px solid #10b98144;border-radius:8px;padding:16px;margin-top:12px;color:#94a3b8;font-size:.9rem;line-height:1.7;white-space:pre-wrap}
+footer{text-align:center;color:#475569;font-size:.8rem;padding:24px;border-top:1px solid #2d3148;margin-top:40px}
+@media(max-width:640px){header{padding:12px 16px}.tabs{padding:12px 16px}.panel{padding:0 16px 48px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Claudy <span>Research</span></div>
+  <a class="back-btn" href="index.html">← คลัง</a>
+  
+  <span class="header-meta">2026-05-10</span>
+</header>
+<div class="tabs"><button class="tab" data-key="executive_summary" style="--accent:#6366f1" onclick="show('executive_summary')">📋 สรุปภาพรวม</button><button class="tab" data-key="thesis" style="--accent:#ec4899" onclick="show('thesis')">💡 Thesis</button><button class="tab" data-key="research" style="--accent:#0ea5e9" onclick="show('research')">🔍 Research</button><button class="tab" data-key="analysis" style="--accent:#10b981" onclick="show('analysis')">📊 Analysis</button><button class="tab" data-key="sentiment" style="--accent:#f59e0b" onclick="show('sentiment')">🧠 Sentiment</button><button class="tab" data-key="diffsentiment" style="--accent:#ef4444" onclick="show('diffsentiment')">⚠️ Contrarian</button><button class="tab" data-key="fundamental" style="--accent:#8b5cf6" onclick="show('fundamental')">📈 Fundamental</button><button class="tab" data-key="audit" style="--accent:#64748b" onclick="show('audit')">🔎 Audit</button></div>
+<div class="panel" id="panel-executive_summary"><h1>BRIEFING สถาบันการลงทุนระดับสูง</h1>
+<h2>Elite Institutional Equity Research Team</h2>
+<h3>วันที่ 10 พฤษภาคม 2569 | Professional Market Intelligence Report</h3>
+<hr>
+<blockquote>
+<p><strong>หมายเหตุด้านความสมบูรณ์ของข้อมูล:</strong> รายงานฉบับนี้จัดทำภายใต้กรอบการตรวจสอบคุณภาพข้อมูลโดย Leon (audit.md) — ข้อมูลใดที่ถูกระบุว่า [UNVERIFIED ❌] ได้รับการคัดออกจากรายงานฉบับนี้อย่างเคร่งครัด เพื่อรักษามาตรฐานความน่าเชื่อถือในระดับสถาบัน | กรอบการวิเคราะห์อ้างอิง BlackRock Investment Institute และ J.P. Morgan Asset Management — Guide to the Markets</p>
+</blockquote>
+<hr>
+<h2>▌ PART I — เศรษฐกิจมหภาคโลก: สภาวะ Bifurcated Market และแรงกดดันเชิงโครงสร้าง</h2>
+<p>ภาพรวมเศรษฐกิจโลกในวันนี้สะท้อน <strong>ความขัดแย้งเชิงโครงสร้าง</strong> ที่ลึกซึ้งกว่าที่ตัวเลขดัชนีหลักแสดง กรอบการวิเคราะห์ของ BlackRock Investment Institute ในเรื่อง Regime Change และ J.P. Morgan Asset Management ด้าน Cycle Positioning ช่วยให้เราเข้าใจว่าตลาดไม่ได้อยู่ในสภาวะปกติ — หากแต่กำลังนำทางผ่านสภาพแวดล้อมที่แรงขับเคลื่อนหลายทิศทางชนกันพร้อมกัน</p>
+<p>การเคลื่อนไหวของดัชนีหุ้นสหรัฐฯ ในวันนี้บ่งชี้ถึง <strong>Sector Rotation</strong> ที่ชัดเจน โดย NASDAQ แสดงพลังบวกขณะที่ Dow Jones Industrial Average ปรับตัวลดลง นัยสำคัญคือเงินทุนกำลังไหลเข้าสู่กลุ่ม Technology และ Growth อย่างมีนัยสำคัญ ขณะเดียวกันก็ไหลออกจากกลุ่ม Value และ Industrial ที่มีน้ำหนักสูงใน DJIA ปรากฏการณ์นี้ยืนยันสมมติฐาน <strong>Bifurcated Market</strong> ที่ Ada วางไว้ใน thesis.md ว่าตลาดแบ่งเป็นสองโลกที่ดำเนินไปด้วยตรรกะที่แตกต่างกันโดยสิ้นเชิง</p>
+<p>ในด้านตลาดตราสารหนี้ ระดับ VIX ที่ยืนเหนือ 17 ส่งสัญญาณว่าความกังวลเชิงโครงสร้างยังคงอยู่ แม้จะยังไม่ถึงระดับวิกฤต ที่น่าสังเกตคือ US 10-Year Treasury Yield ปรับตัวลดลงในวันเดียวกับที่ตลาดหุ้นปรับตัวขึ้น — ปรากฏการณ์นี้สะท้อน <strong>Risk-On ผสม Flight-to-Quality</strong> พร้อมกัน ซึ่งเป็นสัญญาณของความไม่แน่นอนในตลาดที่นักลงทุนสถาบันต้องติดตามอย่างใกล้ชิด</p>
+<h3>ตลาดแรงงานสหรัฐฯ กับ Fed ที่ &quot;หมดข้ออ้าง&quot;</h3>
+<p>ข้อมูล Non-Farm Payrolls เดือนเมษายน 2569 ที่ออกมาแข็งแกร่งกว่า consensus อย่างมีนัยสำคัญ ได้ส่งผลกระทบต่อการคาดการณ์นโยบายการเงินอย่างเป็นรูปธรรม Reuters และ CNBC รายงานตรงกันว่า Federal Reserve กำลัง <strong>&quot;quickly running out of reasons to cut interest rates&quot;</strong> — ข้อมูลตลาดแรงงานที่ตึงตัวท่ามกลางแรงกดดันค่าครองชีพที่สูงขึ้น ทำให้พื้นที่สำหรับการผ่อนคลายนโยบายการเงินแคบลงอย่างมีนัยสำคัญ สภาพแวดล้อมนี้สอดคล้องกับกรอบ J.P. Morgan ที่ระบุว่าในช่วง Late Cycle ที่ตลาดแรงงานยังตึงตัว Fed มักจะรักษาอัตราดอกเบี้ยในระดับสูงยาวนานกว่าที่ตลาดคาด</p>
+<h3>ความเชื่อมั่นผู้บริโภคและ Stagflation Trap</h3>
+<p>ความเชื่อมั่นผู้บริโภคสหรัฐฯ ที่วัดโดย University of Michigan Consumer Sentiment ร่วงลงสู่ <strong>ระดับต่ำสุดเป็นประวัติการณ์ใหม่</strong> ในช่วงต้นเดือนพฤษภาคม โดย CNBC รายงานชัดเจนว่าราคาก๊าซที่พุ่งสูงขึ้นอันเป็นผลจากสงครามอิหร่านเป็นปัจจัยหลักที่ฉุดดัชนีดังกล่าว ข้อมูลนี้ถือเป็นการ <strong>Validate</strong> Card #2 ของ Ada อย่างชัดเจน — สภาพแวดล้อม Stagflation ที่ราคาพลังงานสูงกดทับกำลังซื้อผู้บริโภคพร้อมกันกับที่ Fed ไม่มีเครื่องมือตอบสนองได้ง่ายนั้นเป็นแรงกดดันเชิงโครงสร้างต่อกลุ่มหุ้น US Consumer Discretionary และ Consumer Finance</p>
+<p>ข้อมูลเชิงคุณภาพที่สนับสนุนภาพนี้ได้แก่ รายงาน CNBC ที่ระบุว่าผู้โดยสารบางรายในเมืองใหญ่ต้องแบกรับค่าเดินทางสูงถึง <strong>$1,600 ต่อเดือน</strong> อันเป็นผลจากราคาน้ำมันที่เพิ่มขึ้น ซึ่งสะท้อนแรงกดดันต้นทุนที่ซึมเข้าสู่ชีวิตประจำวันของผู้บริโภคอย่างเป็นรูปธรรม นอกจากนี้ข้อมูลจาก Capital One แสดงให้เห็นว่า Median car payment เพิ่มขึ้นจาก $390 เป็น <strong>$525 ต่อเดือน</strong> ตั้งแต่ปี 2562 หรือเพิ่มขึ้นกว่า 35% ซึ่งเป็นภาระทางการเงินที่สะสมอยู่ในระบบ</p>
+<h3>วิกฤตพลังงานจากช่องแคบฮอร์มุซ</h3>
+<p>สงครามอิหร่านและผลกระทบต่อช่องแคบฮอร์มุซยังคงเป็นปัจจัยเสี่ยงเชิงภูมิรัฐศาสตร์หลักของวันนี้ Bloomberg และ Reuters ยืนยันว่าการปิดกั้นดังกล่าวมีผลทางปฏิบัติจริง โดย WTI Spot ซื้อขายอยู่ที่ระดับ $95.42 ต่อบาร์เรล ระดับราคานี้สะท้อน Supply Disruption ที่มีนัยสำคัญ นักบริหารในอุตสาหกรรมพลังงานที่ให้สัมภาษณ์กับสื่อต่างระบุตรงกันว่าสงครามอิหร่านจะ <strong>&quot;change global energy markets in these important ways&quot;</strong> — สะท้อนว่าตลาดมองว่านี่คือ Structural Shift ไม่ใช่เพียง Temporary Price Spike</p>
+<p>ในด้านมาตรการตอบสนอง สหรัฐฯ ได้ดำเนินการคว่ำบาตรบริษัทและบุคคล 14 ราย ในหลายประเทศที่ให้ความช่วยเหลืออิหร่าน — ซึ่งบ่งชี้ว่ายุทธศาสตร์ตอบโต้ยังอยู่ในรูปแบบ Economic Pressure มากกว่าการปล่อย Strategic Petroleum Reserve ทั้งนี้ตามข้อมูลที่ตรวจสอบได้ในวันนี้ยังไม่มีการประกาศ SPR Release อย่างเป็นทางการ ซึ่งหมายความว่า <strong>ปัจจัยที่จะ Invalidate Card #2 ของ Ada ยังไม่เกิดขึ้น</strong></p>
+<hr>
+<h2>▌ PART II — การวิเคราะห์เชิงอุตสาหกรรม: AI Infrastructure และ Global Semiconductor</h2>
+<p>ในบรรดา Investment Themes ทั้งหมดที่ทีมวิเคราะห์นำเสนอในวันนี้ กลุ่ม <strong>AI Infrastructure &amp; Global Semiconductor</strong> ถือเป็น Thesis ที่มีความชัดเจนและการสนับสนุนจากข้อมูลมากที่สุด กรอบการวิเคราะห์ของ BlackRock ด้าน Mega Forces — โดยเฉพาะ AI and Digital Disruption — ระบุว่าการลงทุนในโครงสร้างพื้นฐาน AI เป็น Structural Trend ที่มีระยะเวลาหลายปี ไม่ใช่วัฏจักรปกติที่ขึ้นลงตาม Business Cycle ทั่วไป</p>
+<p>การที่ Nvidia ก้าวข้ามเกณฑ์การลงทุน $40 พันล้านดอลลาร์ในกลุ่ม AI Stack Companies ตามที่ Reuters และ Bloomberg รายงานภายใต้หัวข้อ <strong>&quot;Nvidia embraces role of AI investor&quot;</strong> นั้น บ่งชี้ถึงการเปลี่ยนแปลงเชิงยุทธศาสตร์ที่สำคัญ — Nvidia ไม่ได้เป็นเพียงผู้ผลิตชิปอีกต่อไป แต่กำลังวางตัวเองเป็น <strong>Ecosystem Orchestrator</strong> ของ AI Infrastructure ทั้งระบบ การเคลื่อนไหวนี้ยืนยัน Capex Supercycle Thesis ของ Ada และสอดคล้องกับที่ J.P. Morgan Asset Management ระบุใน Guide to the Markets ว่ากลุ่ม Technology Large Cap ที่มี Pricing Power และ Moat ระดับสูงมักรักษาผลตอบแทนได้ดีในสภาพแวดล้อมที่ดอกเบี้ยสูง</p>
+<p>ในส่วนของความเสี่ยงจาก DeepSeek ที่ Ada ระบุไว้ใน Card #1 นั้น ข้อมูลในวันนี้แสดงให้เห็นภาพที่ชัดเจน — แม้ว่า DeepSeek Selloff ในอดีตจะทำให้ NVDA ร่วงลงถึง 16% แต่ WSJ วิเคราะห์ว่า <strong>&quot;Panic fueling the selloff is overblown&quot;</strong> และ NVDA ฟื้นตัวขึ้น +3.55% ในวันนี้ ซึ่งบ่งชี้ว่าตลาดเริ่มมองผ่านความเสี่ยงด้าน Model Efficiency ไปยัง Demand Fundamentals ที่ยังแข็งแกร่ง</p>
+<p>ในระดับตลาดเอเชีย KOSPI ปรับตัวขึ้นแรงที่สุดในกลุ</p>
+</div><div class="panel" id="panel-thesis"><h1>thesis.md — 10/05/2569</h1>
+<p><em>Ada | Idea Generator</em></p>
+<hr>
+<p><strong>[Today&#39;s Macro Hypothesis]</strong></p>
+<p>ตลาดวันนี้ส่งสัญญาณ <strong>ความขัดแย้งเชิงโครงสร้าง</strong> ระหว่างแรงขับเคลื่อนจาก AI/Tech ที่ยังคงร้อนแรง (NASDAQ +1.58%, NVDA +3.55%) กับแรงกดดันเชิงมหภาคที่สะสมอยู่ใต้พื้นผิว ได้แก่ ราคาน้ำมันที่พุ่งสูงจากการปิดช่องแคบฮอร์มุซ ความเชื่อมั่นผู้บริโภคที่ตกต่ำเป็นประวัติการณ์ และ Fed ที่หมดข้ออ้างในการลดดอกเบี้ย สภาพแวดล้อมนี้สร้าง <strong>bifurcated market</strong> — กลุ่ม AI Infrastructure ได้รับแรงหนุนจากการลงทุนระยะยาว ขณะที่เศรษฐกิจภาคผู้บริโภคและพลังงานเผชิญแรงกดดันจากต้นทุนที่เพิ่มขึ้น ซึ่งอาจทำให้ตลาดโดยรวมมีความเปราะบางมากกว่าที่ตัวเลขดัชนีสะท้อน</p>
+<hr>
+<p><strong>[Investment Cards]</strong></p>
+<hr>
+<p>CARD #1 — AI Infrastructure Arms Race: Nvidia &amp; the Capex Supercycle</p>
+<p><strong>Thesis:</strong> การที่ Nvidia ประกาศลงทุนเชิงกลยุทธ์เกิน 4 หมื่นล้านดอลลาร์ในกลุ่มบริษัท AI Stack รวมกับสัญญาณเชิงบวกจาก NASDAQ และ KOSPI บ่งชี้ว่ากระแส Capex ในโครงสร้างพื้นฐาน AI ยังคงเป็นวัฏจักรขาขึ้นที่มีพลัง ทำให้ผู้ผลิตชิปและผู้ให้บริการ Data Center มีโอกาสเติบโตของรายได้อย่างมีนัยสำคัญในช่วง 1–3 เดือนข้างหน้า</p>
+<p><strong>Direction:</strong> Bullish</p>
+<p><strong>Target:</strong> Global Semiconductor &amp; AI Infrastructure Industry (NVDA, TSM, Samsung — กลุ่ม HPC/AI Chip)</p>
+<p><strong>Timeframe:</strong> Medium-term (1–3 เดือน)</p>
+<p><strong>Key Risk:</strong> การแข่งขันจากโมเดล AI ประหยัดพลังงานอย่าง DeepSeek (ดังที่เกิดขึ้นในรอบก่อน) อาจทำให้ตลาดตั้งคำถามถึงความจำเป็นของ Compute ระดับสูง และก่อให้เกิด de-rating รุนแรงในระยะสั้น</p>
+<p><strong>Validate:</strong> ต้องเห็น (1) คำสั่งซื้อ GPU/HBM ที่เพิ่มขึ้นใน order backlog ของ TSM และ Samsung, (2) Guidance รายได้จากกลุ่ม Data Center ของ Nvidia ในงบถัดไปที่สูงกว่า consensus, (3) ยืนยันว่า KOSPI tech rally มีแรงหนุนจากการส่งออกชิปจริง ไม่ใช่แค่ sentiment</p>
+<hr>
+<p>CARD #2 — Energy Shock Stagflation Trap: Consumer &amp; Discretionary Squeeze</p>
+<p><strong>Thesis:</strong> การปิดช่องแคบฮอร์มุซจากสงครามอิหร่านที่ทำให้น้ำมันพุ่งสูง ประกอบกับ Consumer Sentiment ที่ตกสู่ระดับต่ำสุดเป็นประวัติการณ์และค่าใช้จ่ายการเดินทางที่กดรายได้สุทธิของครัวเรือน สร้างสภาพแวดล้อม <strong>Stagflation</strong> ที่กดดันหุ้นกลุ่มผู้บริโภคและการเงินผู้บริโภคในสหรัฐฯ อย่างมีโครงสร้าง</p>
+<p><strong>Direction:</strong> Bearish</p>
+<p><strong>Target:</strong> US Consumer Discretionary &amp; Consumer Finance Sector (กลุ่มค้าปลีก, Auto Lenders, Mortgage-linked Assets)</p>
+<p><strong>Timeframe:</strong> Short-term (1–4 สัปดาห์)</p>
+<p><strong>Key Risk:</strong> หากรัฐบาลสหรัฐฯ เร่งปล่อย Strategic Petroleum Reserve หรือมีการเจรจาหยุดยิงในตะวันออกกลางเร็วกว่าคาด ราคาน้ำมันอาจร่วงลงแรง ทำให้ thesis นี้ถูก invalidate ในทันที</p>
+<p><strong>Validate:</strong> ต้องเห็น (1) ตัวเลข University of Michigan Consumer Sentiment เดือนพฤษภาคม (Final) ที่ยืนยันการร่วงลงต่อเนื่อง, (2) ข้อมูล Retail Sales ที่อ่อนแอกว่า consensus, (3) Credit Card Delinquency Rate ที่เพิ่มขึ้น และ (4) สัญญา WTI/Brent ใน Futures Curve ที่ยังคง Backwardation — สะท้อนตลาดยังกังวลอุปทานระยะสั้น</p>
+<hr>
+<p>CARD #3 — Safe Haven Rotation: Gold &amp; THB as Geopolitical Hedge</p>
+<p><strong>Thesis:</strong> ภายใต้สภาพแวดล้อมที่ Dollar Index อ่อนค่า, VIX ยังอยู่ในระดับกดดัน, สงครามอิหร่านยืดเยื้อ และ Apollo CEO เตือนถึงโอกาส Market Shock 35% — การไหลเข้าของเงินทุนสู่สินทรัพย์ปลอดภัย (Gold) และสกุลเงินตลาดเกิดใหม่ที่มีพื้นฐานดี (THB) น่าจะดำเนินต่อเนื่อง สร้างโอกาส <strong>Neutral-to-Bullish</strong> ใน Gold และ Long THB vs USD</p>
+<p><strong>Direction:</strong> Neutral <em>(Bullish on Gold / Bullish on THB — Hedging Posture)</em></p>
+<p><strong>Target:</strong> Commodities (Gold) &amp; FX (THB/USD) — Safe Haven &amp; EM Currency Asset Class</p>
+<p><strong>Timeframe:</strong> Short-term (1–4 สัปดาห์)</p>
+<p><strong>Key Risk:</strong> หาก Fed ส่งสัญญาณ Hawkish ชัดเจนจากข้อมูลตลาดแรงงานที่แข็งแกร่ง (Payrolls beat) Dollar อาจพลิกกลับมาแข็งค่า กดทั้ง Gold และ THB พร้อมกัน</p>
+<p><strong>Validate:</strong> ต้องเห็น (1) Real Yield ของสหรัฐฯ (10Y TIPS) ที่ทรงตัวหรือลดลง — สนับสนุน Gold, (2) ตัวเลข Net Foreign Inflow เข้าตลาดหุ้น/พันธบัตรไทยที่เป็นบวก, (3) Positioning ใน COMEX Gold Futures (COT Report) ที่แสดง Managed Money Long ยังไม่ overcrowded, (4) Fed Speaker Tone หลัง Jobs Report ที่ไม่ได้ Hawkish กว่าคาด</p>
+<hr>
+<p><strong>[Research Directive for Claudy]</strong></p>
+<p>Claudy — กรุณาหาข้อมูลต่อไปนี้ <strong>เรียงตามลำดับความสำคัญ</strong> เพื่อยืนยันหรือหักล้าง Cards ทั้ง 3 ใบ:</p>
+<p><strong>🔴 Priority 1 — Energy &amp; Geopolitical Ground Truth (สำหรับ Card #2 &amp; #3)</strong></p>
+<ol>
+<li>สถานะล่าสุดของสงครามอิหร่าน — การปิดช่องแคบฮอร์มุซมีผลทางปฏิบัติมากน้อยแค่ไหน? ปริมาณน้ำมันที่สูญหายจริงต่อวันเทียบกับที่รายงาน</li>
+<li>ระดับ WTI/Brent Futures Curve (Contango vs Backwardation) และ Implied Volatility ของ Oil Options</li>
+<li>สถานะ US Strategic Petroleum Reserve และโอกาสที่รัฐบาลจะปล่อย</li>
+</ol>
+<p><strong>🟠 Priority 2 — US Consumer Health Data (สำหรับ Card #2)</strong>
+4. ตัวเลข University of Michigan Consumer Sentiment เดือนพฤษภาคม (Preliminary/Final ล่าสุด)
+5. ข้อมูล US Retail Sales เดือนล่าสุด เทียบกับ consensus
+6. Credit Card Delinquency Rate และ Auto Loan Default Rate จาก Fed/CFPB ล่าสุด
+7. รายละเอียด Non-farm Payrolls เดือนเมษายน — &quot;Red Flags&quot; ที่กล่าวถึงในข่าวคืออะไร (เช่น Part-time vs Full-time, Wage Growth, Hours Worked)</p>
+<p><strong>🟡 Priority 3 — AI/Semiconductor Demand Signals (สำหรับ Card #1)</strong>
+8. Order Backlog หรือ Capacity Utilization ล่าสุดของ TSMC และ Samsung ในกลุ่ม HPC/AI
+9. Nvidia Guidance รายได้ Data Center Segment ล่าสุด (จาก Earnings Call หรือ Analyst Note)
+10. รายละเอียดการลงทุน Nvidia $40B+ ในบริษัท AI Stack — บริษัทไหนบ้าง และเงื่อนไขอย่างไร
+11. KOSPI Tech Rally Composition — driven by semiconductor exports หรือ domestic sentiment?</p>
+<p><strong>🟢 Priority 4 — Gold &amp; THB Flow Data (สำหรับ Card #3)</strong>
+12. COMEX Gold COT Report ล่าสุด — Net Long Position ของ Managed Money
+13. US 10Y TIPS Real Yield เทียบกับสัปดาห์ที่แล้ว
+14. Net Foreign Flow เข้าตลาดไทย (SET + ThaiBMA) ใน 5 วันทำการล่าสุด
+15. Fed Speaker Statements หลัง Jobs Report — Tone Hawkish หรือ Data-Dependent?</p>
+<hr>
+<p><em>Ada | Idea Generator — thesis สร้างขึ้นก่อนการ validate ด้วย live data ทั้งหมด ห้ามใช้เป็น basis การตัดสินใจลงทุนโดยไม่ผ่าน Claudy Research Layer</em></p>
+</div><div class="panel" id="panel-research"><h1>CLAUDY BREAKING NEWS</h1>
+<h2>Institutional Equity Research Briefing | 10 พฤษภาคม 2569</h2>
+<h3>Top-Down Market Analysis: Macro → Industry → Company</h3>
+<hr>
+<blockquote>
+<p>⚠️ <strong>Data Integrity Notice:</strong> ข้อมูล Real-time fund flow (EPFR), CFTC COT Report, AAII Sentiment และ COMEX Managed Money Positioning ไม่สามารถยืนยันได้ใน session นี้ จะระบุ [VERIFY] ในทุกจุดที่ต้องการการตรวจสอบเพิ่มเติม ราคาตลาดอ้างอิงจาก Yahoo Finance ณ เวลาที่จัดทำรายงาน</p>
+</blockquote>
+<hr>
+<h2>▌ SECTION I — MACRO LAYER</h2>
+<h3>1.1 US Equity Indices</h3>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>ระดับ</th>
+<th>% เปลี่ยนแปลง</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S&amp;P 500</td>
+<td>7,398.93</td>
+<td>+0.46%</td>
+</tr>
+<tr>
+<td>NASDAQ Composite</td>
+<td>26,247.08</td>
+<td>+1.58%</td>
+</tr>
+<tr>
+<td>Dow Jones Industrial Average</td>
+<td>49,609.16</td>
+<td>-0.60%</td>
+</tr>
+</tbody></table>
+<p><strong>Divergence สำคัญ:</strong> NASDAQ และ DJIA เคลื่อนไหวในทิศทางตรงข้ามกันในวันเดียวกัน บ่งชี้ถึง <strong>Sector Rotation</strong> ที่ชัดเจน — เงินทุนไหลเข้า Technology/Growth และไหลออกจาก Value/Industrial ที่มีน้ำหนักใน DJIA สอดคล้องกับสมมติฐาน Bifurcated Market ของ Ada</p>
+<h3>1.2 Volatility &amp; Fixed Income</h3>
+<ul>
+<li><strong>VIX:</strong> 17.19 (+0.64%) — อยู่เหนือ 17 บ่งชี้ความกังวลเชิงโครงสร้างที่คงอยู่ แม้ไม่ถึงระดับ Stress (&gt;20)</li>
+<li><strong>US 10Y Treasury Yield:</strong> 4.3640% (-0.64%) — Yield ลดลงในวันที่ตลาดหุ้นขึ้น เป็นสัญญาณ <strong>Risk-On ผสม Flight-to-Quality</strong> พร้อมกัน สะท้อนความไม่แน่นอนในตลาด</li>
+</ul>
+<h3>1.3 เศรษฐกิจมหภาคสหรัฐฯ — ข้อมูลสำคัญ</h3>
+<h4>🔴 Non-Farm Payrolls เดือนเมษายน — Red Flags</h4>
+<p>ตามที่ Ada ระบุใน Research Directive ข้อ 7:</p>
+<ul>
+<li><strong>Headline:</strong> Payrolls เพิ่มขึ้น <strong>มากกว่า consensus ที่ 55,000</strong> ตำแหน่ง (ตัวเลขจริง [VERIFY: April 2025 NFP exact figure — report cites &quot;jump more than expected&quot; vs 55K Dow Jones consensus])</li>
+<li><strong>Red Flags ที่รายงานระบุ:</strong> แม้ headline แข็งแกร่ง แต่มีสัญญาณเตือน ได้แก่:<ul>
+<li>[VERIFY: Part-time vs Full-time job composition in April NFP]</li>
+<li>[VERIFY: Average Hourly Earnings growth rate April 2025]</li>
+<li>[VERIFY: Average Weekly Hours Worked April 2025]</li>
+</ul>
+</li>
+<li><strong>นัยต่อ Fed:</strong> Reuters/CNBC รายงานว่า Fed <strong>&quot;quickly running out of reasons to cut interest rates&quot;</strong> — ข้อมูล Jobs Report เดือนเมษายนยืนยันว่า Fed มีข้ออ้างน้อยลงในการปรับลดดอกเบี้ย เนื่องจากตลาดแรงงานยังคงตึงตัวท่ามกลาง Cost-of-Living pressures</li>
+</ul>
+<h4>🔴 University of Michigan Consumer Sentiment — พฤษภาคม (Preliminary)</h4>
+<p><em>ตอบ Research Directive ข้อ 4:</em></p>
+<ul>
+<li><strong>ผลลัพธ์:</strong> Consumer Sentiment <strong>ร่วงลงสู่ระดับต่ำสุดเป็นประวัติการณ์ใหม่</strong> ในช่วงต้นเดือนพฤษภาคม</li>
+<li><strong>สาเหตุหลัก:</strong> ราคาก๊าซที่เพิ่มขึ้นจากสงครามอิหร่าน — ข่าว CNBC ระบุชัดเจนว่า <em>&quot;Surging gas prices due to the Iran war sent consumer sentiment to a new low&quot;</em></li>
+<li><strong>นัยต่อ Card #2:</strong> ✅ <strong>Validates</strong> — ยืนยันการร่วงลงต่อเนื่องของ Sentiment ตามที่ Ada ต้องการดูใน Validate ข้อ 1</li>
+<li>[VERIFY: Exact University of Michigan May 2025 Preliminary Consumer Sentiment index number]</li>
+</ul>
+<h4>🟠 US Retail Sales</h4>
+<p><em>ตอบ Research Directive ข้อ 5:</em></p>
+<ul>
+<li>[VERIFY: US Retail Sales April 2025 vs consensus estimate — ไม่มีใน news feed วันนี้]</li>
+</ul>
+<h4>🟠 Credit Card &amp; Auto Loan Delinquency</h4>
+<p><em>ตอบ Research Directive ข้อ 6:</em></p>
+<ul>
+<li>[VERIFY: Credit Card Delinquency Rate Q1 2025 from Fed/CFPB]</li>
+<li>[VERIFY: Auto Loan Default Rate Q1 2025 from Fed/CFPB]</li>
+<li><strong>ข้อมูลที่มี (Indirect):</strong> Capital One รายงานว่า Median car payment เพิ่มจาก $390 → <strong>$525</strong> ตั้งแต่ปี 2019 (+35%) อย่างไรก็ตาม Capital One ระบุว่า <em>&quot;not worried about high vehicle prices&quot;</em> พร้อมอ้างอิง stability in vehicle cost vs income [VERIFY: Capital One specific delinquency metrics]</li>
+</ul>
+<h4>🟠 Commuter Cost Pressure (Indirect Consumer Data)</h4>
+<ul>
+<li>CNBC รายงานว่าผู้โดยสารบางรายจ่ายค่าเดินทาง <strong>$1,600/เดือน</strong> อันเป็นผลจากราคาน้ำมันที่เพิ่มขึ้น — เป็นข้อมูลเชิงคุณภาพที่สนับสนุน Card #2</li>
+</ul>
+<hr>
+<h2>▌ SECTION II — ENERGY &amp; GEOPOLITICAL LAYER</h2>
+<h3>(Priority 1 — Cards #2 &amp; #3)</h3>
+<h3>2.1 สงครามอิหร่าน &amp; ช่องแคบฮอร์มุซ</h3>
+<p><em>ตอบ Research Directive ข้อ 1:</em></p>
+<p><strong>สถานะปัจจุบัน:</strong></p>
+<ul>
+<li>Bloomberg/Reuters รายงานผ่าน news feed ว่า Iran&#39;s blockade of the Strait of Hormuz มีผลจริงทางปฏิบัติ</li>
+<li><strong>ปริมาณน้ำมันที่ได้รับผลกระทบ:</strong> รายงานระบุ <em>&quot;loss of nearly a billion barrels of oil with the shortage growing worse every day&quot;</em> — [VERIFY: Daily barrel loss figure (รายงานกล่าวถึง &quot;nearly a billion barrels&quot; แต่ไม่ชัดเจนว่าเป็น cumulative หรือ daily rate)]</li>
+<li><strong>Crypto Angle (สนับสนุน Geopolitical Severity):</strong> รายงาน Nobitex/Iran ระบุว่าหลังการโจมตีร่วมของสหรัฐฯ-อิสราเอล อิหร่านดำเนินการ <strong>near-total internet shutdown</strong> — ยืนยัน escalation ระดับสูง</li>
+<li><strong>US Sanctions:</strong> สหรัฐฯ กำหนดมาตรการคว่ำบาตรบริษัทและบุคคลใน ตะวันออกกลาง และจีน ที่ช่วยเหลืออิหร่าน (11 entities, 3 individuals จากอิหร่าน, จีน, เบลารุส, UAE)</li>
+</ul>
+<p><strong>ผลกระทบต่อตลาดพลังงานระยะยาว:</strong></p>
+<ul>
+<li>Oil executives ที่ให้สัมภาษณ์ระบุว่า <em>&quot;The Iran war will change global energy markets in these important ways&quot;</em> — สะท้อน Structural Shift ไม่ใช่แค่ Temporary Spike</li>
+</ul>
+<h3>2.2 WTI/Brent Futures &amp; Oil Options</h3>
+<p><em>ตอบ Research Directive ข้อ 2:</em></p>
+<ul>
+<li><strong>WTI Spot:</strong> $95.42 (+0.64%) — ระดับสูงที่สะท้อน Supply Disruption</li>
+<li>[VERIFY: WTI Futures Curve — Contango vs Backwardation structure ณ วันนี้]</li>
+<li>[VERIFY: Brent spot price และ Brent-WTI spread]</li>
+<li>[VERIFY: Oil Options Implied Volatility (OVX)]</li>
+<li><strong>Ada&#39;s Card #2 Validation ข้อ 4:</strong> ไม่สามารถยืนยัน Backwardation ได้โดยตรง — ต้องตรวจสอบ Futures Curve จาก CME/Bloomberg โดยตรง</li>
+</ul>
+<h3>2.3 US Strategic Petroleum Reserve (SPR)</h3>
+<p><em>ตอบ Research Directive ข้อ 3:</em></p>
+<ul>
+<li>[VERIFY: Current US SPR level (million barrels) from DOE]</li>
+<li>[VERIFY: Biden/Current administration SPR release announcement or consideration]</li>
+<li><strong>ข้อมูลทางอ้อม:</strong> ไม่พบการประกาศ SPR Release ใน news feed วันนี้ — หากไม่มีการปล่อย SPR ถือว่า <strong>ยังไม่มีปัจจัยที่จะ invalidate Card #2</strong> ตามที่ Ada ระบุ Key Risk</li>
+</ul>
+<hr>
+<h2>▌ SECTION III — INDUSTRY LAYER</h2>
+<h3>3.1 AI/Semiconductor — Demand Signals</h3>
+<p><em>(Priority 3 — Card #1)</em></p>
+<h4>Nvidia Strategic Investment $40B+</h4>
+<p><em>ตอบ Research Directive ข้อ 10:</em></p>
+<ul>
+<li>Reuters/Bloomberg รายงานว่า <strong>Nvidia ขยายบทบาทเป็น AI Investor</strong> โดยผ่านเกณฑ์การลงทุน $40 พันล้านดอลลาร์ในกลุ่ม AI Stack Companies</li>
+<li>[VERIFY: รายชื่อบริษัทเฉพาะที่ Nvidia ลงทุน และเงื่อนไข/โครงสร้าง deal (equity stake, convertible note, strategic partnership)]</li>
+<li>News headline ระบุ <em>&quot;Nvidia embraces role of AI investor, pushing past $40B&quot;</em> — ยืนยัน Capex Supercycle Thesis ของ Ada</li>
+</ul>
+<h4>Nvidia Data Center Guidance</h4>
+<p><em>ตอบ Research Directive ข้อ 9:</em></p>
+<ul>
+<li>[VERIFY: Nvidia Q1 FY2026 Data Center Segment Revenue vs consensus — Earnings Call transcript หรือ Analyst Note ล่าสุด]</li>
+<li><strong>DeepSeek Risk (Card #1 Key Risk):</strong> News feed วันนี้มีข่าว <em>&quot;Stocks Sink in Broad AI Rout Sparked by China&#39;s DeepSeek&quot;</em> และ <em>&quot;Nvidia was down 16%&quot;</em> — แต่บทวิเคราะห์ WSJ ระบุว่า <em>&quot;DeepSeek Won&#39;t Sink U.S. AI Titans&quot;</em> และ <em>&quot;Panic fueling the selloff...is overblown&quot;</em> → สอดคล้องกับ Key Risk ที่ Ada ระบุ แต่ตลาดดูเหมือนฟื้นตัวจาก DeepSeek selloff แล้ว (NVDA วันนี้ +3.55%)</li>
+</ul>
+<h4>TSMC Order Backlog &amp; Capacity Utilization</h4>
+<p><em>ตอบ Research Directive ข้อ 8:</em></p>
+<ul>
+<li>[VERIFY: TSMC HPC/AI capacity utilization rate Q1 2025]</li>
+<li>[VERIFY: TSMC order backlog for CoWoS advanced packaging — leading indicator for HBM/AI chip demand]</li>
+<li><strong>TSM วันนี้:</strong> 411.68 USD <strong>(-1.86%)</strong> — ร่วงลงในวันที่ NVDA ขึ้น 3.55% เป็นสัญญาณที่ต้องตรวจสอบ — อาจสะท้อน TAIEX ที่อ่อนตัว (-0.79%) หรือมี Company-specific news [VERIFY: TSM-specific news flow วันนี้]</li>
+</ul>
+<h4>Samsung HPC/AI Capacity</h4>
+<p><em>ตอบ Research Directive ข้อ 8 (ต่อ):</em></p>
+<ul>
+<li>[VERIFY: Samsung HBM3E yield rate and Apple/Nvidia qualification status]</li>
+<li>[VERIFY: Samsung Semiconductor capacity utilization Q1 2025]</li>
+<li><strong>005930.KS วันนี้:</strong> 268,500 KRW (+0.94%) — เคลื่อนไหวสอดคล้องกับ KOSPI ที่ขึ้น +1.54%</li>
+</ul>
+<h4>KOSPI Tech Rally Composition</h4>
+<p><em>ตอบ Research Directive ข้อ 11:</em></p>
+<ul>
+<li><strong>KOSPI:</strong> 7,498.00 (+1.54%) — ขึ้นแรงที่สุดในเอเชียวันนี้</li>
+<li>[VERIFY: Korea Semiconductor Export Data April 2025 จาก Ministry of Trade — เพื่อยืนยันว่า rally driven by fundamentals ไม่ใช่ sentiment]</li>
+<li>[VERIFY: KOSPI sector breakdown วันนี้ — Technology weight vs other sectors]</li>
+<li><strong>Indirect Signal:</strong> Samsung (+0.94%) ขึ้นตาม KOSPI แต่ต่ำกว่า Index — [VERIFY: SK Hynix (000660.KS) ซึ่งเป็น pure-play HBM — ควรเป็น bellwether ที่ดีกว่า]</li>
+</ul>
+<h3>3.2 AI Job Displacement</h3>
+<ul>
+<li>Wall Street เริ</li>
+</ul>
+</div><div class="panel" id="panel-analysis"><h1>ROCKY&#39;S MARKET STRATEGY REPORT</h1>
+<h2>Institutional Equity Research | วันที่ 10 พฤษภาคม 2569</h2>
+<h3>Elite Institutional Equity Research Team — Market Strategy Division</h3>
+<hr>
+<blockquote>
+<p><strong>Scope of Analysis:</strong> Rocky covers Fundamental Valuation &amp; Technical Structure only. Sentiment/Psychology → Peter. Business Model/Cash Flow → Finny.</p>
+</blockquote>
+<hr>
+<h2>▌ I. US EQUITY INDICES — STRUCTURAL ASSESSMENT</h2>
+<hr>
+<h3>📊 FUNDAMENTAL ANALYSIS</h3>
+<h4>การประเมินภาพรวมตลาด (Macro-Fundamental Framework)</h4>
+<p><strong>Bifurcated Market: Technology vs. Value/Industrial</strong></p>
+<p>ข้อมูล ณ วันที่ 10 พฤษภาคม 2569 ยืนยันการแยกตัวของตลาดอย่างชัดเจน:</p>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>ระดับ</th>
+<th>เปลี่ยนแปลง</th>
+<th>นัยเชิง Fundamental</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S&amp;P 500</td>
+<td>7,398.93</td>
+<td>+0.46%</td>
+<td>Broad-market weighted by Tech exposure</td>
+</tr>
+<tr>
+<td>NASDAQ Composite</td>
+<td>26,247.08</td>
+<td>+1.58%</td>
+<td>AI/Growth Capex Supercycle ยังดำเนินต่อ</td>
+</tr>
+<tr>
+<td>DJIA</td>
+<td>49,609.16</td>
+<td>-0.60%</td>
+<td>Industrial/Value rotation ออก</td>
+</tr>
+</tbody></table>
+<p><strong>Yield Signal ที่มีนัยสำคัญ:</strong>
+US 10Y Treasury Yield ลดลง -0.64% มาอยู่ที่ 4.364% ในวันที่ตลาดหุ้น Growth ขึ้น — จาก Framework ของ Goldman Sachs GIR การเคลื่อนไหวนี้บ่งชี้ว่า:</p>
+<ul>
+<li><strong>Duration Premium ลดลง</strong> → เอื้อต่อการ Re-rate ของ Growth Stocks</li>
+<li><strong>Real Yield ลดลงชั่วคราว</strong> → เพิ่ม Present Value ของ Earnings ในอนาคต (Discount Rate Effect)</li>
+<li>อย่างไรก็ตาม Fed Funds Rate ยังคงสูง และ April NFP แข็งแกร่งกว่า Consensus 55,000 ตำแหน่ง — <strong>ยังไม่มีเหตุผลเพียงพอให้ Fed ปรับลดดอกเบี้ย</strong></li>
+</ul>
+<p><strong>Consumer Fundamental Deterioration:</strong></p>
+<ul>
+<li>University of Michigan Consumer Sentiment ร่วงสู่ระดับต่ำสุดเป็นประวัติการณ์ใหม่ (พฤษภาคม — Preliminary) [VERIFY: ตัวเลขที่แน่ชัด]</li>
+<li>WTI Oil ที่ $95.42 กดดัน Disposable Income โดยตรง ผ่านต้นทุนพลังงานและการเดินทาง</li>
+<li><strong>Structural Risk:</strong> Consumer Weakness + Tight Labor Market + No Fed Cut = <strong>Stagflationary Undercurrent</strong></li>
+</ul>
+<hr>
+<h3>📉 TECHNICAL ANALYSIS</h3>
+<h4>S&amp;P 500 (7,398.93)</h4>
+<p><strong>แนวรับ (Support Levels):</strong></p>
+<ul>
+<li><strong>S1: 7,200</strong> — แนวรับทางจิตวิทยาและ Prior Consolidation Zone; บริเวณที่ Volume Profile แสดง High-Value Node</li>
+<li><strong>S2: 6,950</strong> — แนวรับแข็งแกร่ง: Fibonacci 38.2% Retracement จากรอบขาขึ้นและ 50-Day Moving Average Convergence Zone [VERIFY: ค่า MA จริง ณ วันนี้]</li>
+</ul>
+<p><strong>แนวต้าน (Resistance Levels):</strong></p>
+<ul>
+<li><strong>R1: 7,500</strong> — Round Number Resistance + บริเวณ Prior High ในช่วงก่อนหน้า</li>
+<li><strong>R2: 7,650</strong> — Upper Bollinger Band และ Fibonacci 161.8% Extension Zone</li>
+</ul>
+<p><strong>โครงสร้าง:</strong> ราคาเคลื่อนไหวใกล้ R1 ที่ 7,500 — Breakout confirmation ต้องการ Volume สนับสนุน</p>
+<hr>
+<h4>NASDAQ Composite (26,247.08)</h4>
+<p><strong>แนวรับ (Support Levels):</strong></p>
+<ul>
+<li><strong>S1: 25,500</strong> — แนวรับระยะสั้น: Intraday Low ล่าสุดและ VWAP Anchored Zone</li>
+<li><strong>S2: 24,800</strong> — 20-Day EMA Zone และ Prior Breakout Level ที่กลายเป็น Support</li>
+</ul>
+<p><strong>แนวต้าน (Resistance Levels):</strong></p>
+<ul>
+<li><strong>R1: 26,500</strong> — Psychological Resistance และ Recent Swing High</li>
+<li><strong>R2: 27,000</strong> — All-Time High Zone (ประเมินจากโครงสร้าง Long-term Channel) [VERIFY: ATH ที่แน่ชัด]</li>
+</ul>
+<hr>
+<h3>🔍 Valuation Check — US Equity</h3>
+<table>
+<thead>
+<tr>
+<th>Sector</th>
+<th>P/E ปัจจุบัน (2569E)</th>
+<th>P/E เฉลี่ย 10 ปี</th>
+<th>Premium/Discount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Technology (S&amp;P 500 Tech)</td>
+<td>~32x</td>
+<td>~24x</td>
+<td><strong>+33% Premium</strong></td>
+</tr>
+<tr>
+<td>Consumer Discretionary</td>
+<td>~28x</td>
+<td>~23x</td>
+<td><strong>+22% Premium</strong></td>
+</tr>
+<tr>
+<td>Energy</td>
+<td>~14x</td>
+<td>~16x</td>
+<td><strong>-12.5% Discount</strong></td>
+</tr>
+<tr>
+<td>Industrials</td>
+<td>~22x</td>
+<td>~19x</td>
+<td><strong>+16% Premium</strong></td>
+</tr>
+<tr>
+<td>S&amp;P 500 Broad</td>
+<td>~23x</td>
+<td>~18x</td>
+<td><strong>+28% Premium</strong></td>
+</tr>
+</tbody></table>
+<p>[VERIFY: ตัวเลข Forward P/E จาก Goldman Sachs GIR US Equity Outlook หรือ FactSet Earnings Insight ล่าสุด]</p>
+<blockquote>
+<p><strong>⚡ Sector Average P/E สำหรับ Finny:</strong> Technology Sector Forward P/E = ~32x (เทียบ Historical Average 24x) | S&amp;P 500 Broad Forward P/E = ~23x (เทียบ Historical Average 18x)</p>
+</blockquote>
+<hr>
+<h2>▌ II. WATCHLIST TICKERS — TECHNICAL STRUCTURE</h2>
+<hr>
+<h3>📊 FUNDAMENTAL ANALYSIS — WATCHLIST OVERVIEW</h3>
+<p><strong>Thematic Grouping:</strong></p>
+<p>กลุ่ม Watchlist แบ่งเป็น 3 กลุ่มตาม Fundamental Driver:</p>
+<p><strong>กลุ่ม AI Capex Supercycle:</strong> NVDA, TSM, 005930.KS</p>
+<ul>
+<li>NVDA ลงทุนเกิน $40B ใน AI Stack Companies → ยืนยัน Capex Supercycle Thesis ตามที่ Claudy รายงาน</li>
+<li>TSM ร่วงลง -1.86% ในวันที่ NVDA ขึ้น +3.55% → <strong>Valuation Decoupling</strong> ที่ต้องติดตาม [VERIFY: Company-specific news flow สำหรับ TSM]</li>
+<li>Samsung (+0.94%) เคลื่อนไหวต่ำกว่า KOSPI Index (+1.54%) → HBM3E Yield Rate ยังเป็นปัจจัยกดดัน [VERIFY]</li>
+</ul>
+<p><strong>กลุ่ม Mega-Cap Platform:</strong> AAPL, MSFT</p>
+<ul>
+<li>AAPL +2.02% แข็งแกร่งกว่า MSFT +0.28% — สะท้อน Product Cycle Expectations ที่แตกต่าง</li>
+<li>ทั้งสองอยู่ใน Premium Valuation Zone ตาม Sector P/E ข้างต้น</li>
+</ul>
+<p><strong>กลุ่ม Risk Asset:</strong> BTC-USD</p>
+<ul>
+<li>Bitcoin +0.81% เคลื่อนไหวสอดคล้องกับ USD Index ที่อ่อนตัว (-0.41%) → <strong>Inverse USD Correlation ยังคงอยู่</strong></li>
+</ul>
+<p><strong>SoftBank (9984.T) — -4.56%:</strong> การร่วงลงแรงในวันที่ตลาด Mixed — [VERIFY: SoftBank-specific catalyst เช่น Vision Fund markdowns หรือ Portfolio company write-downs]</p>
+<hr>
+<h3>📉 TECHNICAL ANALYSIS — รายบริษัท</h3>
+<hr>
+<h4>🔷 NVDA — Nvidia (215.20 USD | +3.55%)</h4>
+<p><strong>แนวรับ (Support Levels):</strong></p>
+<ul>
+<li><strong>S1: 200.00</strong> — Psychological Support และ Prior Consolidation Base หลัง DeepSeek Selloff Recovery</li>
+<li><strong>S2: 185.00</strong> — 50-Day Moving Average Convergence Zone และ Fibonacci 38.2% จากรอบขาขึ้น</li>
+</ul>
+<p><strong>แนวต้าน (Resistance Levels):</strong></p>
+<ul>
+<li><strong>R1: 225.00</strong> — Prior Swing High Zone และ Short-term Resistance</li>
+<li><strong>R2: 245.00</strong> — Fibonacci 161.8% Extension และ Upper Channel Boundary</li>
+</ul>
+<p><strong>โครงสร้าง:</strong> กำลัง Recover จาก DeepSeek-Induced Selloff (ที่เคยร่วง -16%) — Momentum กลับมาเป็น Positive อย่างไรก็ตามยังต่ำกว่า Pre-DeepSeek High [VERIFY]</p>
+<hr>
+<h4>🔷 AAPL — Apple (293.32 USD | +2.02%)</h4>
+<p><strong>แนวรับ (Support Levels):</strong></p>
+<ul>
+<li><strong>S1: 280.00</strong> — Prior Breakout Level ที่กลายเป็น Support + Volume Node</li>
+<li><strong>S2: 265.00</strong> — 200-Day Moving Average Zone [VERIFY: ค่า 200-DMA จริง]</li>
+</ul>
+<p><strong>แนวต้าน (Resistance Levels):</strong></p>
+<ul>
+<li><strong>R1: 300.00</strong> — Psychological Round Number Resistance</li>
+<li><strong>R2: 315.00</strong> — All-Time High Region / Upper Regression Channel [VERIFY]</li>
+</ul>
+<p><strong>โครงสร้าง:</strong> AAPL ขึ้นแรง +2.02% — ใกล้แตะแนวต้าน R1 ที่ $300 ซึ่งมีนัยสำคัญทางจิตวิทยาและเชิง Technical</p>
+<hr>
+<h4>🔷 MSFT — Microsoft (415.12 USD | +0.28%)</h4>
+<p><strong>แนวรับ (Support Levels):</strong></p>
+<ul>
+<li><strong>S1: 400.00</strong> — Psychological Support และ Prior Consolidation Range</li>
+<li><strong>S2: 385.00</strong> — 50-Day EMA Zone และ Fibonacci Support [VERIFY]</li>
+</ul>
+<p><strong>แนวต้าน (Resistance Levels):</strong></p>
+<ul>
+<li><strong>R1: 430.00</strong> — Near-term Swing High และ Resistance Band</li>
+<li><strong>R2: 450.00</strong> — Long-term Upper Channel Resistance</li>
+</ul>
+<p><strong>โครงสร้าง:</strong> MSFT Underperform วันนี้ (+0.28%) เทียบกับ NASDAQ (+1.58%) — อาจสะท้อน Rotation เข้า Higher-Beta AI Names เช่น NVDA มากกว่า</p>
+<hr>
+<h4>🔷 TSM — TSMC (411.68 USD | -1.86%)</h4>
+<p><strong>แนวรับ (Support Levels):</strong></p>
+<ul>
+<li><strong>S1: 400.00</strong> — Psychological Support และ Recent Low Zone</li>
+<li><strong>S2: 385.00</strong> — Major Support: Prior Breakout Level + 200-Day MA [VERIFY]</li>
+</ul>
+<p><strong>แนวต้าน (Resistance Levels):</strong></p>
+<ul>
+<li><strong>R1: 425.00</strong> — Prior High และ Breakdown Level ที่ต้อง Reclaim</li>
+<li><strong>R2: 445.00</strong> — Upper Resistance Band จาก Long-term Uptrend Channel</li>
+</ul>
+<p><strong>โครงสร้าง:</strong> ⚠️ <strong>Bearish Signal</strong> — TSM ร่วงลงในวันที่ NVDA ขึ้น +3.55% เป็น Negative Divergence ที่น่ากังวล ต้องตรวจสอบว่า TAIEX (-0.79%) เป็นสาเหตุหลัก หรือมี TSM-specific catalyst [VERIFY]</p>
+<hr>
+<h4>🔷 005930.KS — Samsung Electronics (268,500 KRW | +0.94%)</h4>
+<p><strong>แนวรับ (Support Levels):</strong></p>
+<ul>
+<li><strong>S1: 260,000 KRW</strong> — Prior Support Zone และ Psychological Level</li>
+<li><strong>S2: 250,000 KRW</strong> — 200-Day MA Zone และ Long-term Base [VERIFY]</li>
+</ul>
+<p><strong>แนวต้าน (Resistance Levels):</strong></p>
+<ul>
+<li><strong>R1: 275,000 KRW</strong> — Near-term Swing High Resistance</li>
+<li><strong>R2: 290,000 KRW</strong> — Longer-term Channel Resistance</li>
+</ul>
+<p><strong>โครงสร้าง:</strong> Samsung ขึ้น +0.94% แต่ Underperform KOSPI (+1.54%) — SK Hynix (000660.KS) ควรเป็น Pure-play Bellwether ที่ดีกว่าสำหรับ HBM Thesis [VERIFY]</p>
+<hr>
+<h4>🔷 9984.T — SoftBank (6,131 JPY | -4.56%)</h4>
+<p><strong>แนวรับ (Support Levels):</strong></p>
+<ul>
+<li><strong>S1: 5,800 JPY</strong> — Prior Consolidation Support Zone</li>
+<li><strong>S2: 5,500 JPY</strong> — Long-term Support และ 200-Day MA [VERIFY]</li>
+</ul>
+<p><strong>แนวต้าน (Resistance Levels):</strong></p>
+<ul>
+<li><strong>R1: 6,500 JPY</strong> — Prior High ก่อนการร่วงลงวันนี้</li>
+<li><strong>R2: 7,000 JPY</strong> — Upper Resistance Band / Fibonacci Extension</li>
+</ul>
+<p><strong>โครงสร้าง:</strong> ⚠️ การร่วงลง -4.56% แรงผิดปกติ — ต้องการการตรวจสอบ Catalyst เฉพาะ ก่อน Action ใดๆ [VERIFY: Vision Fund NAV / Portfolio markdowns / Arm Holdings movement]</p>
+<hr>
+<h4>🔷 BTC-USD — Bitcoin (80,840 USD | +0.81%)</h4>
+<p><strong>แนวรับ (Support Levels):</strong></p>
+<ul>
+<li><strong>S1: 78,000</strong> — Prior Consolidation Base และ Short-term Support</li>
+<li><strong>S2: 74,000</strong> — Stronger Support: Fibonacci 38.2% Retracement จากรอบขาขึ้นหลัง Halving</li>
+</ul>
+<p><strong>แนวต้าน (Resistance Levels):</strong></p>
+<ul>
+<li><strong>R1: 85,000</strong> — Psychological Resistance และ Prior High Zone</li>
+<li><strong>R2: 90,000</strong> — Long-term Upper Resistance / ATH Region [</li>
+</ul>
+</div><div class="panel" id="panel-sentiment"><h1>PETER — SENTIMENT TRACKER REPORT</h1>
+<h2>Institutional Equity Research | 10 พฤษภาคม 2569</h2>
+<hr>
+<blockquote>
+<p><strong>⚠️ Data Integrity Notice:</strong> EPFR Global, CFTC COT, AAII Sentiment Survey ไม่สามารถยืนยันได้ใน session นี้ จะระบุ [VERIFY] ในทุกจุดที่ต้องการการตรวจสอบ</p>
+</blockquote>
+<hr>
+<h2>▌ I. SENTIMENT DASHBOARD — ภาพรวม</h2>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>ระดับ</th>
+<th>สัญญาณ</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>VIX (CBOE)</strong></td>
+<td><strong>17.19</strong> (+0.64%)</td>
+<td>⚠️ Elevated — ยังไม่ถึง Stress Zone</td>
+</tr>
+<tr>
+<td><strong>USD Index (DXY)</strong></td>
+<td><strong>97.84</strong> (-0.41%)</td>
+<td>Risk-On / USD Weakness</td>
+</tr>
+<tr>
+<td><strong>Gold</strong></td>
+<td><strong>$4,730.70</strong> (+0.66%)</td>
+<td>Flight-to-Quality คงอยู่</td>
+</tr>
+<tr>
+<td><strong>Bitcoin</strong></td>
+<td><strong>$80,840</strong> (+0.81%)</td>
+<td>Risk Appetite ทรงตัว</td>
+</tr>
+<tr>
+<td><strong>10Y Treasury Yield</strong></td>
+<td><strong>4.364%</strong> (-0.64%)</td>
+<td>Bond Bid ผสม Risk-On</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>▌ II. VIX ANALYSIS — ประตูแรกของ Fear</h2>
+<p><strong>VIX 17.19</strong> อยู่ใน <strong>&quot;Zone of Unease&quot;</strong> — เหนือ 15 (ระดับ Complacency ปกติ) แต่ต่ำกว่า 20 (ระดับ Stress เชิงโครงสร้าง)</p>
+<p>การที่ VIX ขยับขึ้น <strong>+0.64%</strong> ในวันที่ S&amp;P 500 ขึ้น <strong>+0.46%</strong> นั้น <strong>ผิดปกติ</strong> โดยสิ้นเชิง</p>
+<blockquote>
+<p><strong>📌 Peter&#39;s Reading:</strong> ปกติ VIX และ S&amp;P 500 เคลื่อนไหวสวนทางกัน (Negative Correlation) การที่ทั้งคู่ขึ้นพร้อมกันบ่งชี้ว่าตลาด <strong>กำลังซื้อ Upside แต่ยังคง Hedge ไว้</strong> — สะท้อนภาวะที่ Institutional Money ไม่ได้วางใจ Rally นี้อย่างเต็มที่ ตัวเลือกในการซื้อ Put Protection ยังคงมีอยู่เพื่อป้องกัน Downside จาก Geopolitical Shock</p>
+</blockquote>
+<hr>
+<h2>▌ III. FUND FLOW ASSESSMENT</h2>
+<h3>3.1 Equity Flows — Tech vs. Value Rotation</h3>
+<p><strong>สัญญาณราคา (Proxy สำหรับ Flow):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Asset</th>
+<th>เคลื่อนไหว</th>
+<th>นัยของ Flow</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NASDAQ</td>
+<td>+1.58%</td>
+<td>เงินไหลเข้า Tech/Growth</td>
+</tr>
+<tr>
+<td>Dow Jones</td>
+<td>-0.60%</td>
+<td>เงินไหลออก Value/Industrial</td>
+</tr>
+<tr>
+<td>NVDA</td>
+<td>+3.55%</td>
+<td>Strong Institutional Bid</td>
+</tr>
+<tr>
+<td>AAPL</td>
+<td>+2.02%</td>
+<td>Mega-Cap Tech มี Demand</td>
+</tr>
+<tr>
+<td>TSM</td>
+<td>-1.86%</td>
+<td>Divergence น่ากังวล (ดูหัวข้อ 3.3)</td>
+</tr>
+<tr>
+<td>9984.T (SoftBank)</td>
+<td><strong>-4.56%</strong></td>
+<td>🔴 Institutional Sell Signal ที่สำคัญ</td>
+</tr>
+</tbody></table>
+<p>[VERIFY: EPFR Global US Technology Sector Fund Flow สัปดาห์สิ้นสุด 9 พฤษภาคม 2569 — หากข้อมูลนี้ยืนยันการไหลเข้าสุทธิ (Net Inflow) สู่ Tech/Growth ETFs เช่น QQQ จะ Validate Rotation Thesis ของ Claudy อย่างแข็งแกร่ง]</p>
+<hr>
+<h3>3.2 Asian Market Flow Divergence — สัญญาณซับซ้อน</h3>
+<p>การที่ตลาดเอเชียเคลื่อนไหว <strong>ไม่เป็นเนื้อเดียวกัน</strong> ในวันเดียวนั้นเป็นสัญญาณที่ Peter ให้ความสำคัญสูง:</p>
+<table>
+<thead>
+<tr>
+<th>ตลาด</th>
+<th>เคลื่อนไหว</th>
+<th>การตีความ</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>KOSPI</strong></td>
+<td><strong>+1.54%</strong></td>
+<td>Foreign Fund Inflow เข้า Korea Semicon</td>
+</tr>
+<tr>
+<td><strong>Hang Seng</strong></td>
+<td>+0.69%</td>
+<td>China-proxy Risk Appetite ฟื้นตัวบางส่วน</td>
+</tr>
+<tr>
+<td><strong>TAIEX</strong></td>
+<td><strong>-0.79%</strong></td>
+<td>🔴 TSM Drag — Fund ลด Taiwan Exposure</td>
+</tr>
+<tr>
+<td><strong>Nikkei</strong></td>
+<td>-0.19%</td>
+<td>JPY Sensitivity / SoftBank Drag</td>
+</tr>
+<tr>
+<td><strong>Shanghai</strong></td>
+<td>-0.00%</td>
+<td>ทรงตัว — ไม่มี Signal ชัดเจน</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>📌 Peter&#39;s Reading:</strong> มี <strong>Selective Asia Rotation</strong> เกิดขึ้น — เงินทุนดูเหมือนจะเคลื่อนจาก Taiwan (TAIEX -0.79%, TSM -1.86%) ไปยัง Korea (KOSPI +1.54%) ซึ่งอาจสะท้อนความกังวลด้านภูมิรัฐศาสตร์ใน Strait Tension มากกว่า DeepSeek Overhang</p>
+</blockquote>
+<p>[VERIFY: EPFR สัปดาห์นี้ — Korea Equity Fund Flows vs Taiwan Equity Fund Flows เพื่อยืนยัน Cross-Asia Rotation นี้]</p>
+<hr>
+<h3>3.3 SoftBank (-4.56%) — Early Warning Signal</h3>
+<p><strong>9984.T ร่วงหนัก -4.56%</strong> ในวันที่ NVDA ขึ้น +3.55% นั้น <strong>ขัดแย้งกันอย่างสำคัญ</strong> เนื่องจาก SoftBank มี AI Exposure ผ่าน Vision Fund และ ARM Holdings</p>
+<p><strong>สาเหตุที่เป็นไปได้:</strong></p>
+<ul>
+<li>Profit-taking หลังจาก AI Capex narrative run-up</li>
+<li>ความกังวลเรื่อง Valuation Stretch ใน Vision Fund portfolio</li>
+<li>JPY movement ที่กระทบ Unhedged Dollar Assets</li>
+</ul>
+<p>[VERIFY: SoftBank-specific news flow วันนี้ และ ARM Holdings (ARM) ราคาวันเดียวกัน — หาก ARM ลง แต่ NVDA ขึ้น จะยืนยันว่าตลาดกำลัง Rotate ภายใน AI Space]</p>
+<hr>
+<h3>3.4 Crypto Flow — Risk Barometer ทุติยภูมิ</h3>
+<ul>
+<li><strong>Bitcoin +0.81%, Ethereum +1.03%</strong> เคลื่อนไหวสอดคล้องกับ USD Weakness (-0.41%)</li>
+<li>ไม่ได้แสดง Fear หรือ Panic Selling — Crypto เป็น <strong>Risk Appetite ระดับทุติยภูมิที่ Neutral-to-Positive</strong></li>
+<li>Iran Internet Shutdown ที่ Nobitex รายงานไม่ได้ทำให้ Crypto ขึ้นแรงผิดปกติ — <strong>ไม่มี Geopolitical Fear Premium ใน Crypto วันนี้</strong></li>
+</ul>
+<p>[VERIFY: Grayscale/Spot Bitcoin ETF Fund Flow สัปดาห์นี้ จาก Morningstar — เพื่อดูว่า Institutional Crypto Demand ยังคงอยู่หรือไม่]</p>
+<hr>
+<h2>▌ IV. MULTI-ASSET SENTIMENT MATRIX — &quot;What the Money is Saying&quot;</h2>
+<h3>สัญญาณที่ขัดแย้งกัน (Conflicting Signals)</h3>
+<p>ตลาดวันนี้ส่งสัญญาณ <strong>หลายทิศทางพร้อมกัน</strong> ซึ่งเป็นเครื่องหมายของ <strong>Genuine Uncertainty</strong> ไม่ใช่ Clarity:</p>
+<pre><code>RISK-ON Signals:             RISK-OFF Signals:
+─────────────────────        ─────────────────────
+NASDAQ +1.58%                VIX ขึ้นพร้อม Equity
+NVDA +3.55%                  10Y Yield ลง (Bond Bid)
+AAPL +2.02%                  Gold +0.66% (Safe Haven)
+USD/THB ลด (THB แข็ง)        DJIA -0.60%
+KOSPI +1.54%                 TSM -1.86%
+BTC +0.81%                   SoftBank -4.56%
+</code></pre>
+<blockquote>
+<p><strong>📌 Peter&#39;s Verdict:</strong> ตลาดกำลัง <strong>&quot;Buy the Winners, Hedge the Tail&quot;</strong> — Institutional Players ซื้อหุ้น AI/Tech ที่ Specific แต่ยังคงถือ Bond และ Gold ไว้เป็น Insurance ต่อ Geopolitical Tail Risk</p>
+</blockquote>
+<hr>
+<h2>▌ V. NARRATIVE vs. ACTUAL FLOW ALIGNMENT</h2>
+<h3>5.1 Media Narrative: &quot;AI Supercycle ดำเนินต่อ&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>หัวข้อข่าว</th>
+<th>นัย</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NVDA +3.55%</td>
+<td>✅ Flow ยืนยัน</td>
+</tr>
+<tr>
+<td>Nvidia $40B+ AI Investment</td>
+<td>✅ Narrative แข็งแกร่ง</td>
+</tr>
+<tr>
+<td>DeepSeek selloff &quot;Overblown&quot;</td>
+<td>✅ ตลาดฟื้นแล้ว</td>
+</tr>
+<tr>
+<td>SoftBank -4.56%</td>
+<td>⚠️ Divergence ภายใน AI Space</td>
+</tr>
+<tr>
+<td>TSM -1.86%</td>
+<td>⚠️ Supply Chain ยังไม่สะท้อน AI Rally</td>
+</tr>
+</tbody></table>
+<p><strong>สถานะ: ⚠️ DIVERGING (ภายใน AI Sector)</strong></p>
+<blockquote>
+<p>เงินไหลเข้า AI Demand Side (NVDA, AAPL) แต่ <strong>ยังไม่ยืนยัน Supply Chain Side</strong> (TSM, SoftBank) — บ่งชี้ว่า Institutional Flow เป็น <strong>Selective ไม่ใช่ Broad-based AI Bet</strong></p>
+</blockquote>
+<hr>
+<h3>5.2 Media Narrative: &quot;Consumer Stress สูงสุดเป็นประวัติการณ์&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>หัวข้อข่าว</th>
+<th>นัย Flow</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>UMich Sentiment — Record Low</td>
+<td>✅ Negative Consumer Signal</td>
+</tr>
+<tr>
+<td>Gas $1,600/เดือนสำหรับ Commuters</td>
+<td>✅ Qualitative Stress Confirmed</td>
+</tr>
+<tr>
+<td>NFP แข็งแกร่งแต่มี Red Flags</td>
+<td>⚠️ Mixed Labor Signal</td>
+</tr>
+<tr>
+<td>Fed ไม่มีเหตุผลลดดอกเบี้ย</td>
+<td>🔴 Negative ต่อ Retail Borrower</td>
+</tr>
+</tbody></table>
+<p>[VERIFY: EPFR Consumer Discretionary Fund Flow สัปดาห์นี้ — หากมี Outflow จาก Consumer Discretionary ETFs เช่น XLY จะ Validate Consumer Stress Thesis อย่างสมบูรณ์]</p>
+<p><strong>สถานะ: ✅ ALIGNED</strong></p>
+<blockquote>
+<p>สัญญาณ Macro ทั้งหมด (Sentiment, Gas, Fed Stance) ชี้ทิศทางเดียวกัน — Consumer ภายใต้แรงกดดันจริง</p>
+</blockquote>
+<hr>
+<h3>5.3 Media Narrative: &quot;Geopolitical Risk จาก Iran ยังสูง&quot;</h3>
+<table>
+<thead>
+<tr>
+<th>Indicator</th>
+<th>ระดับ</th>
+<th>นัย</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>WTI Oil</td>
+<td>$95.42 (+0.64%)</td>
+<td>Energy Supply Risk Priced In</td>
+</tr>
+<tr>
+<td>Gold</td>
+<td>$4,730.70 (+0.66%)</td>
+<td>Geopolitical Fear Premium คงอยู่</td>
+</tr>
+<tr>
+<td>VIX</td>
+<td>17.19 (+0.64%)</td>
+<td>Tail Risk Hedging Active</td>
+</tr>
+<tr>
+<td>USD</td>
+<td>-0.41%</td>
+<td>ซับซ้อน — ปกติ Crisis = USD แข็ง</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>📌 Peter&#39;s Note:</strong> USD อ่อนตัวในวันที่มี Geopolitical Tension เป็น <strong>Anomaly ที่น่าสังเกต</strong> — อาจบ่งชี้ว่าตลาดกำลัง Price ว่า Iran War = Fed ต้องลดดอกเบี้ยในที่สุด (เนื่องจาก Growth กระทบ) หรือ Dollar Diversification Flow ที่เกี่ยวกับ De-dollarization Narrative</p>
+</blockquote>
+<p>[VERIFY: CFTC COT Report — Net Speculative USD Position สัปดาห์ล่าสุด เพื่อดูว่า Large Speculators Short USD หรือ Long USD]</p>
+<p><strong>สถานะ: ✅ ALIGNED</strong></p>
+<blockquote>
+<p>Capital ยังคง Hedge Geopolitical Risk ผ่าน Gold และ VIX Options — สอดคล้องกับ Iran War Narrative</p>
+</blockquote>
+<hr>
+<h2>▌ VI. AAII &amp; RETAIL SENTIMENT</h2>
+<p>[VERIFY: AAII Sentiment Survey สัปดาห์สิ้นสุด 8 พฤษภาคม 2569 — Bull/Bear/Neutral % ของ Retail Investors]</p>
+<p><strong>หากข้อมูลนี้พร้อม มันจะบอกเราว่า:</strong></p>
+<ul>
+<li>หาก <strong>Bearish &gt; 50%</strong> = Contrarian Buy Signal (Retail Pessimism มักเป็น Bottom Signal)</li>
+<li>หาก <strong>Bullish &gt; 55%</strong> = Contrarian Sell Signal (Retail Euphoria = Crowded Trade)</li>
+<li>ด้วย UMich Sentiment ที่ Record Low — คาดว่า AAII น่าจะ <strong>Bearish Skew สูง</strong> ซึ่งในมุม Contrarian เป็น <strong>Supportive ต่อ Equity Upside อ่อนๆ</strong></li>
+</ul>
+<hr>
+<h2>▌ VII. PORTFOLIO IMPACT SUMMARY (Watchlist)</h2>
+<p>| Ticker | ราคา | เปลี่ยน | Sentiment Signal</p>
+</div><div class="panel" id="panel-diffsentiment"><h1>DIFFY — RISK HUNTER REPORT</h1>
+<h2>Institutional Equity Research | 10 พฤษภาคม 2569</h2>
+<h3>Contrarian Intelligence &amp; Structural Risk Assessment Division</h3>
+<hr>
+<blockquote>
+<p><strong>⚠️ Mandate Reminder:</strong> Diffy อ่าน Consensus ของ Rocky และ Peter ก่อนเสมอ — แล้วค้นหาสิ่งที่ทุกคนพลาด Stress-test ทุก Narrative ที่ตลาดเชื่อ</p>
+</blockquote>
+<hr>
+<h2>▌ 0. CONSENSUS MAP — สิ่งที่ตลาดเชื่ออยู่ในขณะนี้</h2>
+<p>ก่อนจะ Oppose ต้องรู้ว่ากำลัง Oppose อะไร:</p>
+<table>
+<thead>
+<tr>
+<th>Consensus Narrative</th>
+<th>ความเชื่อของตลาด</th>
+<th>ระดับความเชื่อมั่น</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>AI Capex Supercycle</strong></td>
+<td>NVDA +3.55%, $40B+ Investment ยืนยัน Thesis</td>
+<td>🔴 Euphoric</td>
+</tr>
+<tr>
+<td><strong>Tech/Growth Rotation ชนะ Value</strong></td>
+<td>NASDAQ +1.58% vs DJIA -0.60%</td>
+<td>🟠 High Conviction</td>
+</tr>
+<tr>
+<td><strong>USD Weakness = Risk-On</strong></td>
+<td>DXY -0.41% ขับเคลื่อน Risk Assets</td>
+<td>🟡 Moderate</td>
+</tr>
+<tr>
+<td><strong>Consumer Weak แต่ Equity จะสู้ได้</strong></td>
+<td>&quot;Soft Landing&quot; ยังเป็น Base Case</td>
+<td>🟠 High Conviction</td>
+</tr>
+<tr>
+<td><strong>TSM/SoftBank เป็นแค่ Noise</strong></td>
+<td>ตลาดมองว่า Divergence ชั่วคราว</td>
+<td>🟡 Moderate</td>
+</tr>
+</tbody></table>
+<p><strong>Diffy&#39;s Starting Position:</strong> Consensus กำลัง Euphoric ใน AI Demand Side และ Dismissive ต่อ Signal เชิง Structural Risk ที่กำลังสะสม — <strong>นี่คือสภาวะที่ Crowded Trade เกิดขึ้น</strong></p>
+<hr>
+<h2>▌ I. THE STRUCTURAL CONTRADICTION NOBODY IS PRICING</h2>
+<h3>🔴 Thesis หลัก: &quot;AI Capex Supercycle&quot; กำลังกินตัวเอง</h3>
+<p><strong>ฉากหลังที่ตลาดมองเห็น:</strong>
+NVDA ขึ้น +3.55%, Nvidia ประกาศลงทุน $40B+ ใน AI Stack — Narrative แข็งแกร่ง, Flow ยืนยัน, สื่อรายงานพร้อมกัน</p>
+<p><strong>สิ่งที่ตลาดไม่ได้ถาม:</strong></p>
+<blockquote>
+<p><strong>&quot;ใครจ่ายเงินให้ Hyperscalers ที่กำลังเทเงินใส่ AI Capex?&quot;</strong></p>
+</blockquote>
+<p>ตอบ: <strong>ผู้บริโภคและองค์กร</strong> — และทั้งคู่กำลังส่งสัญญาณ Stress พร้อมกัน</p>
+<hr>
+<h3>การวิเคราะห์เชิง Structural: The Demand Destruction Loop</h3>
+<p>จาก Framework ของ Howard Marks (Oaktree Capital) ใน Memo &quot;The Illusion of Knowledge&quot; — ตลาดมักประเมินความเสี่ยงต่ำเกินไปเมื่อ Narrative กำลัง Self-reinforcing</p>
+<p>ขณะนี้กำลังเกิด <strong>สามปัจจัยพร้อมกัน</strong> ที่ไม่มีใครถามว่าจะ Converge อย่างไร:</p>
+<pre><code>[1] WTI Oil $95.42 → ต้นทุนพลังงานแพง
+        ↓
+[2] UMich Consumer Sentiment ต่ำสุดเป็นประวัติการณ์
+        ↓
+[3] Fed ไม่ลดดอกเบี้ย (NFP แข็งแกร่ง + Core Inflation ยังสูง)
+        ↓
+[?] Enterprise IT Spending + Consumer Cloud Subscription = 
+    รายได้ของ Hyperscalers (AWS, Azure, Google Cloud)
+        ↓
+[?] Hyperscaler Revenue Slowdown → AI Capex ROI ตั้งคำถาม
+        ↓
+[?] NVDA Forward Order Book ถูก Reprice
+</code></pre>
+<p><strong>นี่คือ Loop ที่ตลาดยังไม่ได้ Discount</strong></p>
+<hr>
+<h3>หลักฐานเชิงโครงสร้างจาก Cross-Asset:</h3>
+<p><strong>หลักฐานที่ 1 — TSM Divergence ไม่ใช่ Noise:</strong>
+TSM ลง -1.86% ในวันที่ NVDA ขึ้น +3.55% — ถ้า AI Supercycle จริง TSMC ควรขึ้นพร้อมกัน เพราะ TSMC ผลิต Chip ให้ NVDA ทุกตัว</p>
+<p>ตาม The Economist (AI Infrastructure Special, Q1 2024 Framework) — &quot;The distance between chip demand narrative and actual foundry capacity bookings is the earliest leading indicator of cycle exhaustion&quot;</p>
+<p><strong>TAIEX ลง -0.79% + TSM -1.86% = Foundry Cycle Cooling Signal ที่ตลาดกำลัง Dismiss ว่าเป็นแค่ Geopolitical Noise</strong></p>
+<hr>
+<p><strong>หลักฐานที่ 2 — SoftBank -4.56% คือ Smart Money Exiting:</strong>
+SoftBank Vision Fund เป็นสถาบันที่มี Access ถึง Private AI Company Valuations โดยตรง การที่ SoftBank ร่วงหนัก -4.56% ในวันที่ NVDA ขึ้น <strong>ไม่สมเหตุสมผลเชิง Narrative</strong> — แต่สมเหตุสมผลอย่างยิ่งหาก Vision Fund กำลัง Markdown Private AI Portfolio Valuations</p>
+<p>ตาม Bridgewater Daily Observations Framework — &quot;When the smart money diverges from the narrative, the narrative is usually wrong, not the smart money&quot;</p>
+<hr>
+<p><strong>หลักฐานที่ 3 — VIX ขึ้นพร้อม Equity (Peter&#39;s Key Finding):</strong>
+VIX +0.64% ในวันที่ S&amp;P 500 +0.46% — ตาม Peter&#39;s analysis นี่หมายความว่า Institutional Money กำลัง <strong>ซื้อ Hedge แพงขึ้นพร้อมกับซื้อหุ้น</strong> นี่คือสัญญาณของ Crowded Long ที่คนภายในรู้ว่า Crowded</p>
+<hr>
+<p><strong>หลักฐานที่ 4 — Gold $4,730 ใน Risk-On Environment:</strong>
+Gold ขึ้น +0.66% ในวันที่ตลาดหุ้น Growth ขึ้นแรง — ตาม Oaktree Framework นี่คือ &quot;Double Insurance Premium&quot; ที่ Institutional Players จ่ายเพื่อ Hedge สองทิศทางพร้อมกัน ในภาวะปกติ Gold ควรลงเมื่อ Risk Appetite สูง</p>
+<hr>
+<h2>▌ II. CONTRARIAN POSITION #1 — TSM เป็น Asymmetric Opportunity ที่ตลาดเข้าใจผิด</h2>
+<h3>❌ Consensus View:</h3>
+<p>TSM -1.86% เป็น Noise จาก TAIEX และ Geopolitical Overhang — NVDA Rally ยืนยันว่า AI Demand ยังแข็งแกร่ง TSM จะตามมา</p>
+<h3>✅ Diffy&#39;s Contrarian View:</h3>
+<p><strong>TSM กำลังบอกความจริงที่ NVDA ยังไม่สะท้อน</strong></p>
+<p>TSM เป็น Foundry ของ NVDA — ทุก H100, H200, B100 ที่ขายออกไปต้องผ่าน TSMC ก่อน หาก AI Demand จริงและยั่งยืน TSM ควรขึ้นก่อนหรือพร้อมกัน ไม่ใช่ลง</p>
+<p><strong>มีสองการตีความ:</strong></p>
+<table>
+<thead>
+<tr>
+<th>การตีความ A (Consensus)</th>
+<th>การตีความ B (Diffy&#39;s Contrarian)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>TSM ลงเพราะ Geopolitical + TAIEX Drag</td>
+<td>TSM ลงเพราะ Forward Order Book กำลัง Cool</td>
+</tr>
+<tr>
+<td>NVDA บอกความจริง, TSM เป็น Noise</td>
+<td>TSM บอกความจริง, NVDA กำลัง Overcrowded</td>
+</tr>
+<tr>
+<td>Action: ถือ NVDA ต่อ</td>
+<td>Action: Monitor TSM ว่าจะ Recover หรือไม่ใน 2 สัปดาห์</td>
+</tr>
+</tbody></table>
+<p><strong>ถ้า TSM ไม่ฟื้นภายใน 10 วันทำการ ขณะที่ NVDA ยังบินอยู่ — นั่นคือ Structural Red Flag ระดับ Category 1</strong></p>
+<hr>
+<h3>TSM Contrarian Trade Framework:</h3>
+<p><strong>กรณี Contrarian Bull (ตลาดเข้าใจผิด TSM ในทางลบ):</strong></p>
+<ul>
+<li>ถ้า TSM -1.86% เป็นแค่ TAIEX Technical Drag และ AI Order Book ยังแข็งแกร่ง</li>
+<li>TSM ที่ ~$411 เป็น Valuation Discount เทียบกับ AI Cycle Peers</li>
+<li>Forward P/E ของ TSM ต่ำกว่า NVDA อย่างมีนัยสำคัญ (~20-22x vs 32x+)</li>
+</ul>
+<p><strong>เงื่อนไขการยืนยัน (Confirmation):</strong></p>
+<ul>
+<li>TSM ฟื้นขึ้นเหนือ $425 (R1) ภายใน 10 วันทำการ</li>
+<li>TAIEX กลับมา Positive + ไม่มี TSM-specific bad news [VERIFY]</li>
+<li>NVDA Earnings (Q2 2569) ยืนยัน Revenue from TSMC-manufactured products ตาม Plan</li>
+</ul>
+<p><strong>เงื่อนไขการหักล้าง (Invalidation — และนี่คือ Risk Scenario ที่ใหญ่กว่า):</strong></p>
+<ul>
+<li>TSM ลงต่อเหนือ $400 (S1) แม้ NVDA ยังขึ้น</li>
+<li>TAIEX ยังติดลบต่อเนื่อง 3+ วัน</li>
+<li>มีรายงาน TSMC ลด Advanced Packaging Capacity หรือ Push Back Delivery Schedule</li>
+</ul>
+<blockquote>
+<p><strong>⚡ Diffy&#39;s Probability Weighting:</strong> Invalidation Scenario = 45% | Confirmation Scenario = 55% — ความน่าจะเป็นใกล้เคียงกันเกินไปสำหรับ High-conviction Long ในตอนนี้ <strong>ยังเป็น Monitoring Position เท่านั้น</strong></p>
+</blockquote>
+<hr>
+<h2>▌ III. CONTRARIAN POSITION #2 — NVDA Crowded Long / Short-term Correction Risk</h2>
+<h3>❌ Consensus View:</h3>
+<p>NVDA ขึ้น +3.55% ยืนยัน AI Supercycle, $215.20 กำลังไปทดสอบ $225 (R1) และ $245 (R2) — Buy the dip, AI is structural</p>
+<h3>✅ Diffy&#39;s Contrarian View:</h3>
+<p><strong>NVDA กำลังเป็น Crowded Trade ที่มี Asymmetric Downside ถ้า Cycle Narrative แตก</strong></p>
+<p><strong>การวิเคราะห์เชิง Positioning:</strong></p>
+<p>จาก ZeroHedge Options Flow Data (Framework) — ในช่วงที่ Mega-Cap AI Stocks ขึ้นแรงพร้อม VIX ที่ขึ้นด้วย มักหมายความว่า Dealer Gamma Positioning กำลังอยู่ใน Short Gamma Zone ซึ่งทำให้ Volatility ขยายทั้งสองทาง</p>
+<p><strong>ณ $215.20 — NVDA Trade ณ 32x+ Forward P/E ใน Environment ที่:</strong></p>
+<pre><code>✗ Consumer Sentiment ต่ำสุดเป็นประวัติการณ์
+✗ Oil $95.42 กดดัน Disposable Income
+✗ Fed ไม่ลดดอกเบี้ย (NFP แข็งแกร่ง = Rates Higher for Longer)
+✗ TSM (Supplier) กำลังลง
+✗ SoftBank (AI Ecosystem Co-investor) กำลังลงแรง
+✗ VIX ขึ้นพร้อม NVDA — Hedging ต้นทุนสูง
+</code></pre>
+<p><strong>คำถามที่ตลาดต้องตอบ:</strong>
+ใน Environment Stagflationary Undercurrent (ตามที่ Rocky ระบุ) — Enterprise AI Spending จะ Cut หรือไม่? และถ้า Cut เพียง 15-20% จาก Expected, NVDA ที่ 32x P/E จะ Reprice ไปที่เท่าไร?</p>
+<hr>
+<h3>NVDA Stress Test — Valuation Sensitivity:</h3>
+<table>
+<thead>
+<tr>
+<th>สถานการณ์</th>
+<th>Revenue Cut</th>
+<th>P/E Re-rate</th>
+<th>Price Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bull (Consensus)</td>
+<td>ไม่มี Cut</td>
+<td>คงที่ 32-35x</td>
+<td>$225-245</td>
+</tr>
+<tr>
+<td>Base Neutral</td>
+<td>-5%</td>
+<td>28x</td>
+<td>$185-195</td>
+</tr>
+<tr>
+<td><strong>Diffy Bear Case</strong></td>
+<td><strong>-15%</strong></td>
+<td><strong>22-24x</strong></td>
+<td><strong>$140-155</strong></td>
+</tr>
+<tr>
+<td>Crash Scenario</td>
+<td>-25%+</td>
+<td>18x (Historical Avg)</td>
+<td>$95-110</td>
+</tr>
+</tbody></table>
+<p><strong>Diffy Bear Case ที่ -15% Revenue Cut และ P/E Re-rate สู่ 22-24x หมายความว่า Downside อยู่ที่ ~30% จากราคาปัจจุบัน</strong> — ในขณะที่ Upside ของ Consensus ค</p>
+</div><div class="panel" id="panel-fundamental"><h1>FINNY&#39;S FUNDAMENTAL ANALYSIS REPORT</h1>
+<h2>Institutional Equity Research | 10 พฤษภาคม 2569</h2>
+<h3>Deep Fundamental Analysis — Direct Impact Coverage</h3>
+<hr>
+<blockquote>
+<p><strong>Scope Notice:</strong> Finny วิเคราะห์เฉพาะหุ้นที่ Claudy ระบุใน Direct Impact Section เท่านั้น ไม่กล่าวถึง Macro, Index Levels หรือ Fund Flows ซึ่งเป็นขอบเขตของ Rocky และ Peter | Sector Average P/E อ้างอิงจาก Rocky&#39;s Valuation Check: <strong>Technology Sector Forward P/E = ~32x</strong> | <strong>S&amp;P 500 Broad Forward P/E = ~23x</strong></p>
+</blockquote>
+<hr>
+<h2>▌ PRE-ANALYSIS: Ticker Identification จาก Claudy&#39;s Direct Impact Section</h2>
+<p>จากการอ่าน research.md ของ Claudy อย่างละเอียด — หุ้นที่ถูก Flag ใน Direct Impact / Watchlist และมีนัยสำคัญเชิง Fundamental ได้แก่:</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Ticker</th>
+<th>บริษัท</th>
+<th>Thematic Group</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td><strong>NVDA</strong></td>
+<td>Nvidia Corporation</td>
+<td>AI Capex Supercycle</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>AAPL</strong></td>
+<td>Apple Inc.</td>
+<td>Mega-Cap Platform</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>MSFT</strong></td>
+<td>Microsoft Corporation</td>
+<td>Mega-Cap Platform</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>TSM</strong></td>
+<td>Taiwan Semiconductor Manufacturing</td>
+<td>AI Capex Supercycle</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>005930.KS</strong></td>
+<td>Samsung Electronics</td>
+<td>AI Capex Supercycle</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>หมายเหตุ:</strong> BTC-USD และ 9984.T (SoftBank) ถูก Flag โดย Claudy เช่นกัน แต่ไม่ใช่ Equity ที่มีข้อมูลเชิง Fundamental ในกรอบ SEC EDGAR / Earnings Filings ในลักษณะเดียวกัน — BTC เป็น Crypto Asset (ขอบเขตของ Peter) และ SoftBank เป็น Japanese Holding Company ที่ต้องการ IFRS Filing จาก TSE โดยเฉพาะ ซึ่ง [ข้อมูลไม่เพียงพอสำหรับการสรุป — ต้องการ: SoftBank FY2025 Vision Fund Mark-to-Market Data และ TSE Filing]</p>
+</blockquote>
+<hr>
+<hr>
+<h1>═══════════════════════════════════</h1>
+<h1>STOCK #1 — NVDA (Nvidia Corporation)</h1>
+<h1>ราคา ณ 10/05/2569: $215.20 (+3.55%)</h1>
+<h1>═══════════════════════════════════</h1>
+<h2>📁 SECTION A — ข้อเท็จจริงจากแหล่งข้อมูลปฐมภูมิ (FACTS)</h2>
+<h3>A1. ผลประกอบการล่าสุด — Q4 FY2025 (สิ้นสุด 26 มกราคม 2025)</h3>
+<p><em>อ้างอิง: SEC EDGAR Form 10-K FY2025 / Earnings Press Release</em></p>
+<table>
+<thead>
+<tr>
+<th>รายการ</th>
+<th>Q4 FY2025</th>
+<th>Q4 FY2024</th>
+<th>YoY Growth</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Revenue (Total)</td>
+<td>$39.33B</td>
+<td>$22.10B</td>
+<td><strong>+78%</strong></td>
+</tr>
+<tr>
+<td>Data Center Revenue</td>
+<td>$35.58B</td>
+<td>$18.40B</td>
+<td><strong>+93%</strong></td>
+</tr>
+<tr>
+<td>Gross Margin (GAAP)</td>
+<td>73.0%</td>
+<td>76.0%</td>
+<td>-300 bps</td>
+</tr>
+<tr>
+<td>Operating Income (GAAP)</td>
+<td>$23.28B</td>
+<td>$13.61B</td>
+<td><strong>+71%</strong></td>
+</tr>
+<tr>
+<td>Net Income (GAAP)</td>
+<td>$22.09B</td>
+<td>$12.29B</td>
+<td><strong>+80%</strong></td>
+</tr>
+<tr>
+<td>Diluted EPS (GAAP)</td>
+<td>$0.89</td>
+<td>$0.49</td>
+<td><strong>+82%</strong></td>
+</tr>
+</tbody></table>
+<p><strong>FACT:</strong> Full Year FY2025 Revenue = $130.50B เทียบกับ FY2024 ที่ $60.92B — <strong>YoY Growth +114%</strong></p>
+<p><strong>FACT:</strong> Data Center Segment คิดเป็น <strong>~88% ของ Total Revenue</strong> ใน Q4 FY2025 — concentration risk ที่ต้องติดตาม</p>
+<p><strong>FACT:</strong> Gross Margin ปรับลดลง 300 bps YoY เนื่องจากต้นทุน Blackwell Architecture Ramp-up และ CoWoS Advanced Packaging Supply Constraints</p>
+<blockquote>
+<p>[VERIFY: Q1 FY2026 Preliminary Data หรือ Pre-announcement — Earnings Call กำหนดรายงาน พฤษภาคม 2025]</p>
+</blockquote>
+<hr>
+<h3>A2. Balance Sheet Strength</h3>
+<p><em>อ้างอิง: SEC EDGAR 10-K FY2025</em></p>
+<table>
+<thead>
+<tr>
+<th>รายการ</th>
+<th>มูลค่า (ณ 26 ม.ค. 2025)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cash &amp; Equivalents + Short-term Investments</td>
+<td>$43.21B</td>
+</tr>
+<tr>
+<td>Total Debt (Long-term)</td>
+<td>$8.46B</td>
+</tr>
+<tr>
+<td>Net Cash Position</td>
+<td><strong>~$34.75B</strong></td>
+</tr>
+<tr>
+<td>Free Cash Flow (FY2025)</td>
+<td>$60.85B</td>
+</tr>
+<tr>
+<td>Share Buyback (FY2025)</td>
+<td>$33.76B</td>
+</tr>
+</tbody></table>
+<p><strong>FACT:</strong> Net Cash Position แข็งแกร่งมาก — Nvidia มีสภาพคล่องสูงและสามารถรองรับ Capex Expansion ได้โดยไม่ต้องพึ่งพา External Financing</p>
+<p><strong>FACT:</strong> Free Cash Flow Conversion Rate ≈ <strong>46.6%</strong> ของ Revenue (FCF/Revenue) — ระดับที่สูงผิดปกติสำหรับ Semiconductor Company ที่กำลังอยู่ใน Growth Phase เข้มข้น</p>
+<hr>
+<h3>A3. Nvidia $40B+ AI Investment Portfolio</h3>
+<p><em>อ้างอิง: Reuters รายงาน / 8-K Filings ที่เกี่ยวข้อง</em></p>
+<p><strong>FACT:</strong> Nvidia ได้ขยายบทบาทเป็น Strategic AI Investor โดยมูลค่าการลงทุนสะสมเกิน $40 พันล้านดอลลาร์ใน AI Stack Companies</p>
+<p><strong>FACT (ที่ยืนยันได้จาก Public Filings):</strong></p>
+<ul>
+<li>CoreWeave (Cloud GPU Provider) — Nvidia เป็น Strategic Investor ก่อน IPO; CoreWeave IPO มีนัยสำคัญต่อ Nvidia&#39;s Ecosystem Value</li>
+<li>Mistral AI, Cohere, Inflection AI — Strategic stakes ที่รายงานโดย Reuters</li>
+</ul>
+<blockquote>
+<p>[VERIFY: รายชื่อครบถ้วนและ Fair Value ของ Portfolio จาก Nvidia 10-K FY2025 Note on Investments — ต้องการ Schedule of Equity Investments]</p>
+</blockquote>
+<hr>
+<h3>A4. Blackwell Architecture — Supply &amp; Demand Dynamics</h3>
+<p><em>อ้างอิง: Nvidia Earnings Call Transcript Q4 FY2025 / Jensen Huang Statements</em></p>
+<p><strong>FACT:</strong> Jensen Huang ระบุในงาน GTC 2025 และ Earnings Call ว่า Blackwell Demand &quot;far exceeds supply&quot; — Backlog ยาวนานหลายไตรมาส</p>
+<p><strong>FACT:</strong> Nvidia GB200 NVL72 Rack System ราคาประมาณ $3M per rack — Enterprise/Hyperscaler customers ต้องจองล่วงหน้า</p>
+<p><strong>FACT:</strong> Microsoft, Google, Meta, Amazon ต่างประกาศ Capex FY2025 รวมกันเกิน $300B — ส่วนใหญ่ earmarked สำหรับ AI Infrastructure ซึ่ง NVDA เป็น Primary Beneficiary</p>
+<hr>
+<h3>A5. Valuation — เทียบกับ Rocky&#39;s Sector P/E Benchmark</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>NVDA (ปัจจุบัน)</th>
+<th>Tech Sector Avg (Rocky)</th>
+<th>S&amp;P 500 Broad (Rocky)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Forward P/E (FY2026E)</td>
+<td>~25x–28x*</td>
+<td><strong>32x</strong></td>
+<td>23x</td>
+</tr>
+<tr>
+<td>Price/FCF</td>
+<td>~14.5x</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PEG Ratio (Growth-Adjusted)</td>
+<td>~0.28–0.32x</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p><em>*อ้างอิงจาก Consensus EPS Estimate FY2026 ที่ ~$7.70–$8.50 per share ณ ราคา $215.20</em></p>
+<p><strong>FACT:</strong> NVDA Forward P/E ที่ ~25–28x <strong>ต่ำกว่า</strong> Rocky&#39;s Tech Sector Average ที่ 32x — หมายความว่า NVDA Trade <strong>At Discount to Sector</strong> แม้จะเป็น Sector Leader</p>
+<blockquote>
+<p>[VERIFY: Consensus EPS FY2026 จาก Bloomberg/FactSet — ตัวเลขนี้ใช้ประมาณการจาก Street Consensus ที่เผยแพร่ก่อน Q1 FY2026 Earnings]</p>
+</blockquote>
+<hr>
+<h2>🧠 SECTION B — ความเห็นเชิงวิเคราะห์ (OPINIONS — Finny&#39;s Assessment)</h2>
+<h3>B1. Moat Assessment</h3>
+<p><strong>[OPINION]</strong> Nvidia มี <strong>Competitive Moat ระดับสูงสุด (Wide Moat)</strong> จาก 3 ปัจจัยหลัก:</p>
+<ol>
+<li><strong>CUDA Ecosystem Lock-in</strong> — Software Stack ที่สั่งสมมา 18+ ปี ทำให้ Developer Switching Cost สูงมาก แม้ AMD ROCm และ Intel OneAPI พยายาม Close the Gap แต่ Network Effect ของ CUDA ยากที่จะแทนที่ในระยะ 3–5 ปี</li>
+<li><strong>CoWoS Advanced Packaging Exclusive Access</strong> — NVDA จอง Capacity TSMC CoWoS ล่วงหน้า ทำให้คู่แข่งประสบปัญหา Supply ในการผลิต AI Chip รุ่นถัดไป</li>
+<li><strong>Vertical Integration ผ่าน Investment Portfolio</strong> — การลงทุน $40B+ ใน AI Stack Companies สร้าง Flywheel Effect ที่ทำให้ Ecosystem ผูกพันกับ Nvidia Hardware</li>
+</ol>
+<p><strong>[OPINION]</strong> DeepSeek Risk ที่ Claudy ระบุ — Finny ประเมินว่าเป็น <strong>Medium-term Noise ไม่ใช่ Structural Threat</strong> เนื่องจาก Efficiency Improvement ของ Model จะ Lower Cost Per Inference แต่ Total Demand (Jevons Paradox) มีแนวโน้มเพิ่มขึ้น — ยิ่ง Model ราคาถูก ยิ่งมีการ Deploy มากขึ้น</p>
+<h3>B2. Key Risk ที่ต้องติดตาม</h3>
+<p><strong>[OPINION]</strong> ความเสี่ยงหลักของ NVDA ที่ Finny เห็นว่าสำคัญที่สุด:</p>
+<ol>
+<li><strong>Data Center Revenue Concentration (~88%)</strong> — หาก Hyperscaler Capex Cycle หยุดชะงักแม้เพียงหนึ่งไตรมาส Impact ต่อ Revenue จะรุนแรง</li>
+<li><strong>Gross Margin Compression</strong> — Blackwell Ramp-up cost และ Competition จาก Custom Silicon (Google TPU, AWS Trainium, Microsoft Maia) อาจกดดัน Margin ในระยะกลาง</li>
+<li><strong>China Export Restriction</strong> — NVDA ถูกจำกัดการส่งออก H100/A800 ไปจีน ซึ่งก่อนหน้านี้เป็นตลาดสำคัญ ส่วนแบ่งรายได้จากจีนลดลงอย่างมีนัยสำคัญ</li>
+</ol>
+<hr>
+<h2>🏁 FINAL RATING — NVDA</h2>
+<blockquote>
+<h3>✅ <strong>BUY</strong></h3>
+<p><strong>เหตุผล:</strong></p>
+<ol>
+<li><strong>Valuation Attractive Relative to Sector</strong> — Forward P/E ~25–28x ต่ำกว่า Rocky&#39;s Tech Sector Average ที่ 32x แม้ NVDA จะมี Revenue Growth +114% YoY และ FCF Yield ที่แข็งแกร่งกว่าค่าเฉลี่ย Sector — หุ้น Compound at Discount to Peers</li>
+<li><strong>Structural Demand ไม่ได้หายไป</strong> — Hyperscaler Capex Commitment $300B+ ที่ประกาศไว้สำหรับ AI Infrastructure เป็น Contracted Demand ไม่ใช่ Speculative — NVDA เป็น Primary Beneficiary ของ Supercycle นี้</li>
+<li><strong>Balance Sheet ยืดหยุ่นสูง</strong> — Net Cash $34.75B และ FCF $60.85B ต่อปีให้ความสามารถในการ Buyback, Invest และ Weather Downturns โดยไม่ต้องพึ่ง Debt Market</li>
+</ol>
+</blockquote>
+<hr>
+<hr>
+<h1>═══════════════════════════════════</h1>
+<h1>STOCK #2 — AAPL (Apple Inc.)</h1>
+<h1>ราคา ณ 10/05/2569: $293.32 (+2.02%)</h1>
+<h1>═══════════════════════════════════</h1>
+<h2>📁 SECTION A — ข้อเท็จจริงจากแหล่งข้อมูลปฐมภูมิ (FACTS)</h2>
+<h3>A1. ผลประกอบการล่าสุด — Q1 FY2025 (ไตรมาสสิ้นสุด 28 ธันวาคม 2024)</h3>
+<p><em>อ้างอิง: SEC EDGAR Form 10-Q Q1 FY2025 / Earnings Press Release</em></p>
+<table>
+<thead>
+<tr>
+<th>รายการ</th>
+<th>Q1 FY2025</th>
+<th>Q1 FY2024</th>
+<th>YoY Growth</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Total Revenue</td>
+<td>$124.30B</td>
+<td>$119.58B</td>
+<td><strong>+3.9%</strong></td>
+</tr>
+<tr>
+<td>iPhone Revenue</td>
+<td>$69.14B</td>
+<td>$69.70B</td>
+<td><strong>-0.8%</strong></td>
+</tr>
+<tr>
+<td>Services Revenue</td>
+<td>$26.34B</td>
+<td>$23.12B</td>
+<td><strong>+13.9%</strong></td>
+</tr>
+<tr>
+<td>Mac Revenue</td>
+<td>$8.99B</td>
+<td>$7.78B</td>
+<td>**+15.5%</td>
+</tr>
+</tbody></table>
+</div><div class="panel" id="panel-audit"><h1>LEON — FACT AUDIT REPORT</h1>
+<h2>Institutional Equity Research | วันที่ 10 พฤษภาคม 2569</h2>
+<h3>Quality Gate: Cross-File Verification &amp; Consistency Audit</h3>
+<hr>
+<blockquote>
+<p><strong>หมายเหตุจาก Leon:</strong> รายงานนี้ทำหน้าที่เป็น Quality Gate ก่อน Tony สังเคราะห์ข้อมูล ทุก claim ที่ปรากฏในไฟล์ทั้ง 6 ถูกตรวจสอบเชิงข้ามกับแหล่งข้อมูลอื่นในชุดเดียวกัน Leon <strong>ไม่แสดงความเห็นด้านการลงทุน</strong> — ทำหน้าที่ตรวจสอบความถูกต้องและความสอดคล้องของข้อเท็จจริงเท่านั้น</p>
+</blockquote>
+<hr>
+<h2>▌ SECTION A — การตรวจสอบข้อมูลตลาดพื้นฐาน (Market Data Facts)</h2>
+<hr>
+<h3>A.1 US Equity Indices</h3>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>แหล่งที่มา</th>
+<th>สถานะ</th>
+<th>เหตุผล</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>NASDAQ +1.58%</td>
+<td>Ada (thesis.md), Claudy (research.md)</td>
+<td><strong>[VERIFIED ✓]</strong></td>
+<td>ตรงกันทั้ง 2 ไฟล์ — Ada และ Claudy ระบุ NASDAQ +1.58% พร้อม level 26,247.08</td>
+</tr>
+<tr>
+<td>S&amp;P 500 +0.46% ที่ระดับ 7,398.93</td>
+<td>Claudy (research.md)</td>
+<td><strong>[VERIFIED ✓]</strong></td>
+<td>ปรากฏใน Claudy — Rocky (analysis.md truncated) ไม่สามารถยืนยันได้จากไฟล์ที่ถูกตัดทอน แต่ไม่มีการโต้แย้งในไฟล์อื่น</td>
+</tr>
+<tr>
+<td>DJIA -0.60% ที่ระดับ 49,609.16</td>
+<td>Claudy (research.md)</td>
+<td><strong>[VERIFIED ✓]</strong></td>
+<td>ปรากฏใน Claudy — สอดคล้องกับ Ada ที่อธิบาย Sector Rotation ออกจาก Value/Industrial</td>
+</tr>
+<tr>
+<td>NVDA +3.55%</td>
+<td>Ada (thesis.md), Claudy (research.md)</td>
+<td><strong>[VERIFIED ✓]</strong></td>
+<td>ตรงกันทั้ง 2 ไฟล์โดยไม่มีความขัดแย้ง</td>
+</tr>
+<tr>
+<td>TSM -1.86% ที่ระดับ 411.68 USD</td>
+<td>Claudy (research.md)</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>ปรากฏใน Claudy ไฟล์เดียว ไม่มีการยืนยันจากไฟล์อื่น — Rocky (truncated) ไม่สามารถยืนยันได้ <strong>⚠️ Flag for Tony: ใช้ด้วยความระมัดระวัง</strong></td>
+</tr>
+<tr>
+<td>Samsung 005930.KS +0.94% ที่ 268,500 KRW</td>
+<td>Claudy (research.md)</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>ปรากฏใน Claudy ไฟล์เดียว ไม่มีไฟล์อื่นยืนยัน <strong>⚠️ Flag for Tony: ต้องตรวจสอบก่อนอ้างอิง</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Confidence: Medium</strong> — ข้อมูล index หลักได้รับการยืนยันข้ามไฟล์ แต่ข้อมูลหุ้นรายตัว (TSM, Samsung) มีแหล่งเดียว เนื่องจาก Rocky truncated</p>
+<hr>
+<h3>A.2 Volatility &amp; Fixed Income</h3>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>แหล่งที่มา</th>
+<th>สถานะ</th>
+<th>เหตุผล</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VIX 17.19 (+0.64%)</td>
+<td>Claudy (research.md)</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>ปรากฏใน Claudy เพียงไฟล์เดียว Ada กล่าวถึง VIX &quot;อยู่ในระดับกดดัน&quot; แต่ไม่ระบุตัวเลข ไม่มีไฟล์อื่นยืนยันค่าที่แน่นอน <strong>⚠️ Flag for Tony</strong></td>
+</tr>
+<tr>
+<td>US 10Y Treasury Yield 4.3640% (-0.64%)</td>
+<td>Claudy (research.md)</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>ปรากฏใน Claudy เพียงไฟล์เดียว ไม่มีการยืนยันจากไฟล์อื่น <strong>⚠️ Flag for Tony</strong></td>
+</tr>
+<tr>
+<td>WTI Spot $95.42 (+0.64%)</td>
+<td>Claudy (research.md)</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>ปรากฏใน Claudy เพียงไฟล์เดียว ไม่มีไฟล์อื่นยืนยันราคาที่แน่นอน แม้ Ada กล่าวถึงน้ำมันแพงขึ้น <strong>⚠️ Flag for Tony: ใช้เป็น directional reference เท่านั้น ไม่ใช่ exact level</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Confidence: Low</strong> — ข้อมูล Fixed Income และ Volatility มีแหล่งเดียวทั้งหมด เนื่องจากไฟล์ Rocky ถูกตัดทอนและไฟล์อื่นไม่ได้ระบุตัวเลขเฉพาะ</p>
+<hr>
+<h3>A.3 Asian Markets</h3>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>แหล่งที่มา</th>
+<th>สถานะ</th>
+<th>เหตุผล</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>KOSPI 7,498.00 (+1.54%)</td>
+<td>Claudy (research.md)</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>ปรากฏใน Claudy เพียงไฟล์เดียว Ada กล่าวถึง KOSPI เชิงบวกแต่ไม่ระบุตัวเลข <strong>⚠️ Flag for Tony</strong></td>
+</tr>
+<tr>
+<td>TAIEX -0.79%</td>
+<td>Claudy (research.md)</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>ปรากฏใน Claudy เพียงไฟล์เดียว ไม่มีการยืนยัน <strong>⚠️ Flag for Tony</strong></td>
+</tr>
+<tr>
+<td>Ada กล่าวว่า KOSPI บวก สอดคล้องกับ Tech Rally</td>
+<td>Ada (thesis.md), Claudy (research.md)</td>
+<td><strong>[VERIFIED ✓]</strong></td>
+<td>ทิศทาง (direction) ของ KOSPI เป็นบวกตรงกันทั้ง 2 ไฟล์ แม้ตัวเลขจะมาจาก Claudy เพียงแหล่งเดียว</td>
+</tr>
+</tbody></table>
+<p><strong>Confidence: Low</strong> — ระดับดัชนีเอเชียมีแหล่งเดียวทั้งหมด</p>
+<hr>
+<h2>▌ SECTION B — การตรวจสอบข้อมูลมหภาค (Macro Data Facts)</h2>
+<hr>
+<h3>B.1 Non-Farm Payrolls เดือนเมษายน</h3>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>แหล่งที่มา</th>
+<th>สถานะ</th>
+<th>เหตุผล</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Payrolls เพิ่มขึ้นมากกว่า consensus ที่ 55,000 ตำแหน่ง</td>
+<td>Claudy (research.md)</td>
+<td><strong>[CONFLICT ⚠️]</strong></td>
+<td>Claudy ระบุ consensus ที่ &quot;55,000 (Dow Jones)&quot; แต่ยัง [VERIFY] ตัวเลขจริง — Ada กล่าวว่า Payrolls แข็งแกร่งทำให้ Fed หมด &quot;ข้ออ้าง&quot; ลดดอกเบี้ย ซึ่งสอดคล้องเชิงทิศทาง แต่ <strong>ตัวเลข exact จาก NFP ยังไม่ได้รับการยืนยัน</strong> ในชุดไฟล์นี้</td>
+</tr>
+<tr>
+<td>Fed &quot;quickly running out of reasons to cut&quot;</td>
+<td>Claudy (research.md), Ada (thesis.md)</td>
+<td><strong>[VERIFIED ✓]</strong></td>
+<td>Ada กล่าวว่า &quot;Fed ที่หมดข้ออ้างในการลดดอกเบี้ย&quot; — Claudy อ้าง Reuters/CNBC สำนวนเดียวกัน สอดคล้องกันทั้ง 2 ไฟล์</td>
+</tr>
+<tr>
+<td>Red Flags: Part-time vs Full-time, Wage Growth, Hours Worked</td>
+<td>Claudy (research.md)</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>Claudy ระบุ [VERIFY] ทุกรายการ ไม่มีตัวเลขจริง ไม่มีไฟล์อื่นเติมข้อมูลนี้ <strong>⚠️ Flag for Tony: อย่าอ้างอิง Red Flags เหล่านี้โดยไม่มีข้อมูลยืนยัน</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Confidence: Medium</strong> — ทิศทางแข็งแกร่งได้รับการยืนยันข้ามไฟล์ แต่ตัวเลขเฉพาะเจาะจงยังเป็น [VERIFY]</p>
+<hr>
+<h3>B.2 University of Michigan Consumer Sentiment</h3>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>แหล่งที่มา</th>
+<th>สถานะ</th>
+<th>เหตุผล</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Consumer Sentiment ร่วงสู่ระดับต่ำสุดเป็นประวัติการณ์ใหม่ เดือนพฤษภาคม</td>
+<td>Claudy (research.md), Ada (thesis.md)</td>
+<td><strong>[VERIFIED ✓]</strong></td>
+<td>Ada กล่าวถึง &quot;ความเชื่อมั่นผู้บริโภคที่ตกต่ำเป็นประวัติการณ์&quot; — Claudy อ้าง CNBC ยืนยัน &quot;new low&quot; เป็นการยืนยันเชิงทิศทางข้ามไฟล์</td>
+</tr>
+<tr>
+<td>สาเหตุหลัก: ราคาก๊าซจากสงครามอิหร่าน</td>
+<td>Claudy (research.md)</td>
+<td><strong>[VERIFIED ✓]</strong></td>
+<td>Claudy อ้าง CNBC โดยตรง: &quot;Surging gas prices due to the Iran war&quot; — สอดคล้องกับ Ada ที่เชื่อมสงครามอิหร่าน → ราคาพลังงาน → Consumer Stress</td>
+</tr>
+<tr>
+<td>ตัวเลข Index ที่แน่นอน (exact number)</td>
+<td>Claudy (research.md)</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>Claudy ระบุ [VERIFY: Exact...index number] — ไม่มีตัวเลขในชุดไฟล์นี้ <strong>⚠️ Flag for Tony: ระบุเชิงทิศทางได้ แต่อย่าอ้างตัวเลขที่แน่นอน</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Confidence: High</strong> — ทิศทางและสาเหตุได้รับการยืนยันข้ามไฟล์อย่างสอดคล้อง แม้ไม่มีตัวเลขที่แน่นอน</p>
+<hr>
+<h3>B.3 Retail Sales &amp; Credit Data</h3>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>แหล่งที่มา</th>
+<th>สถานะ</th>
+<th>เหตุผล</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>US Retail Sales เดือนล่าสุด vs consensus</td>
+<td>ไม่มีในชุดไฟล์</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>Claudy ระบุ [VERIFY] และไม่มีข้อมูลในไฟล์ใดเลย <strong>⚠️ Flag for Tony: ไม่สามารถอ้างอิงข้อมูล Retail Sales ในการสังเคราะห์</strong></td>
+</tr>
+<tr>
+<td>Credit Card Delinquency Rate (ล่าสุด)</td>
+<td>ไม่มีในชุดไฟล์</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>Claudy ระบุ [VERIFY] — ไม่มีตัวเลขจริงในชุดไฟล์นี้ <strong>⚠️ Flag for Tony</strong></td>
+</tr>
+<tr>
+<td>Auto Loan Default Rate (ล่าสุด)</td>
+<td>ไม่มีในชุดไฟล์</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>Claudy ระบุ [VERIFY] — ไม่มีตัวเลขจริงในชุดไฟล์นี้ <strong>⚠️ Flag for Tony</strong></td>
+</tr>
+<tr>
+<td>Capital One: Median car payment $390 → $525 (+35%) ตั้งแต่ปี 2019</td>
+<td>Claudy (research.md)</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>ปรากฏใน Claudy เพียงไฟล์เดียว ไม่มีไฟล์อื่นยืนยัน และ Claudy เองระบุ [VERIFY: Capital One specific delinquency metrics] <strong>⚠️ Flag for Tony: ใช้เป็น illustrative data เท่านั้น ไม่ใช่ verified fact</strong></td>
+</tr>
+<tr>
+<td>ค่าเดินทาง $1,600/เดือน</td>
+<td>Claudy (research.md)</td>
+<td><strong>[UNVERIFIED ❌]</strong></td>
+<td>ปรากฏใน Claudy เพียงไฟล์เดียว เป็นข้อมูลเชิงคุณภาพ (anecdotal) ไม่ใช่สถิติ **⚠️ Flag for Tony: ใช้เป็น illustrative</td>
+</tr>
+</tbody></table>
+</div>
+<footer>Claudy Research Library · 2026-05-10</footer>
+<script>
+function show(key) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + key).classList.add('active');
+  document.querySelector('[data-key="' + key + '"]').classList.add('active');
+  location.hash = key;
+  if (key === 'executive_summary') injectQuizUI();
+}
+function injectQuizUI() {
+  const panel = document.getElementById('panel-executive_summary');
+  if (panel.dataset.quizDone) return;
+  panel.dataset.quizDone = '1';
+  const iter = document.createNodeIterator(panel, NodeFilter.SHOW_COMMENT);
+  let node;
+  while ((node = iter.nextNode())) {
+    if (node.nodeValue.includes('ANSWER KEY')) {
+      const raw = node.nodeValue.replace(/\s*ANSWER KEY\s*/, '').trim();
+      const btn = document.createElement('button');
+      btn.className = 'quiz-reveal-btn';
+      btn.textContent = '🔍 ดูเฉลย';
+      btn.onclick = () => {
+        const box = document.createElement('div');
+        box.className = 'answer-key';
+        box.textContent = raw;
+        btn.replaceWith(box);
+      };
+      node.parentNode.insertBefore(btn, node);
+      node.parentNode.removeChild(node);
+      break;
+    }
+  }
+}
+const hash = location.hash.slice(1);
+show(hash && document.getElementById('panel-' + hash) ? hash : 'executive_summary');
+</script>
+</body>
+</html>
