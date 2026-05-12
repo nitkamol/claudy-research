@@ -5,67 +5,136 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>2026-05-10 — Claudy Research</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+:root{
+  --bg:       #0E0D0C;
+  --s1:       #161412;
+  --s2:       #1E1B19;
+  --s3:       #272320;
+  --s4:       #312D29;
+  --border:   #3A3530;
+  --border2:  #4D4742;
+  --orange:   #E8721A;
+  --orange-d: rgba(232,114,26,.12);
+  --orange-g: rgba(232,114,26,.22);
+  --text:     #F0EAE3;
+  --text2:    #A39890;
+  --text3:    #5C5650;
+  --green:    #4ade80;
+  --amber:    #fbbf24;
+  --red:      #f87171;
+  --radius:   10px;
+  --radius-lg:14px;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Sarabun',sans-serif;background:#0f1117;color:#e2e8f0;min-height:100vh}
-a{color:#818cf8;text-decoration:none}
-a:hover{text-decoration:underline}
-.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600;letter-spacing:.03em}
-.badge-buy{background:#10b98122;color:#10b981;border:1px solid #10b98144}
-.badge-hold{background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44}
-.badge-sell{background:#ef444422;color:#ef4444;border:1px solid #ef444444}
-.badge-neutral{background:#6366f122;color:#818cf8;border:1px solid #6366f144}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline;opacity:.85}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.chip-buy{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.chip-hold{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.chip-sell{background:rgba(248,113,113,.12);color:#f87171;border:1px solid rgba(248,113,113,.25)}
+.chip-orange{background:var(--orange-d);color:var(--orange);border:1px solid var(--orange-g)}
+.chip-gray{background:var(--s3);color:var(--text2);border:1px solid var(--border)}
 
-header{background:#1a1d27;border-bottom:1px solid #2d3148;padding:14px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-size:1.2rem;font-weight:700;color:#fff}
-.logo span{color:#6366f1}
-.back-btn{background:#2d3148;color:#94a3b8;border:1px solid #3d4168;border-radius:8px;padding:6px 14px;font-family:'Sarabun',sans-serif;font-size:.85rem;cursor:pointer;transition:all .2s;text-decoration:none}
-.back-btn:hover{background:#3d4168;color:#fff;text-decoration:none}
-.header-meta{color:#475569;font-size:.85rem;margin-left:auto}
-.header-topic{background:#6366f122;color:#a5b4fc;border:1px solid #6366f144;border-radius:6px;padding:4px 12px;font-size:.85rem}
-.tabs{display:flex;gap:8px;padding:14px 24px;background:#13151f;border-bottom:1px solid #2d3148;flex-wrap:wrap}
-.tab{background:#1a1d27;color:#94a3b8;border:1px solid #2d3148;border-radius:8px;padding:7px 15px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:.9rem;transition:all .2s}
-.tab:hover{border-color:var(--accent);color:#fff}
-.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-.panel{display:none;max-width:900px;margin:32px auto;padding:0 24px 80px}
+.rp-layout{display:flex;min-height:calc(100vh - 52px)}
+.sidebar{width:200px;flex-shrink:0;background:var(--s1);border-right:1px solid var(--border);padding:16px 0;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto}
+.sidebar-item{display:flex;align-items:center;gap:9px;padding:9px 18px;cursor:pointer;transition:all .13s;border-left:3px solid transparent;color:var(--text2);font-size:.88rem;font-weight:500;white-space:nowrap}
+.sidebar-item:hover{background:var(--s2);color:var(--text)}
+.sidebar-item.active{background:var(--orange-d);color:var(--orange);border-left-color:var(--orange);font-weight:600}
+.sidebar-icon{font-size:.65rem;opacity:.6}
+.sidebar-tag{font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--text3);margin-left:auto}
+.sidebar-item.active .sidebar-tag{color:var(--orange);opacity:.7}
+.rp-content{flex:1;min-width:0;padding:36px 40px 80px;max-width:880px}
+.rp-date{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin:0 0 4px}
+.rp-title{font-size:1.5rem;font-weight:700;color:var(--text);margin:0 0 24px;line-height:1.3}
+.panel{display:none}
 .panel.active{display:block}
-.panel h1{font-size:1.6rem;font-weight:700;color:#fff;margin:0 0 8px;line-height:1.3}
-.panel h2{font-size:1.2rem;font-weight:600;color:#c7d2fe;margin:28px 0 12px;border-left:3px solid #6366f1;padding-left:12px}
-.panel h3{font-size:1rem;font-weight:600;color:#a5b4fc;margin:20px 0 8px}
-.panel p{color:#cbd5e1;line-height:1.8;margin:0 0 12px}
-.panel ul,.panel ol{color:#cbd5e1;line-height:1.8;padding-left:20px;margin:0 0 12px}
-.panel li{margin:4px 0}
-.panel strong{color:#fff}
-.panel em{color:#94a3b8}
-.panel blockquote{border-left:3px solid #6366f1;padding:8px 16px;background:#1a1d27;border-radius:0 8px 8px 0;margin:12px 0;color:#94a3b8;font-style:italic}
-.panel table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9rem}
-.panel th{background:#1e2235;color:#c7d2fe;padding:10px 12px;text-align:left;border:1px solid #2d3148;font-weight:600}
-.panel td{padding:9px 12px;border:1px solid #2d3148;color:#cbd5e1;vertical-align:top}
-.panel tr:hover td{background:#1a1d27}
-.panel code{font-family:'JetBrains Mono',monospace;background:#1e2235;padding:2px 6px;border-radius:4px;font-size:.85rem;color:#a5b4fc}
-.panel pre{background:#1e2235;border:1px solid #2d3148;border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}
-.panel hr{border:none;border-top:1px solid #2d3148;margin:24px 0}
-.panel a{color:#818cf8}
-.panel a:hover{text-decoration:underline}
-.quiz-box{background:#1a1d27;border:1px solid #6366f144;border-radius:12px;padding:20px 24px;margin:24px 0}
-.quiz-box h3{color:#a5b4fc;margin:0 0 16px;font-size:1rem}
-.quiz-reveal-btn{background:#6366f1;color:#fff;border:none;border-radius:8px;padding:8px 20px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:.9rem;margin-top:12px;transition:all .2s}
-.quiz-reveal-btn:hover{background:#4f46e5}
-.answer-key{background:#1e2235;border:1px solid #10b98144;border-radius:8px;padding:16px;margin-top:12px;color:#94a3b8;font-size:.9rem;line-height:1.7;white-space:pre-wrap}
-footer{text-align:center;color:#475569;font-size:.8rem;padding:24px;border-top:1px solid #2d3148;margin-top:40px}
-@media(max-width:640px){header{padding:12px 16px}.tabs{padding:12px 16px}.panel{padding:0 16px 48px}}
+.panel h1{font-size:1.4rem;font-weight:700;color:var(--text);margin:0 0 8px;line-height:1.3}
+.panel h2{font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.panel h3{font-size:.95rem;font-weight:600;color:var(--text2);margin:18px 0 7px}
+.panel h4{font-size:.88rem;font-weight:600;color:var(--text3);margin:14px 0 5px;text-transform:uppercase;letter-spacing:.04em}
+.panel p{color:var(--text2);line-height:1.75;margin:0 0 10px;font-size:.93rem}
+.panel ul,.panel ol{color:var(--text2);line-height:1.75;padding-left:18px;margin:0 0 10px;font-size:.93rem}
+.panel li{margin:3px 0}
+.panel strong{color:var(--text)}
+.panel em{color:var(--text3)}
+.panel blockquote{border-left:3px solid var(--orange);padding:8px 16px;background:var(--s2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text2);font-style:italic}
+.panel table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+.panel th{background:var(--s2);color:var(--text3);padding:9px 12px;text-align:left;border:1px solid var(--border);font-weight:700;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase}
+.panel td{padding:8px 12px;border:1px solid var(--border);color:var(--text2);vertical-align:top}
+.panel tr:hover td{background:var(--s2)}
+.panel code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.82rem;color:var(--orange)}
+.panel pre{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;margin:12px 0}
+.panel hr{border:none;border-top:1px solid var(--border);margin:22px 0}
+.quiz-box{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin:24px 0}
+.quiz-box h3{color:var(--orange);margin:0 0 14px;font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.quiz-btn{background:var(--orange);color:#fff;border:none;border-radius:7px;padding:8px 20px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:.88rem;margin-top:10px;transition:opacity .15s}
+.quiz-btn:hover{opacity:.85}
+.answer-box{background:var(--s3);border:1px solid var(--border);border-radius:8px;padding:14px;margin-top:10px;color:var(--text2);font-size:.88rem;line-height:1.7;white-space:pre-wrap}
+.top-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.logo{font-size:1rem;font-weight:700;color:var(--text)}
+.logo b{color:var(--orange)}
+.back-btn{background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:'Sarabun',sans-serif;font-size:.8rem;transition:all .15s;text-decoration:none;display:inline-block}
+.back-btn:hover{background:var(--s4);color:var(--text);text-decoration:none}
+.rp-topic-chip{margin-left:auto}
+.foot{text-align:center;color:var(--text3);font-size:.75rem;padding:20px}
+@media(max-width:768px){
+  .sidebar{display:none}
+  .rp-content{padding:24px 16px 60px}
+  .mob-tabs{display:flex;overflow-x:auto;gap:6px;padding:10px 16px;background:var(--s1);border-bottom:1px solid var(--border);-webkit-overflow-scrolling:touch}
+  .mob-tab{flex-shrink:0;background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;cursor:pointer;font-size:.8rem;white-space:nowrap;transition:all .13s}
+  .mob-tab.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
+}
+@media(min-width:769px){.mob-tabs{display:none}}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">Claudy <span>Research</span></div>
+<div class="top-bar">
+  <div class="logo">Claudy <b>Research</b></div>
   <a class="back-btn" href="index.html">← คลัง</a>
-  
-  <span class="header-meta">2026-05-10</span>
-</header>
-<div class="tabs"><button class="tab" data-key="executive_summary" style="--accent:#6366f1" onclick="show('executive_summary')">📋 สรุปภาพรวม</button><button class="tab" data-key="thesis" style="--accent:#ec4899" onclick="show('thesis')">💡 Thesis</button><button class="tab" data-key="research" style="--accent:#0ea5e9" onclick="show('research')">🔍 Research</button><button class="tab" data-key="analysis" style="--accent:#10b981" onclick="show('analysis')">📊 Analysis</button><button class="tab" data-key="sentiment" style="--accent:#f59e0b" onclick="show('sentiment')">🧠 Sentiment</button><button class="tab" data-key="diffsentiment" style="--accent:#ef4444" onclick="show('diffsentiment')">⚠️ Contrarian</button><button class="tab" data-key="fundamental" style="--accent:#8b5cf6" onclick="show('fundamental')">📈 Fundamental</button><button class="tab" data-key="audit" style="--accent:#64748b" onclick="show('audit')">🔎 Audit</button></div>
-<div class="panel" id="panel-executive_summary"><h1>CLAUDY RESEARCH INSTITUTE</h1>
+  <span style="margin-left:auto;font-size:.8rem;color:var(--text3);font-family:'JetBrains Mono',monospace">2026-05-10</span>
+</div>
+<div class="mob-tabs"><button class="mob-tab" data-key="executive_summary" onclick="show('executive_summary')">สรุปภาพรวม</button><button class="mob-tab" data-key="thesis" onclick="show('thesis')">Thesis</button><button class="mob-tab" data-key="research" onclick="show('research')">Research</button><button class="mob-tab" data-key="analysis" onclick="show('analysis')">Analysis</button><button class="mob-tab" data-key="sentiment" onclick="show('sentiment')">Sentiment</button><button class="mob-tab" data-key="diffsentiment" onclick="show('diffsentiment')">Contrarian</button><button class="mob-tab" data-key="fundamental" onclick="show('fundamental')">Fundamental</button><button class="mob-tab" data-key="audit" onclick="show('audit')">Audit</button></div>
+<div class="rp-layout">
+  <div class="sidebar"><div class="sidebar-item" data-key="executive_summary" onclick="show('executive_summary')">
+      <span class="sidebar-icon">◈</span>
+      <span>สรุปภาพรวม</span>
+      <span class="sidebar-tag">Yuki</span>
+    </div><div class="sidebar-item" data-key="thesis" onclick="show('thesis')">
+      <span class="sidebar-icon">◇</span>
+      <span>Thesis</span>
+      <span class="sidebar-tag">Ada</span>
+    </div><div class="sidebar-item" data-key="research" onclick="show('research')">
+      <span class="sidebar-icon">◎</span>
+      <span>Research</span>
+      <span class="sidebar-tag">Claudy</span>
+    </div><div class="sidebar-item" data-key="analysis" onclick="show('analysis')">
+      <span class="sidebar-icon">◈</span>
+      <span>Analysis</span>
+      <span class="sidebar-tag">Rocky</span>
+    </div><div class="sidebar-item" data-key="sentiment" onclick="show('sentiment')">
+      <span class="sidebar-icon">◐</span>
+      <span>Sentiment</span>
+      <span class="sidebar-tag">Peter</span>
+    </div><div class="sidebar-item" data-key="diffsentiment" onclick="show('diffsentiment')">
+      <span class="sidebar-icon">◑</span>
+      <span>Contrarian</span>
+      <span class="sidebar-tag">Diffy</span>
+    </div><div class="sidebar-item" data-key="fundamental" onclick="show('fundamental')">
+      <span class="sidebar-icon">◉</span>
+      <span>Fundamental</span>
+      <span class="sidebar-tag">Fin</span>
+    </div><div class="sidebar-item" data-key="audit" onclick="show('audit')">
+      <span class="sidebar-icon">◌</span>
+      <span>Audit</span>
+      <span class="sidebar-tag">Leon</span>
+    </div></div>
+  <div class="rp-content">
+    <div class="rp-date">Daily Report</div>
+    <div class="rp-title">2026-05-10</div>
+    <div class="panel" id="panel-executive_summary"><h1>CLAUDY RESEARCH INSTITUTE</h1>
 <h2>CHIEF INVESTMENT OFFICER INTELLIGENCE BRIEF</h2>
 <h3>Date: 10/05/2569 | Prepared by: Tony, CIO</h3>
 <hr>
@@ -3291,42 +3360,43 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <li><strong>Long-term</strong> (FY2570): Capex res</li>
 </ol>
 </div>
-<footer>Claudy Research Library · 2026-05-10</footer>
+  </div>
+</div>
 <script>
-function show(key) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('panel-' + key).classList.add('active');
-  document.querySelector('[data-key="' + key + '"]').classList.add('active');
-  location.hash = key;
-  if (key === 'executive_summary') injectQuizUI();
+function show(key){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item,.mob-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+key).classList.add('active');
+  document.querySelectorAll('[data-key="'+key+'"]').forEach(t=>t.classList.add('active'));
+  location.hash=key;
+  if(key==='executive_summary') injectQuiz();
 }
-function injectQuizUI() {
-  const panel = document.getElementById('panel-executive_summary');
-  if (panel.dataset.quizDone) return;
-  panel.dataset.quizDone = '1';
-  const iter = document.createNodeIterator(panel, NodeFilter.SHOW_COMMENT);
+function injectQuiz(){
+  const panel=document.getElementById('panel-executive_summary');
+  if(panel.dataset.done)return;
+  panel.dataset.done='1';
+  const iter=document.createNodeIterator(panel,NodeFilter.SHOW_COMMENT);
   let node;
-  while ((node = iter.nextNode())) {
-    if (node.nodeValue.includes('ANSWER KEY')) {
-      const raw = node.nodeValue.replace(/\s*ANSWER KEY\s*/, '').trim();
-      const btn = document.createElement('button');
-      btn.className = 'quiz-reveal-btn';
-      btn.textContent = '🔍 ดูเฉลย';
-      btn.onclick = () => {
-        const box = document.createElement('div');
-        box.className = 'answer-key';
-        box.textContent = raw;
+  while((node=iter.nextNode())){
+    if(node.nodeValue.includes('ANSWER KEY')){
+      const raw=node.nodeValue.replace(/\s*ANSWER KEY\s*/,'').trim();
+      const btn=document.createElement('button');
+      btn.className='quiz-btn';
+      btn.textContent='🔍 ดูเฉลย';
+      btn.onclick=()=>{
+        const box=document.createElement('div');
+        box.className='answer-box';
+        box.textContent=raw;
         btn.replaceWith(box);
       };
-      node.parentNode.insertBefore(btn, node);
+      node.parentNode.insertBefore(btn,node);
       node.parentNode.removeChild(node);
       break;
     }
   }
 }
-const hash = location.hash.slice(1);
-show(hash && document.getElementById('panel-' + hash) ? hash : 'executive_summary');
+const h=location.hash.slice(1);
+show(h&&document.getElementById('panel-'+h)?h:'executive_summary');
 </script>
 </body>
 </html>
