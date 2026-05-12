@@ -3,98 +3,136 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Claudy Research Library</title>
+<title>Claudy Research</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+:root{
+  --bg:       #0E0D0C;
+  --s1:       #161412;
+  --s2:       #1E1B19;
+  --s3:       #272320;
+  --s4:       #312D29;
+  --border:   #3A3530;
+  --border2:  #4D4742;
+  --orange:   #E8721A;
+  --orange-d: rgba(232,114,26,.12);
+  --orange-g: rgba(232,114,26,.22);
+  --text:     #F0EAE3;
+  --text2:    #A39890;
+  --text3:    #5C5650;
+  --green:    #4ade80;
+  --amber:    #fbbf24;
+  --red:      #f87171;
+  --radius:   10px;
+  --radius-lg:14px;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Sarabun',sans-serif;background:#0f1117;color:#e2e8f0;min-height:100vh}
-a{color:#818cf8;text-decoration:none}
-a:hover{text-decoration:underline}
-.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600;letter-spacing:.03em}
-.badge-buy{background:#10b98122;color:#10b981;border:1px solid #10b98144}
-.badge-hold{background:#f59e0b22;color:#f59e0b;border:1px solid #f59e0b44}
-.badge-sell{background:#ef444422;color:#ef4444;border:1px solid #ef444444}
-.badge-neutral{background:#6366f122;color:#818cf8;border:1px solid #6366f144}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline;opacity:.85}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.chip-buy{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.chip-hold{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.chip-sell{background:rgba(248,113,113,.12);color:#f87171;border:1px solid rgba(248,113,113,.25)}
+.chip-orange{background:var(--orange-d);color:var(--orange);border:1px solid var(--orange-g)}
+.chip-gray{background:var(--s3);color:var(--text2);border:1px solid var(--border)}
 
-header{background:#1a1d27;border-bottom:1px solid #2d3148;padding:20px 32px;display:flex;align-items:center;gap:16px}
-.logo{font-size:1.4rem;font-weight:700;color:#fff}
-.logo span{color:#6366f1}
-.logo-sub{color:#475569;font-size:.9rem;margin-left:8px}
-main{max-width:1100px;margin:0 auto;padding:40px 32px 80px}
-.section-title{font-size:1.1rem;font-weight:700;color:#fff;margin:0 0 20px;display:flex;align-items:center;gap:10px}
-.section-title::after{content:'';flex:1;height:1px;background:#2d3148;margin-left:8px}
-.section{margin:0 0 52px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
-.grid-topic{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-.card{background:#1a1d27;border:1px solid #2d3148;border-radius:12px;padding:18px 20px;cursor:pointer;transition:all .2s;text-decoration:none;display:block}
-.card:hover{border-color:#6366f1;background:#1e2235;text-decoration:none;transform:translateY(-2px)}
-.card-date{font-size:1rem;font-weight:700;color:#fff;margin:0 0 6px;font-family:'JetBrains Mono',monospace}
-.card-label{font-size:.8rem;color:#475569;margin:0 0 10px}
-.card-badges{display:flex;flex-wrap:wrap;gap:6px}
-.card-topic-name{font-size:.95rem;font-weight:600;color:#c7d2fe;margin:0 0 6px;line-height:1.4}
-.card-topic-meta{font-size:.8rem;color:#475569}
-.card-dot{width:8px;height:8px;border-radius:50%;background:#6366f1;display:inline-block;margin-right:6px;vertical-align:middle}
-.watchlist-table{width:100%;border-collapse:collapse}
-.watchlist-table th{background:#1e2235;color:#94a3b8;padding:10px 16px;text-align:left;border-bottom:1px solid #2d3148;font-size:.85rem;font-weight:600;letter-spacing:.04em}
-.watchlist-table td{padding:11px 16px;border-bottom:1px solid #1e2235;vertical-align:middle}
-.watchlist-table tr:hover td{background:#1a1d27}
-.ticker{font-family:'JetBrains Mono',monospace;font-weight:600;color:#fff;font-size:.95rem}
-.source-link{color:#818cf8;font-size:.85rem}
-.source-link:hover{text-decoration:underline}
-.empty{color:#475569;font-size:.9rem;padding:20px 0}
-footer{text-align:center;color:#475569;font-size:.8rem;padding:24px 32px;border-top:1px solid #2d3148}
-@media(max-width:640px){main{padding:24px 16px 60px}.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}}
+.top-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:0 32px;height:52px;display:flex;align-items:center;gap:16px}
+.logo{font-size:1.1rem;font-weight:700;color:var(--text);letter-spacing:-.01em}
+.logo b{color:var(--orange)}
+.top-bar-right{margin-left:auto;display:flex;gap:6px}
+.nav-chip{padding:5px 14px;border-radius:6px;font-size:.82rem;font-weight:600;color:var(--text2);border:1px solid transparent;transition:all .15s;cursor:pointer}
+.nav-chip:hover{background:var(--s3);color:var(--text);text-decoration:none}
+.nav-chip.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
+.stats-row{background:var(--s2);border-bottom:1px solid var(--border);padding:12px 32px;display:flex;gap:32px}
+.stat{display:flex;align-items:baseline;gap:7px}
+.stat-n{font-size:1.35rem;font-weight:700;color:var(--orange);font-family:'JetBrains Mono',monospace;line-height:1}
+.stat-l{font-size:.72rem;color:var(--text3);letter-spacing:.06em;text-transform:uppercase}
+.main{max-width:1120px;margin:0 auto;padding:36px 32px 80px}
+.sec{margin:0 0 44px}
+.sec-hd{font-size:.68rem;font-weight:700;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.sec-hd::after{content:'';flex:1;height:1px;background:var(--border)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.grid-wide{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;transition:all .15s;text-decoration:none;display:block;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--orange);opacity:0;transition:opacity .15s}
+.card:hover{border-color:var(--border2);background:var(--s2);transform:translateY(-1px);text-decoration:none}
+.card:hover::before{opacity:1}
+.card-dt{font-size:.92rem;font-weight:700;color:var(--text);font-family:'JetBrains Mono',monospace;margin:0 0 3px}
+.card-sub{font-size:.75rem;color:var(--text3);margin:0 0 10px}
+.card-dots{display:flex;gap:3px;flex-wrap:wrap;align-items:center}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--orange)}
+.dot-off{background:var(--s4)}
+.card-title{font-size:.9rem;font-weight:600;color:var(--text);margin:0 0 4px;line-height:1.35}
+.card-meta{font-size:.75rem;color:var(--text3)}
+.wl-table{width:100%;border-collapse:collapse}
+.wl-table th{background:var(--s2);color:var(--text3);padding:9px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.wl-table td{padding:10px 16px;border-bottom:1px solid var(--s2);vertical-align:middle;font-size:.88rem}
+.wl-table tr:last-child td{border-bottom:none}
+.wl-table tr:hover td{background:var(--s1)}
+.ticker{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--text);font-size:.92rem}
+.src-link{color:var(--text2);font-size:.8rem}
+.src-link:hover{color:var(--orange)}
+.empty{color:var(--text3);font-size:.85rem;padding:16px 0}
+.foot{text-align:center;color:var(--text3);font-size:.75rem;padding:20px 32px;border-top:1px solid var(--border);margin-top:40px}
+@media(max-width:640px){
+  .top-bar{padding:0 16px}.stats-row{padding:10px 16px;gap:20px}
+  .main{padding:24px 16px 60px}.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">Claudy <span>Research</span> <span class="logo-sub">คลังความรู้</span></div>
-  <div style="margin-left:auto;display:flex;gap:20px;color:#475569;font-size:.85rem">
-    <span><strong style="color:#c7d2fe">1</strong> วัน</span>
-    <span><strong style="color:#c7d2fe">0</strong> หัวข้อ</span>
-    <span><strong style="color:#c7d2fe">0</strong> Rating</span>
-    <span><strong style="color:#c7d2fe">1</strong> IPO</span>
+<div class="top-bar">
+  <div class="logo">Claudy <b>Research</b></div>
+  <div class="top-bar-right">
+    <span class="nav-chip active">คลัง</span>
+    <a class="nav-chip" href="ipo.html">IPO</a>
   </div>
-</header>
-<main>
-
-  <div class="section">
-    <div class="section-title">📅 รายงานประจำวัน</div>
+</div>
+<div class="stats-row">
+  <div class="stat"><span class="stat-n">1</span><span class="stat-l">วันที่วิเคราะห์</span></div>
+  <div class="stat"><span class="stat-n">0</span><span class="stat-l">หัวข้อพิเศษ</span></div>
+  <div class="stat"><span class="stat-n">0</span><span class="stat-l">Stock Rating</span></div>
+  <div class="stat"><span class="stat-n">1</span><span class="stat-l">IPO บันทึก</span></div>
+</div>
+<div class="main">
+  <div class="sec">
+    <div class="sec-hd">รายงานประจำวัน</div>
     <div class="grid"><a class="card" href="2026-05-10.html">
-      <div class="card-date">2026-05-10</div>
-      <div class="card-label">10 พฤษภาคม 2569</div>
-      <div class="card-badges"><span class="card-dot"></span><span class="card-dot"></span><span class="card-dot"></span><span class="card-dot"></span><span class="card-dot"></span><span class="card-dot"></span><span class="card-dot"></span><span class="card-dot"></span><span style="color:#475569;font-size:.75rem;margin-left:4px">8 รายงาน</span></div>
+      <div class="card-dt">2026-05-10</div>
+      <div class="card-sub">10 พฤษภาคม 2569</div>
+      <div class="card-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span style="color:var(--text3);font-size:.7rem;margin-left:5px">8/8</span></div>
     </a></div>
   </div>
 
-  <div class="section">
-    <div class="section-title">🆕 กองทุน IPO ใหม่</div>
-    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))">
+  
+  <div class="sec">
+    <div class="sec-hd">กองทุน IPO</div>
+    <div class="grid grid-wide">
       <a class="card" href="ipo.html">
-        <div class="card-date" style="font-size:.95rem">กองทุน IPO</div>
-        <div class="card-label">บันทึกทั้งหมด 1 วัน</div>
-        <div class="card-badges"><span class="badge badge-neutral">SEC Thailand</span></div>
+        <div class="card-title">กองทุน IPO ใหม่</div>
+        <div class="card-meta" style="margin-top:6px">ทั้งหมด 1 วัน · ข้อมูลจาก SEC Thailand</div>
+        <div style="margin-top:12px"><span class="chip chip-orange">เปิดดูกองทุน →</span></div>
       </a>
     </div>
   </div>
 
-  <div class="section">
-    <div class="section-title">🔍 วิเคราะห์หัวข้อพิเศษ</div>
-    <div class="grid grid-topic"><div class="empty">ยังไม่มีการวิเคราะห์หัวข้อพิเศษ — ใช้ Analyze.ps1 เพื่อเพิ่ม</div></div>
+  <div class="sec">
+    <div class="sec-hd">วิเคราะห์หัวข้อพิเศษ</div>
+    <div class="grid grid-wide"><div class="empty">ยังไม่มีการวิเคราะห์หัวข้อพิเศษ</div></div>
   </div>
 
-  <div class="section">
-    <div class="section-title">📈 Fin Watchlist — รวมทุก Rating</div>
-    <table class="watchlist-table">
-      <thead><tr>
-        <th>TICKER</th><th>RATING</th><th>วันที่</th><th>แหล่งที่มา</th>
-      </tr></thead>
-      <tbody><tr><td colspan="4" class="empty">ยังไม่มีข้อมูล — รัน Morningbrief หรือ Analyze เพื่อให้ Fin วิเคราะห์หุ้น</td></tr></tbody>
-    </table>
+  <div class="sec">
+    <div class="sec-hd">Fin Watchlist · รวมทุก Rating</div>
+    <div style="background:var(--s1);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">
+      <table class="wl-table">
+        <thead><tr><th>TICKER</th><th>RATING</th><th>วันที่</th><th>รายงาน</th></tr></thead>
+        <tbody><tr><td colspan="4" class="empty" style="padding:16px">ยังไม่มีข้อมูล Rating</td></tr></tbody>
+      </table>
+    </div>
   </div>
-
-</main>
-<footer>Claudy Research Library · อัปเดตอัตโนมัติทุกครั้งที่รัน Morningbrief หรือ Analyze</footer>
+</div>
+<div class="foot">Claudy Research Library · อัปเดตอัตโนมัติทุกครั้งที่รัน Morningbrief หรือ Analyze</div>
 </body>
 </html>
