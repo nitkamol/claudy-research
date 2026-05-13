@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ONE-UGG-RA Fund Analysis — Claudy Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:       #0E0D0C;
+  --s1:       #161412;
+  --s2:       #1E1B19;
+  --s3:       #272320;
+  --s4:       #312D29;
+  --border:   #3A3530;
+  --border2:  #4D4742;
+  --orange:   #E8721A;
+  --orange-d: rgba(232,114,26,.12);
+  --orange-g: rgba(232,114,26,.22);
+  --text:     #F0EAE3;
+  --text2:    #A39890;
+  --text3:    #5C5650;
+  --green:    #4ade80;
+  --amber:    #fbbf24;
+  --red:      #f87171;
+  --radius:   10px;
+  --radius-lg:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline;opacity:.85}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.chip-buy{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.chip-hold{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.chip-sell{background:rgba(248,113,113,.12);color:#f87171;border:1px solid rgba(248,113,113,.25)}
+.chip-orange{background:var(--orange-d);color:var(--orange);border:1px solid var(--orange-g)}
+.chip-gray{background:var(--s3);color:var(--text2);border:1px solid var(--border)}
+
+.rp-layout{display:flex;min-height:calc(100vh - 52px)}
+.sidebar{width:200px;flex-shrink:0;background:var(--s1);border-right:1px solid var(--border);padding:16px 0;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto}
+.sidebar-item{display:flex;align-items:center;gap:9px;padding:9px 18px;cursor:pointer;transition:all .13s;border-left:3px solid transparent;color:var(--text2);font-size:.88rem;font-weight:500;white-space:nowrap}
+.sidebar-item:hover{background:var(--s2);color:var(--text)}
+.sidebar-item.active{background:var(--orange-d);color:var(--orange);border-left-color:var(--orange);font-weight:600}
+.sidebar-icon{font-size:.65rem;opacity:.6}
+.sidebar-tag{font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--text3);margin-left:auto}
+.sidebar-item.active .sidebar-tag{color:var(--orange);opacity:.7}
+.rp-content{flex:1;min-width:0;padding:36px 40px 80px;max-width:880px}
+.rp-date{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin:0 0 4px}
+.rp-title{font-size:1.5rem;font-weight:700;color:var(--text);margin:0 0 24px;line-height:1.3}
+.panel{display:none}
+.panel.active{display:block}
+.panel h1{font-size:1.4rem;font-weight:700;color:var(--text);margin:0 0 8px;line-height:1.3}
+.panel h2{font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.panel h3{font-size:.95rem;font-weight:600;color:var(--text2);margin:18px 0 7px}
+.panel h4{font-size:.88rem;font-weight:600;color:var(--text3);margin:14px 0 5px;text-transform:uppercase;letter-spacing:.04em}
+.panel p{color:var(--text2);line-height:1.75;margin:0 0 10px;font-size:.93rem}
+.panel ul,.panel ol{color:var(--text2);line-height:1.75;padding-left:18px;margin:0 0 10px;font-size:.93rem}
+.panel li{margin:3px 0}
+.panel strong{color:var(--text)}
+.panel em{color:var(--text3)}
+.panel blockquote{border-left:3px solid var(--orange);padding:8px 16px;background:var(--s2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text2);font-style:italic}
+.panel table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+.panel th{background:var(--s2);color:var(--text3);padding:9px 12px;text-align:left;border:1px solid var(--border);font-weight:700;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase}
+.panel td{padding:8px 12px;border:1px solid var(--border);color:var(--text2);vertical-align:top}
+.panel tr:hover td{background:var(--s2)}
+.panel code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.82rem;color:var(--orange)}
+.panel pre{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;margin:12px 0}
+.panel hr{border:none;border-top:1px solid var(--border);margin:22px 0}
+.quiz-box{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin:24px 0}
+.quiz-box h3{color:var(--orange);margin:0 0 14px;font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.quiz-btn{background:var(--orange);color:#fff;border:none;border-radius:7px;padding:8px 20px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:.88rem;margin-top:10px;transition:opacity .15s}
+.quiz-btn:hover{opacity:.85}
+.answer-box{background:var(--s3);border:1px solid var(--border);border-radius:8px;padding:14px;margin-top:10px;color:var(--text2);font-size:.88rem;line-height:1.7;white-space:pre-wrap}
+.top-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.logo{font-size:1rem;font-weight:700;color:var(--text)}
+.logo b{color:var(--orange)}
+.back-btn{background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:'Sarabun',sans-serif;font-size:.8rem;transition:all .15s;text-decoration:none;display:inline-block}
+.back-btn:hover{background:var(--s4);color:var(--text);text-decoration:none}
+.rp-topic-chip{margin-left:auto}
+.foot{text-align:center;color:var(--text3);font-size:.75rem;padding:20px}
+@media(max-width:768px){
+  .sidebar{display:none}
+  .rp-content{padding:24px 16px 60px}
+  .mob-tabs{display:flex;overflow-x:auto;gap:6px;padding:10px 16px;background:var(--s1);border-bottom:1px solid var(--border);-webkit-overflow-scrolling:touch}
+  .mob-tab{flex-shrink:0;background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;cursor:pointer;font-size:.8rem;white-space:nowrap;transition:all .13s}
+  .mob-tab.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
+}
+@media(min-width:769px){.mob-tabs{display:none}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="logo">Claudy <b>Research</b></div>
+  <a class="back-btn" href="fund.html">← กองทุน</a>
+  <span class="chip chip-orange rp-topic-chip">ONE-UGG-RA</span>
+</div>
+<div class="mob-tabs"><button class="mob-tab" data-key="yuki" onclick="show('yuki')">สรุปภาพรวม</button><button class="mob-tab" data-key="ada" onclick="show('ada')">Thesis</button><button class="mob-tab" data-key="claudy" onclick="show('claudy')">Research</button><button class="mob-tab" data-key="rocky" onclick="show('rocky')">Analysis</button><button class="mob-tab" data-key="peter" onclick="show('peter')">Sentiment</button><button class="mob-tab" data-key="diffy" onclick="show('diffy')">Contrarian</button><button class="mob-tab" data-key="fin" onclick="show('fin')">Fundamental</button><button class="mob-tab" data-key="leon" onclick="show('leon')">Audit</button></div>
+<div class="rp-layout">
+  <div class="sidebar"><div class="sidebar-item" data-key="yuki" onclick="show('yuki')">
+      <span class="sidebar-icon">◈</span>
+      <span>สรุปภาพรวม</span>
+      <span class="sidebar-tag">Yuki</span>
+    </div><div class="sidebar-item" data-key="ada" onclick="show('ada')">
+      <span class="sidebar-icon">◇</span>
+      <span>Thesis</span>
+      <span class="sidebar-tag">Ada</span>
+    </div><div class="sidebar-item" data-key="claudy" onclick="show('claudy')">
+      <span class="sidebar-icon">◎</span>
+      <span>Research</span>
+      <span class="sidebar-tag">Claudy</span>
+    </div><div class="sidebar-item" data-key="rocky" onclick="show('rocky')">
+      <span class="sidebar-icon">◈</span>
+      <span>Analysis</span>
+      <span class="sidebar-tag">Rocky</span>
+    </div><div class="sidebar-item" data-key="peter" onclick="show('peter')">
+      <span class="sidebar-icon">◐</span>
+      <span>Sentiment</span>
+      <span class="sidebar-tag">Peter</span>
+    </div><div class="sidebar-item" data-key="diffy" onclick="show('diffy')">
+      <span class="sidebar-icon">◑</span>
+      <span>Contrarian</span>
+      <span class="sidebar-tag">Diffy</span>
+    </div><div class="sidebar-item" data-key="fin" onclick="show('fin')">
+      <span class="sidebar-icon">◉</span>
+      <span>Fundamental</span>
+      <span class="sidebar-tag">Fin</span>
+    </div><div class="sidebar-item" data-key="leon" onclick="show('leon')">
+      <span class="sidebar-icon">◌</span>
+      <span>Audit</span>
+      <span class="sidebar-tag">Leon</span>
+    </div></div>
+  <div class="rp-content">
+    <div class="rp-date">Fund Analysis · 2026-05-13</div>
+    <div class="rp-title">กองทุนเปิดวรรณ อัลติเมท โกลบอล โกรว์ธ</div>
+    <div class="panel" id="panel-yuki"><h2>🌟 YUKI — Executive Summary</h2>
+<p><strong>ONE-UGG-RA</strong> = Feeder Fund ไทย → BG Worldwide LTGG (UCITS Ireland) · ลงทุนหุ้นเติบโตทั่วโลก 30-60 ตัว · AUM 5.4B THB · เหมาะผู้ลงทุนระยะ ≥10 ปีที่รับ Drawdown -56% ได้</p>
+<p><strong>Macro Fit:</strong> ❌ Reflation regime กดดันหนัก · High-Multiple Growth stocks ถูก derating · IT 31% + Consumer Disc 27.8% = ถูกกระทบตรง</p>
+<p><strong>Key Risks (จาก Diffy):</strong></p>
+<ol>
+<li>🔴 Master Fund กำลัง Reorganize เป็น ETF — ความไม่แน่นอนเชิงโครงสร้าง</li>
+<li>🔴 5Y return -3.4%/ปี vs Benchmark +9.96%/ปี = underperform 13.36%/ปี</li>
+<li>🟡 Fee 1.9%+ บน Alpha -2.53% = double damage</li>
+</ol>
+<p><strong>Fin Verdict: ⭐ WATCHLIST / AVOID</strong></p>
+<p><strong>คำแนะนำ: ไม่แนะนำซื้อใหม่</strong> · ผู้ถือเดิมรอประกาศ BG Reorg + Fed cut signal ก่อน · ≤5% พอร์ตหากตัดสินใจถือ · ทยอย 3 งวดถ้าซื้อ</p>
+<hr>
+<p><em>ข้อมูลจาก: Fundfact PDF (บลจ.วรรณ ณ 30 ม.ค. 2026) · Finnomena · Web Search · Claudy Research Knowledge Base</em>
+<em>วิเคราะห์: 13 พ.ค. 2026</em></p>
+</div><div class="panel" id="panel-ada"><h2>💡 ADA — Investment Thesis Architect</h2>
+<p><strong>Macro Regime Fit:</strong> Reflation + Geopolitical Tail Risk (CPI 3.8%, WTI elevated, Real Yield สูง) → ต้านทาน กองนี้ออกแบบสำหรับ Risk-On/Low Rate/High Growth Multiple regime ซึ่งตรงข้ามกับปัจจุบัน
+<strong>Investment Thesis:</strong> Baillie Gifford LTGG philosophy: ลงทุนในบริษัทที่เติบโตยาวนาน 5-10 ปี ถือน้อยกว่า 60 หุ้น concentrated ไม่ขายง่าย โฟกัส disruptive innovation ทั่วโลก ผ่าน Feeder Fund → BG Worldwide LTGG Fund (UCITS Ireland)
+<strong>Portfolio Positioning:</strong> Satellite ≤5% พอร์ต เท่านั้น — ไม่เหมาะเป็น Core ใน Reflation regime
+<strong>Time Horizon:</strong> ≥10 ปี เท่านั้น — ผลงาน Since Inception +11.78% vs Benchmark +10.87% แสดงว่า Alpha เกิดในระยะยาวมาก แต่ระยะ 5 ปีล่าสุดเจ็บปวด
+<strong>Research Directive:</strong> (1) BG LTGG UCITS Reorganization กระทบ ONE-UGG-RA อย่างไร? (2) AppLovin/Cloudflare ใน Reflation → ยืนได้ไหม? (3) Fee 1.9%/ปี บน AUM 5.4B THB คุ้มกับ Alpha -2.53% ไหม?</p>
+<hr>
+</div><div class="panel" id="panel-claudy"><h2>🔍 CLAUDY — Market Research Anchor</h2>
+<p><strong>Fund Profile:</strong> กองทุนเปิดวรรณ อัลติเมท โกลบอล โกรว์ธ · บลจ.วรรณ (One Asset Management) · ประเภท: Feeder Fund / Global Equity · จดทะเบียน 4 ก.พ. 2559 (2016) · AUM ~5,399 ล้านบาท</p>
+<p><strong>Fee Structure (เก็บจริง):</strong></p>
+<ul>
+<li>Front-end: 1.50% · Redemption: ยกเว้น</li>
+<li>Management: 1.605%/ปี · Total expense: 1.9046%/ปี</li>
+</ul>
+<p><strong>Master Fund:</strong> Baillie Gifford Worldwide Long Term Global Growth Fund · Class B net accumulation (UCITS Ireland) · ISIN: IE00BYQG5606 · Bloomberg: BGWLBUA ID EQUITY</p>
+<p><strong>Portfolio (ณ 31 ม.ค. 2026):</strong></p>
+<ul>
+<li>Amazon.com 6.9% · ASML 5.9% · AppLovin 3.9% · Nu Holdings 3.7% · Cloudflare 3.7%</li>
+<li>Geographic: US 46.7% · China 16.0% · Netherlands 8.6% · Brazil 7.0% · Taiwan 4.2%</li>
+<li>Sector: IT 31.0% · Consumer Discretionary 27.8% · Communication Services 15.3% · Industrials 8.7% · Healthcare 6.7%</li>
+</ul>
+<p><strong>Performance (ณ 30 ม.ค. 2026 vs Benchmark FTSE All-World THB):</strong></p>
+<ul>
+<li>YTD: -4.14% vs +2.2% · 1Y: -2.12% vs +18.06% · 3Y: +13.05% vs +15.58% · 5Y: -3.40% vs +9.96% · Since Inception: +11.78% vs +10.87%</li>
+</ul>
+<p><strong>Statistical:</strong> Sharpe 0.52 · Alpha -2.53% · Beta 0.4 · Max Drawdown -55.97% · FX Hedge 95.81% · Portfolio Turnover 0.27x · Volatility 22.45%</p>
+<p><strong>Calendar Year:</strong></p>
+<ul>
+<li>2021: +2.66% vs +20.55% · 2022: -46.28% vs -18.73% · 2023: +28.67% vs +18.28% · 2024: +21.36% vs +14.16% · 2025: +8.5% vs +18.59%</li>
+</ul>
+<p><strong>Peer:</strong> TMBGQG, SCBWLD, KT-WTAI ในกลุ่ม Global Equity Growth</p>
+<hr>
+</div><div class="panel" id="panel-rocky"><h2>📊 ROCKY — Market Strategist</h2>
+<p><strong>Valuation (Top Holdings):</strong></p>
+<ul>
+<li>Amazon: Forward P/E ~38x · สมเหตุสมผล · AWS Cloud AI demand แข็งแกร่ง</li>
+<li>ASML: P/E ~25x · ถูกกว่า Historical แต่ China export restriction กดดัน</li>
+<li>AppLovin: P/E 55-60x · Momentum-driven · แพงในทุก Regime</li>
+<li>Nu Holdings: P/E ~25x · Growth ดี แต่ EM credit risk ใน Reflation</li>
+<li>Cloudflare: ยัง EPS ลบ · P/S ~20x · Speculative</li>
+</ul>
+<p><strong>Momentum:</strong> IT sector earnings estimates -8-15% (30 วันล่าสุด) → กดดัน IT 31% ในพอร์ต
+<strong>Benchmark Analysis:</strong> 5Y underperform -13.36%/ปี = catastrophic · แต่ Since Inception +0.91%/ปี = ยังมีชีวิต
+<strong>Technical:</strong> NAV อยู่ต่ำกว่า All-Time High หลายสิบเปอร์เซ็นต์ (Max Drawdown -55.97% = ยัง Recovering)
+<strong>Catalysts:</strong> Fed rate cut Q4/2026 → Growth rerate · BG LTGG ETF clarity · AppLovin/Amazon Q2 earnings</p>
+<hr>
+</div><div class="panel" id="panel-peter"><h2>🧠 PETER — Sentiment &amp; Fund Flow Tracker</h2>
+<p><strong>Fund Flow:</strong> Global Growth Equity ไหลออกต่อเนื่อง 3 เดือน · Institutional rotate → Value/Energy
+<strong>AUM Trend:</strong> 5,399M THB — ไม่มีข้อมูล Trend แต่ YTD -10.51% (3M) แสดงว่า NAV ลดมาก
+<strong>Retail Sentiment ไทย:</strong> Denial Phase — ผู้ถือเชื่อว่า Baillie Gifford จะกลับมา แต่ไม่ซื้อเพิ่ม
+<strong>Global Sentiment:</strong> Institutional ยัง Position ใน Growth แต่ Trim ลง อย่างต่อเนื่อง
+<strong>Sentiment Cycle:</strong> Anxiety → Denial — ยังไม่ถึง Capitulation
+<strong>Contrarian Signal:</strong> ไม่มี Oversold sentiment ที่ชัดเจน เพราะ Fundamental ไม่ Support</p>
+<hr>
+</div><div class="panel" id="panel-diffy"><h2>⚠️ DIFFY — Risk Hunter &amp; Contrarian</h2>
+<p><strong>Hidden Risks:</strong></p>
+<ol>
+<li>BG LTGG US version reorganize เป็น ETF (มีผล 1 มิ.ย. 2026) — UCITS version ที่ ONE-UGG-RA ถือไม่ชัดเจนว่าได้รับผลอะไร → ความเสี่ยงเชิงโครงสร้างสูงสุด</li>
+<li>China 16% ใน Portfolio → US-China friction อาจทำให้ Tencent/ชิป ร่วงเพิ่ม</li>
+<li>Beta = 0.4 บนกระดาษ แต่ปี 2022 ลบ 46.28% vs Benchmark ลบ 18.73% → Beta จริงในช่วง stress สูงกว่ามาก</li>
+</ol>
+<p><strong>FX Risk:</strong> ต่ำ — FX Hedge 95.81% → THB แข็ง/อ่อนไม่กระทบมาก</p>
+<p><strong>Concentration Risk:</strong> Top 5 = 26.1% NAV · AppLovin (P/E 55x+) + Cloudflare (EPS ลบ) = High-Risk portion</p>
+<p><strong>Bear Case:</strong> Reflation regime ต่อเนื่อง + Fed hold → Growth derating → กองอาจลบ 35-50% ใน 12 เดือน</p>
+<p><strong>Fee Reality Check:</strong> Management 1.605% + Estimated BG LTGG charges ~0.65% = <strong>Total ~2.2-2.3%/ปี</strong> ต่อผู้ลงทุน · Alpha -2.53% = จ่ายค่าธรรมเนียมเพื่อรับผลลบ</p>
+<p><strong>Manager Risk:</strong> Baillie Gifford firm ยังใหญ่ แต่ LTGG strategy กำลัง Restructure เป็น ETF (US) = signal ว่า active premium ไม่ justifiable อีกต่อไปสำหรับ US investors</p>
+<p><strong>Timing Risk:</strong> ซื้อตอน Reflation regime + Master Fund ไม่แน่นอน = timing แย่ที่สุด</p>
+<hr>
+</div><div class="panel" id="panel-fin"><h2>📈 FIN — Stock &amp; Fund Fundamentalist</h2>
+<p><strong>Fee vs Alpha:</strong> Alpha -2.53% + Fee 1.9%/ปี = ทำลาย Value 4.43%/ปี เทียบกับ Passive ETF → <strong>ไม่คุ้มค่าในปัจจุบัน</strong>
+<strong>Expected Return 3Y:</strong> ถ้า Rate cut Q4/2026 + Regime เปลี่ยน → คาด +15-25% cumulative (5-8%/ปี) · ถ้า Reflation ต่อ → อาจลบ 20-30% · Range กว้างมาก
+<strong>Risk-Adjusted Return:</strong> Sharpe 0.52 = ต่ำมากสำหรับ Volatility 22.45% · ไม่คุ้มค่าในระยะ 5 ปี
+<strong>vs Alternatives:</strong> TMBGQG (T. Rowe Price Global Growth) fee ~1.5% alpha บวก · SCBWLD passive-ish ค่าถูกกว่า → ทั้งสองดีกว่า ONE-UGG-RA ในมิติ Fee/Alpha</p>
+<table>
+<thead>
+<tr>
+<th align="left">มิติ</th>
+<th align="center">คะแนน</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ค่าธรรมเนียม</td>
+<td align="center">1/5</td>
+</tr>
+<tr>
+<td align="left">Thesis Strength</td>
+<td align="center">3/5</td>
+</tr>
+<tr>
+<td align="left">Timing</td>
+<td align="center">1/5</td>
+</tr>
+<tr>
+<td align="left">Risk/Reward</td>
+<td align="center">2/5</td>
+</tr>
+<tr>
+<td align="left"><strong>Verdict</strong></td>
+<td align="center"><strong>⭐ WATCHLIST/AVOID</strong></td>
+</tr>
+</tbody></table>
+<p>Position Sizing: ≤5% พอร์ต · ทยอย 3 งวด · รอ 3 Signal ก่อนซื้อ: (1) BG Reorg clarity, (2) Fed cut signal, (3) YTD กลับบวก 2 ไตรมาส</p>
+<hr>
+</div><div class="panel" id="panel-leon"><h2>🔎 LEON — Fact Auditor</h2>
+<p><strong>[VERIFIED]:</strong> ชื่อกองทุน, บลจ.วรรณ, Feeder Fund, Master Fund BG Worldwide LTGG Class B, จดทะเบียน 4 ก.พ. 2559 — ยืนยันจาก Fundfact PDF (30 ม.ค. 2569)
+<strong>[VERIFIED]:</strong> Fee Management 1.605%/ปี, Total expense 1.9046%/ปี, Front-end 1.50% — ยืนยันจาก Fundfact
+<strong>[VERIFIED]:</strong> Top 5 Holdings ณ 31 ม.ค. 2026, Geographic allocation, Sector allocation — ยืนยันจาก Fundfact
+<strong>[VERIFIED]:</strong> Performance YTD -4.14%, 1Y -2.12%, 3Y +13.05%, 5Y -3.40%, Since Inception +11.78% ณ 30 ม.ค. 2026
+<strong>[VERIFIED]:</strong> FX Hedge 95.81%, Alpha -2.53%, Beta 0.4, Max Drawdown -55.97% — ยืนยันจาก Fundfact
+<strong>[VERIFIED]:</strong> AUM ~5,399 ล้านบาท — ยืนยันจาก Finnomena
+<strong>[CONFLICT]:</strong> Finnomena แสดง 1Y = -4.12% แต่ Fundfact = -2.12% → คนละวันที่คำนวณ ใช้ Fundfact เป็น Primary source
+<strong>[UNVERIFIED]:</strong> BG LTGG ETF Reorganization (US) กระทบ UCITS version (IE00BYQG5606) อย่างไร — ยังไม่มีประกาศจาก บลจ.วรรณ
+<strong>[UNVERIFIED]:</strong> Total fee layer ของ Master Fund ซ้อนอยู่ใน 1.9046% หรือเพิ่มเติม — Fundfact ไม่ระบุ</p>
+<hr>
+</div>
+  </div>
+</div>
+<script>
+function show(key){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item,.mob-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+key).classList.add('active');
+  document.querySelectorAll('[data-key="'+key+'"]').forEach(t=>t.classList.add('active'));
+  location.hash=key;
+}
+const h=location.hash.slice(1);
+show(h&&document.getElementById('panel-'+h)?h:'yuki');
+</script>
+</body>
+</html>
