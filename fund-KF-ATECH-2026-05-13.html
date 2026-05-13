@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KF-ATECH Fund Analysis — Claudy Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:       #0E0D0C;
+  --s1:       #161412;
+  --s2:       #1E1B19;
+  --s3:       #272320;
+  --s4:       #312D29;
+  --border:   #3A3530;
+  --border2:  #4D4742;
+  --orange:   #E8721A;
+  --orange-d: rgba(232,114,26,.12);
+  --orange-g: rgba(232,114,26,.22);
+  --text:     #F0EAE3;
+  --text2:    #A39890;
+  --text3:    #5C5650;
+  --green:    #4ade80;
+  --amber:    #fbbf24;
+  --red:      #f87171;
+  --radius:   10px;
+  --radius-lg:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline;opacity:.85}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.chip-buy{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.chip-hold{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.chip-sell{background:rgba(248,113,113,.12);color:#f87171;border:1px solid rgba(248,113,113,.25)}
+.chip-orange{background:var(--orange-d);color:var(--orange);border:1px solid var(--orange-g)}
+.chip-gray{background:var(--s3);color:var(--text2);border:1px solid var(--border)}
+
+.rp-layout{display:flex;min-height:calc(100vh - 52px)}
+.sidebar{width:200px;flex-shrink:0;background:var(--s1);border-right:1px solid var(--border);padding:16px 0;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto}
+.sidebar-item{display:flex;align-items:center;gap:9px;padding:9px 18px;cursor:pointer;transition:all .13s;border-left:3px solid transparent;color:var(--text2);font-size:.88rem;font-weight:500;white-space:nowrap}
+.sidebar-item:hover{background:var(--s2);color:var(--text)}
+.sidebar-item.active{background:var(--orange-d);color:var(--orange);border-left-color:var(--orange);font-weight:600}
+.sidebar-icon{font-size:.65rem;opacity:.6}
+.sidebar-tag{font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--text3);margin-left:auto}
+.sidebar-item.active .sidebar-tag{color:var(--orange);opacity:.7}
+.rp-content{flex:1;min-width:0;padding:36px 40px 80px;max-width:880px}
+.rp-date{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin:0 0 4px}
+.rp-title{font-size:1.5rem;font-weight:700;color:var(--text);margin:0 0 24px;line-height:1.3}
+.panel{display:none}
+.panel.active{display:block}
+.panel h1{font-size:1.4rem;font-weight:700;color:var(--text);margin:0 0 8px;line-height:1.3}
+.panel h2{font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.panel h3{font-size:.95rem;font-weight:600;color:var(--text2);margin:18px 0 7px}
+.panel h4{font-size:.88rem;font-weight:600;color:var(--text3);margin:14px 0 5px;text-transform:uppercase;letter-spacing:.04em}
+.panel p{color:var(--text2);line-height:1.75;margin:0 0 10px;font-size:.93rem}
+.panel ul,.panel ol{color:var(--text2);line-height:1.75;padding-left:18px;margin:0 0 10px;font-size:.93rem}
+.panel li{margin:3px 0}
+.panel strong{color:var(--text)}
+.panel em{color:var(--text3)}
+.panel blockquote{border-left:3px solid var(--orange);padding:8px 16px;background:var(--s2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text2);font-style:italic}
+.panel table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+.panel th{background:var(--s2);color:var(--text3);padding:9px 12px;text-align:left;border:1px solid var(--border);font-weight:700;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase}
+.panel td{padding:8px 12px;border:1px solid var(--border);color:var(--text2);vertical-align:top}
+.panel tr:hover td{background:var(--s2)}
+.panel code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.82rem;color:var(--orange)}
+.panel pre{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;margin:12px 0}
+.panel hr{border:none;border-top:1px solid var(--border);margin:22px 0}
+.quiz-box{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin:24px 0}
+.quiz-box h3{color:var(--orange);margin:0 0 14px;font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.quiz-btn{background:var(--orange);color:#fff;border:none;border-radius:7px;padding:8px 20px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:.88rem;margin-top:10px;transition:opacity .15s}
+.quiz-btn:hover{opacity:.85}
+.answer-box{background:var(--s3);border:1px solid var(--border);border-radius:8px;padding:14px;margin-top:10px;color:var(--text2);font-size:.88rem;line-height:1.7;white-space:pre-wrap}
+.top-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.logo{font-size:1rem;font-weight:700;color:var(--text)}
+.logo b{color:var(--orange)}
+.back-btn{background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:'Sarabun',sans-serif;font-size:.8rem;transition:all .15s;text-decoration:none;display:inline-block}
+.back-btn:hover{background:var(--s4);color:var(--text);text-decoration:none}
+.rp-topic-chip{margin-left:auto}
+.foot{text-align:center;color:var(--text3);font-size:.75rem;padding:20px}
+@media(max-width:768px){
+  .sidebar{display:none}
+  .rp-content{padding:24px 16px 60px}
+  .mob-tabs{display:flex;overflow-x:auto;gap:6px;padding:10px 16px;background:var(--s1);border-bottom:1px solid var(--border);-webkit-overflow-scrolling:touch}
+  .mob-tab{flex-shrink:0;background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;cursor:pointer;font-size:.8rem;white-space:nowrap;transition:all .13s}
+  .mob-tab.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
+}
+@media(min-width:769px){.mob-tabs{display:none}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="logo">Claudy <b>Research</b></div>
+  <a class="back-btn" href="fund.html">← กองทุน</a>
+  <span class="chip chip-orange rp-topic-chip">KF-ATECH</span>
+</div>
+<div class="mob-tabs"><button class="mob-tab" data-key="yuki" onclick="show('yuki')">สรุปภาพรวม</button><button class="mob-tab" data-key="ada" onclick="show('ada')">Thesis</button><button class="mob-tab" data-key="claudy" onclick="show('claudy')">Research</button><button class="mob-tab" data-key="rocky" onclick="show('rocky')">Analysis</button><button class="mob-tab" data-key="peter" onclick="show('peter')">Sentiment</button><button class="mob-tab" data-key="diffy" onclick="show('diffy')">Contrarian</button><button class="mob-tab" data-key="fin" onclick="show('fin')">Fundamental</button><button class="mob-tab" data-key="leon" onclick="show('leon')">Audit</button></div>
+<div class="rp-layout">
+  <div class="sidebar"><div class="sidebar-item" data-key="yuki" onclick="show('yuki')">
+      <span class="sidebar-icon">◈</span>
+      <span>สรุปภาพรวม</span>
+      <span class="sidebar-tag">Yuki</span>
+    </div><div class="sidebar-item" data-key="ada" onclick="show('ada')">
+      <span class="sidebar-icon">◇</span>
+      <span>Thesis</span>
+      <span class="sidebar-tag">Ada</span>
+    </div><div class="sidebar-item" data-key="claudy" onclick="show('claudy')">
+      <span class="sidebar-icon">◎</span>
+      <span>Research</span>
+      <span class="sidebar-tag">Claudy</span>
+    </div><div class="sidebar-item" data-key="rocky" onclick="show('rocky')">
+      <span class="sidebar-icon">◈</span>
+      <span>Analysis</span>
+      <span class="sidebar-tag">Rocky</span>
+    </div><div class="sidebar-item" data-key="peter" onclick="show('peter')">
+      <span class="sidebar-icon">◐</span>
+      <span>Sentiment</span>
+      <span class="sidebar-tag">Peter</span>
+    </div><div class="sidebar-item" data-key="diffy" onclick="show('diffy')">
+      <span class="sidebar-icon">◑</span>
+      <span>Contrarian</span>
+      <span class="sidebar-tag">Diffy</span>
+    </div><div class="sidebar-item" data-key="fin" onclick="show('fin')">
+      <span class="sidebar-icon">◉</span>
+      <span>Fundamental</span>
+      <span class="sidebar-tag">Fin</span>
+    </div><div class="sidebar-item" data-key="leon" onclick="show('leon')">
+      <span class="sidebar-icon">◌</span>
+      <span>Audit</span>
+      <span class="sidebar-tag">Leon</span>
+    </div></div>
+  <div class="rp-content">
+    <div class="rp-date">Fund Analysis · 2026-05-13</div>
+    <div class="rp-title">กองทุนเปิดกรุงศรีเอเชียเทคอิควิตี้</div>
+    <div class="panel" id="panel-yuki"><h2>🌟 YUKI — Executive Summary</h2>
+<p>KF-ATECH = Feeder ผ่าน Wellington Asia Tech · Semis 38.7% · Japan 33% + Korea 15% (ATH แล้ว)
+Macro fit: Partial — Reflation กดดัน แต่ Japan/Korea พยุงระยะสั้น · Thesis ระยะยาวยังไม่พัง
+Risks (Diffy): FX unhedged + China 20% tail risk + timing หลัง ATH
+Verdict (Fin): ⭐⭐ พอได้</p>
+<p><strong>คำแนะนำ: รอ — ทยอยซื้อ 3 งวด ≤8% พอร์ต · รอ pullback 5-8% ก่อนงวดแรก</strong></p>
+<hr>
+<p><em>ข้อมูลจาก: SEC Thailand · Fundfact PDF · Wellington Management · iShares · Claudy Research Knowledge Base</em>
+<em>วิเคราะห์: 13 พ.ค. 2026</em></p>
+</div><div class="panel" id="panel-ada"><h2>💡 ADA — Investment Thesis Architect</h2>
+<p><strong>Macro Regime:</strong> Reflation + Geopolitical Tail Risk · CPI 3.8% · Semiconductor estimates -8-15%
+<strong>Regime Fit:</strong> ⚠️ Mixed — ออกแบบสำหรับ Risk-On แต่ Japan 33% + Korea 15% (ATH) ช่วยพยุง
+<strong>Thesis:</strong> AI capex cycle → TSMC/Samsung/SK Hynix เป็น backbone AI infrastructure ทั่วโลก · Wellington active manager เชี่ยวชาญ Asia Tech
+<strong>Positioning:</strong> Satellite 5-10% ของพอร์ต · Time horizon ≥3 ปี
+<strong>Research Directives:</strong> (1) Wellington alpha vs. fee (2) China 20% structural หรือ tactical? (3) FX impact ต่อ NAV จริง?</p>
+<hr>
+</div><div class="panel" id="panel-claudy"><h2>🔍 CLAUDY — Market Research Anchor</h2>
+<p><strong>Fund Profile:</strong> KF-ATECH · บลจ. กรุงศรี · Feeder Fund · IPO 11-20 พ.ค. 2026 · risk 6/8
+<strong>Fee:</strong> Front end 1.50% · Management 1.3375% · ซื้อขั้นต่ำ 500 บาท · FX ตามดุลพินิจ
+<strong>Master Fund:</strong> Wellington Asia Technology Fund (USD S Accumulating Unhedged) · Wellington Luxembourg
+<strong>Benchmark:</strong> MSCI AC Asia ex Japan Information Technology Index (THB)</p>
+<p>Portfolio ณ 31 มี.ค. 2026:</p>
+<ul>
+<li>TSMC 9.8% · Tencent 7.7% · Samsung 6.8% · SK Hynix 6.7% · Alibaba 5.9% (Top 5 = 36.9%)</li>
+<li>Geographic: Japan 33% · Taiwan 24.1% · China 20.1% · Korea 15% · อื่นๆ 7.8%</li>
+<li>Sector: Semiconductors 38.7% · Tech Hardware 19.3% · Media 14.5%</li>
+</ul>
+<p>Peer: KF-ATECH 1.3375% vs. passive ETF 0.25-0.5% · AAXJ +52% YoY (proxy, broad Asia ex-Japan)</p>
+<hr>
+</div><div class="panel" id="panel-rocky"><h2>📊 ROCKY — Market Strategist</h2>
+<p>Valuation gap: Asia Semis P/E 18-22x vs. US 28-35x → discount 30-40% ยังมีอยู่
+Japan 33%: Nikkei ATH 62,833 · SoftBank/ARM AI connection → positive near-term
+Korea 15%: KOSPI ATH · SK Hynix +10% · HBM demand intact
+Catalysts: TSMC Q2 earnings (ก.ค.) · SoftBank ARM · US-China trade resolution</p>
+<hr>
+</div><div class="panel" id="panel-peter"><h2>🧠 PETER — Sentiment &amp; Fund Flow Tracker</h2>
+<p>AAXJ flows: +$107M (1M) · +$139M (6M) · +$243M (1Y) → institutional ยังเชื่อ
+J. Safra ขยาย position ใน Asia ex-Japan ETF (SEC filing 8 พ.ค.) → institutional buy signal
+Retail sentiment ไทย: Cautious Optimism — ไม่ euphoric · Sentiment cycle: Anxiety-to-Denial transition
+Contrarian: ไม่มี overbought retail signal ที่น่ากังวล</p>
+<hr>
+</div><div class="panel" id="panel-diffy"><h2>⚠️ DIFFY — Risk Hunter &amp; Contrarian</h2>
+<ol>
+<li>FX Unhedged: THB แข็ง 6% = return หายไป 6% ทันทีโดยไม่มีการป้องกัน</li>
+<li>China 20%: Tencent+Alibaba ~13.6% → regulatory + delisting tail risk ถูกประเมินต่ำ</li>
+<li>Concentration: Top 5 = 36.9% + Semis = 38.7% → ถ้า AI capex ชะลอ NAV ร่วงหนักกว่า broad index</li>
+<li>Timing: ซื้อหลัง Japan +5.5% + Korea +6.5% ใน 1 สัปดาห์ — ซื้อตอน local euphoria</li>
+<li>Fee drag: ถ้ารวม master fund layer total cost อาจ 1.8-2%/ปี → กิน return ระยะยาว</li>
+</ol>
+<hr>
+</div><div class="panel" id="panel-fin"><h2>📈 FIN — Stock &amp; Fund Fundamentalist</h2>
+<p>Fee vs. Alpha: ต้องการ alpha ≥0.9% ต่อปีเพื่อ justify Wellington premium
+Expected return 3Y (net): ~9-18% (wide range เพราะ FX uncertainty)
+vs. Alternatives: KF-ATECH ดีกว่า passive broad ETF ในเชิง active management แต่แพงกว่าชัดเจน</p>
+<table>
+<thead>
+<tr>
+<th align="left">มิติ</th>
+<th align="center">คะแนน</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ค่าธรรมเนียม</td>
+<td align="center">3/5</td>
+</tr>
+<tr>
+<td align="left">Thesis Strength</td>
+<td align="center">4/5</td>
+</tr>
+<tr>
+<td align="left">Timing</td>
+<td align="center">2/5</td>
+</tr>
+<tr>
+<td align="left">Risk/Reward</td>
+<td align="center">3/5</td>
+</tr>
+<tr>
+<td align="left"><strong>Verdict</strong></td>
+<td align="center"><strong>⭐⭐ พอได้ · รอ pullback</strong></td>
+</tr>
+</tbody></table>
+<p>Position sizing: ไม่เกิน 8% · ทยอยซื้อ 3 งวด · รอ pullback 5-8% ก่อน</p>
+<hr>
+</div><div class="panel" id="panel-leon"><h2>🔎 LEON — Fact Auditor</h2>
+<p>VERIFIED: Fee structure, Top holdings, Geographic allocation, Sector allocation (Fundfact PDF)
+VERIFIED: AAXJ flows (iShares official), Semiconductor estimates -8-15% (Claudy Research atom)
+UNVERIFIED: Wellington YTD +8.96% (คนละ share class), Total cost &quot;1.8-2%&quot; (Diffy estimate, ไม่มี master fund expense ใน fundfact)
+CONFLICT: Rocky ใช้ Wellington YTD จาก share class ที่ต่างกัน → directional reference เท่านั้น</p>
+<hr>
+</div>
+  </div>
+</div>
+<script>
+function show(key){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item,.mob-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+key).classList.add('active');
+  document.querySelectorAll('[data-key="'+key+'"]').forEach(t=>t.classList.add('active'));
+  location.hash=key;
+}
+const h=location.hash.slice(1);
+show(h&&document.getElementById('panel-'+h)?h:'yuki');
+</script>
+</body>
+</html>
