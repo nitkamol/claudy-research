@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>KF-ATECH Fund Analysis — Claudy Research</title>
+<title>KF-ATECH — Claudy Research</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -38,103 +38,95 @@ a:hover{text-decoration:underline;opacity:.85}
 .chip-orange{background:var(--orange-d);color:var(--orange);border:1px solid var(--orange-g)}
 .chip-gray{background:var(--s3);color:var(--text2);border:1px solid var(--border)}
 
-.rp-layout{display:flex;min-height:calc(100vh - 52px)}
-.sidebar{width:200px;flex-shrink:0;background:var(--s1);border-right:1px solid var(--border);padding:16px 0;position:sticky;top:52px;height:calc(100vh - 52px);overflow-y:auto}
-.sidebar-item{display:flex;align-items:center;gap:9px;padding:9px 18px;cursor:pointer;transition:all .13s;border-left:3px solid transparent;color:var(--text2);font-size:.88rem;font-weight:500;white-space:nowrap}
-.sidebar-item:hover{background:var(--s2);color:var(--text)}
-.sidebar-item.active{background:var(--orange-d);color:var(--orange);border-left-color:var(--orange);font-weight:600}
-.sidebar-icon{font-size:.65rem;opacity:.6}
-.sidebar-tag{font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--text3);margin-left:auto}
-.sidebar-item.active .sidebar-tag{color:var(--orange);opacity:.7}
-.rp-content{flex:1;min-width:0;padding:36px 40px 80px;max-width:880px}
-.rp-date{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin:0 0 4px}
-.rp-title{font-size:1.5rem;font-weight:700;color:var(--text);margin:0 0 24px;line-height:1.3}
-.panel{display:none}
-.panel.active{display:block}
-.panel h1{font-size:1.4rem;font-weight:700;color:var(--text);margin:0 0 8px;line-height:1.3}
-.panel h2{font-size:1.1rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
-.panel h3{font-size:.95rem;font-weight:600;color:var(--text2);margin:18px 0 7px}
-.panel h4{font-size:.88rem;font-weight:600;color:var(--text3);margin:14px 0 5px;text-transform:uppercase;letter-spacing:.04em}
-.panel p{color:var(--text2);line-height:1.75;margin:0 0 10px;font-size:.93rem}
-.panel ul,.panel ol{color:var(--text2);line-height:1.75;padding-left:18px;margin:0 0 10px;font-size:.93rem}
-.panel li{margin:3px 0}
-.panel strong{color:var(--text)}
-.panel em{color:var(--text3)}
-.panel blockquote{border-left:3px solid var(--orange);padding:8px 16px;background:var(--s2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text2);font-style:italic}
-.panel table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
-.panel th{background:var(--s2);color:var(--text3);padding:9px 12px;text-align:left;border:1px solid var(--border);font-weight:700;font-size:.75rem;letter-spacing:.04em;text-transform:uppercase}
-.panel td{padding:8px 12px;border:1px solid var(--border);color:var(--text2);vertical-align:top}
-.panel tr:hover td{background:var(--s2)}
-.panel code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.82rem;color:var(--orange)}
-.panel pre{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;margin:12px 0}
-.panel hr{border:none;border-top:1px solid var(--border);margin:22px 0}
-.quiz-box{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin:24px 0}
-.quiz-box h3{color:var(--orange);margin:0 0 14px;font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
-.quiz-btn{background:var(--orange);color:#fff;border:none;border-radius:7px;padding:8px 20px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:.88rem;margin-top:10px;transition:opacity .15s}
-.quiz-btn:hover{opacity:.85}
-.answer-box{background:var(--s3);border:1px solid var(--border);border-radius:8px;padding:14px;margin-top:10px;color:var(--text2);font-size:.88rem;line-height:1.7;white-space:pre-wrap}
-.top-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
-.logo{font-size:1rem;font-weight:700;color:var(--text)}
-.logo b{color:var(--orange)}
-.back-btn{background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:'Sarabun',sans-serif;font-size:.8rem;transition:all .15s;text-decoration:none;display:inline-block}
-.back-btn:hover{background:var(--s4);color:var(--text);text-decoration:none}
-.rp-topic-chip{margin-left:auto}
-.foot{text-align:center;color:var(--text3);font-size:.75rem;padding:20px}
-@media(max-width:768px){
-  .sidebar{display:none}
-  .rp-content{padding:24px 16px 60px}
-  .mob-tabs{display:flex;overflow-x:auto;gap:6px;padding:10px 16px;background:var(--s1);border-bottom:1px solid var(--border);-webkit-overflow-scrolling:touch}
-  .mob-tab{flex-shrink:0;background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;cursor:pointer;font-size:.8rem;white-space:nowrap;transition:all .13s}
-  .mob-tab.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
+/* ── Top bar ── */
+.fr-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:0 28px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.fr-logo{font-size:1rem;font-weight:700;color:var(--text)}
+.fr-logo b{color:var(--orange)}
+.fr-back{background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:'Sarabun',sans-serif;font-size:.8rem;transition:all .15s;text-decoration:none;display:inline-block}
+.fr-back:hover{background:var(--s4);color:var(--text);text-decoration:none}
+.fr-spacer{flex:1}
+/* ── Nav pills (jump links) ── */
+.fr-nav{background:var(--s1);border-bottom:1px solid var(--border);padding:0 28px;height:40px;display:flex;align-items:center;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:52px;z-index:99}
+.fr-nav::-webkit-scrollbar{display:none}
+.fr-pill{flex-shrink:0;background:transparent;color:var(--text3);border:1px solid transparent;border-radius:5px;padding:4px 11px;font-family:'Sarabun',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .13s;text-decoration:none;display:inline-block;white-space:nowrap}
+.fr-pill:hover{background:var(--s3);color:var(--text);text-decoration:none;border-color:var(--border)}
+.fr-pill.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
+/* ── Hero ── */
+.fr-hero{background:linear-gradient(135deg,var(--s2) 0%,var(--s3) 100%);border-bottom:1px solid var(--border);padding:24px 28px 20px}
+.fr-code{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:700;color:var(--orange);letter-spacing:.06em;text-transform:uppercase;margin:0 0 5px}
+.fr-name{font-size:1.3rem;font-weight:700;color:var(--text);margin:0 0 14px;line-height:1.3}
+.fr-meta-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+/* ── Main scroll area ── */
+.fr-scroll{max-width:900px;margin:0 auto;padding:28px 28px 80px}
+/* ── Section card ── */
+.fr-section{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:0 0 16px;scroll-margin-top:100px}
+.fr-sec-head{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border)}
+.fr-sec-icon{font-size:.7rem;color:var(--orange);opacity:.8}
+.fr-sec-label{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.09em;text-transform:uppercase}
+.fr-sec-tag{margin-left:auto;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--text3);background:var(--s3);padding:2px 7px;border-radius:4px}
+.fr-sec-body{padding:18px 20px}
+/* ── Content typography ── */
+.fr-sec-body h1,.fr-sec-body h2{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.fr-sec-body h3{font-size:.9rem;font-weight:700;color:var(--text2);margin:16px 0 7px}
+.fr-sec-body h4{font-size:.8rem;font-weight:700;color:var(--text3);margin:12px 0 5px;text-transform:uppercase;letter-spacing:.04em}
+.fr-sec-body p{color:var(--text2);line-height:1.75;margin:0 0 9px;font-size:.9rem}
+.fr-sec-body ul,.fr-sec-body ol{color:var(--text2);line-height:1.75;padding-left:18px;margin:0 0 9px;font-size:.9rem}
+.fr-sec-body li{margin:3px 0}
+.fr-sec-body strong{color:var(--text)}
+.fr-sec-body em{color:var(--text3)}
+.fr-sec-body blockquote{border-left:3px solid var(--orange);padding:10px 16px;background:var(--s2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text2);font-style:italic;font-size:.9rem}
+.fr-sec-body table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.85rem}
+.fr-sec-body th{background:var(--s2);color:var(--text3);padding:8px 12px;text-align:left;border:1px solid var(--border);font-weight:700;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase}
+.fr-sec-body td{padding:8px 12px;border:1px solid var(--border);color:var(--text2);vertical-align:top;line-height:1.5}
+.fr-sec-body tr:hover td{background:var(--s2)}
+.fr-sec-body code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.8rem;color:var(--orange)}
+.fr-sec-body hr{border:none;border-top:1px solid var(--border);margin:18px 0}
+/* ── 2-col grid for paired personas ── */
+.fr-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
+/* ── Yuki highlight (first section) ── */
+.fr-section.yuki-card{border-color:var(--orange-g);background:linear-gradient(135deg,var(--s1) 0%,rgba(232,114,26,.04) 100%)}
+.fr-section.yuki-card .fr-sec-head{background:var(--orange-d);border-bottom-color:var(--orange-g)}
+.fr-section.yuki-card .fr-sec-label{color:var(--orange)}
+.fr-section.yuki-card .fr-sec-icon{opacity:1;font-size:.85rem}
+/* ── Footer ── */
+.fr-foot{text-align:center;color:var(--text3);font-size:.72rem;padding:20px;border-top:1px solid var(--border);margin-top:20px}
+@media(max-width:640px){
+  .fr-bar{padding:0 14px}.fr-nav{padding:0 14px}
+  .fr-hero{padding:18px 14px 14px}.fr-scroll{padding:18px 14px 60px}
+  .fr-grid-2{grid-template-columns:1fr}
 }
-@media(min-width:769px){.mob-tabs{display:none}}
 </style>
 </head>
 <body>
-<div class="top-bar">
-  <div class="logo">Claudy <b>Research</b></div>
-  <a class="back-btn" href="fund.html">← กองทุน</a>
-  <span class="chip chip-orange rp-topic-chip">KF-ATECH</span>
+
+<div class="fr-bar">
+  <div class="fr-logo">Claudy <b>Research</b></div>
+  <a class="fr-back" href="fund.html">← กองทุน</a>
+  <div class="fr-spacer"></div>
+  <span class="chip chip-orange">KF-ATECH</span>
+  <span style="font-size:.72rem;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-left:4px">2026-05-13</span>
 </div>
-<div class="mob-tabs"><button class="mob-tab" data-key="yuki" onclick="show('yuki')">สรุปภาพรวม</button><button class="mob-tab" data-key="ada" onclick="show('ada')">Thesis</button><button class="mob-tab" data-key="claudy" onclick="show('claudy')">Research</button><button class="mob-tab" data-key="rocky" onclick="show('rocky')">Analysis</button><button class="mob-tab" data-key="peter" onclick="show('peter')">Sentiment</button><button class="mob-tab" data-key="diffy" onclick="show('diffy')">Contrarian</button><button class="mob-tab" data-key="fin" onclick="show('fin')">Fundamental</button><button class="mob-tab" data-key="leon" onclick="show('leon')">Audit</button></div>
-<div class="rp-layout">
-  <div class="sidebar"><div class="sidebar-item" data-key="yuki" onclick="show('yuki')">
-      <span class="sidebar-icon">◈</span>
-      <span>สรุปภาพรวม</span>
-      <span class="sidebar-tag">Yuki</span>
-    </div><div class="sidebar-item" data-key="ada" onclick="show('ada')">
-      <span class="sidebar-icon">◇</span>
-      <span>Thesis</span>
-      <span class="sidebar-tag">Ada</span>
-    </div><div class="sidebar-item" data-key="claudy" onclick="show('claudy')">
-      <span class="sidebar-icon">◎</span>
-      <span>Research</span>
-      <span class="sidebar-tag">Claudy</span>
-    </div><div class="sidebar-item" data-key="rocky" onclick="show('rocky')">
-      <span class="sidebar-icon">◈</span>
-      <span>Analysis</span>
-      <span class="sidebar-tag">Rocky</span>
-    </div><div class="sidebar-item" data-key="peter" onclick="show('peter')">
-      <span class="sidebar-icon">◐</span>
-      <span>Sentiment</span>
-      <span class="sidebar-tag">Peter</span>
-    </div><div class="sidebar-item" data-key="diffy" onclick="show('diffy')">
-      <span class="sidebar-icon">◑</span>
-      <span>Contrarian</span>
-      <span class="sidebar-tag">Diffy</span>
-    </div><div class="sidebar-item" data-key="fin" onclick="show('fin')">
-      <span class="sidebar-icon">◉</span>
-      <span>Fundamental</span>
-      <span class="sidebar-tag">Fin</span>
-    </div><div class="sidebar-item" data-key="leon" onclick="show('leon')">
-      <span class="sidebar-icon">◌</span>
-      <span>Audit</span>
-      <span class="sidebar-tag">Leon</span>
-    </div></div>
-  <div class="rp-content">
-    <div class="rp-date">Fund Analysis · 2026-05-13</div>
-    <div class="rp-title">กองทุนเปิดกรุงศรีเอเชียเทคอิควิตี้</div>
-    <div class="panel" id="panel-yuki"><h2>🌟 YUKI — Executive Summary</h2>
+
+<div class="fr-nav"><a class="fr-pill" href="#s-yuki">◈ Yuki</a><a class="fr-pill" href="#s-ada">◇ Ada</a><a class="fr-pill" href="#s-claudy">◎ Claudy</a><a class="fr-pill" href="#s-rocky">◈ Rocky</a><a class="fr-pill" href="#s-peter">◐ Peter</a><a class="fr-pill" href="#s-diffy">◑ Diffy</a><a class="fr-pill" href="#s-fin">◉ Fin</a><a class="fr-pill" href="#s-leon">◌ Leon</a></div>
+
+<div class="fr-hero">
+  <div class="fr-code">Fund Analysis · 2026-05-13</div>
+  <div class="fr-name">กองทุนเปิดกรุงศรีเอเชียเทคอิควิตี้</div>
+  <div class="fr-meta-row">
+    <span class="chip chip-orange">8 Personas</span>
+    <span class="chip chip-gray">Ada · Claudy · Rocky · Peter · Diffy · Fin · Leon · Yuki</span>
+  </div>
+</div>
+
+<div class="fr-scroll">
+
+  <div class="fr-section yuki-card" id="s-yuki">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◈</span>
+    <span class="fr-sec-label">Executive Summary</span>
+    <span class="fr-sec-tag">Yuki</span>
+  </div>
+  <div class="fr-sec-body"><h2>🌟 YUKI — Executive Summary</h2>
 <p>KF-ATECH = Feeder ผ่าน Wellington Asia Tech · Semis 38.7% · Japan 33% + Korea 15% (ATH แล้ว)
 Macro fit: Partial — Reflation กดดัน แต่ Japan/Korea พยุงระยะสั้น · Thesis ระยะยาวยังไม่พัง
 Risks (Diffy): FX unhedged + China 20% tail risk + timing หลัง ATH
@@ -143,14 +135,48 @@ Verdict (Fin): ⭐⭐ พอได้</p>
 <hr>
 <p><em>ข้อมูลจาก: SEC Thailand · Fundfact PDF · Wellington Management · iShares · Claudy Research Knowledge Base</em>
 <em>วิเคราะห์: 13 พ.ค. 2026</em></p>
-</div><div class="panel" id="panel-ada"><h2>💡 ADA — Investment Thesis Architect</h2>
+</div>
+</div>
+
+  <div class="fr-grid-2">
+    <div class="fr-section" id="s-ada">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◇</span>
+    <span class="fr-sec-label">Thesis</span>
+    <span class="fr-sec-tag">Ada</span>
+  </div>
+  <div class="fr-sec-body"><h2>💡 ADA — Investment Thesis Architect</h2>
 <p><strong>Macro Regime:</strong> Reflation + Geopolitical Tail Risk · CPI 3.8% · Semiconductor estimates -8-15%
 <strong>Regime Fit:</strong> ⚠️ Mixed — ออกแบบสำหรับ Risk-On แต่ Japan 33% + Korea 15% (ATH) ช่วยพยุง
 <strong>Thesis:</strong> AI capex cycle → TSMC/Samsung/SK Hynix เป็น backbone AI infrastructure ทั่วโลก · Wellington active manager เชี่ยวชาญ Asia Tech
 <strong>Positioning:</strong> Satellite 5-10% ของพอร์ต · Time horizon ≥3 ปี
 <strong>Research Directives:</strong> (1) Wellington alpha vs. fee (2) China 20% structural หรือ tactical? (3) FX impact ต่อ NAV จริง?</p>
 <hr>
-</div><div class="panel" id="panel-claudy"><h2>🔍 CLAUDY — Market Research Anchor</h2>
+</div>
+</div>
+    <div class="fr-section" id="s-peter">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◐</span>
+    <span class="fr-sec-label">Sentiment</span>
+    <span class="fr-sec-tag">Peter</span>
+  </div>
+  <div class="fr-sec-body"><h2>🧠 PETER — Sentiment &amp; Fund Flow Tracker</h2>
+<p>AAXJ flows: +$107M (1M) · +$139M (6M) · +$243M (1Y) → institutional ยังเชื่อ
+J. Safra ขยาย position ใน Asia ex-Japan ETF (SEC filing 8 พ.ค.) → institutional buy signal
+Retail sentiment ไทย: Cautious Optimism — ไม่ euphoric · Sentiment cycle: Anxiety-to-Denial transition
+Contrarian: ไม่มี overbought retail signal ที่น่ากังวล</p>
+<hr>
+</div>
+</div>
+  </div>
+
+  <div class="fr-section" id="s-claudy">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◎</span>
+    <span class="fr-sec-label">Market Research</span>
+    <span class="fr-sec-tag">Claudy</span>
+  </div>
+  <div class="fr-sec-body"><h2>🔍 CLAUDY — Market Research Anchor</h2>
 <p><strong>Fund Profile:</strong> KF-ATECH · บลจ. กรุงศรี · Feeder Fund · IPO 11-20 พ.ค. 2026 · risk 6/8
 <strong>Fee:</strong> Front end 1.50% · Management 1.3375% · ซื้อขั้นต่ำ 500 บาท · FX ตามดุลพินิจ
 <strong>Master Fund:</strong> Wellington Asia Technology Fund (USD S Accumulating Unhedged) · Wellington Luxembourg
@@ -163,19 +189,31 @@ Verdict (Fin): ⭐⭐ พอได้</p>
 </ul>
 <p>Peer: KF-ATECH 1.3375% vs. passive ETF 0.25-0.5% · AAXJ +52% YoY (proxy, broad Asia ex-Japan)</p>
 <hr>
-</div><div class="panel" id="panel-rocky"><h2>📊 ROCKY — Market Strategist</h2>
+</div>
+</div>
+  <div class="fr-section" id="s-rocky">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◈</span>
+    <span class="fr-sec-label">Strategy & Valuation</span>
+    <span class="fr-sec-tag">Rocky</span>
+  </div>
+  <div class="fr-sec-body"><h2>📊 ROCKY — Market Strategist</h2>
 <p>Valuation gap: Asia Semis P/E 18-22x vs. US 28-35x → discount 30-40% ยังมีอยู่
 Japan 33%: Nikkei ATH 62,833 · SoftBank/ARM AI connection → positive near-term
 Korea 15%: KOSPI ATH · SK Hynix +10% · HBM demand intact
 Catalysts: TSMC Q2 earnings (ก.ค.) · SoftBank ARM · US-China trade resolution</p>
 <hr>
-</div><div class="panel" id="panel-peter"><h2>🧠 PETER — Sentiment &amp; Fund Flow Tracker</h2>
-<p>AAXJ flows: +$107M (1M) · +$139M (6M) · +$243M (1Y) → institutional ยังเชื่อ
-J. Safra ขยาย position ใน Asia ex-Japan ETF (SEC filing 8 พ.ค.) → institutional buy signal
-Retail sentiment ไทย: Cautious Optimism — ไม่ euphoric · Sentiment cycle: Anxiety-to-Denial transition
-Contrarian: ไม่มี overbought retail signal ที่น่ากังวล</p>
-<hr>
-</div><div class="panel" id="panel-diffy"><h2>⚠️ DIFFY — Risk Hunter &amp; Contrarian</h2>
+</div>
+</div>
+
+  <div class="fr-grid-2">
+    <div class="fr-section" id="s-diffy">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◑</span>
+    <span class="fr-sec-label">Risk & Contrarian</span>
+    <span class="fr-sec-tag">Diffy</span>
+  </div>
+  <div class="fr-sec-body"><h2>⚠️ DIFFY — Risk Hunter &amp; Contrarian</h2>
 <ol>
 <li>FX Unhedged: THB แข็ง 6% = return หายไป 6% ทันทีโดยไม่มีการป้องกัน</li>
 <li>China 20%: Tencent+Alibaba ~13.6% → regulatory + delisting tail risk ถูกประเมินต่ำ</li>
@@ -184,7 +222,15 @@ Contrarian: ไม่มี overbought retail signal ที่น่ากัง
 <li>Fee drag: ถ้ารวม master fund layer total cost อาจ 1.8-2%/ปี → กิน return ระยะยาว</li>
 </ol>
 <hr>
-</div><div class="panel" id="panel-fin"><h2>📈 FIN — Stock &amp; Fund Fundamentalist</h2>
+</div>
+</div>
+    <div class="fr-section" id="s-fin">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◉</span>
+    <span class="fr-sec-label">Fundamental & Verdict</span>
+    <span class="fr-sec-tag">Fin</span>
+  </div>
+  <div class="fr-sec-body"><h2>📈 FIN — Stock &amp; Fund Fundamentalist</h2>
 <p>Fee vs. Alpha: ต้องการ alpha ≥0.9% ต่อปีเพื่อ justify Wellington premium
 Expected return 3Y (net): ~9-18% (wide range เพราะ FX uncertainty)
 vs. Alternatives: KF-ATECH ดีกว่า passive broad ETF ในเชิง active management แต่แพงกว่าชัดเจน</p>
@@ -218,25 +264,43 @@ vs. Alternatives: KF-ATECH ดีกว่า passive broad ETF ในเชิ�
 </tbody></table>
 <p>Position sizing: ไม่เกิน 8% · ทยอยซื้อ 3 งวด · รอ pullback 5-8% ก่อน</p>
 <hr>
-</div><div class="panel" id="panel-leon"><h2>🔎 LEON — Fact Auditor</h2>
+</div>
+</div>
+  </div>
+
+  <div class="fr-section" id="s-leon">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◌</span>
+    <span class="fr-sec-label">Fact Audit</span>
+    <span class="fr-sec-tag">Leon</span>
+  </div>
+  <div class="fr-sec-body"><h2>🔎 LEON — Fact Auditor</h2>
 <p>VERIFIED: Fee structure, Top holdings, Geographic allocation, Sector allocation (Fundfact PDF)
 VERIFIED: AAXJ flows (iShares official), Semiconductor estimates -8-15% (Claudy Research atom)
 UNVERIFIED: Wellington YTD +8.96% (คนละ share class), Total cost &quot;1.8-2%&quot; (Diffy estimate, ไม่มี master fund expense ใน fundfact)
 CONFLICT: Rocky ใช้ Wellington YTD จาก share class ที่ต่างกัน → directional reference เท่านั้น</p>
 <hr>
 </div>
-  </div>
 </div>
+
+</div>
+
+<div class="fr-foot">Claudy Research · Fund Analysis · ข้อมูลจาก SEC Thailand + Fundfact PDF</div>
+
 <script>
-function show(key){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.sidebar-item,.mob-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById('panel-'+key).classList.add('active');
-  document.querySelectorAll('[data-key="'+key+'"]').forEach(t=>t.classList.add('active'));
-  location.hash=key;
-}
-const h=location.hash.slice(1);
-show(h&&document.getElementById('panel-'+h)?h:'yuki');
+// Highlight active nav pill on scroll
+const sections = document.querySelectorAll('.fr-section[id]');
+const pills = document.querySelectorAll('.fr-pill');
+const nav = document.querySelector('.fr-nav');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id.replace('s-', '');
+      pills.forEach(p => p.classList.toggle('active', p.getAttribute('href') === '#s-' + id));
+    }
+  });
+}, { rootMargin: '-52px 0px -60% 0px', threshold: 0 });
+sections.forEach(s => io.observe(s));
 </script>
 </body>
 </html>
