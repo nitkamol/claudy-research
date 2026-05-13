@@ -61,9 +61,11 @@ a:hover{text-decoration:underline;opacity:.85}
 /* ── Section card ── */
 .fr-section{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:0 0 16px;scroll-margin-top:100px}
 .fr-sec-head{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border)}
-.fr-sec-icon{font-size:.7rem;color:var(--orange);opacity:.8}
-.fr-sec-label{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.09em;text-transform:uppercase}
-.fr-sec-tag{margin-left:auto;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--text3);background:var(--s3);padding:2px 7px;border-radius:4px}
+.fr-sec-icon{font-size:.7rem;color:var(--orange);opacity:.8;flex-shrink:0}
+.fr-sec-text{flex:1;min-width:0}
+.fr-sec-label{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.09em;text-transform:uppercase;display:block}
+.fr-sec-title{font-size:.65rem;color:var(--text3);font-weight:400;margin-top:1px;opacity:.7;display:block}
+.fr-sec-tag{margin-left:auto;flex-shrink:0;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--text3);background:var(--s3);padding:2px 7px;border-radius:4px}
 .fr-sec-body{padding:18px 20px}
 /* ── Content typography ── */
 .fr-sec-body h1,.fr-sec-body h2{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
@@ -123,7 +125,10 @@ a:hover{text-decoration:underline;opacity:.85}
   <div class="fr-section yuki-card" id="s-yuki">
   <div class="fr-sec-head">
     <span class="fr-sec-icon">◈</span>
-    <span class="fr-sec-label">Executive Summary</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Executive Summary</span>
+      <span class="fr-sec-title">Chief Investment Officer</span>
+    </div>
     <span class="fr-sec-tag">Yuki</span>
   </div>
   <div class="fr-sec-body"><h2>🌟 YUKI — Executive Summary</h2>
@@ -147,7 +152,10 @@ a:hover{text-decoration:underline;opacity:.85}
     <div class="fr-section" id="s-ada">
   <div class="fr-sec-head">
     <span class="fr-sec-icon">◇</span>
-    <span class="fr-sec-label">Thesis</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Macro Thesis</span>
+      <span class="fr-sec-title">Chief Investment Strategist</span>
+    </div>
     <span class="fr-sec-tag">Ada</span>
   </div>
   <div class="fr-sec-body"><h2>💡 ADA — Investment Thesis Architect</h2>
@@ -162,7 +170,10 @@ a:hover{text-decoration:underline;opacity:.85}
     <div class="fr-section" id="s-peter">
   <div class="fr-sec-head">
     <span class="fr-sec-icon">◐</span>
-    <span class="fr-sec-label">Sentiment</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Sentiment & Flow</span>
+      <span class="fr-sec-title">Behavioral Finance Analyst</span>
+    </div>
     <span class="fr-sec-tag">Peter</span>
   </div>
   <div class="fr-sec-body"><h2>🧠 PETER — Sentiment &amp; Fund Flow Tracker</h2>
@@ -180,7 +191,10 @@ a:hover{text-decoration:underline;opacity:.85}
   <div class="fr-section" id="s-claudy">
   <div class="fr-sec-head">
     <span class="fr-sec-icon">◎</span>
-    <span class="fr-sec-label">Market Research</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Market Research</span>
+      <span class="fr-sec-title">Sr. Markets Correspondent</span>
+    </div>
     <span class="fr-sec-tag">Claudy</span>
   </div>
   <div class="fr-sec-body"><h2>🔍 CLAUDY — Market Research Anchor</h2>
@@ -213,7 +227,10 @@ a:hover{text-decoration:underline;opacity:.85}
   <div class="fr-section" id="s-rocky">
   <div class="fr-sec-head">
     <span class="fr-sec-icon">◈</span>
-    <span class="fr-sec-label">Strategy & Valuation</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Strategy & Valuation</span>
+      <span class="fr-sec-title">Chief Market Strategist</span>
+    </div>
     <span class="fr-sec-tag">Rocky</span>
   </div>
   <div class="fr-sec-body"><h2>📊 ROCKY — Market Strategist</h2>
@@ -237,7 +254,10 @@ a:hover{text-decoration:underline;opacity:.85}
     <div class="fr-section" id="s-diffy">
   <div class="fr-sec-head">
     <span class="fr-sec-icon">◑</span>
-    <span class="fr-sec-label">Risk & Contrarian</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Risk & Contrarian</span>
+      <span class="fr-sec-title">Contrarian Risk Strategist</span>
+    </div>
     <span class="fr-sec-tag">Diffy</span>
   </div>
   <div class="fr-sec-body"><h2>⚠️ DIFFY — Risk Hunter &amp; Contrarian</h2>
@@ -259,7 +279,10 @@ a:hover{text-decoration:underline;opacity:.85}
     <div class="fr-section" id="s-fin">
   <div class="fr-sec-head">
     <span class="fr-sec-icon">◉</span>
-    <span class="fr-sec-label">Fundamental & Verdict</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Fundamental & Verdict</span>
+      <span class="fr-sec-title">Sr. Equity Research Analyst</span>
+    </div>
     <span class="fr-sec-tag">Fin</span>
   </div>
   <div class="fr-sec-body"><h2>📈 FIN — Stock &amp; Fund Fundamentalist</h2>
@@ -304,7 +327,10 @@ a:hover{text-decoration:underline;opacity:.85}
   <div class="fr-section" id="s-leon">
   <div class="fr-sec-head">
     <span class="fr-sec-icon">◌</span>
-    <span class="fr-sec-label">Fact Audit</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Fact Audit</span>
+      <span class="fr-sec-title">Research Integrity Officer</span>
+    </div>
     <span class="fr-sec-tag">Leon</span>
   </div>
   <div class="fr-sec-body"><h2>🔎 LEON — Fact Auditor</h2>
