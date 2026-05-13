@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Claudy Research</title>
+<title>วิเคราะห์หุ้น US — Claudy Research</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -80,101 +80,36 @@ a:hover{text-decoration:underline;opacity:.85}
   .top-bar{padding:0 16px}.stats-row{padding:10px 16px;gap:20px}
   .main{padding:24px 16px 60px}.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
 }
+
+.top-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:0 24px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.logo{font-size:1rem;font-weight:700;color:var(--text)}
+.logo b{color:var(--orange)}
+.back-btn{background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:'Sarabun',sans-serif;font-size:.8rem;transition:all .15s;text-decoration:none;display:inline-block}
+.back-btn:hover{background:var(--s4);color:var(--text);text-decoration:none}
 </style>
 </head>
 <body>
 <div class="top-bar">
   <div class="logo">Claudy <b>Research</b></div>
-  <div class="top-bar-right">
-    <span class="nav-chip active">คลัง</span>
-    <a class="nav-chip" href="ipo.html">IPO</a>
-    <a class="nav-chip" href="fund.html">กองทุน</a>
-    <a class="nav-chip" href="stock.html">หุ้น US</a>
-  </div>
-</div>
-<div class="stats-row">
-  <div class="stat"><span class="stat-n">2</span><span class="stat-l">วันที่วิเคราะห์</span></div>
-  <div class="stat"><span class="stat-n">0</span><span class="stat-l">หัวข้อพิเศษ</span></div>
-  <div class="stat"><span class="stat-n">2</span><span class="stat-l">Stock Rating</span></div>
-  <div class="stat"><span class="stat-n">1</span><span class="stat-l">IPO บันทึก</span></div>
-  <div class="stat"><span class="stat-n">2</span><span class="stat-l">กองทุนวิเคราะห์</span></div>
-  <div class="stat"><span class="stat-n">2</span><span class="stat-l">หุ้น US วิเคราะห์</span></div>
+  <a class="back-btn" href="index.html">← คลัง</a>
+  <span style="margin-left:auto;font-size:.78rem;color:var(--text3)">วิเคราะห์หุ้น US 2 ตัว</span>
 </div>
 <div class="main">
   <div class="sec">
-    <div class="sec-hd">รายงานประจำวัน</div>
-    <div class="grid"><a class="card" href="2026-05-12.html">
-      <div class="card-dt">2026-05-12</div>
-      <div class="card-sub">12 พฤษภาคม 2569</div>
-      <div class="card-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span style="color:var(--text3);font-size:.7rem;margin-left:5px">8/8</span></div>
-    </a><a class="card" href="2026-05-10.html">
-      <div class="card-dt">2026-05-10</div>
-      <div class="card-sub">10 พฤษภาคม 2569</div>
-      <div class="card-dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span style="color:var(--text3);font-size:.7rem;margin-left:5px">8/8</span></div>
+    <div class="sec-hd">หุ้น US ที่วิเคราะห์แล้ว</div>
+    <div class="grid grid-wide"><a class="card" href="stock-RKLB-2026-05-13.html" style="text-decoration:none">
+      <div class="card-dt" style="font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700">RKLB</div>
+      <div class="card-sub">2026-05-13</div>
+      <div class="card-title" style="margin-top:8px;font-size:.85rem">Rocket Lab USA, Inc.</div>
+      <div style="margin-top:8px"><span class="chip chip-hold">HOLD</span></div>
+    </a><a class="card" href="stock-MU-2026-05-13.html" style="text-decoration:none">
+      <div class="card-dt" style="font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:700">MU</div>
+      <div class="card-sub">2026-05-13</div>
+      <div class="card-title" style="margin-top:8px;font-size:.85rem">Micron Technology, Inc.</div>
+      <div style="margin-top:8px"><span class="chip chip-hold">HOLD</span></div>
     </a></div>
   </div>
-
-  
-  <div class="sec">
-    <div class="sec-hd">กองทุน IPO</div>
-    <div class="grid grid-wide">
-      <a class="card" href="ipo.html">
-        <div class="card-title">กองทุน IPO ใหม่</div>
-        <div class="card-meta" style="margin-top:6px">ทั้งหมด 1 วัน · ข้อมูลจาก SEC Thailand</div>
-        <div style="margin-top:12px"><span class="chip chip-orange">เปิดดูกองทุน →</span></div>
-      </a>
-    </div>
-  </div>
-
-  
-  <div class="sec">
-    <div class="sec-hd">วิเคราะห์กองทุน · 8 Personas</div>
-    <div class="grid grid-wide">
-      <a class="card" href="fund.html">
-        <div class="card-title">กองทุนวิเคราะห์แล้ว 2 กอง</div>
-        <div class="card-meta" style="margin-top:6px">Ada · Claudy · Rocky · Peter · Diffy · Fin · Leon · Yuki</div>
-        <div style="margin-top:12px"><span class="chip chip-orange">ดูการวิเคราะห์ →</span></div>
-      </a>
-    </div>
-  </div>
-
-  
-  <div class="sec">
-    <div class="sec-hd">วิเคราะห์หุ้น US · 8 Personas</div>
-    <div class="grid grid-wide">
-      <a class="card" href="stock.html">
-        <div class="card-title">หุ้นวิเคราะห์แล้ว 2 ตัว</div>
-        <div class="card-meta" style="margin-top:6px">Ada · Claudy · Rocky · Peter · Diffy · Fin · Leon · Yuki</div>
-        <div style="margin-top:12px"><span class="chip chip-orange">ดูการวิเคราะห์ →</span></div>
-      </a>
-    </div>
-  </div>
-
-  <div class="sec">
-    <div class="sec-hd">วิเคราะห์หัวข้อพิเศษ</div>
-    <div class="grid grid-wide"><div class="empty">ยังไม่มีการวิเคราะห์หัวข้อพิเศษ</div></div>
-  </div>
-
-  <div class="sec">
-    <div class="sec-hd">Fin Watchlist · รวมทุก Rating</div>
-    <div style="background:var(--s1);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden">
-      <table class="wl-table">
-        <thead><tr><th>TICKER</th><th>RATING</th><th>วันที่</th><th>รายงาน</th></tr></thead>
-        <tbody><tr>
-          <td><span class="ticker">MU</span></td>
-          <td><span class="chip chip-hold">Hold</span></td>
-          <td style="color:var(--text2);font-family:'JetBrains Mono',monospace;font-size:.8rem">2026-05-13</td>
-          <td><a class="src-link" href="stock-MU-2026-05-13.html#fundamental">2026-05-13 · MU</a></td>
-        </tr><tr>
-          <td><span class="ticker">RKLB</span></td>
-          <td><span class="chip chip-hold">Hold</span></td>
-          <td style="color:var(--text2);font-family:'JetBrains Mono',monospace;font-size:.8rem">2026-05-13</td>
-          <td><a class="src-link" href="stock-RKLB-2026-05-13.html#fundamental">2026-05-13 · RKLB</a></td>
-        </tr></tbody>
-      </table>
-    </div>
-  </div>
 </div>
-<div class="foot">Claudy Research Library · อัปเดตอัตโนมัติทุกครั้งที่รัน Morningbrief หรือ Analyze</div>
+<div class="foot">Claudy Research · วิเคราะห์โดย 8 Personas · ข้อมูลจาก Yahoo Finance + Web Research</div>
 </body>
 </html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MU — Claudy Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:       #0E0D0C;
+  --s1:       #161412;
+  --s2:       #1E1B19;
+  --s3:       #272320;
+  --s4:       #312D29;
+  --border:   #3A3530;
+  --border2:  #4D4742;
+  --orange:   #E8721A;
+  --orange-d: rgba(232,114,26,.12);
+  --orange-g: rgba(232,114,26,.22);
+  --text:     #F0EAE3;
+  --text2:    #A39890;
+  --text3:    #5C5650;
+  --green:    #4ade80;
+  --amber:    #fbbf24;
+  --red:      #f87171;
+  --radius:   10px;
+  --radius-lg:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline;opacity:.85}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.chip-buy{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.chip-hold{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.chip-sell{background:rgba(248,113,113,.12);color:#f87171;border:1px solid rgba(248,113,113,.25)}
+.chip-orange{background:var(--orange-d);color:var(--orange);border:1px solid var(--orange-g)}
+.chip-gray{background:var(--s3);color:var(--text2);border:1px solid var(--border)}
+
+/* ── Top bar ── */
+.fr-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:0 28px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.fr-logo{font-size:1rem;font-weight:700;color:var(--text)}
+.fr-logo b{color:var(--orange)}
+.fr-back{background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:'Sarabun',sans-serif;font-size:.8rem;transition:all .15s;text-decoration:none;display:inline-block}
+.fr-back:hover{background:var(--s4);color:var(--text);text-decoration:none}
+.fr-spacer{flex:1}
+/* ── Nav pills (jump links) ── */
+.fr-nav{background:var(--s1);border-bottom:1px solid var(--border);padding:0 28px;height:40px;display:flex;align-items:center;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:52px;z-index:99}
+.fr-nav::-webkit-scrollbar{display:none}
+.fr-pill{flex-shrink:0;background:transparent;color:var(--text3);border:1px solid transparent;border-radius:5px;padding:4px 11px;font-family:'Sarabun',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .13s;text-decoration:none;display:inline-block;white-space:nowrap}
+.fr-pill:hover{background:var(--s3);color:var(--text);text-decoration:none;border-color:var(--border)}
+.fr-pill.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
+/* ── Hero ── */
+.fr-hero{background:linear-gradient(135deg,var(--s2) 0%,var(--s3) 100%);border-bottom:1px solid var(--border);padding:24px 28px 20px}
+.fr-code{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:700;color:var(--orange);letter-spacing:.06em;text-transform:uppercase;margin:0 0 5px}
+.fr-name{font-size:1.3rem;font-weight:700;color:var(--text);margin:0 0 14px;line-height:1.3}
+.fr-meta-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+/* ── Main scroll area ── */
+.fr-scroll{max-width:900px;margin:0 auto;padding:28px 28px 80px}
+/* ── Section card ── */
+.fr-section{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:0 0 16px;scroll-margin-top:100px}
+.fr-sec-head{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border)}
+.fr-sec-icon{font-size:.7rem;color:var(--orange);opacity:.8;flex-shrink:0}
+.fr-sec-text{flex:1;min-width:0}
+.fr-sec-label{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.09em;text-transform:uppercase;display:block}
+.fr-sec-title{font-size:.65rem;color:var(--text3);font-weight:400;margin-top:1px;opacity:.7;display:block}
+.fr-sec-tag{margin-left:auto;flex-shrink:0;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--text3);background:var(--s3);padding:2px 7px;border-radius:4px}
+.fr-sec-body{padding:18px 20px}
+/* ── Content typography ── */
+.fr-sec-body h1,.fr-sec-body h2{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.fr-sec-body h3{font-size:.9rem;font-weight:700;color:var(--text2);margin:16px 0 7px}
+.fr-sec-body h4{font-size:.8rem;font-weight:700;color:var(--text3);margin:12px 0 5px;text-transform:uppercase;letter-spacing:.04em}
+.fr-sec-body p{color:var(--text2);line-height:1.75;margin:0 0 9px;font-size:.9rem}
+.fr-sec-body ul,.fr-sec-body ol{color:var(--text2);line-height:1.75;padding-left:18px;margin:0 0 9px;font-size:.9rem}
+.fr-sec-body li{margin:3px 0}
+.fr-sec-body strong{color:var(--text)}
+.fr-sec-body em{color:var(--text3)}
+.fr-sec-body blockquote{border-left:3px solid var(--orange);padding:10px 16px;background:var(--s2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text2);font-style:italic;font-size:.9rem}
+.fr-sec-body table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.85rem}
+.fr-sec-body th{background:var(--s2);color:var(--text3);padding:8px 12px;text-align:left;border:1px solid var(--border);font-weight:700;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase}
+.fr-sec-body td{padding:8px 12px;border:1px solid var(--border);color:var(--text2);vertical-align:top;line-height:1.5}
+.fr-sec-body tr:hover td{background:var(--s2)}
+.fr-sec-body code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.8rem;color:var(--orange)}
+.fr-sec-body hr{border:none;border-top:1px solid var(--border);margin:18px 0}
+/* ── 2-col grid for paired personas ── */
+.fr-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
+/* ── Yuki highlight (first section) ── */
+.fr-section.yuki-card{border-color:var(--orange-g);background:linear-gradient(135deg,var(--s1) 0%,rgba(232,114,26,.04) 100%)}
+.fr-section.yuki-card .fr-sec-head{background:var(--orange-d);border-bottom-color:var(--orange-g)}
+.fr-section.yuki-card .fr-sec-label{color:var(--orange)}
+.fr-section.yuki-card .fr-sec-icon{opacity:1;font-size:.85rem}
+/* ── Footer ── */
+.fr-foot{text-align:center;color:var(--text3);font-size:.72rem;padding:20px;border-top:1px solid var(--border);margin-top:20px}
+@media(max-width:640px){
+  .fr-bar{padding:0 14px}.fr-nav{padding:0 14px}
+  .fr-hero{padding:18px 14px 14px}.fr-scroll{padding:18px 14px 60px}
+  .fr-grid-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="fr-bar">
+  <div class="fr-logo">Claudy <b>Research</b></div>
+  <a class="fr-back" href="stock.html">← หุ้น US</a>
+  <div class="fr-spacer"></div>
+  <span class="chip chip-hold">HOLD</span>
+  <span class="chip chip-orange" style="margin-left:4px">MU</span>
+  <span style="font-size:.72rem;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-left:4px">2026-05-13</span>
+</div>
+
+<div class="fr-nav"><a class="fr-pill" href="#s-yuki">◈ Yuki</a><a class="fr-pill" href="#s-ada">◇ Ada</a><a class="fr-pill" href="#s-claudy">◎ Claudy</a><a class="fr-pill" href="#s-rocky">◈ Rocky</a><a class="fr-pill" href="#s-peter">◐ Peter</a><a class="fr-pill" href="#s-diffy">◑ Diffy</a><a class="fr-pill" href="#s-fin">◉ Fin</a><a class="fr-pill" href="#s-leon">◌ Leon</a></div>
+
+<div class="fr-hero">
+  <div class="fr-code">Stock Analysis · 2026-05-13</div>
+  <div class="fr-name">Micron Technology, Inc.</div>
+  <div class="fr-meta-row">
+    <span class="chip chip-hold">HOLD</span>
+    <span class="chip chip-orange">MU</span>
+    <span class="chip chip-gray">Ada · Claudy · Rocky · Peter · Diffy · Fin · Leon · Yuki</span>
+  </div>
+</div>
+
+<div class="fr-scroll">
+
+  <div class="fr-section yuki-card" id="s-yuki">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◈</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Executive Summary</span>
+      <span class="fr-sec-title">Chief Investment Officer</span>
+    </div>
+    <span class="fr-sec-tag">Yuki</span>
+  </div>
+  <div class="fr-sec-body"><h2>🌟 YUKI — Chief Investment Officer</h2>
+<p><strong>Stock Snapshot:</strong></p>
+<ul>
+<li>Micron = pure-play AI memory infrastructure — DRAM, HBM, NAND ให้ hyperscalers + HPC</li>
+<li>Moat: HBM design-win switching costs + oligopoly (1 ใน 3 HBM producers โลก)</li>
+<li>ลูกค้าหลัก: NVIDIA (AI accelerators), AWS, Azure, Google Cloud, data center OEMs</li>
+</ul>
+<p><strong>Macro Fit:</strong> Mixed — Reflation เป็น headwind สำหรับ multiple compression แต่ AI infrastructure capex เป็น structural tailwind ที่ override ผลกระทบ macro ระยะสั้น</p>
+<p><strong>Key Risks (จาก Diffy):</strong></p>
+<ol>
+<li>🔴 Micron ยังไม่ถูก confirm ใน NVIDIA Rubin HBM4 — ถ้า miss → revenue miss $2-3B</li>
+<li>🔴 Stock 34% เหนือ consensus analyst PT — ตลาด price in unmodeled upside</li>
+<li>🟡 Samsung HBM4 recovery H2 2026 → market share + pricing pressure</li>
+</ol>
+<p><strong>Fin Verdict: HOLD — Weighted PT $867 (+9% upside)</strong>
+MU เป็นบริษัทคุณภาพสูงสุด (ROIC 33-37%, margin structurally expanding, oligopoly HBM) แต่ราคา $792 ใกล้ ATH หลัง +70% YTD สะท้อน bull case ไปมากแล้ว Risk/Reward สมดุลสำหรับผู้ถือ ไม่น่า chase</p>
+<p><strong>Entry Strategy:</strong></p>
+<ul>
+<li>ถ้าถืออยู่: HOLD ไม่ขาย รอ Q3 earnings ~24 มิ.ย. 2026</li>
+<li>ถ้าไม่ถือ: รอ pullback <strong>$720–$750</strong> (support zone) แล้วซื้อ</li>
+<li>Position: 3-5% พอร์ต · ทยอย 2 งวด · Stop Loss: $680 (-9%)</li>
+<li>Catalyst: (1) NVIDIA Rubin HBM4 Micron confirmation, (2) Q3 beat + Q4 guide up, (3) Samsung delay</li>
+</ul>
+<hr>
+<p><em>ข้อมูลจาก: Yahoo Finance · Micron IR · TrendForce · MarketBeat · GuruFocus · Finviz · Web Research</em>
+<em>วิเคราะห์: 13 พฤษภาคม 2026</em></p>
+</div>
+</div>
+
+  <div class="fr-grid-2">
+    <div class="fr-section" id="s-ada">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◇</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Macro Thesis</span>
+      <span class="fr-sec-title">Chief Investment Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Ada</span>
+  </div>
+  <div class="fr-sec-body"><h2>💡 ADA — Chief Investment Strategist</h2>
+<p><strong>Macro Regime:</strong> Reflation (CPI 3.8%, WTI elevated, Real Yield สูง, Iran-US geopolitical tail risk) — โดยทั่วไป Reflation กดดัน Growth multiples ผ่าน rising real yields แต่ MU เป็น <strong>exception</strong> เพราะ HBM demand driven โดย AI infrastructure capex ซึ่งเป็น structural, ไม่ใช่ cyclical</p>
+<p><strong>Business Cycle:</strong> Late cycle กำลัง transition → แต่ memory sector อยู่ใน <strong>upcycle ที่ AI-driven</strong> — ไม่ใช่ traditional late-cycle — HBM supply ยังขาดจนถึง 2028 ตาม SK Hynix guidance</p>
+<p><strong>Transmission Mechanism:</strong> Iran-US escalation → Energy prices สูง → Fed holds longer → Real yield สูง → Growth multiple compresses → กระทบ MU ผ่าน valuation multiple แต่ไม่กระทบ earnings trajectory เพราะ data center capex ไม่หยุด</p>
+<p><strong>Investment Thesis:</strong> Micron เป็น pure-play AI memory — HBM คือ bottleneck ของทุก AI accelerator ที่ NVIDIA, AMD, Google ใช้ Micron กำลัง ramp HBM4 สำหรับ NVIDIA Vera Rubin พร้อมเป็นเพียง 1 ใน 3 ผู้ผลิตในโลก (oligopoly) ที่ demand กำลัง compound ขึ้นทุกไตรมาส</p>
+<p><strong>Portfolio Positioning:</strong> Satellite (3-10% พอร์ต) — stock ขึ้น 70% YTD แล้ว ความเสี่ยง timing สูง</p>
+<p><strong>Research Directive:</strong></p>
+<ol>
+<li>HBM4 market share trajectory: Micron จะ capture share จาก SK Hynix ได้ไหมใน H2 2026?</li>
+<li>Q3 FY2026 earnings ($33.5B guide) — ตลาดคาดอะไรอยู่แล้ว? upside surprise จะมาจากไหน?</li>
+<li>Stock ที่ $792 อยู่เหนือ analyst consensus PT ทุกราย — ใครยังเห็น upside?</li>
+</ol>
+<hr>
+</div>
+</div>
+    <div class="fr-section" id="s-peter">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◐</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Sentiment & Flow</span>
+      <span class="fr-sec-title">Behavioral Finance Analyst</span>
+    </div>
+    <span class="fr-sec-tag">Peter</span>
+  </div>
+  <div class="fr-sec-body"><h2>🧠 PETER — Behavioral Finance Analyst</h2>
+<p><strong>Short Interest:</strong> 3.22% of float (36.33M shares) — ต่ำมาก = bears ยอมแพ้ แต่ short squeeze potential ลดลง</p>
+<p><strong>Institutional Positioning:</strong> Ownership คงตัว ไม่ได้ accumulate ใหม่ในราคานี้ 13F signals neutral</p>
+<p><strong>Options Flow:</strong> Put/Call ต่ำ = Bullish positioning | June expiry options active มาก (รอ Q3 earnings)</p>
+<p><strong>Retail Sentiment:</strong> <strong>Euphoric</strong> — MU เป็น &quot;AI memory play&quot; ที่ร้อนแรงที่สุดใน 2026</p>
+<p><strong>Earnings Reaction:</strong> Q2 (มี.ค. 2026) ตลาด react บวกมากแม้ revenue slight miss เพราะ margin beat massive</p>
+<p><strong>Sentiment Cycle:</strong> <strong>Optimism → Euphoria border</strong> — retail เชื่อใน AI memory supercycle 100%</p>
+<p><strong>Contrarian Signal:</strong> ⚠️ <strong>ACTIVE — Bearish (short-term)</strong> stock +70% YTD + euphoric retail + above all analyst PTs = caution signal (ไม่ใช่ thesis change แต่เป็น timing warning)</p>
+<hr>
+</div>
+</div>
+  </div>
+
+  <div class="fr-section" id="s-claudy">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◎</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Market Research</span>
+      <span class="fr-sec-title">Sr. Markets Correspondent</span>
+    </div>
+    <span class="fr-sec-tag">Claudy</span>
+  </div>
+  <div class="fr-sec-body"><h2>🔍 CLAUDY — Sr. Markets Correspondent</h2>
+<p><strong>Live Data</strong> (Yahoo Finance, 13 พ.ค. 2026 — VERIFIED):</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Price</td>
+<td>$792.60</td>
+</tr>
+<tr>
+<td>1D Change</td>
+<td>-0.34%</td>
+</tr>
+<tr>
+<td>52W High</td>
+<td>$818.67</td>
+</tr>
+<tr>
+<td>52W Low</td>
+<td>$90.93</td>
+</tr>
+<tr>
+<td>vs 52W High</td>
+<td>-3.3%</td>
+</tr>
+<tr>
+<td>vs 52W Low</td>
+<td>+771%</td>
+</tr>
+</tbody></table>
+<p><strong>Q2 FY2026 Earnings</strong> (รายงาน มี.ค. 18, 2026 — quarter ended Feb 26, 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Actual</th>
+<th>Estimate</th>
+<th>Beat/Miss</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Revenue</td>
+<td>$23.86B</td>
+<td>$24.3B</td>
+<td>MISS -1.8%</td>
+</tr>
+<tr>
+<td>Non-GAAP EPS</td>
+<td>$12.20</td>
+<td>$12.05</td>
+<td>BEAT +1.2%</td>
+</tr>
+<tr>
+<td>Gross Margin</td>
+<td>74.9%</td>
+<td>~68% (guidance)</td>
+<td>BEAT +690bps</td>
+</tr>
+<tr>
+<td>GAAP EPS</td>
+<td>$12.07</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p><strong>Financial Trend:</strong></p>
+<ul>
+<li>DRAM Revenue: $18.8B (+207% YoY) | NAND Revenue: $5.0B (+169% YoY)</li>
+<li>Revenue YoY growth: +196% (record quarter)</li>
+<li>Gross margin: expanding rapidly — 74.9% vs prior guidance 68%</li>
+<li>FCF Q1 FY2026: $3.9B (record) — highest net cash position in company history</li>
+</ul>
+<p><strong>Q3 FY2026 Guidance</strong> (~24 มิ.ย. 2026):</p>
+<ul>
+<li>Revenue: $33.5B ± $750M | Consensus: $33.7B (in-line)</li>
+<li>Gross Margin: ~81% | EPS: $19.15 ± $0.40 (above consensus $18.97)</li>
+</ul>
+<p><strong>Analyst Consensus:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Rating</th>
+<th>Count</th>
+<th>Avg Price Target</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Buy</td>
+<td>27</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Hold</td>
+<td>3</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Sell</td>
+<td>0</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Consensus</strong></td>
+<td><strong>Strong Buy</strong></td>
+<td><strong>~$591.67</strong></td>
+</tr>
+</tbody></table>
+<p>⚠️ Stock $792.60 = 34% เหนือ consensus PT — ผิดปกติมาก</p>
+<p><strong>Recent News:</strong></p>
+<ul>
+<li>[TrendForce, ม.ค. 2026] Samsung custom HBM4E design targeted mid-2026</li>
+<li>[TradingKey, 2026] SK Hynix 62% HBM market share, Micron 21%, Samsung 17%</li>
+<li>[TrendForce, มี.ค. 2026] Samsung + SK Hynix tapped as NVIDIA Rubin HBM4 suppliers — Micron ยังไม่ถูก confirm</li>
+<li>[TikR, 2026] MU +70% YTD — analysts still see upside</li>
+</ul>
+<p><strong>Peer Comparison:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Ticker</th>
+<th>HBM Share</th>
+<th>Revenue Growth</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SK Hynix</td>
+<td>000660.KS</td>
+<td>62%</td>
+<td>+100%+</td>
+</tr>
+<tr>
+<td>Samsung</td>
+<td>005930.KS</td>
+<td>17% (recovering)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Micron</td>
+<td>MU</td>
+<td>21%</td>
+<td>+196% YoY</td>
+</tr>
+</tbody></table>
+<hr>
+</div>
+</div>
+  <div class="fr-section" id="s-rocky">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◈</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Strategy & Valuation</span>
+      <span class="fr-sec-title">Chief Market Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Rocky</span>
+  </div>
+  <div class="fr-sec-body"><h2>📊 ROCKY — Chief Market Strategist</h2>
+<p><strong>Fundamental Analysis:</strong></p>
+<p>Memory sector forward P/E: 12–18x mid-cycle
+MU Implied Forward P/E: Q3 annualized EPS ($19.15 × 4 = $76.60) → P/E = $792.60 / $76.60 = <strong>~10.3x</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>MU</th>
+<th>Memory Sector Avg</th>
+<th>Signal</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Forward P/E</td>
+<td>10.3x</td>
+<td>12–18x</td>
+<td>DISCOUNT</td>
+</tr>
+<tr>
+<td>EPS Revision</td>
+<td>Strongly UP</td>
+<td>—</td>
+<td>Bullish</td>
+</tr>
+<tr>
+<td>Revenue Growth</td>
+<td>+196% YoY</td>
+<td>—</td>
+<td>Extreme</td>
+</tr>
+<tr>
+<td>GM Expansion</td>
+<td>74.9% → 81% guided</td>
+<td>—</td>
+<td>Accelerating</td>
+</tr>
+</tbody></table>
+<p>Rate Sensitivity: ถ้า 10Y yield +25bps กระทบ multiple ~2-3%</p>
+<p><strong>[Sector P/E for Fin: 14.5x — Sector: Semiconductor Memory (DRAM/HBM)]</strong></p>
+<p><strong>Technical Analysis:</strong></p>
+<ul>
+<li>Trend: <strong>Strong Uptrend</strong> — อยู่เหนือ 50-day MA และ 200-day MA ห่างมาก</li>
+<li>vs 52W High: -3.3% ($818.67) → ใกล้ ATH zone</li>
+<li>Key Resistance: $818.67 (52W High) | $850 (psychological)</li>
+<li>Key Support: $720–$740 (prior consolidation) | $650 (major)</li>
+<li>RSI (14): ~72–75 — <strong>Overbought</strong></li>
+<li>Volume: elevated on up-days (accumulation)</li>
+</ul>
+<p><strong>Highest-Conviction Trade Setup:</strong></p>
+<ul>
+<li>Entry Zone: $720–$750 (pullback to support)</li>
+<li>Target: $900–$950 (+20-27%)</li>
+<li>Stop Loss: $680 (-9%)</li>
+<li>Risk/Reward: 2.5:1</li>
+<li>Timeframe: 3-6 เดือน</li>
+<li>Invalidation: Q3 revenue miss &gt;$1B หรือ Q4 guide ลด</li>
+</ul>
+<hr>
+</div>
+</div>
+
+  <div class="fr-grid-2">
+    <div class="fr-section" id="s-diffy">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◑</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Risk & Contrarian</span>
+      <span class="fr-sec-title">Contrarian Risk Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Diffy</span>
+  </div>
+  <div class="fr-sec-body"><h2>⚠️ DIFFY — Contrarian Risk Strategist</h2>
+<p><strong>What&#39;s Priced In:</strong> HBM supercycle ยาวถึง 2028 + Micron เพิ่ม HBM share 21% → 30%+ + margins expand ต่อเนื่อง + NVIDIA Rubin confirmed (ยังไม่ confirmed จริง)</p>
+<p><strong>Hidden Risks:</strong></p>
+<ol>
+<li>🔴 <strong>Micron ถูก exclude จาก NVIDIA Rubin initial HBM4 supplier list</strong> — Samsung + SK Hynix ถูก tap ก่อน (TrendForce มี.ค. 2026) ถ้า Micron miss Rubin cycle → HBM revenue miss $2-3B</li>
+<li>🔴 <strong>Stock 34% เหนือ consensus analyst PT</strong> — ตลาดกำลัง price in scenario ที่ไม่มีนักวิเคราะห์ model ไว้ — ถ้า PT ถูก stock overvalued ชัดเจน</li>
+<li>🟡 <strong>Samsung HBM4 recovery H2 2026</strong> → market share squeeze + HBM pricing pressure</li>
+</ol>
+<p><strong>Earnings Quality Challenge:</strong> Revenue +196% YoY มาจาก HBM price surge — sustainable ถ้า demand คงอยู่ แต่ pricing power อาจลดเมื่อ Samsung กลับมา</p>
+<p><strong>Bear Case:</strong> Micron miss Rubin + Samsung recovery → stock -30-40% ($475-$555)</p>
+<p><strong>Timing Risk:</strong> ซื้อที่ $792 = 3.3% จาก ATH หลัง +70% YTD = <strong>timing แย่ที่สุด</strong> สำหรับ new position</p>
+<hr>
+</div>
+</div>
+    <div class="fr-section" id="s-fin">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◉</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Fundamental & Verdict</span>
+      <span class="fr-sec-title">Sr. Equity Research Analyst</span>
+    </div>
+    <span class="fr-sec-tag">Fin</span>
+  </div>
+  <div class="fr-sec-body"><h2>📈 FIN — Sr. Equity Research Analyst</h2>
+<p><strong>Earnings Quality:</strong></p>
+<ul>
+<li>FCF Q1 FY2026: $3.9B — high quality recurring revenue (HBM contracts กับ hyperscalers)</li>
+<li>FCF Conversion: ~35% (ต่ำกว่า 80% เพราะ $20B CapEx plan) — acceptable for capital-intensive semiconductor</li>
+<li>Margin trend: Structural expansion (68% → 74.9% → 81% guided) — ยั่งยืน</li>
+</ul>
+<p><strong>ROIC vs WACC:</strong></p>
+<ul>
+<li>ROIC: 32.92–37.40% | WACC: ~9-10% → <strong>Value Creating อย่างมาก</strong></li>
+<li>Moat: Switching Cost + Intangible (HBM design-win qualification = 12-18 month lock-in)</li>
+</ul>
+<p><strong>Valuation:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>MU</th>
+<th>Sector Avg</th>
+<th>Signal</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Forward P/E</td>
+<td>10.3x</td>
+<td>14.5x</td>
+<td>DISCOUNT 29%</td>
+</tr>
+<tr>
+<td>EV/EBITDA</td>
+<td>~8-10x (est)</td>
+<td>12-15x</td>
+<td>Discount</td>
+</tr>
+<tr>
+<td>PEG</td>
+<td>&lt;0.5 (est)</td>
+<td>&lt;1 = cheap</td>
+<td>Very Cheap</td>
+</tr>
+</tbody></table>
+<p><strong>Probability-Weighted Price Target (12 months):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Probability</th>
+<th>Price Target</th>
+<th>Return</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bull</td>
+<td>35%</td>
+<td>$1,100</td>
+<td>+39%</td>
+</tr>
+<tr>
+<td>Base</td>
+<td>45%</td>
+<td>$850</td>
+<td>+7%</td>
+</tr>
+<tr>
+<td>Bear</td>
+<td>20%</td>
+<td>$520</td>
+<td>-34%</td>
+</tr>
+<tr>
+<td><strong>Weighted</strong></td>
+<td>100%</td>
+<td><strong>$867</strong></td>
+<td><strong>+9%</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Fin Summary Table:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">มิติ</th>
+<th align="center">คะแนน</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Business Quality</td>
+<td align="center">5/5</td>
+</tr>
+<tr>
+<td align="left">Earnings Quality</td>
+<td align="center">3/5</td>
+</tr>
+<tr>
+<td align="left">Valuation</td>
+<td align="center">4/5</td>
+</tr>
+<tr>
+<td align="left">Timing</td>
+<td align="center">2/5</td>
+</tr>
+<tr>
+<td align="left">Risk/Reward</td>
+<td align="center">3/5</td>
+</tr>
+<tr>
+<td align="left"><strong>Verdict</strong></td>
+<td align="center"><strong>HOLD</strong></td>
+</tr>
+</tbody></table>
+<p>Position: ถ้าถืออยู่ → HOLD | ถ้าไม่ถือ → รอ $720-$750 · 3-5% พอร์ต · ทยอย 2 งวด · Stop $680</p>
+<hr>
+</div>
+</div>
+  </div>
+
+  <div class="fr-section" id="s-leon">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◌</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Fact Audit</span>
+      <span class="fr-sec-title">Research Integrity Officer</span>
+    </div>
+    <span class="fr-sec-tag">Leon</span>
+  </div>
+  <div class="fr-sec-body"><h2>🔎 LEON — Research Integrity Officer</h2>
+<p><strong>[VERIFIED]:</strong> Price $792.60, 52W High $818.67, 52W Low $90.93 — Yahoo Finance 13 พ.ค. 2026
+<strong>[VERIFIED]:</strong> Q2 FY2026 Revenue $23.86B, EPS $12.20 (non-GAAP), GM 74.9% — Micron IR
+<strong>[VERIFIED]:</strong> Q3 FY2026 Guidance Rev $33.5B ±$750M, GM ~81%, EPS $19.15 ±$0.40 — Micron IR
+<strong>[VERIFIED]:</strong> ROIC 32.92% (Feb 2026) — GuruFocus
+<strong>[VERIFIED]:</strong> Short interest 3.22% of float — Finviz/Fintel
+<strong>[VERIFIED]:</strong> HBM share: SK Hynix 62%, Micron 21%, Samsung 17% — TrendForce/Astute Group
+<strong>[VERIFIED]:</strong> Analyst consensus 27 Buy / 3 Hold / 0 Sell — MarketBeat
+<strong>[CONFLICT]:</strong> Analyst avg PT: atom ระบุ $464.61, WebSearch ระบุ $591.67 → ใช้ $591.67 (ล่าสุดกว่า)
+<strong>[VERIFIED]:</strong> Samsung + SK Hynix tapped as NVIDIA Rubin HBM4 initial suppliers — TrendForce มี.ค. 2026
+<strong>[UNVERIFIED]:</strong> Micron confirmation/exclusion ใน NVIDIA Rubin HBM4 program — ไม่มีประกาศทางการ
+<strong>[UNVERIFIED]:</strong> FCF Q2 FY2026 exact figure — Q1 verified ($3.9B) Q2 inferred
+<strong>[UNVERIFIED]:</strong> Bull/Base/Bear price targets ($1,100/$850/$520) — Fin probability-weighted model</p>
+<hr>
+</div>
+</div>
+
+</div>
+
+<div class="fr-foot">Claudy Research · Stock Analysis · ข้อมูลจาก Yahoo Finance · Web Research</div>
+
+<script>
+const sections = document.querySelectorAll('.fr-section[id]');
+const pills = document.querySelectorAll('.fr-pill');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id.replace('s-', '');
+      pills.forEach(p => p.classList.toggle('active', p.getAttribute('href') === '#s-' + id));
+    }
+  });
+}, { rootMargin: '-52px 0px -60% 0px', threshold: 0 });
+sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>
