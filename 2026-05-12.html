@@ -94,7 +94,7 @@ a:hover{text-decoration:underline;opacity:.85}
 .tbl-wrap{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:14px 0}
 .panel .tbl-wrap table{margin:0}
 .panel .tbl-wrap tr:last-child td{border-bottom:none}
-.panel .tbl-wrap tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.panel .tbl-wrap tr:nth-child(even) td{background:rgba(255,255,255,.05)}
 /* ── IC Briefing Script box ── */
 .ic-wrap{background:linear-gradient(135deg,var(--s2) 0%,rgba(232,114,26,.06) 100%);border:1px solid var(--orange-g);border-left:3px solid var(--orange);border-radius:var(--radius-lg);padding:18px 22px;margin:14px 0}
 .ic-wrap p{color:var(--text);line-height:2;font-size:.93rem;margin:0 0 6px}
@@ -503,14 +503,14 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>WTI Crude Oil</strong></td>
 <td>$103.28/bbl</td>
 <td>+$3.49</td>
-<td>+3.49%</td>
+<td><span style="color:#4ade80;font-weight:600">+3.49%</span></td>
 <td>Yahoo Finance (12/05/2569 close)</td>
 </tr>
 <tr>
 <td><strong>Brent Crude</strong></td>
 <td>$109.15/bbl</td>
 <td>+$3.71</td>
-<td>+3.51%</td>
+<td><span style="color:#4ade80;font-weight:600">+3.51%</span></td>
 <td>Yahoo Finance</td>
 </tr>
 <tr>
@@ -524,7 +524,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>ICE Natural Gas</strong></td>
 <td>$3.42/MMBtu</td>
 <td>+$0.18</td>
-<td>+5.56%</td>
+<td><span style="color:#4ade80;font-weight:600">+5.56%</span></td>
 <td>Yahoo Finance</td>
 </tr>
 </tbody></table></div>
@@ -583,21 +583,21 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>S&amp;P 500</strong></td>
 <td>5,891</td>
 <td>-68</td>
-<td>-1.14%</td>
+<td><span style="color:#f87171;font-weight:600">-1.14%</span></td>
 <td>Yahoo Finance</td>
 </tr>
 <tr>
 <td><strong>Nasdaq 100</strong></td>
 <td>21,428</td>
 <td>-1,247</td>
-<td>-5.50%</td>
+<td><span style="color:#f87171;font-weight:600">-5.50%</span></td>
 <td>Yahoo Finance (DeepSeek + duration impact)</td>
 </tr>
 <tr>
 <td><strong>Russell 2000</strong></td>
 <td>2,287</td>
 <td>+24</td>
-<td>+1.05%</td>
+<td><span style="color:#4ade80;font-weight:600">+1.05%</span></td>
 <td>Yahoo Finance (defensive rotation to small-cap value)</td>
 </tr>
 <tr>
@@ -626,7 +626,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>NVDA (Nvidia)</strong></td>
 <td>$129.87</td>
 <td>-$24.52</td>
-<td>-15.88%</td>
+<td><span style="color:#f87171;font-weight:600">-15.88%</span></td>
 <td>DeepSeek competitive threat + duration compression + energy cost concern</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -634,7 +634,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>TSMC (TSM)</strong></td>
 <td>$162.34</td>
 <td>-$9.42</td>
-<td>-5.45%</td>
+<td><span style="color:#f87171;font-weight:600">-5.45%</span></td>
 <td>Nvidia weakness cascades; Taiwan geopolitical risk premium re-pricing</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -642,7 +642,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Broadcom (AVGO)</strong></td>
 <td>$216.51</td>
 <td>-$28.74</td>
-<td>-11.71%</td>
+<td><span style="color:#f87171;font-weight:600">-11.71%</span></td>
 <td>AI infrastructure demand uncertainty</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -650,7 +650,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>GOOGL (Alphabet)</strong></td>
 <td>$209.43</td>
 <td>-$6.81</td>
-<td>-3.13%</td>
+<td><span style="color:#f87171;font-weight:600">-3.13%</span></td>
 <td>Duration compression + AI competitive risk</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -658,7 +658,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>MSFT (Microsoft)</strong></td>
 <td>$419.82</td>
 <td>-$7.21</td>
-<td>-1.69%</td>
+<td><span style="color:#f87171;font-weight:600">-1.69%</span></td>
 <td>Higher rates; but less exposed than NVDA to competitive threat</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -666,7 +666,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>INTC (Intel)</strong></td>
 <td>$29.14</td>
 <td>-$1.67</td>
-<td>-5.72%</td>
+<td><span style="color:#f87171;font-weight:600">-5.72%</span></td>
 <td>Macro headwind; but already depressed — not a capitulation magnet</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -689,15 +689,15 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>XLE (Energy Sector ETF)</strong></td>
 <td>$87.32</td>
 <td>+$2.14</td>
-<td>+2.51%</td>
-<td>WTI +3.49% flow-through to integrated oil majors</td>
+<td><span style="color:#4ade80;font-weight:600">+2.51%</span></td>
+<td>WTI <span style="color:#4ade80;font-weight:600">+3.49%</span> flow-through to integrated oil majors</td>
 <td>Yahoo Finance</td>
 </tr>
 <tr>
 <td><strong>XOM (Exxon Mobil)</strong></td>
 <td>$128.94</td>
 <td>+$3.12</td>
-<td>+2.47%</td>
+<td><span style="color:#4ade80;font-weight:600">+2.47%</span></td>
 <td>Upstream production value; refining margin expansion</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -705,7 +705,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>CVX (Chevron)</strong></td>
 <td>$156.87</td>
 <td>+$2.89</td>
-<td>+1.87%</td>
+<td><span style="color:#4ade80;font-weight:600">+1.87%</span></td>
 <td>Balanced upstream/downstream exposure; geopolitical bid</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -713,7 +713,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>ICLN (Clean Energy ETF)</strong></td>
 <td>$32.14</td>
 <td>-$0.91</td>
-<td>-2.75%</td>
+<td><span style="color:#f87171;font-weight:600">-2.75%</span></td>
 <td>Duration headwind outweighs renewables demand thesis</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -736,7 +736,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Korea KOSPI</strong></td>
 <td>2,456</td>
 <td>+48</td>
-<td>+1.97%</td>
+<td><span style="color:#4ade80;font-weight:600">+1.97%</span></td>
 <td>EM export beneficiary (supply-chain realignment)</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -744,7 +744,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Samsung (005930.KS)</strong></td>
 <td>55,100 KRW</td>
 <td>+2,150 KRW</td>
-<td>+3.91%</td>
+<td><span style="color:#4ade80;font-weight:600">+3.91%</span></td>
 <td>Memory chip demand from datacenter restocking; defensive dividend yield</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -752,7 +752,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>SK Hynix (000660.KS)</strong></td>
 <td>164,000 KRW</td>
 <td>+4,200 KRW</td>
-<td>+2.63%</td>
+<td><span style="color:#4ade80;font-weight:600">+2.63%</span></td>
 <td>Memory chip beneficiary; less exposed to AI competitive threat than Nvidia</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -760,7 +760,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Nikkei 225 (Japan)</strong></td>
 <td>39,284</td>
 <td>-187</td>
-<td>-0.47%</td>
+<td><span style="color:#f87171;font-weight:600">-0.47%</span></td>
 <td>Duration headwind; BoJ policy uncertainty</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -768,7 +768,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>DAX (Germany)</strong></td>
 <td>20,847</td>
 <td>-245</td>
-<td>-1.16%</td>
+<td><span style="color:#f87171;font-weight:600">-1.16%</span></td>
 <td>Energy cost concern for industrial base; cyclical uncertainty</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -776,7 +776,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Hang Seng (Hong Kong)</strong></td>
 <td>19,142</td>
 <td>-312</td>
-<td>-1.61%</td>
+<td><span style="color:#f87171;font-weight:600">-1.61%</span></td>
 <td>China macro slowdown + US-China tensions embedded</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -799,7 +799,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>USD Index (DXY)</strong></td>
 <td>107.82</td>
 <td>+0.48</td>
-<td>+0.45%</td>
+<td><span style="color:#4ade80;font-weight:600">+0.45%</span></td>
 <td>Safe-haven bid + higher US real rates</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -807,7 +807,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>EUR/USD</strong></td>
 <td>1.0389</td>
 <td>-0.0062</td>
-<td>-0.59%</td>
+<td><span style="color:#f87171;font-weight:600">-0.59%</span></td>
 <td>Energy cost shock hitting Eurozone harder; ECB paralysis on rates</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -815,7 +815,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>GBP/USD</strong></td>
 <td>1.2684</td>
 <td>-0.0048</td>
-<td>-0.38%</td>
+<td><span style="color:#f87171;font-weight:600">-0.38%</span></td>
 <td>BoE policy uncertainty; energy shock contagion</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -823,7 +823,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>CNY/USD (Yuan)</strong></td>
 <td>7.2845</td>
 <td>+0.0187</td>
-<td>+0.26%</td>
+<td><span style="color:#4ade80;font-weight:600">+0.26%</span></td>
 <td>Weaker (more depreciation) — China demand concerns + capital outflow</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -831,7 +831,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>INR/USD (Rupee)</strong></td>
 <td>83.42</td>
 <td>+0.15</td>
-<td>+0.18%</td>
+<td><span style="color:#4ade80;font-weight:600">+0.18%</span></td>
 <td>Weaker; EM oil importer pressure</td>
 <td>Yahoo Finance</td>
 </tr>
@@ -909,7 +909,7 @@ USD (+0.45%)                           Emerging Market FX (depreciation)
 <tr>
 <td>Energy ↔ Utilities</td>
 <td>Positive (0.5)</td>
-<td>Diverging (Energy +2.5%, Utilities -0.3%)</td>
+<td>Diverging (Energy <span style="color:#4ade80;font-weight:600">+2.5%</span>, Utilities <span style="color:#f87171;font-weight:600">-0.3%</span>)</td>
 <td><strong>Signal:</strong> Investors see energy as capex beneficiary, utilities as duration-heavy (NII expansion priced, duration risk now dominant)</td>
 </tr>
 <tr>
@@ -1006,28 +1006,28 @@ USD (+0.45%)                           Emerging Market FX (depreciation)
 </tr>
 <tr>
 <td><strong>Quality vs. High-Beta</strong></td>
-<td>HIGH-BETA -8.2% (Nasdaq 100); QUALITY -1.1% (XLV)</td>
+<td>HIGH-BETA <span style="color:#f87171;font-weight:600">-8.2%</span> (Nasdaq 100); QUALITY <span style="color:#f87171;font-weight:600">-1.1%</span> (XLV)</td>
 <td>✅ QUALITY WINNING</td>
 <td>Risk-off rotation + geopolitical uncertainty = flight to low-volatility, predictable earnings (Healthcare, Staples)</td>
 <td>SUSTAINED (6-12 months)</td>
 </tr>
 <tr>
 <td><strong>Large Cap vs. Small Cap</strong></td>
-<td>SMALL CAP +1.05% (Russell 2000); LARGE CAP -1.14% (S&amp;P 500)</td>
+<td>SMALL CAP <span style="color:#4ade80;font-weight:600">+1.05%</span> (Russell 2000); LARGE CAP <span style="color:#f87171;font-weight:600">-1.14%</span> (S&amp;P 500)</td>
 <td>✅ SMALL CAP WINNING</td>
 <td>Russell 2000 = domestic, non-duration-dependent, cyclical exposure. Reflation favors domestically-focused small caps over mega-cap tech with overseas earnings translation risk</td>
 <td>3-6 MONTH CYCLE</td>
 </tr>
 <tr>
 <td><strong>Defensive vs. Cyclical</strong></td>
-<td>DEFENSIVE (XLV +0.32%, XLP +1.18%); CYCLICAL (XLI -2.44%)</td>
+<td>DEFENSIVE (XLV <span style="color:#4ade80;font-weight:600">+0.32%</span>, XLP <span style="color:#4ade80;font-weight:600">+1.18%</span>); CYCLICAL (XLI <span style="color:#f87171;font-weight:600">-2.44%</span>)</td>
 <td>✅ DEFENSIVE WINNING</td>
-<td><strong>BUT</strong> — energy (XLE +2.51%) is also &quot;winning&quot; on commodity price benefit. So: true defensive (Healthcare, Staples) UP; cyclical industrials DOWN due to energy cost shock. Dichotomy.</td>
+<td><strong>BUT</strong> — energy (XLE <span style="color:#4ade80;font-weight:600">+2.51%</span>) is also &quot;winning&quot; on commodity price benefit. So: true defensive (Healthcare, Staples) UP; cyclical industrials DOWN due to energy cost shock. Dichotomy.</td>
 <td>DIVERGENT</td>
 </tr>
 <tr>
 <td><strong>Dividend Yield Assets</strong></td>
-<td>Utilities (XLU), Real Estate (XLRE) lagging -1.8%, -2.1%</td>
+<td>Utilities (XLU), Real Estate (XLRE) lagging <span style="color:#f87171;font-weight:600">-1.8%</span>, <span style="color:#f87171;font-weight:600">-2.1%</span></td>
 <td>⚠️ MIXED</td>
 <td>Duration sensitivity outweighs yield appeal <em>in the first 1-2 weeks of shock</em>. But 4-6 week horizon favors dividend plays as bond proxies.</td>
 <td>BULLISH (6+ weeks)</td>
@@ -1057,32 +1057,32 @@ USD (+0.45%)                           Emerging Market FX (depreciation)
 <tbody><tr>
 <td><strong>Technology (Semiconductors)</strong></td>
 <td>12-15% → <strong>8-10% (DOWN)</strong></td>
-<td>⬇️ DOWN -8%</td>
-<td>⬇️ DOWN -15% (DeepSeek competitive threat + capex ROI concerns)</td>
+<td>⬇️ DOWN <span style="color:#f87171;font-weight:600">-8%</span></td>
+<td>⬇️ DOWN <span style="color:#f87171;font-weight:600">-15%</span> (DeepSeek competitive threat + capex ROI concerns)</td>
 <td><strong>NEGATIVE</strong></td>
 <td>⚠️ HIGH RISK / UNFAVORABLE ASYMMETRY</td>
 </tr>
 <tr>
 <td><strong>Energy (Integrated Oil)</strong></td>
 <td>8-10% → <strong>14-18% (UP)</strong></td>
-<td>⬆️ UP +6%</td>
-<td>⬆️ UP +12% (WTI +$3.49 → upstream/refining margin expansion)</td>
+<td>⬆️ UP <span style="color:#4ade80;font-weight:600">+6%</span></td>
+<td>⬆️ UP <span style="color:#4ade80;font-weight:600">+12%</span> (WTI +$3.49 → upstream/refining margin expansion)</td>
 <td><strong>POSITIVE</strong></td>
 <td>✅ FAVORABLE ASYMMETRY</td>
 </tr>
 <tr>
 <td><strong>Industrials</strong></td>
 <td>6-8% → <strong>4-6% (DOWN)</strong></td>
-<td>⬇️ DOWN -3%</td>
-<td>⬇️ DOWN -8% (energy cost inflation, capex hesitation)</td>
+<td>⬇️ DOWN <span style="color:#f87171;font-weight:600">-3%</span></td>
+<td>⬇️ DOWN <span style="color:#f87171;font-weight:600">-8%</span> (energy cost inflation, capex hesitation)</td>
 <td><strong>NEGATIVE</strong></td>
 <td>⚠️ MODERATE RISK</td>
 </tr>
 <tr>
 <td><strong>Financials (Banks)</strong></td>
 <td>11-13% → <strong>13-15% (UP)</strong></td>
-<td>⬆️ UP +2%</td>
-<td>⬆️ UP +4% (higher for longer rates → NII expansion; loan growth intact)</td>
+<td>⬆️ UP <span style="color:#4ade80;font-weight:600">+2%</span></td>
+<td>⬆️ UP <span style="color:#4ade80;font-weight:600">+4%</span> (higher for longer rates → NII expansion; loan growth intact)</td>
 <td><strong>POSITIVE</strong></td>
 <td>✅ FAVORABLE ASYMMETRY</td>
 </tr>
@@ -1105,8 +1105,8 @@ USD (+0.45%)                           Emerging Market FX (depreciation)
 <tr>
 <td><strong>Real Estate (REITs)</strong></td>
 <td>2-4% → <strong>0-2% (DOWN)</strong></td>
-<td>⬇️ DOWN -2%</td>
-<td>⬇️ DOWN -4% (higher cap rates + vacancy risk)</td>
+<td>⬇️ DOWN <span style="color:#f87171;font-weight:600">-2%</span></td>
+<td>⬇️ DOWN <span style="color:#f87171;font-weight:600">-4%</span> (higher cap rates + vacancy risk)</td>
 <td><strong>NEGATIVE</strong></td>
 <td>⚠️ MODERATE RISK</td>
 </tr>
@@ -1141,55 +1141,55 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 </thead>
 <tbody><tr>
 <td><strong>Energy (XLE)</strong></td>
-<td>+2.51%</td>
+<td><span style="color:#4ade80;font-weight:600">+2.51%</span></td>
 <td>✅ PEAK/EARLY CONTRACTING WINNER (commodity shock = immediate cash flow benefit)</td>
 <td>4-12 weeks</td>
 </tr>
 <tr>
 <td><strong>Financials (XLF)</strong></td>
-<td>-0.89%</td>
+<td><span style="color:#f87171;font-weight:600">-0.89%</span></td>
 <td>⚠️ HOLDING (not yet recognized as contracting-phase winner; will outperform weeks 2-6)</td>
 <td>2-6 weeks</td>
 </tr>
 <tr>
 <td><strong>Healthcare (XLV)</strong></td>
-<td>+0.32%</td>
+<td><span style="color:#4ade80;font-weight:600">+0.32%</span></td>
 <td>✅ PEAK/CONTRACTING WINNER (defensive, earnings stable)</td>
 <td>8-16 weeks</td>
 </tr>
 <tr>
 <td><strong>Staples (XLP)</strong></td>
-<td>+1.18%</td>
+<td><span style="color:#4ade80;font-weight:600">+1.18%</span></td>
 <td>✅ PEAK/CONTRACTING WINNER (defensive, pricing power)</td>
 <td>8-16 weeks</td>
 </tr>
 <tr>
 <td><strong>Utilities (XLU)</strong></td>
-<td>-1.78%</td>
+<td><span style="color:#f87171;font-weight:600">-1.78%</span></td>
 <td>⚠️ TEMPORARY WEAKNESS (duration sensitivity), then WINNER (weeks 4-12)</td>
 <td>4-12 weeks</td>
 </tr>
 <tr>
 <td><strong>Technology (XLK)</strong></td>
-<td>-4.23%</td>
+<td><span style="color:#f87171;font-weight:600">-4.23%</span></td>
 <td>❌ EXPANDING-PHASE LOSER (duration sensitivity + earnings revision risk)</td>
 <td>8-16 weeks</td>
 </tr>
 <tr>
 <td><strong>Industrials (XLI)</strong></td>
-<td>-2.44%</td>
+<td><span style="color:#f87171;font-weight:600">-2.44%</span></td>
 <td>❌ CONTRACTING-PHASE LOSER (energy cost inflation eats margins; capex uncertainty)</td>
 <td>4-8 weeks</td>
 </tr>
 <tr>
 <td><strong>Discretionary (XLY)</strong></td>
-<td>-2.89%</td>
+<td><span style="color:#f87171;font-weight:600">-2.89%</span></td>
 <td>❌ CONTRACTING-PHASE LOSER (consumer pullback risk if energy inflation persists)</td>
 <td>4-12 weeks</td>
 </tr>
 <tr>
 <td><strong>Materials (XLB)</strong></td>
-<td>-1.34%</td>
+<td><span style="color:#f87171;font-weight:600">-1.34%</span></td>
 <td>⚠️ MIXED (commodity benefit offset by demand concern)</td>
 <td>4-8 weeks</td>
 </tr>
@@ -1218,49 +1218,49 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <tbody><tr>
 <td><strong>Technology (High Growth)</strong></td>
 <td>7-9 years</td>
-<td>-6.5% to -8.4% valuation haircut</td>
+<td><span style="color:#f87171;font-weight:600">-6.5%</span> to <span style="color:#f87171;font-weight:600">-8.4%</span> valuation haircut</td>
 <td>SEVERE</td>
 <td>6-12 months (if estimates don&#39;t collapse)</td>
 </tr>
 <tr>
 <td><strong>Semiconductors (NVDA, AVGO, TSM)</strong></td>
 <td>8-11 years</td>
-<td>-7.4% to -10.2% valuation haircut</td>
+<td><span style="color:#f87171;font-weight:600">-7.4%</span> to <span style="color:#f87171;font-weight:600">-10.2%</span> valuation haircut</td>
 <td>SEVERE</td>
 <td>6-12 months (if competitive threat contained)</td>
 </tr>
 <tr>
 <td><strong>Healthcare (Pharma)</strong></td>
 <td>5-6 years</td>
-<td>-4.7% to -5.6% valuation haircut</td>
+<td><span style="color:#f87171;font-weight:600">-4.7%</span> to <span style="color:#f87171;font-weight:600">-5.6%</span> valuation haircut</td>
 <td>MODERATE</td>
 <td>3-6 months</td>
 </tr>
 <tr>
 <td><strong>Utilities (Dividend Yield)</strong></td>
 <td>6-7 years</td>
-<td>-5.6% to -6.5% valuation haircut</td>
+<td><span style="color:#f87171;font-weight:600">-5.6%</span> to <span style="color:#f87171;font-weight:600">-6.5%</span> valuation haircut</td>
 <td>MODERATE</td>
 <td>4-8 weeks (as investors accept higher yields)</td>
 </tr>
 <tr>
 <td><strong>Energy (Oil Majors)</strong></td>
 <td>2-3 years</td>
-<td>-1.9% to -2.8% valuation haircut</td>
+<td><span style="color:#f87171;font-weight:600">-1.9%</span> to <span style="color:#f87171;font-weight:600">-2.8%</span> valuation haircut</td>
 <td>MINIMAL</td>
 <td>Immediate (offset by commodity gains)</td>
 </tr>
 <tr>
 <td><strong>Financials (Banks)</strong></td>
 <td>3-4 years</td>
-<td>-2.8% to -3.7% valuation haircut</td>
+<td><span style="color:#f87171;font-weight:600">-2.8%</span> to <span style="color:#f87171;font-weight:600">-3.7%</span> valuation haircut</td>
 <td>MINIMAL</td>
 <td>1-2 weeks (NII expansion offsets)</td>
 </tr>
 <tr>
 <td><strong>Staples (Low Growth)</strong></td>
 <td>3-4 years</td>
-<td>-2.8% to -3.7% valuation haircut</td>
+<td><span style="color:#f87171;font-weight:600">-2.8%</span> to <span style="color:#f87171;font-weight:600">-3.7%</span> valuation haircut</td>
 <td>MINIMAL</td>
 <td>1-2 weeks</td>
 </tr>
@@ -1464,7 +1464,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <tbody><tr>
 <td><strong>Gold Spot ($/oz)</strong></td>
 <td>[VERIFY]</td>
-<td>Likely +0.5% to +1.5% (modest bid, not panic bid)</td>
+<td>Likely <span style="color:#4ade80;font-weight:600">+0.5%</span> to <span style="color:#4ade80;font-weight:600">+1.5%</span> (modest bid, not panic bid)</td>
 </tr>
 <tr>
 <td><strong>USD/JPY (Yen)</strong></td>
@@ -1473,7 +1473,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 </tr>
 <tr>
 <td><strong>US 10Y Real Yield</strong></td>
-<td>[ESTIMATE: -1.0% to -1.2%]</td>
+<td>[ESTIMATE: <span style="color:#f87171;font-weight:600">-1.0%</span> to <span style="color:#f87171;font-weight:600">-1.2%</span>]</td>
 <td>Compressed, indicating inflation premium outweighs safety bid</td>
 </tr>
 </tbody></table></div>
@@ -1941,32 +1941,32 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <tbody><tr>
 <td><strong>Week 1-3 (Initial Shock)</strong></td>
 <td>WTI $110-115</td>
-<td>-8%</td>
-<td>+4%</td>
+<td><span style="color:#f87171;font-weight:600">-8%</span></td>
+<td><span style="color:#4ade80;font-weight:600">+4%</span></td>
 <td>Down 5%</td>
 <td>Fed signals data dependency; inflation expectations moderate</td>
 </tr>
 <tr>
 <td><strong>Week 4-8</strong></td>
 <td>WTI $105-110</td>
-<td>Flat to +2%</td>
-<td>Flat to +1%</td>
+<td>Flat to <span style="color:#4ade80;font-weight:600">+2%</span></td>
+<td>Flat to <span style="color:#4ade80;font-weight:600">+1%</span></td>
 <td>Stabilize</td>
 <td>Libya supply gradually restored; market reprices timeline</td>
 </tr>
 <tr>
 <td><strong>Week 9-16</strong></td>
 <td>WTI $85-100</td>
-<td>+8%</td>
-<td>-3%</td>
+<td><span style="color:#4ade80;font-weight:600">+8%</span></td>
+<td><span style="color:#f87171;font-weight:600">-3%</span></td>
 <td>Up 4%</td>
 <td>Shock digested; growth fears fade; Fed turns dovish (QE3 whispers begin)</td>
 </tr>
 <tr>
 <td><strong>Month 6+</strong></td>
 <td>WTI $75-85</td>
-<td>+22%</td>
-<td>-8%</td>
+<td><span style="color:#4ade80;font-weight:600">+22%</span></td>
+<td><span style="color:#f87171;font-weight:600">-8%</span></td>
 <td>Up 18%</td>
 <td>Full reversal; tech leads; value underperforms for 12 months</td>
 </tr>
@@ -1996,7 +1996,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <tbody><tr>
 <td><strong>Weeks 1-3 (Current, through mid-Dec)</strong></td>
 <td>Initial panic, energy shock, rate spike</td>
-<td>Tech -5% to -15% (we&#39;re here), Energy +2% to +5% (we&#39;re here), Panic in growth narratives</td>
+<td>Tech <span style="color:#f87171;font-weight:600">-5%</span> to <span style="color:#f87171;font-weight:600">-15%</span> (we&#39;re here), Energy <span style="color:#4ade80;font-weight:600">+2%</span> to <span style="color:#4ade80;font-weight:600">+5%</span> (we&#39;re here), Panic in growth narratives</td>
 </tr>
 <tr>
 <td><strong>Weeks 4-8 (Mid-Dec to late-Dec/early-Jan)</strong></td>
@@ -2006,12 +2006,12 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <tr>
 <td><strong>Weeks 9-16 (Jan to mid-Feb)</strong></td>
 <td>Supply disruption narrative fades, earnings beats in tech (capex resilience), Fed forward guidance softens</td>
-<td>Tech +8-15% rebound, Value -3% to -5% underperformance begins, Growth narrative re-emerges</td>
+<td>Tech +8-15% rebound, Value <span style="color:#f87171;font-weight:600">-3%</span> to <span style="color:#f87171;font-weight:600">-5%</span> underperformance begins, Growth narrative re-emerges</td>
 </tr>
 <tr>
 <td><strong>Month 6+ (Q1 2569)</strong></td>
 <td>Full reflation-shock digestion, growth confidence returns</td>
-<td>Tech +20-30% from current levels, Energy -10% to -15% from current levels, Financials consolidate</td>
+<td>Tech +20-30% from current levels, Energy <span style="color:#f87171;font-weight:600">-10%</span> to <span style="color:#f87171;font-weight:600">-15%</span> from current levels, Financials consolidate</td>
 </tr>
 </tbody></table></div>
 <p><strong>The asymmetry:</strong></p>
@@ -2500,7 +2500,7 @@ Healthy = &gt;80%
 <td><strong>Claudy</strong></td>
 <td>Market Prices + Signal Interpretation + Risk Assessment + Equity Bifurcation</td>
 <td>✅ COMPLETE</td>
-<td>None—WTI, Brent, CPI, yields, sector performance all timestamped 12/05/2569. Equity divergence (Nasdaq -5.5% vs. Russell +1.05%) clearly explained.</td>
+<td>None—WTI, Brent, CPI, yields, sector performance all timestamped 12/05/2569. Equity divergence (Nasdaq <span style="color:#f87171;font-weight:600">-5.5%</span> vs. Russell <span style="color:#4ade80;font-weight:600">+1.05%</span>) clearly explained.</td>
 </tr>
 <tr>
 <td><strong>Rocky</strong></td>
@@ -2542,14 +2542,14 @@ Healthy = &gt;80%
 </thead>
 <tbody><tr>
 <td><strong>WTI</strong></td>
-<td>$103.28/bbl (+3.49%)</td>
-<td>✅ &quot;+3.49%&quot; cited exactly</td>
+<td>$103.28/bbl (<span style="color:#4ade80;font-weight:600">+3.49%</span>)</td>
+<td>✅ &quot;<span style="color:#4ade80;font-weight:600">+3.49%</span>&quot; cited exactly</td>
 <td>⚠️ Not quantified in analysis</td>
 <td>[VERIFIED ✓]</td>
 </tr>
 <tr>
 <td><strong>Brent</strong></td>
-<td>$109.15/bbl (+3.51%)</td>
+<td>$109.15/bbl (<span style="color:#4ade80;font-weight:600">+3.51%</span>)</td>
 <td>❌ Not cited</td>
 <td>❌ Not cited</td>
 <td>[UNVERIFIED ❌]</td>
@@ -2570,30 +2570,30 @@ Healthy = &gt;80%
 </tr>
 <tr>
 <td><strong>NVDA</strong></td>
-<td>-15.88%</td>
-<td>✅ &quot;NVDA -16%&quot; (rounding)</td>
+<td><span style="color:#f87171;font-weight:600">-15.88%</span></td>
+<td>✅ &quot;NVDA <span style="color:#f87171;font-weight:600">-16%</span>&quot; (rounding)</td>
 <td>❌ Not cited</td>
 <td>[VERIFIED ✓] — Ada rounds, acceptable</td>
 </tr>
 <tr>
 <td><strong>TSM</strong></td>
-<td>-5.45%</td>
-<td>✅ &quot;-5.45%&quot; cited exactly</td>
+<td><span style="color:#f87171;font-weight:600">-5.45%</span></td>
+<td>✅ &quot;<span style="color:#f87171;font-weight:600">-5.45%</span>&quot; cited exactly</td>
 <td>❌ Not cited</td>
 <td>[VERIFIED ✓]</td>
 </tr>
 <tr>
 <td><strong>XLE</strong></td>
-<td>+2.51%</td>
+<td><span style="color:#4ade80;font-weight:600">+2.51%</span></td>
 <td>✅ Cited in Card #1 context (energy bid)</td>
-<td>✅ &quot;XLE +2.51%&quot; signal winner</td>
+<td>✅ &quot;XLE <span style="color:#4ade80;font-weight:600">+2.51%</span>&quot; signal winner</td>
 <td>[VERIFIED ✓]</td>
 </tr>
 <tr>
 <td><strong>Russell 2000</strong></td>
-<td>+1.05%</td>
+<td><span style="color:#4ade80;font-weight:600">+1.05%</span></td>
 <td>❌ Not cited</td>
-<td>✅ &quot;+1.05%&quot; small-cap rotation</td>
+<td>✅ &quot;<span style="color:#4ade80;font-weight:600">+1.05%</span>&quot; small-cap rotation</td>
 <td>[VERIFIED ✓]</td>
 </tr>
 </tbody></table></div>
@@ -2625,7 +2625,7 @@ Healthy = &gt;80%
 <td><strong>Rotation (Growth → Value/Energy)</strong></td>
 <td>✅ Tech underweight, Energy bullish</td>
 <td>✅ &quot;Textbook rotation—growth to value&quot;</td>
-<td>✅ Value +240 bps, Quality +7.1%</td>
+<td>✅ Value +240 bps, Quality <span style="color:#4ade80;font-weight:600">+7.1%</span></td>
 <td>✅ &quot;Capital rotating, not fleeing&quot;</td>
 <td>⚠️ Contrarian: &quot;Crowded defensiveness trade&quot;</td>
 <td>[VERIFIED ✓] — Consensus is rotation in progress</td>
@@ -2642,8 +2642,8 @@ Healthy = &gt;80%
 <tr>
 <td><strong>Semiconductor Risk Window</strong></td>
 <td>✅ &quot;DeepSeek threat&quot; + energy costs</td>
-<td>✅ &quot;-15.88% Nvidia; competitive repricing&quot;</td>
-<td>✅ &quot;FY25E -8% to -15% negative HIGH RISK&quot;</td>
+<td>✅ &quot;<span style="color:#f87171;font-weight:600">-15.88%</span> Nvidia; competitive repricing&quot;</td>
+<td>✅ &quot;FY25E <span style="color:#f87171;font-weight:600">-8%</span> to <span style="color:#f87171;font-weight:600">-15%</span> negative HIGH RISK&quot;</td>
 <td>✅ High-beta destruction evident</td>
 <td>⚠️ Disputes severity: &quot;15-25% EPS cut ≠ catastrophic&quot;</td>
 <td>[VERIFIED ✓ with CONFLICT ⚠️] — See resolution below</td>
@@ -2652,7 +2652,7 @@ Healthy = &gt;80%
 <td><strong>Energy Bullish 4-12 weeks</strong></td>
 <td>✅ Card #1: 75% conviction, 4-12 weeks</td>
 <td>✅ &quot;Energy bid intact&quot;</td>
-<td>✅ &quot;FY25E +6% to +12% POSITIVE FAVORABLE; 4-6 weeks&quot;</td>
+<td>✅ &quot;FY25E <span style="color:#4ade80;font-weight:600">+6%</span> to <span style="color:#4ade80;font-weight:600">+12%</span> POSITIVE FAVORABLE; 4-6 weeks&quot;</td>
 <td>✅ Rotation INTO cyclicals evident</td>
 <td>⚠️ &quot;2-4 weeks sharp, 4-8 weeks secondary&quot; (shorter)</td>
 <td>[VERIFIED ✓] — Window confirmed; Diffy is more aggressive on resolution speed</td>
@@ -2682,8 +2682,8 @@ Healthy = &gt;80%
 </tr>
 <tr>
 <td>&quot;Card #3: Tertiary Samsung/SK Hynix bullish&quot;</td>
-<td>IF Korea KOSPI +1.97% AND Samsung +3.91% AND supply-chain realignment away from Taiwan → semiconductor tailwind for non-Taiwan players</td>
-<td>✅ <strong>SOUND</strong> — Claudy confirms Samsung +3.91%, Hynix +2.63%; geopolitical rotation evident</td>
+<td>IF Korea KOSPI <span style="color:#4ade80;font-weight:600">+1.97%</span> AND Samsung <span style="color:#4ade80;font-weight:600">+3.91%</span> AND supply-chain realignment away from Taiwan → semiconductor tailwind for non-Taiwan players</td>
+<td>✅ <strong>SOUND</strong> — Claudy confirms Samsung <span style="color:#4ade80;font-weight:600">+3.91%</span>, Hynix <span style="color:#4ade80;font-weight:600">+2.63%</span>; geopolitical rotation evident</td>
 </tr>
 <tr>
 <td>&quot;Invalidation: Peace agreement&quot;</td>
@@ -2708,14 +2708,14 @@ Healthy = &gt;80%
 <td>⚠️ <strong>INCOMPLETE</strong> — The causal direction is backwards. Yields rise on INFLATION EXPECTATIONS (not deflation). Claudy means: &quot;Real yield compression = lower real (inflation-adjusted) returns on safe assets, pushing capital to real assets (commodities).&quot; Phrasing is muddled but conclusion is correct.</td>
 </tr>
 <tr>
-<td>&quot;Nasdaq -5.5%, Russell +1.05% = Textbook rotation, NOT broad capitulation&quot;</td>
+<td>&quot;Nasdaq <span style="color:#f87171;font-weight:600">-5.5%</span>, Russell <span style="color:#4ade80;font-weight:600">+1.05%</span> = Textbook rotation, NOT broad capitulation&quot;</td>
 <td>IF growth (high duration) down &gt;5% AND small-cap (value proxy) up 1% AND quality defensive flat → rotation, not panic</td>
 <td>✅ <strong>SOUND</strong> — Magnitude check: Nasdaq down 5.5x more than Russell up 1.05% suggests skew toward selling, not balanced rotation, but Claudy&#39;s point (selective, not panic) holds.</td>
 </tr>
 <tr>
-<td>&quot;Korea KOSPI +1.97% = Supply-chain realignment away from Taiwan&quot;</td>
+<td>&quot;Korea KOSPI <span style="color:#4ade80;font-weight:600">+1.97%</span> = Supply-chain realignment away from Taiwan&quot;</td>
 <td>IF geopolitical risk Taiwan ↑ AND Samsung/Hynix Korea-based → demand shifts Korea-bound</td>
-<td>⚠️ <strong>INFERENCE ONLY</strong> — Claudy states but doesn&#39;t prove causation. Samsung +3.91% could reflect: (a) supply-chain shift, (b) tech cycle strength, (c) domestic Korean strength. Plausible but not definitively proven with Claudy&#39;s data alone.</td>
+<td>⚠️ <strong>INFERENCE ONLY</strong> — Claudy states but doesn&#39;t prove causation. Samsung <span style="color:#4ade80;font-weight:600">+3.91%</span> could reflect: (a) supply-chain shift, (b) tech cycle strength, (c) domestic Korean strength. Plausible but not definitively proven with Claudy&#39;s data alone.</td>
 </tr>
 </tbody></table></div>
 <p><strong>Verdict:</strong> Claudy&#39;s narrative is coherent; one phrasing error (real yield direction) and one inference gap (Korea causation) are minor and don&#39;t invalidate the regime call.</p>
@@ -2735,13 +2735,13 @@ Healthy = &gt;80%
 <td>⚠️ <strong>CONDITIONAL</strong> — Rocky doesn&#39;t provide current Fed funds rate or recent Fed messaging; assumes &quot;higher for longer&quot; bias but doesn&#39;t anchor to explicit policy stance. Plausible but untethered.</td>
 </tr>
 <tr>
-<td>&quot;Semiconductors FY25E -8% to -15%, Negative HIGH RISK&quot;</td>
+<td>&quot;Semiconductors FY25E <span style="color:#f87171;font-weight:600">-8%</span> to <span style="color:#f87171;font-weight:600">-15%</span>, Negative HIGH RISK&quot;</td>
 <td>IF DeepSeek competitive threat + capex inflation + duration headwind → EPS revisions down 8-15%</td>
-<td>✅ <strong>SOUND</strong> — Rocky cites &quot;30/7-day&quot; revision direction (standard metric); direction is supported by Claudy (Nvidia -15.88%) and Ada (Card #2).</td>
+<td>✅ <strong>SOUND</strong> — Rocky cites &quot;30/7-day&quot; revision direction (standard metric); direction is supported by Claudy (Nvidia <span style="color:#f87171;font-weight:600">-15.88%</span>) and Ada (Card #2).</td>
 </tr>
 <tr>
-<td>&quot;Energy FY25E +6% to +12%, Positive FAVORABLE&quot;</td>
-<td>IF WTI +3.49% + margin leverage + supply constraints → upside surprise likely</td>
+<td>&quot;Energy FY25E <span style="color:#4ade80;font-weight:600">+6%</span> to <span style="color:#4ade80;font-weight:600">+12%</span>, Positive FAVORABLE&quot;</td>
+<td>IF WTI <span style="color:#4ade80;font-weight:600">+3.49%</span> + margin leverage + supply constraints → upside surprise likely</td>
 <td>✅ <strong>SOUND</strong> — Mechanically sound; +$5-10/bbl in WTI = 5-10% EPS lift for energy complex.</td>
 </tr>
 <tr>

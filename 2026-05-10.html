@@ -94,7 +94,7 @@ a:hover{text-decoration:underline;opacity:.85}
 .tbl-wrap{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:14px 0}
 .panel .tbl-wrap table{margin:0}
 .panel .tbl-wrap tr:last-child td{border-bottom:none}
-.panel .tbl-wrap tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.panel .tbl-wrap tr:nth-child(even) td{background:rgba(255,255,255,.05)}
 /* ── IC Briefing Script box ── */
 .ic-wrap{background:linear-gradient(135deg,var(--s2) 0%,rgba(232,114,26,.06) 100%);border:1px solid var(--orange-g);border-left:3px solid var(--orange);border-radius:var(--radius-lg);padding:18px 22px;margin:14px 0}
 .ic-wrap p{color:var(--text);line-height:2;font-size:.93rem;margin:0 0 6px}
@@ -551,7 +551,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <tr>
 <td><strong>VIX (Volatility Index)</strong></td>
 <td>~19.2</td>
-<td>+0.64%</td>
+<td><span style="color:#4ade80;font-weight:600">+0.64%</span></td>
 <td>Up from 14.3 (week prior)</td>
 <td>Elevated but not panic-level (&gt;25)</td>
 </tr>
@@ -565,22 +565,22 @@ a:hover{text-decoration:underline;opacity:.85}
 <tr>
 <td><strong>WTI Crude (CL=F)</strong></td>
 <td>$97.30/bbl</td>
-<td>+2.8%</td>
+<td><span style="color:#4ade80;font-weight:600">+2.8%</span></td>
 <td>+$8.60/bbl (5-day)</td>
 <td>Energy scarcity premium intact; supply shock pricing in</td>
 </tr>
 <tr>
 <td><strong>Gold (GLD)</strong></td>
 <td>$2,547/oz</td>
-<td>+0.22%</td>
+<td><span style="color:#4ade80;font-weight:600">+0.22%</span></td>
 <td>+$34/oz (5-day)</td>
 <td>Safe-haven bid, but muted (suggests risk-off is orderly, not panic)</td>
 </tr>
 <tr>
 <td><strong>USD Index (DXY)</strong></td>
 <td>103.8</td>
-<td>-0.15%</td>
-<td>-1.2% (5-day)</td>
+<td><span style="color:#f87171;font-weight:600">-0.15%</span></td>
+<td><span style="color:#f87171;font-weight:600">-1.2%</span> (5-day)</td>
 <td>Weakening on oil-driven commodity demand, geopolitical bifurcation</td>
 </tr>
 <tr>
@@ -1037,37 +1037,37 @@ a:hover{text-decoration:underline;opacity:.85}
 <tbody><tr>
 <td><strong>Value (Russell 1000 Value vs. Growth)</strong></td>
 <td>↑ Outperforming</td>
-<td>+2.3% relative gain</td>
+<td><span style="color:#4ade80;font-weight:600">+2.3%</span> relative gain</td>
 <td>Energy/Materials (value-heavy) rally on supply shock</td>
 </tr>
 <tr>
 <td><strong>Quality (Low Volatility, High Profitability)</strong></td>
 <td>↑ Outperforming</td>
-<td>+1.8% relative gain</td>
+<td><span style="color:#4ade80;font-weight:600">+1.8%</span> relative gain</td>
 <td>Investors flee NVDA (high beta, momentum) into KO, JNJ, PG</td>
 </tr>
 <tr>
 <td><strong>Momentum (12-month price strength)</strong></td>
 <td>↓ Underperforming</td>
-<td>-3.2% relative loss</td>
+<td><span style="color:#f87171;font-weight:600">-3.2%</span> relative loss</td>
 <td>Mega-cap AI (NVDA, TSLA) sold; trend-followers caught</td>
 </tr>
 <tr>
 <td><strong>Small Cap (Russell 2000 vs. SPX)</strong></td>
 <td>↓ Mixed</td>
-<td>IWM -0.8% vs SPX</td>
+<td>IWM <span style="color:#f87171;font-weight:600">-0.8%</span> vs SPX</td>
 <td>Positive: benefit from US-only commodity play (oil). Negative: rate sensitivity, credit access</td>
 </tr>
 <tr>
 <td><strong>Dividend Yield</strong></td>
 <td>↑ Outperforming</td>
-<td>+1.4% relative gain</td>
+<td><span style="color:#4ade80;font-weight:600">+1.4%</span> relative gain</td>
 <td>XLV, XLU (high-yield sectors) rally as bonds become less attractive</td>
 </tr>
 <tr>
 <td><strong>Cyclical (XLY, XLI) vs. Defensive (XLV, XLU)</strong></td>
 <td>Mixed</td>
-<td>XLE +6.2%, XLI -1.8%, XLV +0.4%</td>
+<td>XLE <span style="color:#4ade80;font-weight:600">+6.2%</span>, XLI <span style="color:#f87171;font-weight:600">-1.8%</span>, XLV <span style="color:#4ade80;font-weight:600">+0.4%</span></td>
 <td>Energy wins (supply shock). Discretionary loses (demand destruction risk). Healthcare/utilities neutral</td>
 </tr>
 </tbody></table></div>
@@ -1160,7 +1160,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Energy (XLE)</strong></td>
 <td>Peak cycle</td>
 <td>Massive tailwind (supply shock)</td>
-<td>↑↑ +8.2%</td>
+<td>↑↑ <span style="color:#4ade80;font-weight:600">+8.2%</span></td>
 <td><strong>OVERWEIGHT</strong></td>
 <td><strong>VERY HIGH</strong></td>
 </tr>
@@ -1168,7 +1168,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Materials (XLB)</strong></td>
 <td>Peak cycle</td>
 <td>Positive (commodity demand, but oil cost headwind net-neutral)</td>
-<td>↑ +2.1%</td>
+<td>↑ <span style="color:#4ade80;font-weight:600">+2.1%</span></td>
 <td><strong>OVERWEIGHT</strong></td>
 <td>HIGH</td>
 </tr>
@@ -1176,7 +1176,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Industrials (XLI)</strong></td>
 <td>Late cycle</td>
 <td>Mixed (margin compression from energy costs, offset by capex resilience)</td>
-<td>↔ -0.3%</td>
+<td>↔ <span style="color:#f87171;font-weight:600">-0.3%</span></td>
 <td><strong>UNDERWEIGHT</strong></td>
 <td>MODERATE</td>
 </tr>
@@ -1184,7 +1184,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Discretionary (XLY)</strong></td>
 <td>Late cycle</td>
 <td>Negative (demand destruction if consumer retrenchment)</td>
-<td>↓ -2.1%</td>
+<td>↓ <span style="color:#f87171;font-weight:600">-2.1%</span></td>
 <td><strong>UNDERWEIGHT</strong></td>
 <td>HIGH</td>
 </tr>
@@ -1192,7 +1192,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Staples (XLP)</strong></td>
 <td>Defensive</td>
 <td>Positive (pricing power, demand inelastic)</td>
-<td>↑ +0.8%</td>
+<td>↑ <span style="color:#4ade80;font-weight:600">+0.8%</span></td>
 <td><strong>OVERWEIGHT</strong></td>
 <td>MODERATE-HIGH</td>
 </tr>
@@ -1200,7 +1200,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Health Care (XLV)</strong></td>
 <td>Defensive</td>
 <td>Neutral (pharma has pricing power; medical devices face input cost pressure)</td>
-<td>↔ +0.2%</td>
+<td>↔ <span style="color:#4ade80;font-weight:600">+0.2%</span></td>
 <td><strong>NEUTRAL</strong></td>
 <td>LOW</td>
 </tr>
@@ -1208,7 +1208,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Financials (XLF)</strong></td>
 <td>Late cycle / Tightening</td>
 <td>Mixed (NIM expansion from higher yields offset by credit risk rising)</td>
-<td>↔ -0.1%</td>
+<td>↔ <span style="color:#f87171;font-weight:600">-0.1%</span></td>
 <td><strong>NEUTRAL</strong></td>
 <td>MODERATE</td>
 </tr>
@@ -1216,7 +1216,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Tech (XLK)</strong></td>
 <td>Contraction signal</td>
 <td>Negative (multiple compression, but earnings resilience depends on capex guidance)</td>
-<td>↓ -3.8%</td>
+<td>↓ <span style="color:#f87171;font-weight:600">-3.8%</span></td>
 <td><strong>UNDERWEIGHT</strong></td>
 <td>HIGH</td>
 </tr>
@@ -1224,7 +1224,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Utilities (XLU)</strong></td>
 <td>Defensive / Rate-sensitive</td>
 <td>Negative (rising rates hurt long-duration cash flows; benefit from dividend attractiveness offset)</td>
-<td>↔ -0.5%</td>
+<td>↔ <span style="color:#f87171;font-weight:600">-0.5%</span></td>
 <td><strong>NEUTRAL</strong></td>
 <td>MODERATE</td>
 </tr>
@@ -1232,7 +1232,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Communications (XLC)</strong></td>
 <td>Late cycle</td>
 <td>Negative (discretionary ad spending under pressure; streaming capex at risk)</td>
-<td>↓ -2.3%</td>
+<td>↓ <span style="color:#f87171;font-weight:600">-2.3%</span></td>
 <td><strong>UNDERWEIGHT</strong></td>
 <td>MODERATE</td>
 </tr>
@@ -1240,7 +1240,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>Real Estate (XLRE)</strong></td>
 <td>Contraction</td>
 <td>Negative (rising rates kill valuations; cap rates rise faster than rents)</td>
-<td>↓ -1.8%</td>
+<td>↓ <span style="color:#f87171;font-weight:600">-1.8%</span></td>
 <td><strong>UNDERWEIGHT</strong></td>
 <td>VERY HIGH</td>
 </tr>
@@ -2945,12 +2945,12 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <tr>
 <td>Factor rotation matrix</td>
 <td>✓ FULFILLED</td>
-<td>Value +2.3%, Quality +1.8%, Momentum -3.2%, Yield +1.4% (all 5-day). XLE +6.2% justified by supply shock; XLY -1.8% by demand concerns.</td>
+<td>Value <span style="color:#4ade80;font-weight:600">+2.3%</span>, Quality <span style="color:#4ade80;font-weight:600">+1.8%</span>, Momentum <span style="color:#f87171;font-weight:600">-3.2%</span>, Yield <span style="color:#4ade80;font-weight:600">+1.4%</span> (all 5-day). XLE <span style="color:#4ade80;font-weight:600">+6.2%</span> justified by supply shock; XLY <span style="color:#f87171;font-weight:600">-1.8%</span> by demand concerns.</td>
 </tr>
 <tr>
 <td>EPS revision bifurcation</td>
 <td>✓ FULFILLED</td>
-<td>Energy UP (+8.2% XLE avg), Semis DOWN (-4.5% SMH avg), Staples flat. Granular ticker calls (Aramco +18%, Chevron +12%, NVIDIA -6%, TSMC -4%) provided.</td>
+<td>Energy UP (<span style="color:#4ade80;font-weight:600">+8.2%</span> XLE avg), Semis DOWN (<span style="color:#f87171;font-weight:600">-4.5%</span> SMH avg), Staples flat. Granular ticker calls (Aramco <span style="color:#4ade80;font-weight:600">+18%</span>, Chevron <span style="color:#4ade80;font-weight:600">+12%</span>, NVIDIA <span style="color:#f87171;font-weight:600">-6%</span>, TSMC <span style="color:#f87171;font-weight:600">-4%</span>) provided.</td>
 </tr>
 <tr>
 <td>Sector P/E or valuation context</td>
@@ -2989,7 +2989,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <tr>
 <td>Safe-haven flows check</td>
 <td>✓ FULFILLED</td>
-<td>Gold +$34/oz vs. panic spike $60–100; TLT +0.8% vs. 2–3% risk-off move. Conclusion (professional reallocation, not flight) is well-supported by magnitudes.</td>
+<td>Gold +$34/oz vs. panic spike $60–100; TLT <span style="color:#4ade80;font-weight:600">+0.8%</span> vs. 2–3% risk-off move. Conclusion (professional reallocation, not flight) is well-supported by magnitudes.</td>
 </tr>
 <tr>
 <td>ETF flow signal</td>
@@ -2999,7 +2999,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <tr>
 <td>Dominant biases identified</td>
 <td>✓ FULFILLED</td>
-<td>Recency bias × herding on NVDA -12%; loss aversion on oil +$8.60. Both well-reasoned.</td>
+<td>Recency bias × herding on NVDA <span style="color:#f87171;font-weight:600">-12%</span>; loss aversion on oil +$8.60. Both well-reasoned.</td>
 </tr>
 <tr>
 <td><strong>Contrarian signal threshold</strong></td>
@@ -3042,7 +3042,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <tr>
 <td>Second-order metric logic</td>
 <td>✓ FULFILLED</td>
-<td>EPS revisions +8.2%→-4.3% driver for XLE -12–18% drop; capex vs. revenue growth (down 15%, up 25–35%) as vindication of capex resilience. Logic chain holds.</td>
+<td>EPS revisions <span style="color:#4ade80;font-weight:600">+8.2%</span>→<span style="color:#f87171;font-weight:600">-4.3%</span> driver for XLE -12–18% drop; capex vs. revenue growth (down 15%, up 25–35%) as vindication of capex resilience. Logic chain holds.</td>
 </tr>
 <tr>
 <td>Tactical recommendation</td>
@@ -3065,12 +3065,12 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <tbody><tr>
 <td>Current price levels</td>
 <td>✓ FULFILLED</td>
-<td>SPX -2.1%, NDX -3.8%, VIX 19.2, 10Y 4.18%, WTI $97.30, Gold $2,547, NVDA -12%, Chevron +6.2%, Aramco +5.1%. All dated 10/05/2569 close.</td>
+<td>SPX <span style="color:#f87171;font-weight:600">-2.1%</span>, NDX <span style="color:#f87171;font-weight:600">-3.8%</span>, VIX 19.2, 10Y 4.18%, WTI $97.30, Gold $2,547, NVDA <span style="color:#f87171;font-weight:600">-12%</span>, Chevron <span style="color:#4ade80;font-weight:600">+6.2%</span>, Aramco <span style="color:#4ade80;font-weight:600">+5.1%</span>. All dated 10/05/2569 close.</td>
 </tr>
 <tr>
 <td>5-day trend confirmation</td>
 <td>✓ FULFILLED</td>
-<td>NDX -3.8% (growth selloff), WTI +$8.60 (energy rally), Gold +$34 (safe-haven drift), VIX +0.64% (tightening from panic). Trends align with Ada/Rocky thesis.</td>
+<td>NDX <span style="color:#f87171;font-weight:600">-3.8%</span> (growth selloff), WTI +$8.60 (energy rally), Gold +$34 (safe-haven drift), VIX <span style="color:#4ade80;font-weight:600">+0.64%</span> (tightening from panic). Trends align with Ada/Rocky thesis.</td>
 </tr>
 <tr>
 <td>Thesis validation check</td>
@@ -3149,7 +3149,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 </thead>
 <tbody><tr>
 <td>NVDA</td>
-<td>$140 (implied; -12% 5-day)</td>
+<td>$140 (implied; <span style="color:#f87171;font-weight:600">-12%</span> 5-day)</td>
 <td>~$140 (Card #1 mentions &quot;60x→30–40x P/E&quot; ≈ $140–150)</td>
 <td>Card #1 assumes panic repricing</td>
 <td>✓ CONSISTENT</td>
@@ -3158,7 +3158,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <td>WTI Crude</td>
 <td>$97.30</td>
 <td>&quot;Range $90–105; tail $120+&quot;</td>
-<td>&quot;$89→$97 (+8.9%)&quot;</td>
+<td>&quot;$89→$97 (<span style="color:#4ade80;font-weight:600">+8.9%</span>)&quot;</td>
 <td>⚠️ MINOR: Rocky says $89 prior; Claudy shows $97.30 current. Implies 5-day move +$8.30 (slightly less than Claudy&#39;s +$8.60 but close enough—rounding/timing variance).</td>
 </tr>
 <tr>
@@ -3198,17 +3198,17 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 </thead>
 <tbody><tr>
 <td>Energy (XLE)</td>
-<td>+8.2% consensus</td>
-<td>EPS +8.2%→-4.3% eventual</td>
+<td><span style="color:#4ade80;font-weight:600">+8.2%</span> consensus</td>
+<td>EPS <span style="color:#4ade80;font-weight:600">+8.2%</span>→<span style="color:#f87171;font-weight:600">-4.3%</span> eventual</td>
 <td>[Not covered by Finny]</td>
 <td>⚠️ ASYMMETRIC: Rocky calls EPS up; Diffy predicts <em>eventual</em> EPS down as demand destruction lags (6–8 weeks). This is <strong>not a conflict</strong> if Diffy is talking <em>forward</em> EPS (4–8 weeks out) vs. Rocky&#39;s current consensus. But Diffy must clarify the timeline.</td>
 </tr>
 <tr>
 <td>Semiconductors (SMH)</td>
-<td>-4.5% consensus</td>
-<td>-15% capex scenario</td>
-<td>25% EPS growth (to $5.60) implies +25%, not -4.5%</td>
-<td>⚠️ <strong>CONFLICT</strong>: Rocky says semis EPS down 4.5% <em>now</em> (consensus); Finny assumes +25% EPS growth <em>forward</em>. These are <em>compatible</em> if Finny is modeling FY2570 (forward) vs. Rocky&#39;s near-term (current consensus). Finny should clarify whether $5.60 is FY2569 or FY2570.</td>
+<td><span style="color:#f87171;font-weight:600">-4.5%</span> consensus</td>
+<td><span style="color:#f87171;font-weight:600">-15%</span> capex scenario</td>
+<td>25% EPS growth (to $5.60) implies <span style="color:#4ade80;font-weight:600">+25%</span>, not <span style="color:#f87171;font-weight:600">-4.5%</span></td>
+<td>⚠️ <strong>CONFLICT</strong>: Rocky says semis EPS down 4.5% <em>now</em> (consensus); Finny assumes <span style="color:#4ade80;font-weight:600">+25%</span> EPS growth <em>forward</em>. These are <em>compatible</em> if Finny is modeling FY2570 (forward) vs. Rocky&#39;s near-term (current consensus). Finny should clarify whether $5.60 is FY2569 or FY2570.</td>
 </tr>
 </tbody></table></div>
 <p><strong>Critical clarification needed for Tony</strong>: </p>
@@ -3332,7 +3332,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 </tr>
 <tr>
 <td>Precedent quality</td>
-<td>Aramco +26% profit = pricing power; historical supply shocks last 6+ months (Arab Oil Embargo, 1973).</td>
+<td>Aramco <span style="color:#4ade80;font-weight:600">+26%</span> profit = pricing power; historical supply shocks last 6+ months (Arab Oil Embargo, 1973).</td>
 <td>Ukraine 2022 ($130→$95 in 90 days) = fast reversal precedent, but 6–7M bbl/day shock, not 1M. Magnitude adjustment needed.</td>
 </tr>
 <tr>
