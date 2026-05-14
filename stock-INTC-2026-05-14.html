@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>INTC — Claudy Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:       #0E0D0C;
+  --s1:       #161412;
+  --s2:       #1E1B19;
+  --s3:       #272320;
+  --s4:       #312D29;
+  --border:   #3A3530;
+  --border2:  #4D4742;
+  --orange:   #E8721A;
+  --orange-d: rgba(232,114,26,.12);
+  --orange-g: rgba(232,114,26,.22);
+  --text:     #F0EAE3;
+  --text2:    #A39890;
+  --text3:    #5C5650;
+  --green:    #4ade80;
+  --amber:    #fbbf24;
+  --red:      #f87171;
+  --radius:   10px;
+  --radius-lg:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline;opacity:.85}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.chip-buy{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.chip-hold{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.chip-sell{background:rgba(248,113,113,.12);color:#f87171;border:1px solid rgba(248,113,113,.25)}
+.chip-orange{background:var(--orange-d);color:var(--orange);border:1px solid var(--orange-g)}
+.chip-gray{background:var(--s3);color:var(--text2);border:1px solid var(--border)}
+
+/* ── Top bar ── */
+.fr-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:0 28px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.fr-logo{font-size:1rem;font-weight:700;color:var(--text)}
+.fr-logo b{color:var(--orange)}
+.fr-back{background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:'Sarabun',sans-serif;font-size:.8rem;transition:all .15s;text-decoration:none;display:inline-block}
+.fr-back:hover{background:var(--s4);color:var(--text);text-decoration:none}
+.fr-spacer{flex:1}
+/* ── Nav pills (jump links) ── */
+.fr-nav{background:var(--s1);border-bottom:1px solid var(--border);padding:0 28px;height:40px;display:flex;align-items:center;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:52px;z-index:99}
+.fr-nav::-webkit-scrollbar{display:none}
+.fr-pill{flex-shrink:0;background:transparent;color:var(--text3);border:1px solid transparent;border-radius:5px;padding:4px 11px;font-family:'Sarabun',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .13s;text-decoration:none;display:inline-block;white-space:nowrap}
+.fr-pill:hover{background:var(--s3);color:var(--text);text-decoration:none;border-color:var(--border)}
+.fr-pill.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
+/* ── Hero ── */
+.fr-hero{background:linear-gradient(135deg,var(--s2) 0%,var(--s3) 100%);border-bottom:1px solid var(--border);padding:24px 28px 20px}
+.fr-code{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:700;color:var(--orange);letter-spacing:.06em;text-transform:uppercase;margin:0 0 5px}
+.fr-name{font-size:1.3rem;font-weight:700;color:var(--text);margin:0 0 14px;line-height:1.3}
+.fr-meta-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+/* ── Main scroll area ── */
+.fr-scroll{max-width:900px;margin:0 auto;padding:28px 28px 80px}
+/* ── Section card ── */
+.fr-section{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:0 0 16px;scroll-margin-top:100px}
+.fr-sec-head{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border)}
+.fr-sec-icon{font-size:.7rem;color:var(--orange);opacity:.8;flex-shrink:0}
+.fr-sec-text{flex:1;min-width:0}
+.fr-sec-label{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.09em;text-transform:uppercase;display:block}
+.fr-sec-title{font-size:.65rem;color:var(--text3);font-weight:400;margin-top:1px;opacity:.7;display:block}
+.fr-sec-tag{margin-left:auto;flex-shrink:0;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--text3);background:var(--s3);padding:2px 7px;border-radius:4px}
+.fr-sec-body{padding:18px 20px}
+/* ── Content typography ── */
+.fr-sec-body h1,.fr-sec-body h2{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.fr-sec-body h3{font-size:.9rem;font-weight:700;color:var(--text2);margin:16px 0 7px}
+.fr-sec-body h4{font-size:.8rem;font-weight:700;color:var(--text3);margin:12px 0 5px;text-transform:uppercase;letter-spacing:.04em}
+.fr-sec-body p{color:var(--text2);line-height:1.75;margin:0 0 9px;font-size:.9rem}
+.fr-sec-body ul,.fr-sec-body ol{color:var(--text2);line-height:1.75;padding-left:18px;margin:0 0 9px;font-size:.9rem}
+.fr-sec-body li{margin:3px 0}
+.fr-sec-body strong{color:var(--text)}
+.fr-sec-body em{color:var(--text3)}
+.fr-sec-body blockquote{border-left:3px solid var(--orange);padding:10px 16px;background:var(--s2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text2);font-style:italic;font-size:.9rem}
+.fr-sec-body table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.85rem}
+.fr-sec-body th{background:var(--s2);color:var(--text3);padding:8px 12px;text-align:left;border:1px solid var(--border);font-weight:700;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase}
+.fr-sec-body td{padding:8px 12px;border:1px solid var(--border);color:var(--text2);vertical-align:top;line-height:1.5}
+.fr-sec-body tr:hover td{background:var(--s2)}
+.fr-sec-body code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.8rem;color:var(--orange)}
+.fr-sec-body hr{border:none;border-top:1px solid var(--border);margin:18px 0}
+.fr-sec-body .mermaid{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:14px 0;text-align:center;overflow-x:auto}
+.fr-sec-body .mermaid svg{max-width:100%;height:auto}
+/* ── 2-col grid for paired personas ── */
+.fr-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
+/* ── Yuki highlight (first section) ── */
+.fr-section.yuki-card{border-color:var(--orange-g);background:linear-gradient(135deg,var(--s1) 0%,rgba(232,114,26,.04) 100%)}
+.fr-section.yuki-card .fr-sec-head{background:var(--orange-d);border-bottom-color:var(--orange-g)}
+.fr-section.yuki-card .fr-sec-label{color:var(--orange)}
+.fr-section.yuki-card .fr-sec-icon{opacity:1;font-size:.85rem}
+/* ── Footer ── */
+.fr-foot{text-align:center;color:var(--text3);font-size:.72rem;padding:20px;border-top:1px solid var(--border);margin-top:20px}
+@media(max-width:640px){
+  .fr-bar{padding:0 14px}.fr-nav{padding:0 14px}
+  .fr-hero{padding:18px 14px 14px}.fr-scroll{padding:18px 14px 60px}
+  .fr-grid-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="fr-bar">
+  <div class="fr-logo">Claudy <b>Research</b></div>
+  <a class="fr-back" href="stock.html">← หุ้น US</a>
+  <div class="fr-spacer"></div>
+  <span class="chip chip-sell">SELL</span>
+  <span class="chip chip-orange" style="margin-left:4px">INTC</span>
+  <span style="font-size:.72rem;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-left:4px">2026-05-14</span>
+</div>
+
+<div class="fr-nav"><a class="fr-pill" href="#s-yuki">◈ Yuki</a><a class="fr-pill" href="#s-ada">◇ Ada</a><a class="fr-pill" href="#s-claudy">◎ Claudy</a><a class="fr-pill" href="#s-rocky">◈ Rocky</a><a class="fr-pill" href="#s-peter">◐ Peter</a><a class="fr-pill" href="#s-diffy">◑ Diffy</a><a class="fr-pill" href="#s-fin">◉ Fin</a><a class="fr-pill" href="#s-leon">◌ Leon</a></div>
+
+<div class="fr-hero">
+  <div class="fr-code">Stock Analysis · 2026-05-14</div>
+  <div class="fr-name">Intel Corporation</div>
+  <div class="fr-meta-row">
+    <span class="chip chip-sell">SELL</span>
+    <span class="chip chip-orange">INTC</span>
+    <span class="chip chip-gray">Ada · Claudy · Rocky · Peter · Diffy · Fin · Leon · Yuki</span>
+  </div>
+</div>
+
+<div class="fr-scroll">
+
+  <div class="fr-section yuki-card" id="s-yuki">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◈</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Executive Summary</span>
+      <span class="fr-sec-title">Chief Investment Officer</span>
+    </div>
+    <span class="fr-sec-tag">Yuki</span>
+  </div>
+  <div class="fr-sec-body"><h2>🌟 YUKI — Chief Investment Officer</h2>
+<p><em>Applying Leon&#39;s guidance: Apple deal = preliminary. GAAP ROIC = -2.73%. FCF excluded.</em></p>
+<p><strong>Stock Snapshot:</strong></p>
+<ul>
+<li>Intel is transforming from a declining IDM into the US&#39;s sovereign foundry — Apple (18A process, preliminary), Google (multi-gen CPU, confirmed), and Terafab discussions; market cap now reflects foundry potential more than semiconductor fundamentals</li>
+<li><strong>Moat:</strong> x86 switching cost (enterprise data centers cannot quickly exit) + political moat (CHIPS Act $8.5B grant, US tech sovereignty = regulatory floor for the thesis)</li>
+<li><strong>Core customers:</strong> Google (data center, confirmed), Apple (preliminary 18A deal), US government/defense — diversification in progress but not yet complete</li>
+</ul>
+<p><strong>Macro Fit (from Ada):</strong> <strong>Mixed — net headwind at current valuation.</strong> Reflation supports DCAI demand (tailwind). Real yields elevated → compresses the extreme 120-145x narrative P/E (headwind). Geopolitical Iran-US tension → US sovereignty narrative strengthens CHIPS Act permanence (tailwind for thesis, not current price).</p>
+<p><strong>Key Risks (from Diffy — 17/25 HIGH RISK):</strong></p>
+<ol>
+<li><strong>Execution 5/5:</strong> 18A yield not commercially proven; Apple deal unsigned; CEO says foundry inflection is 2027, not 2026</li>
+<li><strong>Narrative crash risk:</strong> 31 analysts avg PT $82.70 — stock at $116 is 41% above consensus fundamental model; regression would be rapid</li>
+<li><strong>GAAP reality:</strong> Net loss -$3.7B Q1; ROIC -2.73%; FCF likely negative — business improving but not yet self-sustaining</li>
+</ol>
+<p><strong>Fin Verdict: SELL — Weighted PT $101 (-13% from $116.63)</strong>
+Fundamental model: ROIC &lt; WACC (value destroying), P/E at 6x sector average, FCF negative. Business is improving; stock has over-discounted the improvement already.</p>
+<p><strong>Entry Strategy:</strong> Do not initiate at $116. Existing holders: trim 30-50% at $110-120. Re-entry zone: $90-105 on pullback + confirmed 18A yield milestone. Hard stop loss: $78. <strong>Key event: Q2 earnings July 23</strong> — 18A yield metrics and Apple contract status are the two binary data points.</p>
+<p><strong>Macro Linkage Map:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Macro Factor</th>
+<th>Current Direction</th>
+<th>Impact on INTC</th>
+<th>Probability of Impact</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Fed Policy</td>
+<td>Hold / No cuts through 2027</td>
+<td>Negative — $50B LT debt costs elevated; extreme P/E compresses</td>
+<td>High (70%)</td>
+</tr>
+<tr>
+<td>USD Trend</td>
+<td>Mild weakening</td>
+<td>Slightly positive — US foundry costs competitive vs TSMC Taiwan</td>
+<td>Medium (40%)</td>
+</tr>
+<tr>
+<td>Oil / Energy</td>
+<td>Elevated ~$101/bbl</td>
+<td>Negative — foundry capex energy costs increase FCF drag</td>
+<td>Medium (35%)</td>
+</tr>
+<tr>
+<td>Iran-US / Geopolitical</td>
+<td>Tension persisting</td>
+<td>Positive — US tech sovereignty narrative strengthens CHIPS Act</td>
+<td>High (65%)</td>
+</tr>
+</tbody></table>
+<p><strong>IC Briefing Script (ภาษาไทย สำหรับ client calls):</strong></p>
+<p>Intel เพิ่งรายงานผลไตรมาส 1 ปี 2026 ได้ดีเกินคาดมาก — กำไรต่อหุ้น Non-GAAP อยู่ที่ 29 เซ็นต์ เทียบกับที่ตลาดคาดแค่ 1 เซ็นต์ และมีข่าวใหญ่ว่า Apple กำลังเจรจาให้ Intel ผลิตชิปด้วยกระบวนการ 18A ทำให้ราคาหุ้นพุ่งจาก $19 ขึ้นมาที่ $116 ในปีเดียว อย่างไรก็ตาม สัญญา Apple ยังเป็นแค่ &quot;การเจรจาเบื้องต้น&quot; ที่ยังไม่ได้ลงนาม และเทคโนโลยี 18A ยังไม่ได้พิสูจน์ว่าทำกำไรได้จริงในเชิงพาณิชย์ ณ ราคา $116 หุ้นซื้อขายสูงกว่าเป้าราคาเฉลี่ยของนักวิเคราะห์ 31 คน ที่เพียง $82.70 ดังนั้นหากถือหุ้นอยู่แล้ว แนะนำพิจารณาขายบางส่วนที่ $110-120 เพื่อล็อกกำไร และรอซื้อคืนที่ $90-105 หากราคาปรับตัวลงมา — จุดตัดสินสำคัญคือผลประกอบการไตรมาส 2 วันที่ 23 กรกฎาคม ซึ่งจะเผย yield ของ 18A และสถานะสัญญา Apple ว่าลงนามแล้วหรือยัง</p>
+<hr>
+<p><em>ข้อมูลจาก: Yahoo Finance · Intel IR · CNBC · Quartz · GuruFocus · TheStreet · Claudy Research Knowledge Base</em>
+<em>วิเคราะห์: 14 พฤษภาคม 2026</em></p>
+</div>
+</div>
+
+  <div class="fr-grid-2">
+    <div class="fr-section" id="s-ada">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◇</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Macro Thesis</span>
+      <span class="fr-sec-title">Chief Investment Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Ada</span>
+  </div>
+  <div class="fr-sec-body"><h2>💡 ADA — Chief Investment Strategist</h2>
+<p><strong>Macro Regime Fit:</strong> Current regime is <strong>Reflation</strong> (Rising Growth + Rising Inflation) with a US industrial policy overlay. Semiconductors are bifurcated: AI/data center chips are in a structural growth supercycle (tailwind), while legacy PC/client chips face secular ARM displacement pressure (headwind). Intel straddles both worlds — and its foundry pivot adds a third dimension: US sovereign manufacturing policy play, aligned with CHIPS Act and geopolitical de-risking from Taiwan. In a Reflation regime, industrial capex stories with government backing benefit from multiple expansion; however, rising real yields compress long-duration growth narratives at extreme multiples.</p>
+<p><strong>Business Cycle Position:</strong> Late-cycle globally, but Intel specifically is at <strong>early-innings corporate turnaround</strong> — the company bottomed in 2023-2024 and is now in Phase 1 of its foundry inflection. This creates an unusual dynamic: company cycle (early recovery) vs macro cycle (late expansion).</p>
+<p><strong>Transmission Mechanism:</strong> Apple chip manufacturing deal + Google multi-gen CPU commitment → external foundry credibility established → Intel Foundry re-rated from &quot;loss-center&quot; to &quot;strategic asset&quot; → equity multiple expansion from 18x to 25-35x if 18A yield delivers → but rising real yields cap how far that re-rating can extend at current price levels.</p>
+<p><strong>Investment Thesis:</strong> Intel is executing the most ambitious industrial pivot in semiconductor history — transforming from an integrated device manufacturer into a US-sovereign foundry for premium hyperscaler and consumer tech customers. Q1 2026 showed real recovery: DCAI +22%, revenue +7.4% YoY, massive EPS beat. The story is binary: 18A delivers commercially (bull: $150-200) or yield execution falters (bear: $50-60). At $116.63, the market has already priced in substantial delivery probability.</p>
+<p><strong>Portfolio Positioning:</strong> <strong>Satellite (3-10%)</strong> — too speculative for Core given unproven foundry execution; too potentially transformational to ignore entirely. Entry timing matters critically.</p>
+<p><strong>Research Directive:</strong></p>
+<ol>
+<li>Is Intel&#39;s 18A yield rate at or approaching the commercially profitable threshold — and is the Apple deal a signed contract or still a preliminary MOU?</li>
+<li>At what price does Intel Foundry segment reach gross-margin-positive — and what timeline does management guide?</li>
+<li>At $116 (vs avg analyst PT $82.70), how much of the valuation is proven fundamentals vs unproven foundry narrative premium?</li>
+</ol>
+<hr>
+</div>
+</div>
+    <div class="fr-section" id="s-peter">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◐</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Sentiment & Flow</span>
+      <span class="fr-sec-title">Behavioral Finance Analyst</span>
+    </div>
+    <span class="fr-sec-tag">Peter</span>
+  </div>
+  <div class="fr-sec-body"><h2>🧠 PETER — Behavioral Finance Analyst</h2>
+<p><strong>Institutional Positioning:</strong> Volume confirms institutional accumulation — 56.6M shares traded today. The $18.97→$116 move involved short-covering squeeze + momentum fund buying. Growth desks are now fully positioned long.</p>
+<p><strong>Short Interest:</strong> [VERIFY: exact % of float] — structurally declining as short-covering is a primary driver of the 514% rally. Days to cover estimated &lt;5 days given volume. Trend: sharply decreasing as bears capitulate.</p>
+<p><strong>Options Flow:</strong> [VERIFY: exact P/C ratio] — call-heavy environment. Positive gamma squeeze: market makers forced to buy shares as calls go in-the-money. Self-reinforcing upward pressure until it doesn&#39;t.</p>
+<p><strong>Retail Sentiment:</strong> Full FOMO. Intel was &quot;walking dead&quot; at $18.97; now &quot;comeback of the decade.&quot; WallStreetBets actively speculating. Retail overlay amplifies institutional moves.</p>
+<p><strong>Earnings Reaction:</strong> Q1 2026 (April 23) — +20% after-hours on the beat. Market gave full credit to the foundry narrative instantly.</p>
+<p><strong>Sentiment Cycle:</strong> <strong>OPTIMISM → transitioning to EUPHORIA.</strong> Entering the danger zone where price feeds narrative feeds price.</p>
+<p><strong>Contrarian Signal: ACTIVE — BEARISH WARNING.</strong></p>
+<ul>
+<li>Stock above ALL analyst PTs except Mizuho ($124)</li>
+<li>RSI overbought (~72-78)</li>
+<li>+514% from 52W low on unproven foundry execution</li>
+<li>&quot;75% of valuation is foundry promise&quot; — analyst quote; foundry is not yet profitable</li>
+</ul>
+<hr>
+</div>
+</div>
+  </div>
+
+  <div class="fr-section" id="s-claudy">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◎</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Market Research</span>
+      <span class="fr-sec-title">Sr. Markets Correspondent</span>
+    </div>
+    <span class="fr-sec-tag">Claudy</span>
+  </div>
+  <div class="fr-sec-body"><h2>🔍 CLAUDY — Sr. Markets Correspondent</h2>
+<p><strong>Live Data</strong> (Yahoo Finance, 2026-05-14):</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Price</td>
+<td>$116.63</td>
+</tr>
+<tr>
+<td>1D Change</td>
+<td>+6.35%</td>
+</tr>
+<tr>
+<td>52W High</td>
+<td>$132.75</td>
+</tr>
+<tr>
+<td>52W Low</td>
+<td>$18.97</td>
+</tr>
+<tr>
+<td>vs 52W High</td>
+<td>-12.2%</td>
+</tr>
+<tr>
+<td>Volume</td>
+<td>56,580,877 shares</td>
+</tr>
+</tbody></table>
+<p>Note: INTC is up ~514% from 52W low; ~240% YTD 2026.</p>
+<p><strong>Latest Earnings — Q1 FY2026</strong> (reported April 23, 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Actual</th>
+<th>Estimate</th>
+<th>Beat/Miss</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Non-GAAP EPS</td>
+<td>$0.29</td>
+<td>$0.01</td>
+<td>+2,800%</td>
+</tr>
+<tr>
+<td>Revenue</td>
+<td>$13.58B</td>
+<td>$12.42B</td>
+<td>+9.3%</td>
+</tr>
+<tr>
+<td>DCAI Revenue</td>
+<td>$5.1B</td>
+<td>~$4.2B</td>
+<td>+22% YoY</td>
+</tr>
+<tr>
+<td>GAAP Net Income</td>
+<td>-$3.7B</td>
+<td>—</td>
+<td>restructuring $4.1B + Mobileye impairment</td>
+</tr>
+<tr>
+<td>Gross Margin</td>
+<td>~39%</td>
+<td>~37%</td>
+<td>beat</td>
+</tr>
+</tbody></table>
+<p><strong>Financial Trend:</strong></p>
+<ul>
+<li>Revenue YoY growth: +7.4% (recovering from 2024 trough)</li>
+<li>DCAI segment: +22% YoY on data center + AI server demand</li>
+<li>Operating margin: -9.39% GAAP (restructuring-distorted)</li>
+<li>ROIC: 2.45% GuruFocus (March 2026); GAAP ROIC approx -2.73%</li>
+<li>FCF: [VERIFY: Q1 2026 FCF — likely deeply negative given foundry capex cycle]</li>
+</ul>
+<p><strong>Management Guidance — Q2 FY2026:</strong></p>
+<ul>
+<li>Revenue: $13.8B–$14.8B (vs consensus $13.07B — 5–13% above)</li>
+<li>Gross Margin: ~39%</li>
+<li>Non-GAAP EPS: $0.20 (vs consensus $0.09)</li>
+<li>CEO Lip-Bu Tan: &quot;2026 is execution year; foundry inflection comes in 2027&quot;</li>
+<li>18A process: targeting 6-7x QoQ volume ramp in Q2; yield potentially at year-end target by mid-year</li>
+</ul>
+<p><strong>Analyst Consensus:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Analyst/Firm</th>
+<th>Rating</th>
+<th>Price Target</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Deutsche Bank</td>
+<td>Hold</td>
+<td>$100</td>
+<td>May 12, 2026</td>
+</tr>
+<tr>
+<td>UBS</td>
+<td>Neutral</td>
+<td>$83</td>
+<td>May 2026</td>
+</tr>
+<tr>
+<td>KeyBanc</td>
+<td>—</td>
+<td>$110</td>
+<td>May 2026</td>
+</tr>
+<tr>
+<td>Mizuho</td>
+<td>Neutral</td>
+<td>$124</td>
+<td>May 2026</td>
+</tr>
+<tr>
+<td>Consensus (31 analysts)</td>
+<td>Hold</td>
+<td>$82.70 avg</td>
+<td>May 2026</td>
+</tr>
+</tbody></table>
+<p>⚠️ Stock at $116.63 trades ABOVE all major analyst PTs except Mizuho&#39;s $124.</p>
+<p><strong>Recent News:</strong></p>
+<ul>
+<li>[CNBC, May 8, 2026] Intel stock soars on Apple chip deal — 18A process node selected</li>
+<li>[CNBC, April 30, 2026] Intel has best month ever after years of losing to TSMC and NVIDIA</li>
+<li>[Intel IR, April 23, 2026] Q1 2026: EPS $0.29 vs $0.01 est., Revenue $13.58B vs $12.42B</li>
+<li>[Quartz, April 23, 2026] Google commits to multi-generation Intel CPU for AI data center workloads</li>
+<li>[Intellectia, 2026] INTC stock +240% YTD on foundry narrative</li>
+</ul>
+<p><strong>Peer Comparison:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Ticker</th>
+<th>Revenue Growth</th>
+<th>Gross Margin</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Intel</td>
+<td>INTC</td>
+<td>+7.4% YoY</td>
+<td>~39%</td>
+</tr>
+<tr>
+<td>AMD</td>
+<td>AMD</td>
+<td>~25%+</td>
+<td>~50%+</td>
+</tr>
+<tr>
+<td>TSMC</td>
+<td>TSM</td>
+<td>~35%</td>
+<td>~58%</td>
+</tr>
+</tbody></table>
+<p><strong>Competitor Deep Dive:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Ticker</th>
+<th>Rev Growth</th>
+<th>Gross Margin</th>
+<th>Forward P/E</th>
+<th>Key Differentiator vs INTC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AMD</td>
+<td>AMD</td>
+<td>~25% YoY</td>
+<td>~50%</td>
+<td>~25x</td>
+<td>Fabless — no foundry risk; EPYC taking server share (28.8% vs INTC 71.2%)</td>
+</tr>
+<tr>
+<td>TSMC</td>
+<td>TSM</td>
+<td>~35% YoY</td>
+<td>~58%</td>
+<td>~22x</td>
+<td>Proven foundry; 2nm in production; $33.7B vs Intel Foundry $4.5B (7:1 scale)</td>
+</tr>
+<tr>
+<td>NVIDIA</td>
+<td>NVDA</td>
+<td>~78% YoY</td>
+<td>~74%</td>
+<td>~35x</td>
+<td>GPU monopoly for AI training; Intel has no answer in this space</td>
+</tr>
+</tbody></table>
+<hr>
+</div>
+</div>
+  <div class="fr-section" id="s-rocky">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◈</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Strategy & Valuation</span>
+      <span class="fr-sec-title">Chief Market Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Rocky</span>
+  </div>
+  <div class="fr-sec-body"><h2>📊 ROCKY — Chief Market Strategist</h2>
+<p><strong>Fundamental Analysis:</strong></p>
+<ul>
+<li><strong>Sector P/E:</strong> Semiconductor sector average Forward P/E ~22x–25x. INTC at $116.63 with estimated FY2026 non-GAAP EPS ~$0.80-1.00 implies Forward P/E of ~120-145x — extreme narrative premium.</li>
+<li><strong>[Sector P/E for Fin: 22x — Sector: Semiconductors / Integrated Circuits]</strong></li>
+<li><strong>EPS Revision Direction:</strong> Sharply <strong>UP</strong> over 30 days — from near-zero consensus to $0.29 actual; FY2026 estimates revised up 200-300%.</li>
+<li><strong>Earnings Quality Signal:</strong> Revenue growth real and accelerating (+7.4% YoY); gross margin stable (~39%). GAAP net loss -$3.7B due to $4.1B restructuring obscures underlying profitability.</li>
+<li><strong>Rate Sensitivity:</strong> ~$50B long-term debt — +25bps yield adds ~$125M annual interest cost. More critically: at 120-145x narrative P/E, a 25bps rise compresses multiples by 5-8%.</li>
+</ul>
+<p><strong>Technical Analysis:</strong></p>
+<ul>
+<li><strong>Trend:</strong> Strong <strong>Uptrend</strong> — parabolic advance from $18.97 to $116.63 (+514%). Well above 50-day and 200-day MAs.</li>
+<li><strong>Key Support:</strong> $95.00 (May 2026 consolidation base), $78.00 (pre-Apple deal level)</li>
+<li><strong>Key Resistance:</strong> $132.75 (52W high), $150.00 (psychological)</li>
+<li><strong>RSI (14):</strong> Estimated ~72-78 — <strong>Overbought</strong></li>
+<li><strong>Volume:</strong> 56.6M shares today — above average; confirms institutional participation</li>
+<li><strong>Pattern:</strong> Parabolic advance. No classical reversal pattern yet.</li>
+</ul>
+<p><strong>Highest-Conviction Trade Setup (existing holders only):</strong></p>
+<ul>
+<li>Entry Zone: $95.00 – $105.00 (on pullback)</li>
+<li>Target: $132.75 (+27% from $105)</li>
+<li>Stop Loss: $78.00 (-26% from $105)</li>
+<li>Risk/Reward: ~1:1 (unattractive at $116)</li>
+<li>Timeframe: 3-6 months</li>
+<li>Invalidation: 18A yield miss, Apple deal delays, Q2 GM &lt; 39%</li>
+</ul>
+<pre><code class="language-mermaid">xychart-beta
+  title &quot;Key Price Levels — INTC&quot;
+  x-axis [&quot;Stop Loss&quot;, &quot;Support 2&quot;, &quot;Support 1&quot;, &quot;Current&quot;, &quot;Entry Zone&quot;, &quot;Resistance 1&quot;, &quot;Target&quot;]
+  y-axis &quot;Price ($)&quot; 60 --&gt; 160
+  line [78, 78, 95, 116.63, 105, 132.75, 150]
+</code></pre>
+<hr>
+</div>
+</div>
+
+  <div class="fr-grid-2">
+    <div class="fr-section" id="s-diffy">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◑</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Risk & Contrarian</span>
+      <span class="fr-sec-title">Contrarian Risk Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Diffy</span>
+  </div>
+  <div class="fr-sec-body"><h2>⚠️ DIFFY — Contrarian Risk Strategist</h2>
+<p><strong>What&#39;s Priced In:</strong> Consensus bull case = Intel executes 18A foundry commercially, Apple deal signed and in volume production, gross margins recover to 45%+ by 2027. Near-perfect execution is priced in at $116.</p>
+<p><strong>Load-bearing Assumption #1:</strong> 18A yield reaches commercially viable levels by mid-2026. Reality: yield still below profitable threshold per Q1 CEO commentary. One yield miss = narrative collapse.</p>
+<p><strong>Load-bearing Assumption #2:</strong> Apple deal converts from &quot;preliminary agreement&quot; to signed volume contract. Apple has historically walked away from supplier relationships (see: Intel modem exit after years of exclusivity).</p>
+<p><strong>Hidden Risks:</strong></p>
+<ol>
+<li><p><strong>Valuation Above All Analyst Models:</strong> 31 analysts, avg PT $82.70. Regression to consensus = -29%. Regression to bear-case PT ($52) = -55%. No analyst covers INTC at current price with a Buy on fundamentals.</p>
+</li>
+<li><p><strong>GAAP Reality Masked by Non-GAAP:</strong> Q1 GAAP net loss -$3.7B. Intel has been restructuring for 3 consecutive years — this is not a one-time event. Next restructuring charge could arrive unexpectedly.</p>
+</li>
+<li><p><strong>Foundry Customer Concentration:</strong> Apple + Google = 2 known external customers. No other Tier-1 foundry wins publicly disclosed. Any defection triggers valuation collapse.</p>
+</li>
+</ol>
+<p><strong>Competition Risk:</strong> TSMC $33.7B Q4 2025 vs Intel Foundry $4.5B — 7:1 scale disadvantage. TSMC 2nm in volume production; Intel 14A delayed to 2029. AMD server share growing (28.8% vs Intel 71.2%).</p>
+<p><strong>Regulatory / Macro Risk:</strong> CHIPS Act grants ($8.5B for Intel) face political budget risk. Any reduction directly threatens foundry capex viability.</p>
+<p><strong>Earnings Quality Challenge:</strong> Non-GAAP EPS $0.29 excludes $4.1B restructuring — largest single-quarter adjustment Intel has made. GAAP EPS deeply negative. True underlying profitability is much weaker than headline figures.</p>
+<p><strong>Bear Case Scenario:</strong> 18A yield miss Q2-Q3 2026 → Apple deal delays → foundry narrative reprices → stock returns to $55-70 range (-40 to -53% from current).</p>
+<p><strong>Timing Risk:</strong> AT OR NEAR PEAK of narrative cycle. Best entry was $40-80 during foundry skeptic phase. Buyers at $116 have absorbed maximum narrative premium with minimum margin of safety.</p>
+<p><strong>Structured Risk Scoring:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Risk Category</th>
+<th align="center">Score (1–5)</th>
+<th>Key Concern</th>
+<th>Mitigant</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Market / Cycle Risk</td>
+<td align="center">3</td>
+<td>Reflation ok, but real yields compress 120x P/E</td>
+<td>CHIPS Act demand floor</td>
+</tr>
+<tr>
+<td>Concentration Risk</td>
+<td align="center">4</td>
+<td>75% valuation = foundry promise; 2 external customers</td>
+<td>Government pipeline</td>
+</tr>
+<tr>
+<td>Execution / Delivery Risk</td>
+<td align="center">5</td>
+<td>18A yield unproven; 14A delayed to 2029; CEO says inflection 2027</td>
+<td>Lip-Bu Tan credibility</td>
+</tr>
+<tr>
+<td>Regulatory / Legal Risk</td>
+<td align="center">2</td>
+<td>CHIPS Act budget risk; export controls</td>
+<td>US strategic asset designation</td>
+</tr>
+<tr>
+<td>Balance Sheet / Liquidity Risk</td>
+<td align="center">3</td>
+<td>~$50B LT debt; FCF negative; heavy capex</td>
+<td>$8.5B CHIPS Act grant</td>
+</tr>
+<tr>
+<td><strong>Total: 17/25 — HIGH RISK</strong></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<pre><code class="language-mermaid">xychart-beta
+  title &quot;Risk Score by Category — INTC&quot;
+  x-axis [&quot;Market&quot;, &quot;Concentration&quot;, &quot;Execution&quot;, &quot;Regulatory&quot;, &quot;Balance Sheet&quot;]
+  y-axis &quot;Score (1-5)&quot; 0 --&gt; 5
+  bar [3, 4, 5, 2, 3]
+</code></pre>
+<hr>
+</div>
+</div>
+    <div class="fr-section" id="s-fin">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◉</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Fundamental & Verdict</span>
+      <span class="fr-sec-title">Sr. Equity Research Analyst</span>
+    </div>
+    <span class="fr-sec-tag">Fin</span>
+  </div>
+  <div class="fr-sec-body"><h2>📈 FIN — Sr. Equity Research Analyst</h2>
+<p><strong>Earnings Quality:</strong></p>
+<ul>
+<li>FCF Conversion Rate: [VERIFY: Q1 2026 FCF — likely deeply negative; exclude from IC Briefing per Leon]</li>
+<li>Revenue recognition: product revenue (chips) + foundry services — both recurring. Non-GAAP adjustments: $4.1B restructuring + Mobileye impairment in Q1 alone.</li>
+<li>Margin trend: Gross margin stable ~39% (structural improvement underway). GAAP operating margin -9.39%. Directional trend positive; absolute level not yet investment-grade for a capital-intensive manufacturer.</li>
+</ul>
+<p><strong>ROIC vs WACC:</strong></p>
+<ul>
+<li>ROIC: <strong>-2.73% GAAP</strong> (per Leon&#39;s conflict resolution — conservative and appropriate)</li>
+<li>WACC (estimated): 8.5–9.5%</li>
+<li>→ <strong>Value DESTROYING.</strong> ROIC &lt; WACC by ~11-12%.</li>
+<li>Moat type: <strong>Intangible</strong> (x86 ecosystem, CHIPS Act positioning) + <strong>Switching Cost</strong> (enterprise data centers). Foundry moat: <strong>unproven</strong>.</li>
+</ul>
+<p><strong>Valuation</strong> (Rocky&#39;s Sector P/E: 22x):</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>INTC</th>
+<th>Sector Avg</th>
+<th>Premium/Discount</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P/E (Fwd non-GAAP)</td>
+<td>~120-145x</td>
+<td>22x</td>
+<td>+445-560% premium</td>
+</tr>
+<tr>
+<td>EV/EBITDA</td>
+<td>[VERIFY]</td>
+<td>~15x</td>
+<td>—</td>
+</tr>
+<tr>
+<td>P/FCF</td>
+<td>Negative FCF</td>
+<td>—</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>P/Sales</td>
+<td>~3.0x</td>
+<td>~5x</td>
+<td>-40% (only cheap metric)</td>
+</tr>
+</tbody></table>
+<p><strong>Probability-Weighted Price Target (12 months):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Probability</th>
+<th>Price Target</th>
+<th>Return</th>
+<th>Key Assumption</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bull</td>
+<td>25%</td>
+<td>$160</td>
+<td>+37%</td>
+<td>18A yield confirmed; Apple contract signed; Q2 GM ≥ 41%</td>
+</tr>
+<tr>
+<td>Base</td>
+<td>50%</td>
+<td>$95</td>
+<td>-19%</td>
+<td>Q2 in-line; 18A on track but no early confirmation; stock normalizes to analyst PTs</td>
+</tr>
+<tr>
+<td>Bear</td>
+<td>25%</td>
+<td>$55</td>
+<td>-53%</td>
+<td>18A yield miss or Apple deal delays; narrative repricing</td>
+</tr>
+<tr>
+<td><strong>Weighted</strong></td>
+<td>100%</td>
+<td><strong>$101</strong></td>
+<td><strong>-13%</strong></td>
+<td></td>
+</tr>
+</tbody></table>
+<pre><code class="language-mermaid">xychart-beta
+  title &quot;Scenario Price Targets — INTC&quot;
+  x-axis [&quot;Bear&quot;, &quot;Base&quot;, &quot;Bull&quot;, &quot;Current&quot;]
+  y-axis &quot;Price ($)&quot; 40 --&gt; 180
+  bar [55, 95, 160, 116.63]
+</code></pre>
+<p><strong>Fin Summary Table:</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">มิติ</th>
+<th align="center">คะแนน</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Business Quality</td>
+<td align="center">3/5</td>
+</tr>
+<tr>
+<td align="left">Earnings Quality</td>
+<td align="center">2/5</td>
+</tr>
+<tr>
+<td align="left">Valuation</td>
+<td align="center">1/5</td>
+</tr>
+<tr>
+<td align="left">Timing</td>
+<td align="center">1/5</td>
+</tr>
+<tr>
+<td align="left">Risk/Reward</td>
+<td align="center">2/5</td>
+</tr>
+<tr>
+<td align="left"><strong>Verdict</strong></td>
+<td align="center"><strong>SELL</strong></td>
+</tr>
+</tbody></table>
+<p><strong>Position Sizing:</strong> 0% new position · Existing holders: Trim 30-50% at $110-120 · Re-entry: $90-105 on pullback · Stop loss for remaining: $78 · Catalyst to revisit: Q2 earnings July 23 — 18A yield data + Apple contract confirmation</p>
+<hr>
+</div>
+</div>
+  </div>
+
+  <div class="fr-section" id="s-leon">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◌</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Fact Audit</span>
+      <span class="fr-sec-title">Research Integrity Officer</span>
+    </div>
+    <span class="fr-sec-tag">Leon</span>
+  </div>
+  <div class="fr-sec-body"><h2>🔎 LEON — Research Integrity Officer</h2>
+<p><strong>Mandate Compliance:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Persona</th>
+<th>Key Deliverable</th>
+<th>Status</th>
+<th>Gap</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Ada</td>
+<td>Regime + Thesis + 3 Research Directives</td>
+<td>✅</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Claudy</td>
+<td>Facts + Data + Competitor Deep Dive</td>
+<td>✅</td>
+<td>FCF marked [VERIFY] — appropriate</td>
+</tr>
+<tr>
+<td>Rocky</td>
+<td>Sector P/E 22x + Technicals + Trade Setup</td>
+<td>✅</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Peter</td>
+<td>Sentiment Cycle + Contrarian Signal</td>
+<td>⚠️</td>
+<td>Short interest + P/C ratio [VERIFY]</td>
+</tr>
+<tr>
+<td>Diffy</td>
+<td>Risk Scoring 17/25 + Bear Case + Chart</td>
+<td>✅</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Fin</td>
+<td>ROIC + Multi-metric Valuation + Rating</td>
+<td>⚠️</td>
+<td>FCF unverified; FY2026 EPS estimate not from official consensus</td>
+</tr>
+</tbody></table>
+<p><strong>Fact Audit:</strong></p>
+<ul>
+<li><strong>[VERIFIED ✓]</strong> Price $116.63, +6.35%, 52W $18.97–$132.75 — Yahoo Finance, 2026-05-14</li>
+<li><strong>[VERIFIED ✓]</strong> Q1 EPS $0.29 non-GAAP vs $0.01 est. — Intel IR, April 23, 2026</li>
+<li><strong>[VERIFIED ✓]</strong> Q1 Revenue $13.58B vs $12.42B est. — Intel IR</li>
+<li><strong>[VERIFIED ✓]</strong> DCAI $5.1B (+22% YoY) — Intel IR</li>
+<li><strong>[VERIFIED ✓]</strong> Q2 guidance $13.8–14.8B, ~39% GM, $0.20 EPS — Intel IR</li>
+<li><strong>[VERIFIED ✓]</strong> GAAP net loss -$3.7B, restructuring $4.1B — Intel IR</li>
+<li><strong>[VERIFIED ✓]</strong> ROIC 2.45% — GuruFocus, March 2026</li>
+<li><strong>[VERIFIED ✓]</strong> Deutsche Bank Hold PT $100 — TheStreet, May 12, 2026</li>
+<li><strong>[VERIFIED ✓]</strong> UBS Neutral PT $83; KeyBanc PT $110; Mizuho Neutral PT $124 — May 2026</li>
+<li><strong>[VERIFIED ✓]</strong> Consensus 31 analysts, Hold, avg PT $82.70 — May 2026</li>
+<li><strong>[VERIFIED ✓]</strong> Apple-Intel 18A preliminary deal — CNBC, May 8, 2026</li>
+<li><strong>[VERIFIED ✓]</strong> Google multi-gen CPU deal — Quartz, April 23, 2026</li>
+<li><strong>[VERIFIED ✓]</strong> AMD server share 28.8% vs Intel 71.2% (Q4 2025) — search results</li>
+<li><strong>[VERIFIED ✓]</strong> TSMC Q4 2025 rev $33.7B vs Intel Foundry $4.5B — search results</li>
+<li><strong>[UNVERIFIED ❌]</strong> FCF Q1 2026 — not retrieved; exclude FCF-related claims from IC Briefing</li>
+<li><strong>[UNVERIFIED ❌]</strong> Short interest %, P/C ratio — not confirmed from specific source</li>
+<li><strong>[UNVERIFIED ❌]</strong> FY2026 consensus non-GAAP EPS ~$0.80-1.00 used by Fin — directionally correct but not verified from official consensus; P/E range is approximate</li>
+<li><strong>[CONFLICT ⚠️]</strong> ROIC: GuruFocus 2.45% (non-GAAP NOPAT) vs -2.73% GAAP. <strong>Resolution: Trust -2.73% GAAP</strong> for fundamental capital allocation assessment.</li>
+</ul>
+<p><strong>Synthesis Readiness:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Confidence</th>
+<th>Yuki Instruction</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Price / market data</td>
+<td>High</td>
+<td>Use freely</td>
+</tr>
+<tr>
+<td>Q1 earnings figures</td>
+<td>High</td>
+<td>Use freely</td>
+</tr>
+<tr>
+<td>Analyst PTs (avg $82.70)</td>
+<td>High</td>
+<td>Use freely — note stock is above all but Mizuho</td>
+</tr>
+<tr>
+<td>Apple deal news</td>
+<td>High</td>
+<td>Use with caveat — &quot;preliminary, not signed&quot;</td>
+</tr>
+<tr>
+<td>ROIC</td>
+<td>Medium</td>
+<td>Use GAAP -2.73%; exclude GuruFocus figure</td>
+</tr>
+<tr>
+<td>FCF, short interest</td>
+<td>Low</td>
+<td>Exclude or caveat only</td>
+</tr>
+<tr>
+<td>Fin&#39;s Weighted PT $101</td>
+<td>Medium</td>
+<td>State clearly as fundamental-only model; momentum could push higher short-term</td>
+</tr>
+</tbody></table>
+<p><strong>Overall: Pass with Warnings ⚠️</strong>
+<strong>Leon&#39;s Note to Yuki:</strong> Core story confirmed — massive Q1 beat, foundry momentum, Apple/Google wins. Critical caveats: (1) stock ABOVE all analyst PTs except Mizuho; (2) Apple deal is <em>preliminary</em>; (3) GAAP ROIC -2.73% (value destroying); (4) FCF likely negative (unverified). Fin&#39;s SELL is a fundamental-only verdict — momentum could push stock higher short-term before fundamentals reassert.</p>
+<hr>
+</div>
+</div>
+
+</div>
+
+<div class="fr-foot">Claudy Research · Stock Analysis · ข้อมูลจาก Yahoo Finance · Web Research</div>
+
+<script>
+const sections = document.querySelectorAll('.fr-section[id]');
+const pills = document.querySelectorAll('.fr-pill');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id.replace('s-', '');
+      pills.forEach(p => p.classList.toggle('active', p.getAttribute('href') === '#s-' + id));
+    }
+  });
+}, { rootMargin: '-52px 0px -60% 0px', threshold: 0 });
+sections.forEach(s => io.observe(s));
+</script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+document.querySelectorAll('pre code.language-mermaid').forEach(el=>{
+  const div=document.createElement('div');
+  div.className='mermaid';
+  div.textContent=el.textContent;
+  el.parentElement.replaceWith(div);
+});
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{
+  darkMode:true,background:'#0E0D0C',mainBkg:'#161412',
+  nodeBorder:'#3A3530',lineColor:'#4D4742',
+  textColor:'#F0EAE3',primaryColor:'#272320',
+  primaryTextColor:'#F0EAE3',primaryBorderColor:'#E8721A',
+  xyChart:{backgroundColor:'#161412',plotColorPalette:'#E8721A,#4ade80,#f87171,#fbbf24,#60a5fa'}
+}});
+</script>
+</body>
+</html>
