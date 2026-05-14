@@ -68,6 +68,8 @@ a:hover{text-decoration:underline;opacity:.85}
 .panel code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.82rem;color:var(--orange)}
 .panel pre{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;margin:12px 0}
 .panel hr{border:none;border-top:1px solid var(--border);margin:22px 0}
+.panel .mermaid{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:14px 0;text-align:center;overflow-x:auto}
+.panel .mermaid svg{max-width:100%;height:auto}
 .quiz-box{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin:24px 0}
 .quiz-box h3{color:var(--orange);margin:0 0 14px;font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 .quiz-btn{background:var(--orange);color:#fff;border:none;border-radius:7px;padding:8px 20px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:.88rem;margin-top:10px;transition:opacity .15s}
@@ -88,6 +90,22 @@ a:hover{text-decoration:underline;opacity:.85}
   .mob-tab.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
 }
 @media(min-width:769px){.mob-tabs{display:none}}
+/* ── Table wrapper ── */
+.tbl-wrap{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:14px 0}
+.panel .tbl-wrap table{margin:0}
+.panel .tbl-wrap tr:last-child td{border-bottom:none}
+.panel .tbl-wrap tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+/* ── IC Briefing Script box ── */
+.ic-wrap{background:linear-gradient(135deg,var(--s2) 0%,rgba(232,114,26,.06) 100%);border:1px solid var(--orange-g);border-left:3px solid var(--orange);border-radius:var(--radius-lg);padding:18px 22px;margin:14px 0}
+.ic-wrap p{color:var(--text);line-height:2;font-size:.93rem;margin:0 0 6px}
+.ic-wrap p:last-child{margin:0}
+/* ── Non-italic blockquote ── */
+.panel blockquote{font-style:normal}
+.panel blockquote p{margin:0}
+/* ── Orange-dot list bullets ── */
+.panel ul{list-style:none;padding-left:0}
+.panel ul li{position:relative;padding-left:14px;margin:5px 0}
+.panel ul li::before{content:'·';position:absolute;left:0;color:var(--orange);font-weight:700;line-height:1.75}
 </style>
 </head>
 <body>
@@ -358,7 +376,7 @@ a:hover{text-decoration:underline;opacity:.85}
 </ul>
 <hr>
 <h2>REGIME SUMMARY TABLE</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th><strong>Quadrant</strong></th>
@@ -379,7 +397,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>Yields may stay elevated; duration risk</td>
 <td>Recession depth, hard landing</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>CONVICTION &amp; KEY SCENARIO RISKS</h2>
 <h3>Base Case (Probability: 75%)</h3>
@@ -506,7 +524,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <hr>
 <h2>FACTS LAYER: PRICE ACTION &amp; CROSS-ASSET CORRELATIONS (as of market close 10/05/2569)</h2>
 <h3>KEY INDICES &amp; PRICE LEVELS</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Asset</th>
@@ -593,7 +611,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>Up ~5.1% (5-day)</td>
 <td>Strait blockade = windfall; supply inelasticity = pricing power</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>CORRELATION MAP: CROSS-ASSET RELATIONSHIPS (THE STORY PRICES ARE TELLING)</h2>
 <h3>PRIMARY DRIVER: Iran Energy Supply Shock + Stagflation Emergence</h3>
@@ -943,7 +961,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <p>This is Ada&#39;s thesis, and the market is <em>playing it out in real-time</em>. Your edge is seeing the difference.</p>
 <hr>
 <h2>FINAL ACTION SUMMARY (Next 4 Weeks)</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Time Horizon</th>
@@ -971,7 +989,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>Re-assess geopolitical temperature. If ceasefire headlines emerge, exit energy longs. If escalation risk rises (e.g., Israeli/Iranian military moves), hold energy and add hedges (OTM SPX puts).</td>
 <td>TACTICAL</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <p><strong>Report prepared by CLAUDY | Senior Markets Correspondent | Claudy Research Institute</strong><br><em>Verification flags indicate data points requiring real-time confirmation outside this knowledge cutoff.</em></p>
 </div><div class="panel" id="panel-analysis"><h1>ROCKY&#39;S MACRO REGIME ANALYSIS</h1>
@@ -1007,7 +1025,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <h2>SECTION II: FACTOR ANALYSIS — Which Factors Win in Stagflation?</h2>
 <p><strong>Current Factor Rotation: Value &gt; Growth | Quality &gt; Momentum | Cyclical &gt; Defensive</strong></p>
 <h3>Factor Performance Snapshot (Last 5 Days)</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Factor</th>
@@ -1052,7 +1070,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>XLE +6.2%, XLI -1.8%, XLV +0.4%</td>
 <td>Energy wins (supply shock). Discretionary loses (demand destruction risk). Healthcare/utilities neutral</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h3>The Mechanical Logic</h3>
 <p><strong>Growth is losing because:</strong></p>
 <ul>
@@ -1127,7 +1145,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <h2>SECTION IV: SECTOR ROTATION — The Mechanical Play</h2>
 <h3>Sector Rotation Model (Cycle Position → Sector Weights)</h3>
 <p>Using the <strong>classic 9-sector rotation framework</strong> overlaid on our late-cycle-with-inflation-shock diagnosis:</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Sector</th>
@@ -1226,7 +1244,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td><strong>UNDERWEIGHT</strong></td>
 <td>VERY HIGH</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h3>The Narrative Behind Sector Weights</h3>
 <p><strong>OVERWEIGHT: Energy &amp; Materials</strong></p>
 <ul>
@@ -1767,7 +1785,7 @@ The market is <strong>rotating within equities</strong> (growth → value/energy
 <hr>
 <h2>CONTRARIAN SIGNAL ASSESSMENT</h2>
 <h3>THRESHOLD CHECK: Do we breach contrarian signal thresholds?</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Indicator</th>
@@ -1818,7 +1836,7 @@ The market is <strong>rotating within equities</strong> (growth → value/energy
 <td>[VERIFY]</td>
 <td>❌ Likely 350–400 bps (normal)</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h3>CONTRARIAN SIGNALS TRIGGERED (if data confirms):</h3>
 <p><strong>SIGNAL #1: NVDA Put/Call &gt;1.5 = Single-Stock Capitulation</strong></p>
@@ -1915,7 +1933,7 @@ The market is <strong>rotating within equities</strong> (growth → value/energy
 </ol>
 <hr>
 <h2>CONCLUSION: SENTIMENT CYCLE POSITION + CONTRARIAN SIGNAL</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Metric</th>
@@ -1946,7 +1964,7 @@ The market is <strong>rotating within equities</strong> (growth → value/energy
 <td><strong>Time Horizon</strong></td>
 <td>2–4 weeks for tactical bounce; 3–6 months for structural mean reversion</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>NEXT STEPS</h2>
 <p>To refine this analysis, I need:</p>
@@ -2286,7 +2304,7 @@ This is speculative, but it&#39;s where <em>real</em> money is made in macro.</p
 <p><strong>Otherwise:</strong> The contrarian case is <em>strong</em> on probabilities (55–65% for energy repricing, 65–75% for tech earnings beat), with clear historical precedent and obvious catalysts.</p>
 <hr>
 <h2>X. THE TRADING CALENDAR: WHAT TO WATCH</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Date</th>
@@ -2325,10 +2343,10 @@ This is speculative, but it&#39;s where <em>real</em> money is made in macro.</p
 <td>If production increase announced, oil capitulates to $80–85 range.</td>
 <td>CONFIRM</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>SUMMARY: THE CONTRARIAN CALL</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Position</th>
@@ -2366,7 +2384,7 @@ This is speculative, but it&#39;s where <em>real</em> money is made in macro.</p
 <td>Consensus bid is too high; rotation out as tech recovers</td>
 <td>Recession signals emerge (low probability)</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>FINAL THOUGHT: WHAT THE CONSENSUS IS MISSING</h2>
 <p>Everyone is extrapolating the <em>first-order effect</em> (oil shock → energy rally) into the <em>second-order effect</em> (extended energy dominance). They&#39;re forgetting that geopolitical shocks are noisy, policy responses are fast, and analyst consensus estimates overcorrect on both the downside (tech) and upside (energy) before reality settles.</p>
@@ -2440,7 +2458,7 @@ NVDA&#39;s fabless model is an earnings quality <em>gift</em>. Traditional semic
 <p><strong>Why we use multiple metrics:</strong> P/E alone can be manipulated by accounting choices. EV/EBITDA strips out capital structure noise. P/FCF tells you what you&#39;re actually paying for real cash. Together, they triangulate fair value more reliably than any single number.</p>
 </blockquote>
 <p><strong>Most relevant metric for NVDA: P/FCF and EV/EBITDA</strong> — because NVDA&#39;s growth rate makes trailing P/E less meaningful; what matters is what you&#39;re paying for <em>future cash generation</em>.</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Metric</th>
@@ -2479,7 +2497,7 @@ NVDA&#39;s fabless model is an earnings quality <em>gift</em>. Traditional semic
 <td>[DATA REQUIRED: Rocky sector avg P/S]</td>
 <td>—</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>💭 <strong>OPINION — Valuation Walk-Through:</strong></p>
 <p>Here is the analytical step that matters for NVDA right now:</p>
 <p>Claudy&#39;s data implies NVDA trades at ~60x trailing P/E at ~$160. The selloff has pushed it toward ~$140 (down ~12.5% from Claudy&#39;s implied pre-event level). At $140:</p>
@@ -2497,7 +2515,7 @@ NVDA&#39;s fabless model is an earnings quality <em>gift</em>. Traditional semic
 <li>DeepSeek competitive response: No announced enterprise deployment in US cloud providers to date (as of Claudy report)</li>
 </ul>
 <p>💭 <strong>CATALYSTS TO WATCH:</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Catalyst</th>
@@ -2536,7 +2554,7 @@ NVDA&#39;s fabless model is an earnings quality <em>gift</em>. Traditional semic
 <td>Bear if material</td>
 <td>LOW-MEDIUM (infrastructure still needed for inference at scale)</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>6. SENTIMENT OVERLAY</h2>
 <p>📋 <strong>FACT:</strong> Per Claudy&#39;s behavioral data: <em>&quot;Hedge fund quant models auto-selling mega-cap AI exposure (typical crowded trade unwinding). Institutional redemptions cascading into high-flying names. Retail FOMO selling following.&quot;</em> NVDA was identified as a <strong>crowded long</strong> now undergoing forced liquidation.</p>
@@ -2549,7 +2567,7 @@ This is the most important behavioral insight for timing. Crowded long + forced 
 <blockquote>
 <p><strong>How to read this:</strong> I assign a probability to each scenario based on the evidence available today. The probability-weighted price target is the average outcome if you owned the stock across many repetitions of this setup.</p>
 </blockquote>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Scenario</th>
@@ -2576,11 +2594,11 @@ This is the most important behavioral insight for timing. Crowded long + forced 
 <td>$185–$210</td>
 <td>25%</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Probability-Weighted Price Target: ~$155–$165</strong></p>
 <p><em>(Calculation: 20% × $100 + 55% × $155 + 25% × $197 = $20 + $85.25 + $49.25 = ~$154.50. Rounded to range accounting for model uncertainty.)</em></p>
 <hr>
-<h2>✅ FINAL RATING: <strong>BUY</strong> | Price Target: <strong>$155–$165</strong> | Time Horizon: <strong>3–6 months</strong></h2>
+<h2>✅ FINAL RATING: <span class="chip chip-buy" style="font-size:.82rem">BUY</span> | Price Target: <strong>$155–$165</strong> | Time Horizon: <strong>3–6 months</strong></h2>
 <p><strong>Three Key Reasons:</strong></p>
 <ol>
 <li><strong>Forced selling, not fundamental deterioration.</strong> The 12% selloff is driven by quant liquidation and narrative panic, not earnings downside. CUDA moat and hyperscaler capex commitments remain structurally intact.</li>
@@ -2633,7 +2651,7 @@ For capital-intensive businesses, P/FCF is less useful during expansion phases. 
 <hr>
 <h2>4. MULTI-METRIC VALUATION</h2>
 <p><strong>Most relevant metric for TSMC: EV/EBITDA and P/Sales</strong> — because heavy CapEx cycles distort P/E and P/FCF in the near term. EV/EBITDA (Enterprise Value divided by Earnings Before Interest, Tax, Depreciation, and Amortization — essentially operating cash profit before reinvestment) normalizes for this.</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Metric</th>
@@ -2666,13 +2684,13 @@ For capital-intensive businesses, P/FCF is less useful during expansion phases. 
 <td>—</td>
 <td>Meaningful for total return in stagflation regime</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>💭 <strong>OPINION:</strong>
 TSMC&#39;s 8% selloff driven by NVDA contagion is analytically separable from TSMC&#39;s fundamentals. Here is the key distinction: NVDA&#39;s risk is <em>demand</em> (will customers buy fewer chips?). TSMC&#39;s risk is <em>volume throughput</em> (will fabs run at lower utilization?). These are related but not identical. If DeepSeek causes some demand softness in training chips, TSMC utilization dips modestly. But Apple&#39;s iPhone chips, Qualcomm&#39;s mobile chips, AMD&#39;s CPUs — none of those are affected by AI narrative shifts. TSMC&#39;s revenue base is <em>more diversified</em> than the selloff narrative implies.</p>
 <p><strong>Valuation conclusion: TSMC has been dragged down by association. At a post-selloff level, it represents better risk-adjusted value than NVDA (lower growth, but lower risk and a dividend yield that matters in stagflation).</strong></p>
 <hr>
 <h2>5. CATALYST TIMELINE (Next 30–90 Days)</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Catalyst</th>
@@ -2711,7 +2729,7 @@ TSMC&#39;s 8% selloff driven by NVDA contagion is analytically separable from TS
 <td>Bull — confirms non-AI demand resilience</td>
 <td>MEDIUM</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>6. SENTIMENT OVERLAY</h2>
 <p>📋 <strong>FACT (Claudy):</strong> TSMC flagged as &quot;Korea/Taiwan-specific demand intact&quot; despite ~8% 5-day decline. Contagion from US semis cited as primary driver.</p>
@@ -2720,7 +2738,7 @@ TSMC was swept into the NVDA/AI selloff by sector-level quant deleveraging (when
 <p><strong>Sentiment signal: OVERSOLD ON CONTAGION — Strong contrarian buy signal if Taiwan geopolitical risk remains stable.</strong></p>
 <hr>
 <h2>7. SCENARIO ANALYSIS</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Scenario</th>
@@ -2747,10 +2765,10 @@ TSMC was swept into the NVDA/AI selloff by sector-level quant deleveraging (when
 <td>$210–$230</td>
 <td>25%</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Probability-Weighted Price Target: ~$183–$193</strong></p>
 <hr>
-<h2>✅ FINAL RATING: <strong>BUY</strong> | Price Target: <strong>$183–$193</strong> | Time Horizon: <strong>3–6 months</strong></h2>
+<h2>✅ FINAL RATING: <span class="chip chip-buy" style="font-size:.82rem">BUY</span> | Price Target: <strong>$183–$193</strong> | Time Horizon: <strong>3–6 months</strong></h2>
 <p><strong>Three Key Reasons:</strong></p>
 <ol>
 <li><strong>Contagion selloff, not fundamental impairment.</strong> TSMC&#39;s revenue base is diversified across AI, mobile, automotive, and HPC. The 8% decline reflects sector-wide panic, not TSMC-specific demand deterioration.</li>
@@ -2807,7 +2825,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <hr>
 <h2>4. MULTI-METRIC VALUATION</h2>
 <p><strong>Most relevant metric for CVX: EV/EBITDA (normalized), P/FCF, and Dividend Yield</strong> — P/E is distorted by commodity cycle; EV/EBITDA at mid-cycle oil provides a cycle-normalized view.</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Metric</th>
@@ -2840,7 +2858,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <td>[DATA REQUIRED]</td>
 <td>Meaningful inflation hedge in stagflation</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>💭 <strong>OPINION — The Valuation Trap to Avoid:</strong></p>
 <p>Here is the most important analytical step for energy stocks that even experienced analysts get wrong: <strong>do not value CVX at spot-price earnings.</strong> At $97 WTI, CVX looks extraordinarily cheap on P/E (energy earnings are enormous). But if you pay a full multiple on cycle-peak earnings, you will get destroyed when oil normalizes.</p>
 <p>The correct approach: <em>mid-cycle valuation.</em> Use EBITDA and EPS estimates at $70–75 WTI (a normalized long-run price). At mid-cycle earnings, CVX should trade at 8–10x EV/EBITDA for a high-quality integrated major. If the current price implies 6–7x mid-cycle EV/EBITDA, it is genuinely cheap. If it implies 11–12x, the cycle premium is already priced in.</p>
@@ -2868,7 +2886,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <h2>SECTION 1: MANDATE COMPLIANCE AUDIT</h2>
 <h3>Ada (Thesis Architect)</h3>
 <p><strong>Role</strong>: Synthesize macro regime, state conviction levels, propose 3 investment cards with invalidation triggers.</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mandate Element</th>
@@ -2901,12 +2919,12 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <td>✓ FULFILLED</td>
 <td>NVDA/TSMC/SK Hynix (hold/accumulate); INTC/MU (relative strength buy); TLT/GLD (hedge).</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Gap</strong>: Ada promised a third card but delivered only two. Card #2 lacks a specific price target for energy (e.g., &quot;WTI $105–110 → XLE +18% from here&quot;). This creates ambiguity for Tony&#39;s positioning recommendations.</p>
 <hr>
 <h3>Rocky (Macro Analyst)</h3>
 <p><strong>Role</strong>: Regime classification, cycle position, factor/sector rotation call, EPS revision bifurcation.</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mandate Element</th>
@@ -2939,13 +2957,13 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <td>⚠️ INCOMPLETE</td>
 <td>Rocky cites EPS revision % but <strong>no sector P/E multiples</strong> (e.g., &quot;Energy P/E 12x vs. 5-yr avg 11x&quot; or &quot;Semis P/E compression 60x→40x justified by growth redeployment&quot;). Finny later fills gap for NVDA (25x forward), but energy valuations absent.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Strength</strong>: Rocky&#39;s bifurcation logic is airtight—he shows <em>why</em> energy rallies (supply shock × pricing power) while semis sell (DeepSeek capex slowdown fear). The rotation thesis is defensible.</p>
 <p><strong>Gap to flag for Tony</strong>: You cannot yet tell clients &quot;Energy valuations are 15% cheap vs. history&quot; without sector-level P/E work. Rocky provides the <em>direction</em> and <em>magnitude</em> of EPS revision but not the <em>denominator</em>.</p>
 <hr>
 <h3>Peter (Behavioral/Sentiment Analyst)</h3>
 <p><strong>Role</strong>: Sentiment stage, volatility diagnostics, positioning logic, contrarian signal identification with explicit threshold.</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mandate Element</th>
@@ -2988,12 +3006,12 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <td>❌ CRITICAL MISSING</td>
 <td>Peter states &quot;When herding obvious, crowd wrong at extremes. NVDA likely overshoots downside, creating 15–20% rebound within 3–6 weeks.&quot; <strong>BUT:</strong> What is his signal threshold? Is it VIX &gt;25? NVDA put/call &gt;2.0? Negative breadth 75%+? Without a hard threshold, Tony cannot operationalize this recommendation or backtest it.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Critical mandate gap</strong>: Peter&#39;s role is to tell Tony <em>when</em> to act on the contrarian signal. He has given the direction (NVDA rebound within 3–6 weeks) but not the trigger. This is a <strong>show-stopper for portfolio implementation</strong>.</p>
 <hr>
 <h3>Diffy (Contrarian Risk Analyst)</h3>
 <p><strong>Role</strong>: Challenge consensus narratives, identify second-order reversals, cite precedent, state risk-adjusted tactical recommendation.</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mandate Element</th>
@@ -3031,12 +3049,12 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <td>✓ FULFILLED</td>
 <td>Buy energy <em>after</em> 4–8 week peak; buy tech <em>after</em> earnings call beat. Clear if/then structure.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Critical verification needed</strong>: Diffy&#39;s SPR release claim is <strong>load-bearing for his entire energy thesis</strong>. If US SPR has 400M bbl capacity and typical emergency release is 0.5–1M/day, the math checks (feasible within 10–14 days). But Diffy provides no data on current SPR fill level or administration intent. <strong>This is a [CONFLICT ⚠️] waiting to be resolved.</strong></p>
 <hr>
 <h3>Claudy (Markets Report)</h3>
 <p><strong>Role</strong>: Establish baseline price data, confirm macro thesis with live market signals, validate asset rotation.</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mandate Element</th>
@@ -3069,13 +3087,13 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <td>✓ FULFILLED</td>
 <td>&quot;Real yields falling&quot; — consistent with 10Y +22bps but inflation expectations embedded in CPI rise. Implicit calculation: nominal 10Y up, inflation up faster → real down. Logically sound.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Strength</strong>: Claudy&#39;s prices are the <em>touchstone</em> for all other personas. Claudy validates the macro regime (stagflation) by showing the <em>simultaneous occurrence</em> of equity selloff + bond yield rise + commodity rally, which would contradict pure panic.</p>
 <p><strong>Minor gap</strong>: Claudy doesn&#39;t cite the Fed funds futures curve explicitly (where does market price 2570 rate cuts?). But this is a <em>nice-to-have</em>, not a mandate miss.</p>
 <hr>
 <h3>Finny (Fundamental Analyst)</h3>
 <p><strong>Role</strong>: Validate Ada&#39;s Card #1 (NVIDIA thesis), provide P/E + price target + ROIC + margin quality, flag risks.</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Mandate Element</th>
@@ -3113,13 +3131,13 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <td>❌ CRITICAL</td>
 <td>Finny states &quot;[DATA REQUIRED]&quot; for: Data Center revenue (actual $, YoY %), TSM/CVX/Aramco full distillations. <strong>This means Finny has not completed the mandate.</strong></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Critical mandate incomplete</strong>: Finny was asked to validate Ada&#39;s Card #1 (NVDA/TSMC/SK Hynix) and Card #2 (CVX/Aramco energy thesis). Finny delivers on NVDA but explicitly flags that TSM, CVX, and Aramco analysis require source filings. <strong>Tony cannot use Finny&#39;s energy thesis validation because it does not exist yet.</strong></p>
 <p>This is a <strong>show-stopper for Ada&#39;s Card #2 credibility</strong>. You have Ada&#39;s thesis + Rocky&#39;s EPS revision + Claudy&#39;s price action, but <em>no fundamental validation</em> of energy valuations or earnings quality.</p>
 <hr>
 <h2>SECTION 2: CROSS-FILE DATA INTEGRITY CHECK</h2>
 <h3>Price Level Consistency</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Asset</th>
@@ -3164,11 +3182,11 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <td>&quot;Rising yields during selloff&quot; = stagflation signal</td>
 <td>✓ CONSISTENT</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Verdict</strong>: No material pricing conflicts. All personas cite the same macro data points; minor rounding variance on WTI is immaterial.</p>
 <hr>
 <h3>EPS Revision Consistency</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Sector</th>
@@ -3192,7 +3210,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <td>25% EPS growth (to $5.60) implies +25%, not -4.5%</td>
 <td>⚠️ <strong>CONFLICT</strong>: Rocky says semis EPS down 4.5% <em>now</em> (consensus); Finny assumes +25% EPS growth <em>forward</em>. These are <em>compatible</em> if Finny is modeling FY2570 (forward) vs. Rocky&#39;s near-term (current consensus). Finny should clarify whether $5.60 is FY2569 or FY2570.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Critical clarification needed for Tony</strong>: </p>
 <ul>
 <li><strong>Rocky&#39;s EPS revisions are CONSENSUS NOW</strong> (analyst expectations post-DeepSeek shock).</li>
@@ -3299,7 +3317,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <li><strong>Diffy (Contrarian)</strong>: XLE peaks within 4–8 weeks; reversal driven by SPR release + OPEC+ capacity flooding market.</li>
 </ul>
 <p><strong>Which is more reliable?</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Dimension</th>
@@ -3332,7 +3350,7 @@ Energy majors historically have strong FCF conversion during high-oil-price envi
 <td>Structural (supply stays off market).</td>
 <td>Policy-dependent (US chooses to release SPR; OPEC+ chooses to increase production).</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Leon&#39;s recommendation for Tony</strong>:</p>
 <p><strong>Use Consensus (Ada/Rocky) as BASE CASE</strong> for a 3–6 month energy allocation. Reasons:</p>
 <ol>
@@ -3421,6 +3439,22 @@ function injectQuiz(){
 }
 const h=location.hash.slice(1);
 show(h&&document.getElementById('panel-'+h)?h:'executive_summary');
+</script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+document.querySelectorAll('pre code.language-mermaid').forEach(el=>{
+  const div=document.createElement('div');
+  div.className='mermaid';
+  div.textContent=el.textContent;
+  el.parentElement.replaceWith(div);
+});
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{
+  darkMode:true,background:'#0E0D0C',mainBkg:'#161412',
+  nodeBorder:'#3A3530',lineColor:'#4D4742',
+  textColor:'#F0EAE3',primaryColor:'#272320',
+  primaryTextColor:'#F0EAE3',primaryBorderColor:'#E8721A',
+  xyChart:{backgroundColor:'#161412',plotColorPalette:'#E8721A,#4ade80,#f87171,#fbbf24,#60a5fa'}
+}});
 </script>
 </body>
 </html>

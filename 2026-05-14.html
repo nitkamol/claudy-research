@@ -68,6 +68,8 @@ a:hover{text-decoration:underline;opacity:.85}
 .panel code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.82rem;color:var(--orange)}
 .panel pre{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;margin:12px 0}
 .panel hr{border:none;border-top:1px solid var(--border);margin:22px 0}
+.panel .mermaid{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:14px 0;text-align:center;overflow-x:auto}
+.panel .mermaid svg{max-width:100%;height:auto}
 .quiz-box{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin:24px 0}
 .quiz-box h3{color:var(--orange);margin:0 0 14px;font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 .quiz-btn{background:var(--orange);color:#fff;border:none;border-radius:7px;padding:8px 20px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:.88rem;margin-top:10px;transition:opacity .15s}
@@ -88,6 +90,22 @@ a:hover{text-decoration:underline;opacity:.85}
   .mob-tab.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
 }
 @media(min-width:769px){.mob-tabs{display:none}}
+/* ── Table wrapper ── */
+.tbl-wrap{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:14px 0}
+.panel .tbl-wrap table{margin:0}
+.panel .tbl-wrap tr:last-child td{border-bottom:none}
+.panel .tbl-wrap tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+/* ── IC Briefing Script box ── */
+.ic-wrap{background:linear-gradient(135deg,var(--s2) 0%,rgba(232,114,26,.06) 100%);border:1px solid var(--orange-g);border-left:3px solid var(--orange);border-radius:var(--radius-lg);padding:18px 22px;margin:14px 0}
+.ic-wrap p{color:var(--text);line-height:2;font-size:.93rem;margin:0 0 6px}
+.ic-wrap p:last-child{margin:0}
+/* ── Non-italic blockquote ── */
+.panel blockquote{font-style:normal}
+.panel blockquote p{margin:0}
+/* ── Orange-dot list bullets ── */
+.panel ul{list-style:none;padding-left:0}
+.panel ul li{position:relative;padding-left:14px;margin:5px 0}
+.panel ul li::before{content:'·';position:absolute;left:0;color:var(--orange);font-weight:700;line-height:1.75}
 </style>
 </head>
 <body>
@@ -276,7 +294,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <hr>
 <h2>II. LIVE DATA INTERPRETATION — CROSS-ASSET COHERENCE CHECK</h2>
 <p>Your watchlist and broader market are sending <em>mixed signals</em>. Let me decode:</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Asset Class</th>
@@ -321,7 +339,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>Risk-off on China trade tensions</td>
 <td>Trump in Beijing talks; tariff uncertainty unresolved.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Cross-Asset Coherence Diagnosis:</strong>
 The market is in <strong>Anxiety-to-Denial transition</strong> (per prior Diffy analysis). Tech mega-caps rallying despite reflation + geopolitical shock suggests:</p>
 <ul>
@@ -481,7 +499,7 @@ If real yields <em>continue</em> to rise above 1.5% through 2570 and Fed guidanc
 <h2>EXECUTIVE SUMMARY</h2>
 <p><strong>REGIME STATUS:</strong> Reflation + Geopolitical Tail Risk (Rising Growth + Rising Inflation). Market exhibits <em>Anxiety-to-Denial transition</em> — VIX falling while real yields rise signals sector rotation (Energy/Financials outperforming) not financial crisis repricing. Tech mega-caps rallying despite headwinds suggests crowded positioning; multiple compression likely ahead.</p>
 <p><strong>LIVE MARKET SNAPSHOT (as of report time):</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Ticker/Index</th>
@@ -603,7 +621,7 @@ If real yields <em>continue</em> to rise above 1.5% through 2570 and Fed guidanc
 <td>-1.25%</td>
 <td>China trade tensions; Taiwan semiconductor exposure</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>PART 1: VERIFIED FACTS — MACRO REGIME &amp; INFLATION SHOCK</h2>
 <h3><strong>A. US INFLATION &amp; CENTRAL BANK PIVOT</strong></h3>
@@ -642,7 +660,7 @@ Tech mega-caps are rallying (+2.91% NVDA, +3.60% GOOGL, +2.11% AAPL) <strong>des
 <li>Growth multiple compression already underway (MSFT -1.81%, showing longer duration weakness)</li>
 </ol>
 <p><strong>Why is this happening?</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Signal</th>
@@ -687,7 +705,7 @@ Tech mega-caps are rallying (+2.91% NVDA, +3.60% GOOGL, +2.11% AAPL) <strong>des
 <td>Capital fleeing risk</td>
 <td>Consistent with rising real rates + US dollar strength</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>[BEHAVIORAL SIGNAL: Market reacting <em>selectively</em> — rotating out of mega-cap growth into value/energy, but NOT capitulating. Mega-cap tech rally is likely a <em>whipsaw</em> driven by short-covering or momentum, not fundamental strength. Upside surprise in semis earnings would validate; downside surprise would invalidate quickly.]</strong></p>
 <hr>
 <h2>PART 3: RESPONSE TO ADA&#39;S THREE THESIS CARDS</h2>
@@ -784,7 +802,7 @@ If Card 3 predicts tariff <em>escalation</em>, today&#39;s AAPL strength and Tru
 <hr>
 <h2>PART 4: TACTICAL IMPLICATIONS FOR ADA&#39;S PORTFOLIO</h2>
 <h3><strong>Immediate Actions (Next 1–2 Weeks):</strong></h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Position</th>
@@ -823,7 +841,7 @@ If Card 3 predicts tariff <em>escalation</em>, today&#39;s AAPL strength and Tru
 <td>Earnings recession now visible (INTC -7.07%); multiple cuts ahead</td>
 <td>INTC could stabilize if China tariff fears ease</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h3><strong>Hedging Strategy (3–6 Month Horizon):</strong></h3>
 <p>Given the <strong>high volatility between Card 1 (reflation compression) and Card 2 (de-escalation unwind)</strong>, recommend:</p>
 <p><strong>Barbell Position:</strong></p>
@@ -835,7 +853,7 @@ If Card 3 predicts tariff <em>escalation</em>, today&#39;s AAPL strength and Tru
 <hr>
 <h2>PART 5: KEY VALIDATION CHECKPOINTS (Next 2–4 Weeks)</h2>
 <p>Ada&#39;s three theses will be <strong>confirmed or invalidated</strong> by these data releases and events:</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Data Point</th>
@@ -886,7 +904,7 @@ If Card 3 predicts tariff <em>escalation</em>, today&#39;s AAPL strength and Tru
 <td>Daily (FOMC calendar)</td>
 <td>Federal Reserve website</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>PART 6: RESEARCH DIRECTIVE RESPONSES (Priority Order)</h2>
 <h3><strong>1. IRAN-US CONFLICT STATUS — HIGHEST PRIORITY</strong></h3>
@@ -931,7 +949,7 @@ If Card 3 predicts tariff <em>escalation</em>, today&#39;s AAPL strength and Tru
 </ul>
 <p>The tech rally today (+2.91% NVDA, +3.60% GOOGL) is a <em>momentum/short-cover whipsaw</em>, not a regime confirmation. The regime is already rotating — the market just hasn&#39;t fully repriced it yet.</p>
 <p><strong>Cycle Signal Confirmation:</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Signal</th>
@@ -964,13 +982,13 @@ If Card 3 predicts tariff <em>escalation</em>, today&#39;s AAPL strength and Tru
 <td>[VERIFY: Last nonfarm payroll]</td>
 <td>If &gt;4.5%, labor market cooling = late-cycle signal</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Judgment:</strong> We are approximately <strong>60–65% through the cycle</strong> toward the next contraction. Peak growth was Q1–Q2 2024; earnings deceleration is NOW visible (semis leading the decline). This is NOT a recession yet, but it&#39;s the setup for one in 2H 2569 or Q1 2570.</p>
 <hr>
 <h3>2. FACTOR ANALYSIS: Which Factors Win in This Regime?</h3>
 <p><strong>The Directional Shift:</strong></p>
 <p>Real yield rise of +85–100 bps in ~6 months creates a <strong>massive repricing opportunity</strong> across style factors. Here&#39;s the mechanical play:</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Factor</th>
@@ -1015,9 +1033,9 @@ If Card 3 predicts tariff <em>escalation</em>, today&#39;s AAPL strength and Tru
 <td>Tech peaked; rotation into stalled value names</td>
 <td>Rotation trade: +8–12% outperformance</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Factor Score Card (Current Regime: Mid-Late Cycle + Rising Real Rates):</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Factor</th>
@@ -1062,7 +1080,7 @@ If Card 3 predicts tariff <em>escalation</em>, today&#39;s AAPL strength and Tru
 <td>Trend-following reverses; rotation in = rotation-out phases</td>
 <td><strong>75%</strong></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Translation for a portfolio manager:</strong>
 If you own NVDA, QQQ, or growth-heavy positions, you are fighting the <em>macro regime</em>. Every earnings miss in semis (Intel -7.07% today is the canary) will trigger a <em>cascade</em> of analyst downgrades. Your upside is capped; your downside is 15–25% over 6–9 months.</p>
 <p>If you own beaten-down energy (XLE), regional banks (IYF), or small-cap value (VBR), you are <em>with</em> the macro regime. The Fed&#39;s &quot;higher for longer&quot; is a gift to these sectors — their profit margins expand as real rates stay elevated and energy/commodity prices stay supported.</p>
@@ -1070,7 +1088,7 @@ If you own NVDA, QQQ, or growth-heavy positions, you are fighting the <em>macro 
 <h3>3. EPS REVISION DIRECTION: The Strongest Predictor of Near-Term Price Action</h3>
 <p><strong>Rule:</strong> EPS estimate <em>revisions</em> beat absolute EPS levels. A stock with stagnant earnings but <em>positive revisions</em> outperforms; a stock with growing earnings but <em>negative revisions</em> underperforms.</p>
 <p><strong>Current State (as of 14 May 2569):</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Sector/Stock</th>
@@ -1122,7 +1140,7 @@ If you own NVDA, QQQ, or growth-heavy positions, you are fighting the <em>macro 
 <td>Multiple contraction → EPS cuts follow</td>
 <td>CRM, ADBE guide cuts expected</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Why this matters:</strong></p>
 <p>Goldman Sachs Global Equity Research publishes a weekly &quot;Earnings Revisions Momentum&quot; score. Right now:</p>
 <ul>
@@ -1149,7 +1167,7 @@ Defensives, Bonds, Cash only
 </code></pre>
 <p><strong>Where we are: Mid-Late Cycle + Rising Real Yields = the <em>transition moment</em> from &quot;Growth dominates&quot; to &quot;Value/Cyclicals dominate.&quot;</strong></p>
 <p><strong>Sector Performance Forecast (12-Month Target from today, 14 May 2569):</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Sector</th>
@@ -1240,7 +1258,7 @@ Defensives, Bonds, Cash only
 <td><strong>-7% midpoint</strong></td>
 <td><strong>75%</strong></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Why Technology is the <em>largest loser</em>:</strong></p>
 <p>Tech P/E is approximately 28–32x forward (mega-cap heavy), while the index average is 19–20x. With real yields rising 85–100 bps:</p>
 <ul>
@@ -1266,7 +1284,7 @@ Defensives, Bonds, Cash only
 <li>Cyclical stock with commodity-linked earnings (earnings reset rapidly with commodity prices) → <em>moderate duration</em> → gains as real yields rise if commodity tailwinds persist</li>
 </ul>
 <p><strong>Sector Duration Risk Scorecard (per 25 bps rise in real yields):</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Sector</th>
@@ -1332,7 +1350,7 @@ Defensives, Bonds, Cash only
 <td><strong>MODERATE</strong></td>
 <td>Over</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 </div><div class="panel" id="panel-sentiment"><h1>BEHAVIORAL FINANCE ANALYSIS: SENTIMENT &amp; POSITIONING</h1>
 <p><strong>Peter, Claudy Research Institute | 14 May 2569</strong></p>
 <hr>
@@ -1343,7 +1361,7 @@ Defensives, Bonds, Cash only
 <hr>
 <h2>SECTION 1: FEAR &amp; GREED ARCHITECTURE — MULTI-DIMENSIONAL ASSESSMENT</h2>
 <h3><strong>A. VIX LEVEL &amp; TERM STRUCTURE: The Anxiety Suppression Signal</strong></h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Metric</th>
@@ -1370,7 +1388,7 @@ Defensives, Bonds, Cash only
 <td>[CHECK]</td>
 <td>Should be ~12–14%; if &lt;12, complacency is genuine; if &gt;16, VIX is lagging price reality</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Behavioral Reading:</strong>
 VIX at 15.32 is <em>paradoxical</em>. In a normal market:</p>
 <ul>
@@ -1392,7 +1410,7 @@ VIX at 15.32 is <em>paradoxical</em>. In a normal market:</p>
 <p><strong>Contrarian Flag:</strong> VIX at 15.32 in a reflation + geopolitical shock environment is inconsistent with historical precedent. During 2022 Russia-Ukraine (a far clearer geopolitical case), VIX averaged 24–28 for 6 weeks. Today&#39;s VIX ~40% lower = either (a) market is correctly pricing quick de-escalation, or (b) anxiety is suppressed and vulnerable to a sharp repricing. Favor (b).</p>
 <hr>
 <h3><strong>B. PUT/CALL RATIO: Hedging Demand &amp; Downside Insurance</strong></h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Metric</th>
@@ -1425,7 +1443,7 @@ VIX at 15.32 is <em>paradoxical</em>. In a normal market:</p>
 <td>Normal = 0.50–0.65</td>
 <td><strong>LIKELY ELEVATED</strong> (see below)</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Data Gap — Critical for Positioning:</strong></p>
 <p>[VERIFY: CBOE Put/Call Ratio, Equity + Index, as of 14 May 2569 close]</p>
 <p><strong>Why This Matters:</strong></p>
@@ -1445,7 +1463,7 @@ Given that:</p>
 <hr>
 <h3><strong>C. SKEW INDEX &amp; TAIL-RISK PRICING</strong></h3>
 <p>[VERIFY: CBOE SKEW (VIX Skew / RVX Tail Risk Index) as of 14 May 2569 close]</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Metric</th>
@@ -1468,7 +1486,7 @@ Given that:</p>
 <td>[COMPARE]</td>
 <td>If SKEW &lt;110 = tail risk under-priced; if SKEW &gt;130 = tail risk over-priced</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Behavioral Insight:</strong>
 SKEW below 110 in a reflation + geopolitical shock environment is <strong>red flag for complacency</strong>. It suggests the market is not pricing the tail case where:</p>
 <ul>
@@ -1479,7 +1497,7 @@ SKEW below 110 in a reflation + geopolitical shock environment is <strong>red fl
 <p>This trio of events is not high probability (maybe 25–35%), but the <em>cost</em> of being wrong is severe. If SKEW is suppressed, investors are under-insuring.</p>
 <hr>
 <h3><strong>D. SAFE-HAVEN FLOWS &amp; CROSS-ASSET POSITIONING</strong></h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Asset</th>
@@ -1524,7 +1542,7 @@ SKEW below 110 in a reflation + geopolitical shock environment is <strong>red fl
 <td>[CHECK]</td>
 <td>If HY spreads &lt;300 bps = greed; if &gt;350 bps = fear</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Integrated Reading:</strong></p>
 <p>The pattern is <strong>selective de-risking, not panic de-risking</strong>:</p>
 <ul>
@@ -1544,7 +1562,7 @@ SKEW below 110 in a reflation + geopolitical shock environment is <strong>red fl
 <h3><strong>A. CFTC COMMITMENTS OF TRADERS (CoT): Hedge Fund and Asset Manager Legs</strong></h3>
 <p>[VERIFY: CFTC CoT Report — S&amp;P 500 E-mini Futures, Report Date closest to 14 May 2569]</p>
 <p><strong>Key Numbers to Check:</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Position</th>
@@ -1577,7 +1595,7 @@ SKEW below 110 in a reflation + geopolitical shock environment is <strong>red fl
 <td>[VERIFY]</td>
 <td>If producers are reducing shorts = confidence in earnings; if increasing shorts = defensiveness</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Expected Positioning (Given Market Behavior):</strong></p>
 <p>Given that mega-cap growth is rallying despite headwinds, I would expect:</p>
 <ul>
@@ -1607,7 +1625,7 @@ High call OI in mega-cap growth means:</p>
 <hr>
 <h3><strong>C. SHORT INTEREST &amp; CROWDED SHORTS</strong></h3>
 <p>[VERIFY: High short interest stocks, particularly in mega-cap tech, as of latest settlement date before 14 May]</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Stock</th>
@@ -1640,13 +1658,13 @@ High call OI in mega-cap growth means:</p>
 <td>[VERIFY]</td>
 <td>Moderate; not a short squeeze candidate</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Why This Matters:</strong>
 If short interest in mega-cap growth is <em>low</em> (as expected), the +2.91% NVDA rally is <strong>NOT driven by short covering</strong>. Instead, it&#39;s driven by <strong>new longs buying into strength</strong>. This is more fragile — it can reverse as quickly as it started.</p>
 <hr>
 <h3><strong>D. ETF FLOWS: The Retail vs Institutional Divergence Signal</strong></h3>
 <p>[VERIFY: Flows into QQQ (Nasdaq-100) vs SPY (S&amp;P 500) vs IVV (large-cap core) for past 5 trading days]</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>ETF</th>
@@ -1685,7 +1703,7 @@ If short interest in mega-cap growth is <em>low</em> (as expected), the +2.91% N
 <td>[VERIFY: outflows or inflows?]</td>
 <td>If outflows = duration rotation out; if inflows = defensive positioning</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Retail vs Institutional Divergence:</strong></p>
 <p><strong>Expected Pattern (Given Anxiety-to-Denial):</strong></p>
 <ul>
@@ -1697,7 +1715,7 @@ If short interest in mega-cap growth is <em>low</em> (as expected), the +2.91% N
 <hr>
 <h2>SECTION 3: RETAIL VS INSTITUTIONAL DIVERGENCE — THE KEY REVERSAL SIGNAL</h2>
 <h3><strong>THE SETUP</strong></h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Group</th>
@@ -1724,7 +1742,7 @@ If short interest in mega-cap growth is <em>low</em> (as expected), the +2.91% N
 <td>[CHECK]</td>
 <td>If CEO selling, conviction weakens</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>When Divergence Triggers Reversal:</strong></p>
 <p>History shows that retail-institutional divergences resolve in <strong>5–15 trading days</strong>, typically with retail capitulating first. The mechanism:</p>
 <ol>
@@ -2060,7 +2078,7 @@ QQQ inflows still positive (retail FOMO), XLE inflows accelerating (institutions
 <p><strong>Recommended Action:</strong> Yuki proceeds with Ada Card 1 + Rocky&#39;s value rotation trade with full confidence. Footnote Ada Cards 2–3 and Diffy reversal as &quot;high-uncertainty scenarios pending geopolitical resolution and earnings revision momentum.&quot; Request Peter&#39;s missing VIX Term Structure + SKEW data before finalizing contrarian positioning.</p>
 <hr>
 <h2>1. MANDATE COMPLIANCE AUDIT</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Persona</th>
@@ -2105,7 +2123,7 @@ QQQ inflows still positive (retail FOMO), XLE inflows accelerating (institutions
 <td>❌ <strong>NOT SUBMITTED</strong></td>
 <td><strong>BLOCKING GAP:</strong> No tickers provided; explicitly awaiting submission. Cannot validate Ada Cards or Rocky trades without individual stock fundamentals.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Compliance Grade: 67% (4/6 complete; 1 critical; 1 blocking)</strong></p>
 <hr>
 <h2>2. CROSS-FILE DATA INTEGRITY CHECK</h2>
@@ -2124,7 +2142,7 @@ QQQ inflows still positive (retail FOMO), XLE inflows accelerating (institutions
 <hr>
 <h3>2.2 Macro Regime Concordance</h3>
 <p><strong>All parties define the same regime:</strong> Reflation + Geopolitical Tail Risk (Rising Growth + Rising Inflation).</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Claim</th>
@@ -2175,12 +2193,12 @@ QQQ inflows still positive (retail FOMO), XLE inflows accelerating (institutions
 <td>✓ (70% through)</td>
 <td>[VERIFIED ✓]</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>VERDICT:</strong> [VERIFIED ✓] Macro consensus is rock-solid across all four analysts.</p>
 <hr>
 <h3>2.3 Sector Performance &amp; EPS Revision Concordance</h3>
 <p><strong>Rocky provides sector P/E benchmarks and EPS revision direction. Do Claudy and Ada use them correctly?</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Sector</th>
@@ -2223,7 +2241,7 @@ QQQ inflows still positive (retail FOMO), XLE inflows accelerating (institutions
 <td>&quot;Sector rotation only&quot;</td>
 <td>[VERIFIED ✓]</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>CRITICAL OBSERVATION:</strong> Rocky&#39;s EPS revisions are DIRECTIONAL BUT NOT QUANTIFIED for comparison. Rocky states &quot;Semis -8 to -12%&quot; and Ada states &quot;8–15% YoY&quot; — <strong>slight range divergence, but both suggest earnings recession.</strong> Claudy confirms via INTC -7.07% price action.</p>
 <p><strong>VERDICT:</strong> [VERIFIED ✓] EPS revision consensus is consistent; ranges overlap within normal variance.</p>
 <hr>
@@ -2332,6 +2350,22 @@ function injectQuiz(){
 }
 const h=location.hash.slice(1);
 show(h&&document.getElementById('panel-'+h)?h:'executive_summary');
+</script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+document.querySelectorAll('pre code.language-mermaid').forEach(el=>{
+  const div=document.createElement('div');
+  div.className='mermaid';
+  div.textContent=el.textContent;
+  el.parentElement.replaceWith(div);
+});
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{
+  darkMode:true,background:'#0E0D0C',mainBkg:'#161412',
+  nodeBorder:'#3A3530',lineColor:'#4D4742',
+  textColor:'#F0EAE3',primaryColor:'#272320',
+  primaryTextColor:'#F0EAE3',primaryBorderColor:'#E8721A',
+  xyChart:{backgroundColor:'#161412',plotColorPalette:'#E8721A,#4ade80,#f87171,#fbbf24,#60a5fa'}
+}});
 </script>
 </body>
 </html>

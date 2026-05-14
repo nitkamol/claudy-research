@@ -68,6 +68,8 @@ a:hover{text-decoration:underline;opacity:.85}
 .panel code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.82rem;color:var(--orange)}
 .panel pre{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:14px;overflow-x:auto;margin:12px 0}
 .panel hr{border:none;border-top:1px solid var(--border);margin:22px 0}
+.panel .mermaid{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:14px 0;text-align:center;overflow-x:auto}
+.panel .mermaid svg{max-width:100%;height:auto}
 .quiz-box{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin:24px 0}
 .quiz-box h3{color:var(--orange);margin:0 0 14px;font-size:.9rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
 .quiz-btn{background:var(--orange);color:#fff;border:none;border-radius:7px;padding:8px 20px;cursor:pointer;font-family:'Sarabun',sans-serif;font-size:.88rem;margin-top:10px;transition:opacity .15s}
@@ -88,6 +90,22 @@ a:hover{text-decoration:underline;opacity:.85}
   .mob-tab.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
 }
 @media(min-width:769px){.mob-tabs{display:none}}
+/* ── Table wrapper ── */
+.tbl-wrap{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin:14px 0}
+.panel .tbl-wrap table{margin:0}
+.panel .tbl-wrap tr:last-child td{border-bottom:none}
+.panel .tbl-wrap tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+/* ── IC Briefing Script box ── */
+.ic-wrap{background:linear-gradient(135deg,var(--s2) 0%,rgba(232,114,26,.06) 100%);border:1px solid var(--orange-g);border-left:3px solid var(--orange);border-radius:var(--radius-lg);padding:18px 22px;margin:14px 0}
+.ic-wrap p{color:var(--text);line-height:2;font-size:.93rem;margin:0 0 6px}
+.ic-wrap p:last-child{margin:0}
+/* ── Non-italic blockquote ── */
+.panel blockquote{font-style:normal}
+.panel blockquote p{margin:0}
+/* ── Orange-dot list bullets ── */
+.panel ul{list-style:none;padding-left:0}
+.panel ul li{position:relative;padding-left:14px;margin:5px 0}
+.panel ul li::before{content:'·';position:absolute;left:0;color:var(--orange);font-weight:700;line-height:1.75}
 </style>
 </head>
 <body>
@@ -260,7 +278,7 @@ a:hover{text-decoration:underline;opacity:.85}
 </ul>
 <hr>
 <h2>SECTION 7: PORTFOLIO SUMMARY — THE ONE-PAGE DECISION MATRIX</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Asset / Sector</th>
@@ -343,7 +361,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>Fund Diffy re-entry optionality</td>
 <td>Explicit Diffy hedge</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>CLOSING NOTE TO PORTFOLIO MANAGERS</h2>
 <p>Today&#39;s session is one of the cleaner regime-signal days we will see — which paradoxically makes it dangerous. When the narrative is this coherent (oil up, tech down, yields up, rotation clear), the market has usually already priced the first derivative. The second derivative — <strong>what happens when the narrative reverses</strong> — is what separates this week&#39;s winners from next month&#39;s bag-holders.</p>
@@ -471,7 +489,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <hr>
 <h2>SECTION 1: FACTS LAYER — PRICE ACTION &amp; VERIFIED DATA</h2>
 <h3>Energy &amp; Inflation — The Regime Tell</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Asset</th>
@@ -509,11 +527,11 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>+5.56%</td>
 <td>Yahoo Finance</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Interpretation:</strong> Oil&#39;s 3.49% jump in a single session signals market repricing of Strait of Hormuz disruption risk. Natural gas +5.56% confirms energy complex-wide supply anxiety. CPI at 3.8% YoY — highest in 18 months — breaks the disinflationary narrative that dominated Q4 2024. <strong>[BEHAVIORAL SIGNAL: market is frontrunning geopolitical escalation as <em>irreversible</em> commodity shock, not transitory disruption.]</strong></p>
 <hr>
 <h3>US Treasury Yields — Real Rates Compressing, Duration Risk Rising</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Instrument</th>
@@ -546,12 +564,12 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>Trending higher</td>
 <td>Confirms market pricing persistent inflation, not transitory shock</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Analysis:</strong> The 93 bps move in 10Y yields in one session is material. However, if inflation expectations are rising faster than nominal yields (i.e., real yields <em>compressed</em>), this is <strong>deflationary for growth equities</strong> (higher real discount rates) while <strong>bullish for commodity hedges and short-duration financials</strong> (wider NII spreads). <strong>Duration Risk explained: A 1% rise in yields causes a 10-year bond to lose ~10% in principal value. Today&#39;s 93 bps move = ~0.93% decline in long-bond prices.</strong> This cascades into equity volatility as leveraged funds de-risk.</p>
 <hr>
 <h3>Equities — Sector Bifurcation &amp; Drawdown Magnitude</h3>
 <h4><strong>S&amp;P 500 &amp; Breadth</strong></h4>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Index</th>
@@ -589,11 +607,11 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>Signal: drawdown <em>not</em> capitulation yet; selective panic in mega-cap growth</td>
 <td></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Interpretation:</strong> Russell 2000 +1.05% while Nasdaq -5.50% is a <em>textbook</em> rotation signal — capital fleeing high-duration growth into lower-multiple, domestic-focused equities. S&amp;P 500 -1.14% masks the divergence: 10 mega-cap names (the &quot;Magnificent 7&quot; and semiconductors) are absorbing 60%+ of selling pressure. <strong>[BEHAVIORAL SIGNAL: This is <em>not</em> a broad capitulation — it&#39;s a <strong>rotation lock-in</strong>. Investors are not abandoning equities; they are reallocating from growth to value/cyclicals.]</strong></p>
 <hr>
 <h4><strong>Mega-Cap Technology &amp; Semiconductors — The Washout</strong></h4>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -652,11 +670,11 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>Macro headwind; but already depressed — not a capitulation magnet</td>
 <td>Yahoo Finance</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Key Observation:</strong> Nvidia&#39;s -15.88% is the largest single-day loss since the 2022 bear market. However, this is <em>not yet</em> capitulation territory (which occurs when VIX exceeds 40 and 90%+ stocks are down). This is <strong>technical breakdown paired with fundamental repricing</strong> — the market is adjusting valuations for the DeepSeek competitive scenario + energy cost inflation. Nvidia&#39;s P/E multiple <em>was</em> 65x FY25E earnings; if capex ROI questions cut estimates 15-20%, target P/E contracts to 50-55x on ~$1.35 EPS → implies $68-74 fair value. Today&#39;s close at $129.87 still implies confidence in recovery or underestimation of deepening concerns. <strong>[BEHAVIORAL SIGNAL: Momentum hedge funds are exiting; value investors are watching but not yet buying the dip. This is the <em>rotation phase</em>, not the <em>panic phase</em>.]</strong></p>
 <hr>
 <h4><strong>Energy Sector Strength — The Beneficiary</strong></h4>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Ticker / ETF</th>
@@ -699,11 +717,11 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>Duration headwind outweighs renewables demand thesis</td>
 <td>Yahoo Finance</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Interpretation:</strong> Energy is the <em>only</em> sector with positive correlation to today&#39;s macro shock. The 2.51% gain in XLE, combined with absolute outperformance vs. Nasdaq, signals that <strong>capital flows are beginning to recognize the reflation trade</strong>. Notably, clean energy (ICLN) is <em>down</em>, revealing that investors see the oil shock as a multi-quarter headwind to renewable adoption capex — this is rational, not emotional. <strong>Duration Risk in Clean Energy explained:</strong> ICLN holdings are high-growth renewables companies (NextEra, First Solar, etc.) with long cash-flow durations; higher discount rates hit them harder than legacy energy stocks, which generate immediate cash flow and yield.</p>
 <hr>
 <h3>Foreign Equity Markets — Geopolitical Divergence</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Index / Ticker</th>
@@ -762,11 +780,11 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>China macro slowdown + US-China tensions embedded</td>
 <td>Yahoo Finance</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Interpretation:</strong> South Korea is the <em>only</em> major developed market in green. This is <strong>not a coincidence</strong> — Samsung and SK Hynix benefit from: (1) US demand for memory chips as hyperscalers <em>diversify supply away from Taiwan</em> due to geopolitical risk; (2) supply-chain realignment favoring Japanese/Korean suppliers over Taiwan in semiconductor production. Meanwhile, Germany&#39;s DAX decline (-1.16%) reflects energy cost shock (Germany imports 40%+ of oil/gas from non-traditional sources post-Russia sanctions). <strong>[BEHAVIORAL SIGNAL: Capital is rotating from US mega-cap tech toward Asia-Pacific supply-chain beneficiaries — this is a <em>structural</em> rotation, not panic.]</strong></p>
 <hr>
 <h3>Currency Markets — Dollar Strength, EM Weakness</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Pair</th>
@@ -817,7 +835,7 @@ a:hover{text-decoration:underline;opacity:.85}
 <td>Weaker; EM oil importer pressure</td>
 <td>Yahoo Finance</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Macro Significance:</strong> Dollar strength (+0.45%) in a single session is material. The transmission: (1) Higher US real rates attract carry trades back into USDs; (2) Oil priced in USD is now <em>more expensive</em> for EM importers (scissors effect); (3) CNY weakness (+0.26% depreciation) suggests capital flight from China, likely due to macro slowdown concerns <em>plus</em> geopolitical uncertainty. <strong>Real Rate Arbitrage explained:</strong> If US 10Y real yields rise faster than other G10 countries&#39;, carry traders short weaker-yielding currencies and buy USD, compressing EM FX. This creates a <strong>funding crisis risk</strong> if EM corporates have USD-denominated debt.</p>
 <hr>
 <h2>SECTION 2: CORRELATION MAP — CROSS-ASSET RELATIONSHIPS</h2>
@@ -867,7 +885,7 @@ USD (+0.45%)                           Emerging Market FX (depreciation)
 </ul>
 <hr>
 <h3>Correlation Shifts: What Divergences Reveal</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Relationship</th>
@@ -906,7 +924,7 @@ USD (+0.45%)                           Emerging Market FX (depreciation)
 <td>Positive (0.68)</td>
 <td><strong>Strengthened</strong>; duration shock is cascading into volatility</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Interpretation:</strong> The <em>widening</em> of negative correlations (oil-tech, USD-EM, growth-value) signals that today&#39;s shock is <strong>macro regime-level, not stock-specific</strong>. Investors are re-positioning portfolios across asset classes, not just trimming individual holdings. This is consistent with <strong>&quot;the big money&quot; (macro hedge funds, pensions, insurance) reallocating away from US mega-cap growth toward geographically diversified, inflation-hedged assets.</strong></p>
 <hr>
 <h2>SECTION 3: NARRATIVE LAYER — WHAT ARE INVESTORS TELLING THEMSELVES?</h2>
@@ -969,7 +987,7 @@ USD (+0.45%)                           Emerging Market FX (depreciation)
 <hr>
 <h3>2. FACTOR ANALYSIS — WHICH FACTORS WIN IN REFLATION?</h3>
 <h4><strong>Factor Scorecard: Today&#39;s Winners &amp; Losers</strong></h4>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Factor</th>
@@ -1014,7 +1032,7 @@ USD (+0.45%)                           Emerging Market FX (depreciation)
 <td>Duration sensitivity outweighs yield appeal <em>in the first 1-2 weeks of shock</em>. But 4-6 week horizon favors dividend plays as bond proxies.</td>
 <td>BULLISH (6+ weeks)</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Synthesis:</strong> </p>
 <ul>
 <li>**Factor rotation is <strong>bifurcated</strong>: Inflation-hedge factors (energy, commodity-linked value) are winning <em>today</em>. But duration-sensitive defensive factors (utilities, REITs) are losing <em>this week</em>, then should win over next 4-6 weeks as yields stabilize.</li>
@@ -1025,7 +1043,7 @@ USD (+0.45%)                           Emerging Market FX (depreciation)
 <h3>3. EPS REVISION DIRECTION — THE STRONGEST PREDICTOR</h3>
 <p><strong>Forward earnings revision momentum is the single best 3-6 month equity return predictor. Let&#39;s audit it:</strong></p>
 <h4><strong>Sector EPS Revision Scorecard (Est. 12/05/2569)</strong></h4>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Sector</th>
@@ -1092,7 +1110,7 @@ USD (+0.45%)                           Emerging Market FX (depreciation)
 <td><strong>NEGATIVE</strong></td>
 <td>⚠️ MODERATE RISK</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Critical Insight:</strong> </p>
 <ul>
 <li><strong>Semiconductors are in a <em>downside revision cascade</em></strong>. The first institutions to downgrade (Nvidia estimates) typically triggers a 60-90 day period of consensus estimate cuts. Expect every chip company&#39;s FY25 EPS to be marked down 12-18% over the next 3 weeks. This is <em>not</em> a one-day event; it&#39;s the start of a consensus repricing.</li>
@@ -1112,7 +1130,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 </code></pre>
 <p><strong>Where We Are: PEAK → CONTRACTING Transition (Today)</strong></p>
 <p>This explains today&#39;s price action perfectly:</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Sector</th>
@@ -1175,7 +1193,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>⚠️ MIXED (commodity benefit offset by demand concern)</td>
 <td>4-8 weeks</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>The Playbook:</strong></p>
 <ol>
 <li><strong>Weeks 1-3 (Current):</strong> Energy (XLE) + Healthcare (XLV) + Staples (XLP) outperform. Avoid Tech (XLK) + Industrials (XLI) + Discretionary (XLY).</li>
@@ -1187,7 +1205,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <p><strong>How a +93 bps move in 10Y yields cascades through equity valuations:</strong></p>
 <p><strong>Duration Risk defined:</strong> How much a 1% change in discount rates changes an asset&#39;s valuation. A &quot;5-year duration&quot; asset loses 5% in value if yields rise 1%.</p>
 <h4><strong>Sector Duration Risk Analysis</strong></h4>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Sector</th>
@@ -1246,7 +1264,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>MINIMAL</td>
 <td>1-2 weeks</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>The Math (Example: Nvidia)</strong></p>
 <ul>
 <li>Pre-shock: Valued at 65x FY25E $1.35 EPS = $88 fair value (after-tax discount rate ~7.5%)</li>
@@ -1302,7 +1320,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <li>Nvidia -15.88% is a shock event</li>
 </ul>
 <p><strong>INFERENCE: VIX is likely 28-32 range</strong> (elevated anxiety, but NOT crisis)</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>VIX Level</th>
@@ -1335,7 +1353,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>Panic; circuit breakers tripping</td>
 <td>~2%</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Why I estimate 28-32:</strong> The 93 bps move in 10Y is a genuine shock (energy + inflation front), but it&#39;s <em>explainable</em> (not black-swan). The equity selloff is concentrated in Nasdaq (high-beta), not broad. This is the profile of &quot;higher-than-normal fear, but confidence in recovery mechanism still intact.&quot;</p>
 <p><strong>VERIFY: [Bloomberg terminal, VIX close on 12/05/2569]</strong></p>
 <p><strong>Term Structure Implication:</strong></p>
@@ -1345,7 +1363,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <h3>2.2 Put/Call Ratio — Hedging Demand Signal</h3>
 <p><strong>KNOWN:</strong> Nasdaq -5.50% is the largest single-day move in 6 months, triggering hedging demand.</p>
 <p><strong>INFERENCE: Put/Call likely 1.1-1.4 range</strong> (elevated, but not panic)</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Put/Call Ratio</th>
@@ -1378,7 +1396,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>Capitulation; maximum fear</td>
 <td>~1%</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Behavioral Signal:</strong> If Put/Call is 1.1-1.4, this means institutional hedgers (asset managers protecting $100M+ portfolios) have bought put protection on QQQ, SPY, and IWM. But they haven&#39;t <em>doubled</em> their hedging, which would imply &quot;I think we&#39;re going much lower.&quot; </p>
 <p>This is <strong>classic rotation behavior</strong>: hedge your long QQQ exposure, but simultaneously buy IWM calls to express the value thesis.</p>
 <p><strong>VERIFY: [CBOE Put/Call data on 12/05/2569 close]</strong></p>
@@ -1386,7 +1404,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <h3>2.3 SKEW Index — Tail-Risk Pricing</h3>
 <p><strong>KNOWN:</strong> Oil shock + geopolitical escalation theoretically increases tail risk.</p>
 <p><strong>INFERENCE: SKEW likely 110-125 range</strong> (elevated, but not at crisis levels of 130+)</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>SKEW Level</th>
@@ -1419,7 +1437,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>Extreme; 2008/2020 crisis mode</td>
 <td>~1%</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Why This Matters for Your Analysis:</strong></p>
 <p>SKEW measures the price investors will pay for far-out-of-the-money puts (protective hedges) relative to calls. If SKEW is 115-125, asset managers are saying: &quot;I&#39;m worried about a 5% drop in a week, but I don&#39;t think we&#39;re heading to -20% in a month.&quot;</p>
 <p>If SKEW spikes to 140+, that&#39;s a <strong>contrarian sell signal</strong> — hedges become so expensive that long-only investors give up and capitulate into the bottom.</p>
@@ -1435,7 +1453,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <p>When there&#39;s a <em>geopolitical/commodity shock</em> (not a financial crisis), bond yields often <em>rise</em> because inflation expectations spike faster than rates. Investors don&#39;t flee to bonds; they flee to <em>real assets</em> (energy, commodities, inflation hedges).</p>
 <p>This is different from 2008 or March 2020, when yields <em>fell</em> because demand for safety crushed yields to zero.</p>
 <p><strong>INFERENCE: Gold and Yen demand is MILD, not extreme</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Safe-Haven Metric</th>
@@ -1458,7 +1476,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>[ESTIMATE: -1.0% to -1.2%]</td>
 <td>Compressed, indicating inflation premium outweighs safety bid</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Behavioral Implication:</strong></p>
 <p>If gold is only up modestly (+0.5-1.5%) despite a 3.49% oil shock, this suggests the market is <em>not</em> in panic-about-end-of-world mode. It&#39;s in <em>tactical reallocation</em> mode. Real money (pension funds, insurance companies) is rotating from growth to value and energy, not into gold and Treasury longs.</p>
 <p><strong>VERIFY: [Spot gold, DXY, USD/JPY on 12/05/2569 close]</strong></p>
@@ -1466,7 +1484,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <h3>2.5 Junk Bond (High-Yield) Spreads — Risk Appetite Gauge</h3>
 <p><strong>OBSERVED:</strong> Energy shock typically widens HY spreads (borrowers get more expensive to refinance) but <em>specific</em> to cyclicals and leverage-heavy sectors.</p>
 <p><strong>INFERENCE: HY OAS likely 350-400 bps</strong> (elevated from recent 300-330 bps, but not at crisis levels of 500+)</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>HY OAS Level</th>
@@ -1499,7 +1517,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>Crisis mode; defaults cascading</td>
 <td>~2%</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Why This Diagnostic Matters:</strong></p>
 <p>High-yield spreads = the extra yield investors demand to own risky debt. If HY spreads widen 50 bps (from 300 to 350 bps), that&#39;s the market saying: &quot;I&#39;m less certain these companies will refinance, so I want more yield to compensate.&quot;</p>
 <p>At 350-400 bps, spreads are elevated but <strong>not at the level where credit becomes unstable</strong>. This tells us: <strong>equity investors are fearful, but debt investors are not yet in panic mode</strong>. This is consistent with <strong>rotation, not contagion</strong>.</p>
@@ -1513,7 +1531,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <li>Russell 2000 +1.05% (positive)</li>
 </ul>
 <p><strong>INFERENCE: Breadth deterioration is SELECTIVE, not broad</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Breadth Metric</th>
@@ -1541,7 +1559,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>[VERIFY]</td>
 <td>Likely 100-200 stocks (selective washout, not broad)</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Behavioral Diagnosis:</strong></p>
 <p>If breadth is deteriorating but <em>not collapsing</em>, this is a <strong>signal that the selloff is driven by sector rotation and multiple compression, not macro contagion</strong>. If 60-70% of S&amp;P 500 are still above their 200-day moving average, that means the <em>healthiest</em> economic actors (midcap industrials, regional banks, consumer staples) are still in uptrends. Only the <em>most vulnerable to rising rates and competitive threats</em> (mega-cap growth, unprofitable tech) are breaking down.</p>
 <p><strong>VERIFY: [FactSet or Bloomberg A/D line; number of new lows on NYSE/Nasdaq]</strong></p>
@@ -1550,7 +1568,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <h3>3.1 CFTC Commitments of Traders (Hedge Funds)</h3>
 <p><strong>OBSERVED:</strong> Oil up 3.49% + energy sector up 2.51% on one day signals shift in commodity positioning.</p>
 <p><strong>INFERENCE: Managed Money (hedge funds) is likely LONG crude oil &amp; energy</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Position</th>
@@ -1578,7 +1596,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>[VERIFY]</td>
 <td>Likely flatteners (long 2Y, short 10Y) — expecting curve to flatten more</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Behavioral Translation:</strong></p>
 <p>Hedge funds are <strong>front-running the energy shock</strong> — they&#39;ve anticipated that commodity prices will remain elevated for 2-4 quarters due to geopolitical disruption. Simultaneously, they&#39;re likely <strong>underweighting equity beta</strong> (reducing S&amp;P 500 long exposure) while maintaining <strong>tactical shorts in Nasdaq</strong> (via QQQ puts or short positions).</p>
 <p>This is <strong>trend-following behavior</strong>: when a shock hits, professional traders position for the <em>direction</em> of the shock to extend.</p>
@@ -1587,7 +1605,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <h3>3.2 ETF Flows — Direction of Dumb Money &amp; Smart Money</h3>
 <p><strong>OBSERVED:</strong> Russell 2000 +1.05% vs. Nasdaq -5.50% suggests capital rotation into small-cap/value.</p>
 <p><strong>INFERENCE: ETF flows are likely:</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>ETF / Flow Direction</th>
@@ -1620,7 +1638,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>[VERIFY]</td>
 <td>Likely modest ($50-200M); NOT panic-level</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Critical Observation:</strong></p>
 <p>If IWM is positive (+1.05%) and seeing inflows while QQQ is down -5.50% and seeing outflows, this is <strong>textbook rotation, not capitulation</strong>. Capitulation would look like: QQQ inflows (as shorts cover panic) + VIX spikes to 40+ + all equities collapsing together.</p>
 <p>What we&#39;re seeing instead is <strong>premeditated reallocation</strong>: asset managers and algorithmic traders are <em>executing planned rotations</em> in response to the shock, not panic-selling everything.</p>
@@ -1629,7 +1647,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <h3>3.3 Short Interest — Are Bears Crowding In?</h3>
 <p><strong>CONTEXT:</strong> Nvidia&#39;s -15.88% move should trigger short covering (shorts buying back to lock in gains), but also attract new shorts (bears betting on further downside).</p>
 <p><strong>INFERENCE: Short interest in Nvidia, QQQ, and growth mega-caps likely INCREASED over past 3 days</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Ticker</th>
@@ -1652,7 +1670,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>Likely +1-2% aggregate (increase in short-biased positioning)</td>
 <td>Institutional shorts hedging long books</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Behavioral Nuance:</strong></p>
 <p>Short interest data is published with a 1-2 week lag, so we can&#39;t <em>see</em> today&#39;s shorts yet. But if the pattern holds from similar shocks (Feb 2025, when growth crashed), short interest would spike 2-5% within 3 business days, then stabilize as shorts realize the bounce is coming.</p>
 <p>If short interest is <em>already elevated</em> (say, Nvidia shorts were at 5-8% of float before today), then today&#39;s -15.88% is <em>more bullish</em> for a reversal because short-covering demand is high.</p>
@@ -1668,7 +1686,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <li>Social media mentions (Stocktwits, Reddit r/investing volatility)</li>
 </ul>
 <p><strong>INFERENCE: Retail is likely SPLIT</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Retail Group</th>
@@ -1681,7 +1699,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>Panic selling (down 20-30% from November highs); capitulation starting</td>
 <td>~50%</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 </div><div class="panel" id="panel-diffsentiment"><h1>DIFFY&#39;S CONTRARIAN REBUTTAL</h1>
 <h2>DATE: 12/05/2569 | WHERE CONSENSUS IS DANGEROUSLY WRONG</h2>
 <hr>
@@ -1715,7 +1733,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <p>Rocky&#39;s analysis correctly flags this: &quot;If shock persists or escalates (3+ months): Transition to early contraction.&quot;</p>
 <p>But here&#39;s what the market is <em>not</em> pricing: <strong>Historical precedent says geopolitical oil shocks resolve much faster than 3 months.</strong></p>
 <p>Let me show you:</p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Event</th>
@@ -1754,7 +1772,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>12-18 months</td>
 <td>But that was a full embargo, not Strait disruption</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>The pattern:</strong> </p>
 <ul>
 <li>Initial shock = 2-4 weeks of sharp rotation (we&#39;re here now)</li>
@@ -1855,7 +1873,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <p>Rocky correctly identifies that energy/financials should win in reflation.</p>
 <p><strong>But this assumes reflation is <em>demand-driven</em>, not <em>shock-driven</em>.</strong></p>
 <p><strong>The distinction matters:</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Reflation Type</th>
@@ -1879,7 +1897,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>2-4 months</td>
 <td>Growth slows AND <em>margins compress</em> (cost inflation outpaces pricing)</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>We&#39;re in SHOCK-DRIVEN reflation, not demand-driven reflation.</strong></p>
 <p><strong>The implication:</strong></p>
 <ul>
@@ -1909,7 +1927,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <li>Consensus: &quot;Expect 6-12 months of elevated energy costs, growth pressure&quot;</li>
 </ul>
 <p><strong>What actually happened:</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Period</th>
@@ -1952,7 +1970,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>Up 18%</td>
 <td>Full reversal; tech leads; value underperforms for 12 months</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>The key inflection:</strong> Week 8-9, when the market realized &quot;supply will be restored sooner than feared&quot; and &quot;growth won&#39;t be as impaired as feared.&quot; That&#39;s when the rotation reversed <em>violently</em>.</p>
 <p><strong>Why consensus got it wrong in 2011:</strong></p>
 <ul>
@@ -1967,7 +1985,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <li><strong>We&#39;re repeating 2011, not 1973</strong></li>
 </ul>
 <p><strong>Timeline projection for 12/05/2569 → mid-2569 (using 2011 as template):</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Timeline</th>
@@ -1995,7 +2013,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 <td>Full reflation-shock digestion, growth confidence returns</td>
 <td>Tech +20-30% from current levels, Energy -10% to -15% from current levels, Financials consolidate</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>The asymmetry:</strong></p>
 <ul>
 <li>If I&#39;m right (shock resolves in 8-12 weeks): Tech recovers 8-15%, Energy/Value give back 5-10% → Buy tech dip, hedge energy upside</li>
@@ -2050,7 +2068,7 @@ Discretionary ↑     Utilities ↑             REITs ↑                   Indu
 NOPAT = Operating Income × (1 – Tax Rate)
 Invested Capital = Total Assets – Current Liabilities (or Equity + Net Debt)
 </code></pre>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Metric</th>
@@ -2103,7 +2121,7 @@ Invested Capital = Total Assets – Current Liabilities (or Equity + Net Debt)
 <td><strong>[___]%</strong></td>
 <td><em>Goldman Sachs DCF model reference; adjust for stock&#39;s beta, D/E ratio</em></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Interpretation:</strong></p>
 <ul>
 <li>💭 If ROIC &gt; WACC: This business is <strong>creating shareholder value</strong> at the margin. Growth is <em>good</em>, because it&#39;s deployed at high returns.</li>
@@ -2116,7 +2134,7 @@ Invested Capital = Total Assets – Current Liabilities (or Equity + Net Debt)
 <pre><code>FCF / Net Income = Operating Cash Flow – CapEx / Net Income
 Healthy = &gt;80%
 </code></pre>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Metric (LTM)</th>
@@ -2149,7 +2167,7 @@ Healthy = &gt;80%
 <td><strong>[___]%</strong></td>
 <td><strong>[Green / Yellow / Red]</strong></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>🚩 Earnings Quality Risk Flags:</strong></p>
 <ul>
 <li>FCF &lt;&lt; Net Income (conversion &lt;70%): <em>Why?</em> Working capital buildup, capitalized costs, or accounting tricks?</li>
@@ -2161,7 +2179,7 @@ Healthy = &gt;80%
 <hr>
 <h3>4️⃣ MULTI-METRIC VALUATION — Never P/E Alone</h3>
 <p><strong>Valuation Multiples vs. Sector Peers:</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Metric</th>
@@ -2206,7 +2224,7 @@ Healthy = &gt;80%
 <td></td>
 <td>[P/E ÷ 3-yr EPS growth %]</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Which Metric Matters Most?</strong></p>
 <ul>
 <li>💭 <strong>High-quality compounder (ROIC &gt; WACC, durable moat):</strong> Use <strong>P/E and EV/EBITDA</strong>. These stocks earn a premium. If trading at sector P/E or below despite superior ROIC, it&#39;s undervalued.</li>
@@ -2218,7 +2236,7 @@ Healthy = &gt;80%
 <hr>
 <h3>5️⃣ CATALYST TIMELINE — 30 to 90 Days</h3>
 <p><strong>Upcoming Events that Will Move the Stock:</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Date (Est.)</th>
@@ -2261,7 +2279,7 @@ Healthy = &gt;80%
 <td></td>
 <td></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Catalyst Probability-Weighting:</strong></p>
 <ul>
 <li>💭 &quot;Q4 earnings on 1/29 will be critical. Management has guided for 8-10% EPS growth, but consensus sits at 6%. If they miss by &gt;2%, the stock could re-rate downward 5-10% on guidance reset. <strong>Probability: 65% of a beat (based on historical track record)</strong>, 25% inline, 10% miss.&quot;</li>
@@ -2269,7 +2287,7 @@ Healthy = &gt;80%
 <hr>
 <h3>6️⃣ SENTIMENT OVERLAY — Crowded vs. Contrarian</h3>
 <p><strong>Using Peter&#39;s Behavioral Data:</strong></p>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Signal</th>
@@ -2307,7 +2325,7 @@ Healthy = &gt;80%
 <td>[___]</td>
 <td>[&gt;1.2 = panic; &lt;0.8 = complacency]</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Behavioral Assessment:</strong>
 <em>Example:</em> &quot;ABC is 78% bullish on Stocktwits, analyst consensus is 22 Buy / 4 Hold / 0 Sell, and institutional ownership has risen 3 percentage points in the last quarter. <strong>This is a crowded long.</strong> The risk/reward is asymmetric to the downside — if earnings disappoint, momentum exits could cascade. <strong>Valuation buffer = 2-3% of upside before capitulation risk rises.</strong>&quot;</p>
 <p><em>Counter-example:</em> &quot;XYZ is 32% bullish on Stocktwits, consensus is 8 Buy / 12 Hold / 7 Sell, short interest is 12% of float, and insiders have been buying steadily for 6 months. <strong>This is a contrarian opportunity.</strong> If the company can execute on its 2025 roadmap, momentum funds will chase, potentially driving a 20-30% re-rating. <strong>Catalyst timing: Q1 2025 earnings will be the inflection point.</strong>&quot;</p>
@@ -2463,7 +2481,7 @@ Healthy = &gt;80%
 <p><em>Leon | Research Integrity Officer</em></p>
 <hr>
 <h2>MANDATE COMPLIANCE CHECK</h2>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Persona</th>
@@ -2508,11 +2526,11 @@ Healthy = &gt;80%
 <td>❌ <strong>INCOMPLETE</strong></td>
 <td><strong>BLOCKING:</strong> No ticker list received. Framework is a template only. Fin explicitly states &quot;awaiting specific ticker list from Claudy&#39;s Direct Impact flagged stocks.&quot; Cannot deliver ROIC vs. WACC, valuation, or sentiment overlay without tickers. Fin cannot advance without Rocky&#39;s sector P/E and Claudy&#39;s high-conviction stock names.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <hr>
 <h2>CROSS-FILE DATA INTEGRITY CHECK</h2>
 <h3>Price Agreement (Claudy as Source of Truth)</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Asset</th>
@@ -2578,11 +2596,11 @@ Healthy = &gt;80%
 <td>✅ &quot;+1.05%&quot; small-cap rotation</td>
 <td>[VERIFIED ✓]</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Verdict:</strong> Claudy is internally consistent and serves as reliable price anchor. Ada and Rocky cite prices accurately where mentioned; no contradictions detected.</p>
 <hr>
 <h3>Signal &amp; Regime Coherence</h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Signal</th>
@@ -2639,12 +2657,12 @@ Healthy = &gt;80%
 <td>⚠️ &quot;2-4 weeks sharp, 4-8 weeks secondary&quot; (shorter)</td>
 <td>[VERIFIED ✓] — Window confirmed; Diffy is more aggressive on resolution speed</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Verdict:</strong> Core regime and rotation signal are rock-solid. One material disagreement on Nvidia/Semi downside severity (see Conflict Adjudication below).</p>
 <hr>
 <h2>INTERNAL LOGIC CHECK: PERSONA-BY-PERSONA</h2>
 <h3><strong>Ada</strong></h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Claim</th>
@@ -2672,11 +2690,11 @@ Healthy = &gt;80%
 <td>IF Iran-US tensions resolve → WTI compression AND reflation narrative collapses AND rotation reverses</td>
 <td>✅ <strong>SOUND</strong> — Logical dependency clear</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Verdict:</strong> Ada&#39;s logic is sound except Card #2 (Nvidia downside) lacks depth on counterarguments. Acceptable for thesis-stage confidence, but Fin will need to validate with fundamental deterioration evidence.</p>
 <hr>
 <h3><strong>Claudy</strong></h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Claim</th>
@@ -2699,11 +2717,11 @@ Healthy = &gt;80%
 <td>IF geopolitical risk Taiwan ↑ AND Samsung/Hynix Korea-based → demand shifts Korea-bound</td>
 <td>⚠️ <strong>INFERENCE ONLY</strong> — Claudy states but doesn&#39;t prove causation. Samsung +3.91% could reflect: (a) supply-chain shift, (b) tech cycle strength, (c) domestic Korean strength. Plausible but not definitively proven with Claudy&#39;s data alone.</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p><strong>Verdict:</strong> Claudy&#39;s narrative is coherent; one phrasing error (real yield direction) and one inference gap (Korea causation) are minor and don&#39;t invalidate the regime call.</p>
 <hr>
 <h3><strong>Rocky</strong></h3>
-<table>
+<div class="tbl-wrap"><table>
 <thead>
 <tr>
 <th>Claim</th>
@@ -2731,7 +2749,7 @@ Healthy = &gt;80%
 <td></td>
 <td></td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 </div>
   </div>
 </div>
@@ -2770,6 +2788,22 @@ function injectQuiz(){
 }
 const h=location.hash.slice(1);
 show(h&&document.getElementById('panel-'+h)?h:'executive_summary');
+</script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+document.querySelectorAll('pre code.language-mermaid').forEach(el=>{
+  const div=document.createElement('div');
+  div.className='mermaid';
+  div.textContent=el.textContent;
+  el.parentElement.replaceWith(div);
+});
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{
+  darkMode:true,background:'#0E0D0C',mainBkg:'#161412',
+  nodeBorder:'#3A3530',lineColor:'#4D4742',
+  textColor:'#F0EAE3',primaryColor:'#272320',
+  primaryTextColor:'#F0EAE3',primaryBorderColor:'#E8721A',
+  xyChart:{backgroundColor:'#161412',plotColorPalette:'#E8721A,#4ade80,#f87171,#fbbf24,#60a5fa'}
+}});
 </script>
 </body>
 </html>
