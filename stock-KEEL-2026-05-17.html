@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KEEL — Claudy Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:       #0E0D0C;
+  --s1:       #161412;
+  --s2:       #1E1B19;
+  --s3:       #272320;
+  --s4:       #312D29;
+  --border:   #3A3530;
+  --border2:  #4D4742;
+  --orange:   #E8721A;
+  --orange-d: rgba(232,114,26,.12);
+  --orange-g: rgba(232,114,26,.22);
+  --text:     #F0EAE3;
+  --text2:    #A39890;
+  --text3:    #5C5650;
+  --green:    #4ade80;
+  --amber:    #fbbf24;
+  --red:      #f87171;
+  --radius:   10px;
+  --radius-lg:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline;opacity:.85}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.chip-buy{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.chip-hold{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.chip-sell{background:rgba(248,113,113,.12);color:#f87171;border:1px solid rgba(248,113,113,.25)}
+.chip-orange{background:var(--orange-d);color:var(--orange);border:1px solid var(--orange-g)}
+.chip-gray{background:var(--s3);color:var(--text2);border:1px solid var(--border)}
+
+/* ── Top bar ── */
+.fr-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:0 28px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.fr-logo{font-size:1rem;font-weight:700;color:var(--text)}
+.fr-logo b{color:var(--orange)}
+.fr-back{background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:'Sarabun',sans-serif;font-size:.8rem;transition:all .15s;text-decoration:none;display:inline-block}
+.fr-back:hover{background:var(--s4);color:var(--text);text-decoration:none}
+.fr-spacer{flex:1}
+/* ── Nav pills (jump links) ── */
+.fr-nav{background:var(--s1);border-bottom:1px solid var(--border);padding:0 28px;height:40px;display:flex;align-items:center;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:52px;z-index:99}
+.fr-nav::-webkit-scrollbar{display:none}
+.fr-pill{flex-shrink:0;background:transparent;color:var(--text3);border:1px solid transparent;border-radius:5px;padding:4px 11px;font-family:'Sarabun',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .13s;text-decoration:none;display:inline-block;white-space:nowrap}
+.fr-pill:hover{background:var(--s3);color:var(--text);text-decoration:none;border-color:var(--border)}
+.fr-pill.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
+/* ── Hero ── */
+.fr-hero{background:linear-gradient(135deg,var(--s2) 0%,var(--s3) 100%);border-bottom:1px solid var(--border);padding:24px 28px 20px}
+.fr-code{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:700;color:var(--orange);letter-spacing:.06em;text-transform:uppercase;margin:0 0 5px}
+.fr-name{font-size:1.3rem;font-weight:700;color:var(--text);margin:0 0 14px;line-height:1.3}
+.fr-meta-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+/* ── Main scroll area ── */
+.fr-scroll{max-width:900px;margin:0 auto;padding:28px 28px 80px}
+/* ── Section card ── */
+.fr-section{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:0 0 16px;scroll-margin-top:100px}
+.fr-sec-head{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border)}
+.fr-sec-icon{font-size:.7rem;color:var(--orange);opacity:.8;flex-shrink:0}
+.fr-sec-text{flex:1;min-width:0}
+.fr-sec-label{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.09em;text-transform:uppercase;display:block}
+.fr-sec-title{font-size:.65rem;color:var(--text3);font-weight:400;margin-top:1px;opacity:.7;display:block}
+.fr-sec-tag{margin-left:auto;flex-shrink:0;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--text3);background:var(--s3);padding:2px 7px;border-radius:4px}
+.fr-sec-body{padding:18px 20px}
+/* ── Content typography ── */
+.fr-sec-body h1,.fr-sec-body h2{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.fr-sec-body h3{font-size:.9rem;font-weight:700;color:var(--text2);margin:16px 0 7px}
+.fr-sec-body h4{font-size:.8rem;font-weight:700;color:var(--text3);margin:12px 0 5px;text-transform:uppercase;letter-spacing:.04em}
+.fr-sec-body p{color:var(--text2);line-height:1.75;margin:0 0 9px;font-size:.9rem}
+.fr-sec-body ul,.fr-sec-body ol{color:var(--text2);line-height:1.75;padding-left:18px;margin:0 0 9px;font-size:.9rem}
+.fr-sec-body li{margin:3px 0}
+.fr-sec-body strong{color:var(--text)}
+.fr-sec-body em{color:var(--text3)}
+.fr-sec-body blockquote{border-left:3px solid var(--orange);padding:10px 16px;background:var(--s2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text2);font-style:italic;font-size:.9rem}
+.fr-sec-body table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.85rem}
+.fr-sec-body th{background:var(--s2);color:var(--text3);padding:8px 12px;text-align:left;border:1px solid var(--border);font-weight:700;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase}
+.fr-sec-body td{padding:8px 12px;border:1px solid var(--border);color:var(--text2);vertical-align:top;line-height:1.5}
+.fr-sec-body tr:hover td{background:var(--s2)}
+.fr-sec-body code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.8rem;color:var(--orange)}
+.fr-sec-body hr{border:none;border-top:1px solid var(--border);margin:18px 0}
+.fr-sec-body .mermaid{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:14px 0;text-align:center;overflow-x:auto}
+.fr-sec-body .mermaid svg{max-width:100%;height:auto}
+/* ── 2-col grid for paired personas ── */
+.fr-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
+/* ── Yuki highlight (first section) ── */
+.fr-section.yuki-card{border-color:var(--orange-g);background:linear-gradient(135deg,var(--s1) 0%,rgba(232,114,26,.04) 100%)}
+.fr-section.yuki-card .fr-sec-head{background:var(--orange-d);border-bottom-color:var(--orange-g)}
+.fr-section.yuki-card .fr-sec-label{color:var(--orange)}
+.fr-section.yuki-card .fr-sec-icon{opacity:1;font-size:.85rem}
+/* ── Footer ── */
+.fr-foot{text-align:center;color:var(--text3);font-size:.72rem;padding:20px;border-top:1px solid var(--border);margin-top:20px}
+@media(max-width:640px){
+  .fr-bar{padding:0 14px}.fr-nav{padding:0 14px}
+  .fr-hero{padding:18px 14px 14px}.fr-scroll{padding:18px 14px 60px}
+  .fr-grid-2{grid-template-columns:1fr}
+}
+/* ── Persona accent colors (left border per section) ── */
+#s-ada    > .fr-sec-head{border-left:3px solid #818cf8}
+#s-claudy > .fr-sec-head{border-left:3px solid #38bdf8}
+#s-rocky  > .fr-sec-head{border-left:3px solid #c084fc}
+#s-peter  > .fr-sec-head{border-left:3px solid #fbbf24}
+#s-diffy  > .fr-sec-head{border-left:3px solid #f87171}
+#s-fin    > .fr-sec-head{border-left:3px solid #4ade80}
+#s-leon   > .fr-sec-head{border-left:3px solid #78716c}
+/* ── Table wrapper — rounded container ── */
+.tbl-wrap{border-radius:var(--radius-lg);overflow-x:auto;border:1px solid var(--border);margin:14px 0}
+.fr-sec-body .tbl-wrap table{margin:0}
+.fr-sec-body .tbl-wrap tr:last-child td{border-bottom:none}
+.fr-sec-body .tbl-wrap tr:nth-child(even) td,.fr-sec-body .tbl-wrap tr:nth-child(even) th{background:rgba(255,255,255,.05)}
+/* ── IC Briefing Script highlight box ── */
+.ic-wrap{background:linear-gradient(135deg,var(--s2) 0%,rgba(232,114,26,.06) 100%);border:1px solid var(--orange-g);border-left:3px solid var(--orange);border-radius:var(--radius-lg);padding:18px 22px;margin:14px 0}
+.ic-wrap p{color:var(--text);line-height:2;font-size:.93rem;margin:0 0 6px}
+.ic-wrap p:last-child{margin:0}
+/* ── Improved headings inside sections ── */
+.fr-sec-body h2{font-size:1.05rem;font-weight:700;color:var(--text);margin:22px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--border)}
+.fr-sec-body h2:first-child{margin-top:0}
+.fr-sec-body h3{font-size:.92rem;font-weight:700;color:var(--text);margin:18px 0 8px}
+/* ── Non-italic blockquote ── */
+.fr-sec-body blockquote{font-style:normal}
+.fr-sec-body blockquote p{margin:0;font-size:.9rem}
+/* ── Orange-dot list bullets ── */
+.fr-sec-body ul:not(.no-dot){list-style:none;padding-left:0}
+.fr-sec-body ul:not(.no-dot) li{position:relative;padding-left:14px;margin:5px 0}
+.fr-sec-body ul:not(.no-dot) li::before{content:'·';position:absolute;left:0;color:var(--orange);font-weight:700;line-height:1.75}
+</style>
+</head>
+<body>
+
+<div class="fr-bar">
+  <div class="fr-logo">Claudy <b>Research</b></div>
+  <a class="fr-back" href="stock.html">← หุ้น US</a>
+  <div class="fr-spacer"></div>
+  <span class="chip chip-orange">KEEL</span>
+  <span class="chip chip-orange" style="margin-left:4px">KEEL</span>
+  <span style="font-size:.72rem;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-left:4px">2026-05-17</span>
+</div>
+
+<div class="fr-nav"><a class="fr-pill" href="#s-yuki">◈ Yuki</a><a class="fr-pill" href="#s-ada">◇ Ada</a><a class="fr-pill" href="#s-claudy">◎ Claudy</a><a class="fr-pill" href="#s-rocky">◈ Rocky</a><a class="fr-pill" href="#s-peter">◐ Peter</a><a class="fr-pill" href="#s-diffy">◑ Diffy</a><a class="fr-pill" href="#s-fin">◉ Fin</a><a class="fr-pill" href="#s-leon">◌ Leon</a></div>
+
+<div class="fr-hero">
+  <div class="fr-code">Stock Analysis · 2026-05-17</div>
+  <div class="fr-name">Keel Infrastructure Corp</div>
+  <div class="fr-meta-row">
+    <span class="chip chip-orange">—</span>
+    <span class="chip chip-orange">KEEL</span>
+    <span class="chip chip-gray">Ada · Claudy · Rocky · Peter · Diffy · Fin · Leon · Yuki</span>
+  </div>
+</div>
+
+<div class="fr-scroll">
+
+  <div class="fr-section yuki-card" id="s-yuki">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◈</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Executive Summary</span>
+      <span class="fr-sec-title">Chief Investment Officer</span>
+    </div>
+    <span class="fr-sec-tag">Yuki</span>
+  </div>
+  <div class="fr-sec-body"><h2>🌟 YUKI — Chief Investment Officer</h2>
+<p><strong>STEP 0 QUICK AUDIT:</strong></p>
+<ul>
+<li>[CONFLICT ⚠️ RESOLVED] User classified KEEL เป็น &quot;IT services&quot; — จริงๆ คือ former Bitcoin miner (Bitfarms) ที่ pivot → AI data center; ใช้ AI Infrastructure framework แทน</li>
+<li>[CONFLICT ⚠️ RESOLVED] Analyst consensus PT $4.17 &lt; current $4.39 = stale pre-Q1; HC Wainwright $5.50 สมเหตุสมผลกว่า</li>
+</ul>
+<p><strong>Stock Snapshot:</strong></p>
+<ul>
+<li>KEEL = Bitfarms rebranded — former Bitcoin miner กำลัง transform เป็น AI/HPC data center host ใน North America</li>
+<li>Moat ที่อ้าง: 2.2 GW power-secured pipeline ใน 3 sites — potential moat เท่านั้น ไม่ใช่ proven moat (ยังไม่มีลูกค้า)</li>
+<li>$533M liquidity รองรับ transition แต่ burn rate $100M+/Q เป็นเงื่อนเวลาที่ชัดเจน</li>
+</ul>
+<p><strong>3-Year Probability:</strong> ขึ้น ~60% / ลง ~40% | Weighted Target $6.10 (+39% จาก $4.39) | CAGR ~11.6% แต่ variance extreme</p>
+<p><strong>Industry Ecosystem (จาก Ada):</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>อุตสาหกรรม</th>
+<th>ความสัมพันธ์</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AI/GPU (NVDA/AMD)</td>
+<td>ลูกค้า deploy GPU ใน KEEL sites</td>
+</tr>
+<tr>
+<td>Hyperscalers (MSFT/AMZN/GOOGL)</td>
+<td>ผู้เช่า data center — catalyst หลัก</td>
+</tr>
+<tr>
+<td>Power/Utilities</td>
+<td>ซัพพลายพลังงาน — ต้นทุนหลัก</td>
+</tr>
+<tr>
+<td>Bitcoin/Crypto</td>
+<td>Revenue bridge + volatile reserve</td>
+</tr>
+</tbody></table></div>
+<p><strong>Best Case (20%):</strong> Sign 2+ hyperscaler deals → revenue ramp $600M+ → rerate เหมือน CORZ → <strong>$14.00 (+219%)</strong></p>
+<p><strong>Worst Case (15%):</strong> ไม่มีลูกค้า + BTC ร่วง 50% + dilution spiral → <strong>$0.20-0.50 (-90%+)</strong></p>
+<p><strong>Key Risks (จาก Diffy):</strong></p>
+<ol>
+<li>Power ≠ Contract — sites ว่างไม่มีมูลค่า</li>
+<li>Bitcoin reserve volatile — cushion หดได้ทันทีที่ต้องการ</li>
+<li>Dilution risk — burn $145M/Q ต้องมีรายได้ใหม่ก่อน 2027</li>
+</ol>
+<p><strong>Macro Fit:</strong> Mixed — AI CapEx tailwind แรง แต่ Fed hold กด capital cost + BTC risk เพิ่ม fragility</p>
+<p><strong>Fin Verdict: HOLD (Pending Data) | Weighted 3Y PT $6.10 | รอ first signed colocation contract</strong>
+เหตุผล: KEEL มี balance sheet แข็งพอและ pipeline น่าสนใจ แต่ยังไม่มี signed deal แม้แต่รายเดียว ทั้ง thesis เป็น pre-revenue speculation</p>
+<p><strong>Entry Strategy:</strong> อย่าซื้อก่อนมีข่าว contract signed | ถ้ามีข่าว → ซื้อ 2% พอร์ตทยอย 2 งวด | Stop $2.80</p>
+<p><strong>Macro Linkage Map:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Macro Factor</th>
+<th>Direction</th>
+<th>Impact ต่อ KEEL</th>
+<th>Probability</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AI CapEx (hyperscaler)</td>
+<td>เพิ่มขึ้น</td>
+<td>บวกมาก — demand sites</td>
+<td>75%</td>
+</tr>
+<tr>
+<td>Fed Policy (hold)</td>
+<td>ไม่ลดดอก</td>
+<td>ลบเล็กน้อย — capital cost</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>Bitcoin Price</td>
+<td>volatile</td>
+<td>ลบถ้าร่วง — กระทบ $197M</td>
+<td>40% ร่วง &gt;30%</td>
+</tr>
+<tr>
+<td>Geopolitical</td>
+<td>ตึง</td>
+<td>Neutral</td>
+<td>ต่ำ</td>
+</tr>
+</tbody></table></div>
+<p><strong>IC Briefing Script:</strong>
+KEEL คือ former Bitcoin miner ที่กำลังแปลงตัวเองเป็น AI data center — มีพื้นที่ไฟฟ้า 2.2 GW และเงิน $533M แต่ยังไม่มีลูกค้า AI แม้แต่ราย ถ้า sign deal ราคาไปได้ $14 แต่ถ้าไม่มีและ Bitcoin ร่วงพร้อมกันอาจเหลือไม่ถึง $1 นี่คือ binary bet ไม่ใช่การลงทุนปกติ รอข่าว colocation contract Q3 2026 ก่อนตัดสินใจ</p>
+<hr>
+<p><em>ข้อมูลจาก: Yahoo Finance · Web Search · Claudy Research Knowledge Base</em>
+<em>วิเคราะห์: 17 พฤษภาคม 2026</em></p>
+</div>
+</div>
+
+  <div class="fr-grid-2">
+    <div class="fr-section" id="s-ada">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◇</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Macro Thesis</span>
+      <span class="fr-sec-title">Chief Investment Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Ada</span>
+  </div>
+  <div class="fr-sec-body"><h2>💡 ADA — Chief Investment Strategist</h2>
+<p><strong>Macro Regime:</strong> Goldilocks → AI Infrastructure Supercycle — hyperscaler CapEx เพิ่มขึ้น power-secured land เป็น bottleneck แท้จริง
+<strong>Business Cycle:</strong> Pre-Revenue Pivot — รายได้ Bitcoin กำลังหดตัว รายได้ AI ยังเป็นศูนย์
+<strong>Investment Thesis (3Y):</strong> KEEL เป็น binary bet ว่า power-secured sites 2.2 GW คือ scarce asset ที่ hyperscaler ต้องการ ถ้า sign deal สำเร็จจะ rerate เหมือน Core Scientific (CORZ) ที่ขึ้นหลายเท่าหลังได้ Microsoft — ถ้าล้มเหลวคือ cash burn จนถึง dilution spiral</p>
+<p><strong>Industry Ecosystem Linkages:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Industry</th>
+<th>ความสัมพันธ์</th>
+<th>ถ้า Industry โต</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AI/GPU Compute (NVDA/AMD)</td>
+<td>ลูกค้าต้องการ space deploy GPU clusters</td>
+<td>Demand สูงขึ้น</td>
+</tr>
+<tr>
+<td>Hyperscalers (MSFT/AMZN/GOOGL)</td>
+<td>ผู้เช่า colocation space — catalyst หลัก</td>
+<td>Revenue ramp</td>
+</tr>
+<tr>
+<td>Power/Utilities (NEE/AES)</td>
+<td>ซัพพลายพลังงานให้ sites</td>
+<td>ต้นทุน + dependency</td>
+</tr>
+<tr>
+<td>Bitcoin/Crypto (BTC)</td>
+<td>Revenue bridge ชั่วคราว + $197M reserve</td>
+<td>ผันผวน bilateral</td>
+</tr>
+<tr>
+<td>Real Estate / Site Development</td>
+<td>Permitting, zoning, construction</td>
+<td>Execution risk</td>
+</tr>
+</tbody></table></div>
+<p><strong>Portfolio Positioning:</strong> SPECULATIVE / TACTICAL (&lt;3% พอร์ต)
+<strong>Research Directive:</strong> (1) First colocation contract จะ sign เมื่อไหร่และกับใคร? (2) Construction timeline Panther Creek/Sharon/Moses Lake จริงหรือ wishful? (3) ถ้า BTC ร่วง 40% $197M reserve กระทบ runway ขนาดไหน?</p>
+<hr>
+</div>
+</div>
+    <div class="fr-section" id="s-peter">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◐</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Sentiment & Flow</span>
+      <span class="fr-sec-title">Behavioral Finance Analyst</span>
+    </div>
+    <span class="fr-sec-tag">Peter</span>
+  </div>
+  <div class="fr-sec-body"><h2>🧠 PETER — Behavioral Finance Analyst</h2>
+<p><strong>Institutional Positioning:</strong> จำกัด — 3 analysts เท่านั้น; institutional ส่วนใหญ่เป็น crypto-specialist funds ถือมาตั้งแต่ Bitfarms era
+<strong>Short Interest:</strong> ไม่มีข้อมูลชัด — crypto stocks มักถูก short สูง; volume spike วันนี้มีลักษณะ short squeeze บางส่วน
+<strong>Retail Sentiment:</strong> เพิ่งเริ่ม discover — ผู้ใช้รู้จัก KEEL ผ่าน DIME = retail wave ยังไม่ถึง peak
+<strong>Earnings Reaction:</strong> ขึ้นหลัง Q1 แม้ตัวเลขแย่ = ตลาด price in story ไม่ใช่ current fundamentals
+<strong>Sentiment Cycle:</strong> HOPE → ต้นของ OPTIMISM — narrative ใหม่ (AI pivot) ยังสด แต่ยังไม่ proof
+<strong>Contrarian Signal:</strong> PARTIAL CAUTION — run 527% จาก low แต่ยังห่าง ATH 33%; retail discovery เพิ่งเริ่ม</p>
+<hr>
+</div>
+</div>
+  </div>
+
+  <div class="fr-section" id="s-claudy">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◎</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Market Research</span>
+      <span class="fr-sec-title">Sr. Markets Correspondent</span>
+    </div>
+    <span class="fr-sec-tag">Claudy</span>
+  </div>
+  <div class="fr-sec-body"><h2>🔍 CLAUDY — Sr. Markets Correspondent</h2>
+<p><strong>Live Data (VERIFIED — Yahoo Finance):</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Price</td>
+<td>$4.39</td>
+</tr>
+<tr>
+<td>1D Change</td>
+<td><span style="color:#4ade80;font-weight:600">+10.6%</span></td>
+</tr>
+<tr>
+<td>52W High</td>
+<td>$6.60</td>
+</tr>
+<tr>
+<td>52W Low</td>
+<td>$0.70</td>
+</tr>
+<tr>
+<td>vs 52W High</td>
+<td><span style="color:#f87171;font-weight:600">-33.5%</span></td>
+</tr>
+<tr>
+<td>Volume</td>
+<td>32.7M shares (สูงผิดปกติ)</td>
+</tr>
+<tr>
+<td>Market Cap</td>
+<td>~$2.65B (603M shares)</td>
+</tr>
+</tbody></table></div>
+<p><strong>Q1 FY2026 Earnings (May 11, 2026):</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Actual</th>
+<th>Prior Year</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Revenue</td>
+<td>$37.0M</td>
+<td>$47.65M</td>
+<td><span style="color:#f87171;font-weight:600">-22%</span> YoY</td>
+</tr>
+<tr>
+<td>Net Loss</td>
+<td>-$145.4M</td>
+<td>—</td>
+<td>wider</td>
+</tr>
+<tr>
+<td>Adj EBITDA</td>
+<td>-$16.71M</td>
+<td>+$6.90M</td>
+<td>swing ลบ</td>
+</tr>
+<tr>
+<td>Operating Loss</td>
+<td>-$98M</td>
+<td>-$35M</td>
+<td>wider</td>
+</tr>
+<tr>
+<td>Liquidity</td>
+<td>$533M</td>
+<td>—</td>
+<td>รวม $197M BTC</td>
+</tr>
+</tbody></table></div>
+<p><strong>TTM:</strong> Revenue $218-229M | Net loss -$284M | AI revenue = $0</p>
+<p><strong>Management Update:</strong> ไม่มี formal guidance — advance 3 sites (Panther Creek PA / Sharon / Moses Lake WA) toward lease; H.C. Wainwright คาดว่า first deal Q3 2026</p>
+<p><strong>Analyst Consensus:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Analyst</th>
+<th>Rating</th>
+<th>Price Target</th>
+<th>Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>H.C. Wainwright</td>
+<td>BUY</td>
+<td>$5.50</td>
+<td>May 11, 2026 (↑จาก $3.70)</td>
+</tr>
+<tr>
+<td>Chardan Capital</td>
+<td>BUY</td>
+<td>$4.50</td>
+<td>May 11, 2026 (maintained)</td>
+</tr>
+<tr>
+<td>Cantor Fitzgerald</td>
+<td>—</td>
+<td>$3.00</td>
+<td>Apr 9, 2026</td>
+</tr>
+<tr>
+<td><strong>Consensus</strong></td>
+<td><span class="chip chip-buy" style="font-size:.82rem">BUY</span></td>
+<td><strong>~$4.17</strong></td>
+<td><strong>3 analysts</strong></td>
+</tr>
+<tr>
+<td>⚠️ [CONFLICT NOTED]: Consensus PT $4.17 &lt; current $4.39 = stale pre-Q1 data; HC Wainwright $5.50 สมเหตุสมผลกว่า</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table></div>
+<p><strong>Recent News:</strong></p>
+<ul>
+<li>[investor.bitfarms.com, Apr 1] Bitfarms rebrands as Keel Infrastructure, US redomiciliation complete</li>
+<li>[investor.bitfarms.com, May 11] Q1 2026: revenue $37M, net loss $145M, liquidity $533M</li>
+<li>[investing.com, May 11] H.C. Wainwright raises PT to $5.50 on permit progress</li>
+<li>[mexc.com] KEEL ขาย 269 BTC ($20M) YTD ลด BTC exposure</li>
+</ul>
+<p><strong>Peer Comparison:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Ticker</th>
+<th>Status</th>
+<th>Key Differentiator</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Core Scientific</td>
+<td>CORZ</td>
+<td>Pivot สำเร็จ (signed Microsoft)</td>
+<td>มีรายได้ AI จริงแล้ว</td>
+</tr>
+<tr>
+<td>Applied Digital</td>
+<td>APLD</td>
+<td>HPC data center, revenue growing</td>
+<td>มี paying customers แล้ว</td>
+</tr>
+<tr>
+<td>Cipher Mining</td>
+<td>CIFR</td>
+<td>ยังส่วนใหญ่ mining</td>
+<td>ยังไม่ pivot</td>
+</tr>
+</tbody></table></div>
+<hr>
+</div>
+</div>
+  <div class="fr-section" id="s-rocky">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◈</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Strategy & Valuation</span>
+      <span class="fr-sec-title">Chief Market Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Rocky</span>
+  </div>
+  <div class="fr-sec-body"><h2>📊 ROCKY — Chief Market Strategist</h2>
+<p><strong>Fundamental Analysis:</strong></p>
+<ul>
+<li>Sector: AI/HPC Infrastructure Pivot — P/E ไม่ applicable (ขาดทุน)</li>
+<li>P/S (TTM): $2.65B / $218M = <strong>12.1x</strong> — กลาง peer range (APLD 8-12x, CORZ หลัง deal 15-20x)</li>
+<li>Revenue trend: declining -22% YoY (legacy mining); AI revenue $0 — worst of transition</li>
+<li>Rate Sensitivity: สูง — capital-intensive; 10Y yield ขึ้น 25bps → valuation กด 5-8%</li>
+</ul>
+<p><strong>[Sector P/S for Fin: 5-15x — Sector: AI/HPC Data Center Pre-Revenue Pivot]</strong></p>
+<p><strong>Technical Analysis:</strong></p>
+<ul>
+<li>Trend: Major Uptrend จาก $0.70 → $4.39 (+527%) แต่ volatile มาก</li>
+<li>Support: $3.50 / $2.80 / $1.50</li>
+<li>Resistance: $5.50 (HC Wainwright PT) / $6.60 (52W ATH)</li>
+<li>Volume วันนี้ 32.7M — breakout volume, possible short squeeze</li>
+<li>RSI ประมาณ 60-65 (momentum ยังไม่ overbought)</li>
+</ul>
+<p><strong>Trade Setup:</strong></p>
+<ul>
+<li>Entry Zone: $4.00–$4.50 (current)</li>
+<li>Target: $6.60 (retest ATH) / $8.00+ (new high if deal signed)</li>
+<li>Stop Loss: $2.80 (-36%)</li>
+<li>R/R: 2.3:1</li>
+<li>Invalidation: ปิดต่ำกว่า $2.80 หรือ Bitcoin ร่วง &gt;40%</li>
+</ul>
+<hr>
+</div>
+</div>
+
+  <div class="fr-grid-2">
+    <div class="fr-section" id="s-diffy">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◑</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Risk & Contrarian</span>
+      <span class="fr-sec-title">Contrarian Risk Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Diffy</span>
+  </div>
+  <div class="fr-sec-body"><h2>⚠️ DIFFY — Contrarian Risk Strategist</h2>
+<p><strong>What&#39;s Priced In:</strong> ตลาดกำลัง assume KEEL = CORZ ปี 2023 ก่อน Microsoft deal — assumption นี้อ่อนมาก เพราะ CORZ ออกจาก bankruptcy พร้อม creditor backing ก่อน; KEEL ไม่มีสิ่งนั้น</p>
+<p><strong>Hidden Risks:</strong></p>
+<ol>
+<li><strong>&quot;Power ≠ Contract&quot;</strong> — มี sites + permits ≠ มีลูกค้า Hyperscaler ต้องการ: uptime guarantee, fiber, construction certainty, operator track record — ทั้งหมดนี้ยังไม่ verified</li>
+<li><strong>Bitcoin Reserve = Volatile Buffer</strong> — $197M BTC correlated กับ risk-off; ตลาดปรับฐาน → BTC ร่วงตาม → runway สั้นลงพร้อมกับที่ต้องการเงินมากที่สุด</li>
+<li><strong>Dilution Spiral Risk</strong> — burn rate Q1 $145M net loss; ถ้าไม่มีรายได้ใหม่ใน 2 ไตรมาส → equity raise ที่ discount หนัก</li>
+<li><strong>Competition Window Closing</strong> — CORZ/APLD/Digital Realty ต่างแย่ง deals อยู่; KEEL อาจเป็น late entrant</li>
+</ol>
+<p><strong>WORST CASE SCENARIO (3 ปี) — Perfect Storm:</strong>
+BTC ร่วง 50% ($197M → $98M) + ไม่มี hyperscaler sign ใน H2 2026 → equity raise ที่ $1.50-2.00 → massive dilution → spiral ลงเรื่อยๆ → merger/acquisition at distressed price หรือ near-zero</p>
+<p>→ <strong>Price: $0.20–$0.50</strong> | <strong>Probability: 15%</strong> | <strong>Downside: -89% ถึง -95%</strong> | Recovery: 3-5 ปี</p>
+<p><strong>Risk Score:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Risk Category</th>
+<th align="center">Score</th>
+<th>Key Concern</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Market / Cycle</td>
+<td align="center">4/5</td>
+<td>Pre-revenue + BTC reserve volatile</td>
+</tr>
+<tr>
+<td>Concentration</td>
+<td align="center">4/5</td>
+<td>Single pivot thesis, zero revenue diversification</td>
+</tr>
+<tr>
+<td>Execution</td>
+<td align="center">5/5</td>
+<td>ไม่มี signed deal แม้แต่รายเดียว</td>
+</tr>
+<tr>
+<td>Regulatory</td>
+<td align="center">2/5</td>
+<td>Zoning/permits อยู่ระหว่างดำเนินการ</td>
+</tr>
+<tr>
+<td>Balance Sheet</td>
+<td align="center">3/5</td>
+<td>$533M แต่ burn rate สูง + BTC risk</td>
+</tr>
+<tr>
+<td><strong>Total: 18/25 — HIGH</strong></td>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table></div>
+<hr>
+</div>
+</div>
+    <div class="fr-section" id="s-fin">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◉</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Fundamental & Verdict</span>
+      <span class="fr-sec-title">Sr. Equity Research Analyst</span>
+    </div>
+    <span class="fr-sec-tag">Fin</span>
+  </div>
+  <div class="fr-sec-body"><h2>📈 FIN — Sr. Equity Research Analyst</h2>
+<p><strong>Earnings Quality:</strong></p>
+<ul>
+<li>FCF: Strongly negative — ขาดทุน $145M/Q + CapEx สูง</li>
+<li>Revenue: declining -22% YoY (Bitcoin legacy); AI revenue $0</li>
+<li>Margin: Adj EBITDA ลบ, gross margin ลบ ตามรายงาน HC Wainwright</li>
+<li>Revenue ปัจจุบันไม่ reflect thesis ใหม่เลย — transition noise ทั้งหมด</li>
+</ul>
+<p><strong>ROIC vs WACC:</strong></p>
+<ul>
+<li>ROIC: ลบ (ขาดทุนหนัก)</li>
+<li>WACC: ~12-15% (small-cap + high execution risk)</li>
+<li>Moat: CONDITIONAL — power-secured sites = real moat ถ้ามี tenant; ว่างไม่มี moat</li>
+</ul>
+<p><strong>Valuation (Sector P/S 5-15x จาก Rocky):</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>KEEL</th>
+<th>Peers</th>
+<th>หมายเหตุ</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P/S (TTM)</td>
+<td>12.1x</td>
+<td>5-15x</td>
+<td>กลาง range แต่ revenue declining</td>
+</tr>
+<tr>
+<td>EV/EBITDA</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>ทุก peer negative EBITDA</td>
+</tr>
+<tr>
+<td>P/B</td>
+<td>~1.5x</td>
+<td>—</td>
+<td>ต่ำ แต่ BTC volatile</td>
+</tr>
+</tbody></table></div>
+<p><strong>3-Year Probability-Weighted Target:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th align="center">Prob</th>
+<th>3Y Target</th>
+<th align="center">Return vs $4.39</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bull (2+ hyperscaler deals, revenue $600M+)</td>
+<td align="center">20%</td>
+<td>$14.00</td>
+<td align="center"><span style="color:#4ade80;font-weight:600">+219%</span></td>
+</tr>
+<tr>
+<td>Base (1-2 smaller deals, ramp $200-400M)</td>
+<td align="center">40%</td>
+<td>$7.00</td>
+<td align="center"><span style="color:#4ade80;font-weight:600">+59%</span></td>
+</tr>
+<tr>
+<td>Bear (slow/no deals, dilution, minimal revenue)</td>
+<td align="center">25%</td>
+<td>$2.00</td>
+<td align="center"><span style="color:#f87171;font-weight:600">-54%</span></td>
+</tr>
+<tr>
+<td>Worst (no deal, BTC crash, cash crisis)</td>
+<td align="center">15%</td>
+<td>$0.35</td>
+<td align="center"><span style="color:#f87171;font-weight:600">-92%</span></td>
+</tr>
+<tr style="background:rgba(232,114,26,.06)">
+<td><strong>Weighted</strong></td>
+<td align="center">100%</td>
+<td><strong>$6.10</strong></td>
+<td align="center"><strong><span style="color:#4ade80;font-weight:600">+39%</span></strong></td>
+</tr>
+</tbody></table></div>
+<p><strong>Probability Summary (3 ปี):</strong></p>
+<ul>
+<li>โอกาสราคาขึ้น: <strong>~60%</strong></li>
+<li>โอกาสราคาลง: <strong>~40%</strong></li>
+<li>CAGR weighted: <strong>~11.6%/ปี</strong> (แต่ variance extreme — ไม่ใช่ CAGR ปกติ; รับ 92% downside risk ได้ไหม?)</li>
+</ul>
+<p><strong>Data Sufficiency Check:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>ข้อมูล</th>
+<th>สถานะ</th>
+<th>ผลต่อ Verdict</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Signed colocation contracts</td>
+<td>❌ ศูนย์เลย</td>
+<td><strong>CRITICAL — ไม่มีนี้ไม่ออก BUY</strong></td>
+</tr>
+<tr>
+<td>Revenue guidance 2026-2028</td>
+<td>❌ ไม่มี formal guidance</td>
+<td>Base case uncertain สูงมาก</td>
+</tr>
+<tr>
+<td>Construction timeline per site</td>
+<td>❌ ไม่ชัดเจน</td>
+<td>Execution risk ประเมินยาก</td>
+</tr>
+<tr>
+<td>Liquidity runway</td>
+<td>✓ $533M ~18-24 เดือน</td>
+<td>Buffer พอรอ deal</td>
+</tr>
+<tr>
+<td>Bitcoin hedge policy</td>
+<td>✓ ขาย gradually (269 BTC YTD)</td>
+<td>พอรับได้</td>
+</tr>
+</tbody></table></div>
+<p><strong>Fin Summary:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th align="left">มิติ</th>
+<th align="center">คะแนน</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Business Quality</td>
+<td align="center">2/5</td>
+</tr>
+<tr>
+<td align="left">Earnings Quality</td>
+<td align="center">1/5</td>
+</tr>
+<tr>
+<td align="left">Valuation</td>
+<td align="center">3/5</td>
+</tr>
+<tr>
+<td align="left">Timing</td>
+<td align="center">2/5</td>
+</tr>
+<tr>
+<td align="left">Risk/Reward</td>
+<td align="center">3/5</td>
+</tr>
+<tr>
+<td align="left">Data Completeness</td>
+<td align="center">2/5</td>
+</tr>
+<tr>
+<td align="left"><strong>Verdict</strong></td>
+<td align="center"><strong>HOLD (Pending Data)</strong></td>
+</tr>
+</tbody></table></div>
+<p><strong>Position:</strong> ไม่ซื้อก่อนมี signed contract | ถ้าจะ speculate ไม่เกิน 2% พอร์ต | Stop $2.80 | Catalyst: First colocation announcement Q3 2026</p>
+<hr>
+</div>
+</div>
+  </div>
+
+  <div class="fr-section" id="s-leon">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◌</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Fact Audit</span>
+      <span class="fr-sec-title">Research Integrity Officer</span>
+    </div>
+    <span class="fr-sec-tag">Leon</span>
+  </div>
+  <div class="fr-sec-body"><p style="color:var(--text3)">ไม่พบรายงานส่วนนี้</p></div>
+</div>
+
+</div>
+
+<div class="fr-foot">Claudy Research · Stock Analysis · ข้อมูลจาก Yahoo Finance · Web Research</div>
+
+<script>
+const sections = document.querySelectorAll('.fr-section[id]');
+const pills = document.querySelectorAll('.fr-pill');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id.replace('s-', '');
+      pills.forEach(p => p.classList.toggle('active', p.getAttribute('href') === '#s-' + id));
+    }
+  });
+}, { rootMargin: '-52px 0px -60% 0px', threshold: 0 });
+sections.forEach(s => io.observe(s));
+</script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+document.querySelectorAll('pre code.language-mermaid').forEach(el=>{
+  const div=document.createElement('div');
+  div.className='mermaid';
+  div.textContent=el.textContent;
+  el.parentElement.replaceWith(div);
+});
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{
+  darkMode:true,background:'#0E0D0C',mainBkg:'#161412',
+  nodeBorder:'#3A3530',lineColor:'#4D4742',
+  textColor:'#F0EAE3',primaryColor:'#272320',
+  primaryTextColor:'#F0EAE3',primaryBorderColor:'#E8721A',
+  xyChart:{backgroundColor:'#161412',plotColorPalette:'#E8721A,#4ade80,#f87171,#fbbf24,#60a5fa'}
+}});
+</script>
+</body>
+</html>

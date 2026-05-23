@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>INTC — Claudy Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:       #0E0D0C;
+  --s1:       #161412;
+  --s2:       #1E1B19;
+  --s3:       #272320;
+  --s4:       #312D29;
+  --border:   #3A3530;
+  --border2:  #4D4742;
+  --orange:   #E8721A;
+  --orange-d: rgba(232,114,26,.12);
+  --orange-g: rgba(232,114,26,.22);
+  --text:     #F0EAE3;
+  --text2:    #A39890;
+  --text3:    #5C5650;
+  --green:    #4ade80;
+  --amber:    #fbbf24;
+  --red:      #f87171;
+  --radius:   10px;
+  --radius-lg:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline;opacity:.85}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:600;letter-spacing:.04em;white-space:nowrap}
+.chip-buy{background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.25)}
+.chip-hold{background:rgba(251,191,36,.12);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.chip-sell{background:rgba(248,113,113,.12);color:#f87171;border:1px solid rgba(248,113,113,.25)}
+.chip-orange{background:var(--orange-d);color:var(--orange);border:1px solid var(--orange-g)}
+.chip-gray{background:var(--s3);color:var(--text2);border:1px solid var(--border)}
+
+/* ── Top bar ── */
+.fr-bar{background:var(--s1);border-bottom:1px solid var(--border);padding:0 28px;height:52px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100}
+.fr-logo{font-size:1rem;font-weight:700;color:var(--text)}
+.fr-logo b{color:var(--orange)}
+.fr-back{background:var(--s3);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:5px 12px;font-family:'Sarabun',sans-serif;font-size:.8rem;transition:all .15s;text-decoration:none;display:inline-block}
+.fr-back:hover{background:var(--s4);color:var(--text);text-decoration:none}
+.fr-spacer{flex:1}
+/* ── Nav pills (jump links) ── */
+.fr-nav{background:var(--s1);border-bottom:1px solid var(--border);padding:0 28px;height:40px;display:flex;align-items:center;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:52px;z-index:99}
+.fr-nav::-webkit-scrollbar{display:none}
+.fr-pill{flex-shrink:0;background:transparent;color:var(--text3);border:1px solid transparent;border-radius:5px;padding:4px 11px;font-family:'Sarabun',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .13s;text-decoration:none;display:inline-block;white-space:nowrap}
+.fr-pill:hover{background:var(--s3);color:var(--text);text-decoration:none;border-color:var(--border)}
+.fr-pill.active{background:var(--orange-d);color:var(--orange);border-color:var(--orange-g)}
+/* ── Hero ── */
+.fr-hero{background:linear-gradient(135deg,var(--s2) 0%,var(--s3) 100%);border-bottom:1px solid var(--border);padding:24px 28px 20px}
+.fr-code{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:700;color:var(--orange);letter-spacing:.06em;text-transform:uppercase;margin:0 0 5px}
+.fr-name{font-size:1.3rem;font-weight:700;color:var(--text);margin:0 0 14px;line-height:1.3}
+.fr-meta-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+/* ── Main scroll area ── */
+.fr-scroll{max-width:900px;margin:0 auto;padding:28px 28px 80px}
+/* ── Section card ── */
+.fr-section{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;margin:0 0 16px;scroll-margin-top:100px}
+.fr-sec-head{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border)}
+.fr-sec-icon{font-size:.7rem;color:var(--orange);opacity:.8;flex-shrink:0}
+.fr-sec-text{flex:1;min-width:0}
+.fr-sec-label{font-size:.72rem;font-weight:700;color:var(--text3);letter-spacing:.09em;text-transform:uppercase;display:block}
+.fr-sec-title{font-size:.65rem;color:var(--text3);font-weight:400;margin-top:1px;opacity:.7;display:block}
+.fr-sec-tag{margin-left:auto;flex-shrink:0;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--text3);background:var(--s3);padding:2px 7px;border-radius:4px}
+.fr-sec-body{padding:18px 20px}
+/* ── Content typography ── */
+.fr-sec-body h1,.fr-sec-body h2{font-size:1rem;font-weight:700;color:var(--text);margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.fr-sec-body h3{font-size:.9rem;font-weight:700;color:var(--text2);margin:16px 0 7px}
+.fr-sec-body h4{font-size:.8rem;font-weight:700;color:var(--text3);margin:12px 0 5px;text-transform:uppercase;letter-spacing:.04em}
+.fr-sec-body p{color:var(--text2);line-height:1.75;margin:0 0 9px;font-size:.9rem}
+.fr-sec-body ul,.fr-sec-body ol{color:var(--text2);line-height:1.75;padding-left:18px;margin:0 0 9px;font-size:.9rem}
+.fr-sec-body li{margin:3px 0}
+.fr-sec-body strong{color:var(--text)}
+.fr-sec-body em{color:var(--text3)}
+.fr-sec-body blockquote{border-left:3px solid var(--orange);padding:10px 16px;background:var(--s2);border-radius:0 8px 8px 0;margin:12px 0;color:var(--text2);font-style:italic;font-size:.9rem}
+.fr-sec-body table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.85rem}
+.fr-sec-body th{background:var(--s2);color:var(--text3);padding:8px 12px;text-align:left;border:1px solid var(--border);font-weight:700;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase}
+.fr-sec-body td{padding:8px 12px;border:1px solid var(--border);color:var(--text2);vertical-align:top;line-height:1.5}
+.fr-sec-body tr:hover td{background:var(--s2)}
+.fr-sec-body code{font-family:'JetBrains Mono',monospace;background:var(--s3);padding:2px 6px;border-radius:4px;font-size:.8rem;color:var(--orange)}
+.fr-sec-body hr{border:none;border-top:1px solid var(--border);margin:18px 0}
+.fr-sec-body .mermaid{background:var(--s2);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:14px 0;text-align:center;overflow-x:auto}
+.fr-sec-body .mermaid svg{max-width:100%;height:auto}
+/* ── 2-col grid for paired personas ── */
+.fr-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
+/* ── Yuki highlight (first section) ── */
+.fr-section.yuki-card{border-color:var(--orange-g);background:linear-gradient(135deg,var(--s1) 0%,rgba(232,114,26,.04) 100%)}
+.fr-section.yuki-card .fr-sec-head{background:var(--orange-d);border-bottom-color:var(--orange-g)}
+.fr-section.yuki-card .fr-sec-label{color:var(--orange)}
+.fr-section.yuki-card .fr-sec-icon{opacity:1;font-size:.85rem}
+/* ── Footer ── */
+.fr-foot{text-align:center;color:var(--text3);font-size:.72rem;padding:20px;border-top:1px solid var(--border);margin-top:20px}
+@media(max-width:640px){
+  .fr-bar{padding:0 14px}.fr-nav{padding:0 14px}
+  .fr-hero{padding:18px 14px 14px}.fr-scroll{padding:18px 14px 60px}
+  .fr-grid-2{grid-template-columns:1fr}
+}
+/* ── Persona accent colors (left border per section) ── */
+#s-ada    > .fr-sec-head{border-left:3px solid #818cf8}
+#s-claudy > .fr-sec-head{border-left:3px solid #38bdf8}
+#s-rocky  > .fr-sec-head{border-left:3px solid #c084fc}
+#s-peter  > .fr-sec-head{border-left:3px solid #fbbf24}
+#s-diffy  > .fr-sec-head{border-left:3px solid #f87171}
+#s-fin    > .fr-sec-head{border-left:3px solid #4ade80}
+#s-leon   > .fr-sec-head{border-left:3px solid #78716c}
+/* ── Table wrapper — rounded container ── */
+.tbl-wrap{border-radius:var(--radius-lg);overflow-x:auto;border:1px solid var(--border);margin:14px 0}
+.fr-sec-body .tbl-wrap table{margin:0}
+.fr-sec-body .tbl-wrap tr:last-child td{border-bottom:none}
+.fr-sec-body .tbl-wrap tr:nth-child(even) td,.fr-sec-body .tbl-wrap tr:nth-child(even) th{background:rgba(255,255,255,.05)}
+/* ── IC Briefing Script highlight box ── */
+.ic-wrap{background:linear-gradient(135deg,var(--s2) 0%,rgba(232,114,26,.06) 100%);border:1px solid var(--orange-g);border-left:3px solid var(--orange);border-radius:var(--radius-lg);padding:18px 22px;margin:14px 0}
+.ic-wrap p{color:var(--text);line-height:2;font-size:.93rem;margin:0 0 6px}
+.ic-wrap p:last-child{margin:0}
+/* ── Improved headings inside sections ── */
+.fr-sec-body h2{font-size:1.05rem;font-weight:700;color:var(--text);margin:22px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--border)}
+.fr-sec-body h2:first-child{margin-top:0}
+.fr-sec-body h3{font-size:.92rem;font-weight:700;color:var(--text);margin:18px 0 8px}
+/* ── Non-italic blockquote ── */
+.fr-sec-body blockquote{font-style:normal}
+.fr-sec-body blockquote p{margin:0;font-size:.9rem}
+/* ── Orange-dot list bullets ── */
+.fr-sec-body ul:not(.no-dot){list-style:none;padding-left:0}
+.fr-sec-body ul:not(.no-dot) li{position:relative;padding-left:14px;margin:5px 0}
+.fr-sec-body ul:not(.no-dot) li::before{content:'·';position:absolute;left:0;color:var(--orange);font-weight:700;line-height:1.75}
+</style>
+</head>
+<body>
+
+<div class="fr-bar">
+  <div class="fr-logo">Claudy <b>Research</b></div>
+  <a class="fr-back" href="stock.html">← หุ้น US</a>
+  <div class="fr-spacer"></div>
+  <span class="chip chip-orange">INTC</span>
+  <span class="chip chip-orange" style="margin-left:4px">INTC</span>
+  <span style="font-size:.72rem;color:var(--text3);font-family:'JetBrains Mono',monospace;margin-left:4px">2026-05-16</span>
+</div>
+
+<div class="fr-nav"><a class="fr-pill" href="#s-yuki">◈ Yuki</a><a class="fr-pill" href="#s-ada">◇ Ada</a><a class="fr-pill" href="#s-claudy">◎ Claudy</a><a class="fr-pill" href="#s-rocky">◈ Rocky</a><a class="fr-pill" href="#s-peter">◐ Peter</a><a class="fr-pill" href="#s-diffy">◑ Diffy</a><a class="fr-pill" href="#s-fin">◉ Fin</a><a class="fr-pill" href="#s-leon">◌ Leon</a></div>
+
+<div class="fr-hero">
+  <div class="fr-code">Stock Analysis · 2026-05-16</div>
+  <div class="fr-name">Intel Corporation</div>
+  <div class="fr-meta-row">
+    <span class="chip chip-orange">—</span>
+    <span class="chip chip-orange">INTC</span>
+    <span class="chip chip-gray">Ada · Claudy · Rocky · Peter · Diffy · Fin · Leon · Yuki</span>
+  </div>
+</div>
+
+<div class="fr-scroll">
+
+  <div class="fr-section yuki-card" id="s-yuki">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◈</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Executive Summary</span>
+      <span class="fr-sec-title">Chief Investment Officer</span>
+    </div>
+    <span class="fr-sec-tag">Yuki</span>
+  </div>
+  <div class="fr-sec-body"><h2>🌟 YUKI — Chief Investment Officer</h2>
+<p><strong>Quick Audit:</strong> [CONFLICT ⚠️] ราคา $108.77 vs analyst median $65 ใช้ analyst เป็น reference | [UNVERIFIED ❌] FCF, ROIC, IFS P&amp;L ตัดออก</p>
+<p><strong>3-Year Probability:</strong> ขึ้น ~20% / ลง ~80% | Weighted Target $87.50 | CAGR -7%/ปี</p>
+<p><strong>Best Case (20%):</strong> IFS wins Apple/NVDA full-chip → $180 (+51% จาก cost $119)
+<strong>Worst Case (25%):</strong> Perfect storm → $28 (-76.5% จาก cost $119)</p>
+<p><strong>Verdict: SELL (อย่าเพิ่ม) | Weighted 3Y PT: $87.50</strong></p>
+<p><strong>คำแนะนำ:</strong> ถือ $300 position ต่อได้ แต่ห้ามเพิ่ม | Q2 earnings (กรกฎาคม) = risk event หลัก | Catalyst เชิงบวก = IFS ประกาศ full-chip customer ใหญ่</p>
+<hr>
+<p><em>ข้อมูลจาก: Yahoo Finance · Web Search · Claudy Research Knowledge Base</em>
+<em>วิเคราะห์: 16 พฤษภาคม 2026</em></p>
+</div>
+</div>
+
+  <div class="fr-grid-2">
+    <div class="fr-section" id="s-ada">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◇</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Macro Thesis</span>
+      <span class="fr-sec-title">Chief Investment Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Ada</span>
+  </div>
+  <div class="fr-sec-body"><h2>💡 ADA — Chief Investment Strategist (3-year view)</h2>
+<p><strong>Macro Regime:</strong> Goldilocks → Late-Cycle Reflation — AI buildout ต่อเนื่อง แต่ tech valuation stretched หลัง INTC ขึ้น 600%+ จาก 52W low</p>
+<p><strong>Business Cycle:</strong> PC/Client = Late/Contraction | AI Infrastructure = Early cycle — Intel อยู่ระหว่างสองวัฏจักรที่ตีกัน</p>
+<p><strong>Investment Thesis (3 ปี):</strong> INTC เป็น turnaround + government-subsidized foundry transformation ขึ้นกับ 3 pillars ที่ยังไม่ proven: (1) IFS 14A แข่งกับ TSMC N2 ได้จริง, (2) หยุด server CPU market share bleed ภายใน 2027, (3) Gross margin ฟื้นสู่ 40%+</p>
+<p><strong>Industry Ecosystem Linkages:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Industry</th>
+<th>ความสัมพันธ์</th>
+<th>ถ้า Industry โต</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>US Gov / CHIPS Act</td>
+<td>ผู้อุดหนุนโดยตรง ($8.5B+ grants)</td>
+<td>IFS ได้ทุนสร้าง fab ต่อ</td>
+</tr>
+<tr>
+<td>Hyperscalers (AWS/Azure/GCP)</td>
+<td>ลูกค้า CPU + foundry prospect</td>
+<td>Data Center AI revenue ขึ้น</td>
+</tr>
+<tr>
+<td>AI PC (Windows AI PC / Core Ultra)</td>
+<td>NPU chips</td>
+<td>PC cycle ใหม่ถ้า AI PC thesis ถูก</td>
+</tr>
+<tr>
+<td>Defense &amp; Aerospace</td>
+<td>US-only chip sourcing</td>
+<td>Intel IDM เดียวที่ scale ได้ในสหรัฐ</td>
+</tr>
+<tr>
+<td>ASML / EUV Lithography</td>
+<td>supply สำหรับ 14A node</td>
+<td>ถ้า 14A สำเร็จ Intel ก้าวกระโดด</td>
+</tr>
+</tbody></table></div>
+<p><strong>Portfolio Positioning:</strong> TACTICAL (&lt;3% พอร์ต) — ความไม่แน่นอนสูงเกินไปสำหรับ Core/Satellite</p>
+<p><strong>Research Directive:</strong> (1) IFS win Apple/NVDA full-chip ได้ไหมภายใน 2027? (2) Server CPU market share หยุดลดได้ที่ระดับไหน? (3) GAAP gross margin จะฟื้นจาก 34.8% → 40%+ ได้ไหมใน 2028?</p>
+<hr>
+</div>
+</div>
+    <div class="fr-section" id="s-peter">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◐</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Sentiment & Flow</span>
+      <span class="fr-sec-title">Behavioral Finance Analyst</span>
+    </div>
+    <span class="fr-sec-tag">Peter</span>
+  </div>
+  <div class="fr-sec-body"><h2>🧠 PETER — Behavioral Finance Analyst</h2>
+<p><strong>Sentiment Cycle: OPTIMISM → ANXIETY</strong>
+ผู้ที่ซื้อ $100-$132 (รวมผู้ใช้ที่ cost $119) กำลังเห็นกำไรหายหรือขาดทุน</p>
+<p><strong>Contrarian Signal: ACTIVE — Bearish</strong></p>
+<ul>
+<li>36 analysts: median PT $65 vs ราคา $108.77 (ช่องว่างที่หายาก)</li>
+<li>+600% ใน 12 เดือน = ไม่ยั่งยืนในระยะสั้น</li>
+<li>Volume distribution 134.5M = smart money ออก</li>
+<li>Channel check: Q2+ unit volume ร่วง = ยังไม่ถูก price in เต็มๆ</li>
+</ul>
+<hr>
+</div>
+</div>
+  </div>
+
+  <div class="fr-section" id="s-claudy">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◎</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Market Research</span>
+      <span class="fr-sec-title">Sr. Markets Correspondent</span>
+    </div>
+    <span class="fr-sec-tag">Claudy</span>
+  </div>
+  <div class="fr-sec-body"><h2>🔍 CLAUDY — Sr. Markets Correspondent</h2>
+<p><strong>Live Data (VERIFIED — Yahoo Finance):</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Price</td>
+<td>$108.77</td>
+</tr>
+<tr>
+<td>1D Change</td>
+<td><span style="color:#f87171;font-weight:600">-13.0%</span></td>
+</tr>
+<tr>
+<td>52W High</td>
+<td>$132.75 (hit this week)</td>
+</tr>
+<tr>
+<td>52W Low</td>
+<td>$18.97</td>
+</tr>
+<tr>
+<td>vs 52W High</td>
+<td><span style="color:#f87171;font-weight:600">-18.1%</span></td>
+</tr>
+<tr>
+<td>Volume</td>
+<td>134.5M shares (สูง 5-8x ปกติ)</td>
+</tr>
+</tbody></table></div>
+<p><strong>Q1 2026 Earnings (April 23, 2026):</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Actual</th>
+<th>Estimate</th>
+<th>Beat/Miss</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Revenue</td>
+<td>$13.58B</td>
+<td>$12.42B</td>
+<td>+$1.16B (<span style="color:#4ade80;font-weight:600">+9.3%</span>)</td>
+</tr>
+<tr>
+<td>Non-GAAP EPS</td>
+<td>$0.29</td>
+<td>$0.01</td>
+<td>+$0.28 (massive beat)</td>
+</tr>
+<tr>
+<td>GAAP EPS</td>
+<td>-$0.73</td>
+<td>—</td>
+<td>GAAP loss (-$3.7B net)</td>
+</tr>
+<tr>
+<td>DCAI Revenue</td>
+<td>$5.1B</td>
+<td>—</td>
+<td><span style="color:#4ade80;font-weight:600">+22%</span> YoY</td>
+</tr>
+<tr>
+<td>Gross Margin</td>
+<td>~34.8%</td>
+<td>—</td>
+<td>ต่ำกว่า peers มาก</td>
+</tr>
+</tbody></table></div>
+<p><strong>Q2 2026 Guidance:</strong> Revenue $13.8B–$14.8B (est $13.07B) | EPS $0.20 adj (est $0.09)</p>
+<p><strong>Analyst Consensus:</strong> 36 analysts | HOLD | Median PT $65 | High $124 | Low $25
+⚠️ [CONFLICT]: ราคา $108.77 สูงกว่า analyst median PT $65 ถึง +67%</p>
+<p><strong>Recent News:</strong></p>
+<ul>
+<li>[Benzinga, May 15] UBS: Intel server share ลดจาก 64.4% → 54.9% | AMD 27.4% | ARM 17.7%</li>
+<li>[Yahoo Finance] Intel ATH $132.75 → retrace -13% วันนี้ Wall Street เตือน overheating</li>
+<li>[TrendForce, Apr 20] Intel Foundry equipment orders +50%+ YoY, 14A อาจดึง major customers ปลายปี</li>
+<li>[Investing.com] Apple กำลังพิจารณา Intel ผลิตชิป (ยังไม่ confirmed)</li>
+<li>NVIDIA committed $5B to IFS (packaging services)</li>
+</ul>
+<p><strong>Competitor Deep Dive:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Company</th>
+<th>Rev Growth</th>
+<th>Gross Margin</th>
+<th>Forward P/E</th>
+<th>vs INTC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AMD</td>
+<td>~25%</td>
+<td>~50%</td>
+<td>~30x</td>
+<td>ชนะ CPU share ทั้ง PC + Server</td>
+</tr>
+<tr>
+<td>TSMC</td>
+<td>~30%</td>
+<td>~55%</td>
+<td>~22x</td>
+<td>IFS ต้องสู้กับนี้ในฐานะ foundry</td>
+</tr>
+<tr>
+<td>ARM Holdings</td>
+<td>~25%</td>
+<td>~95%</td>
+<td>~60x</td>
+<td>ชนะ architecture โดยไม่ต้องมี fab</td>
+</tr>
+</tbody></table></div>
+<hr>
+</div>
+</div>
+  <div class="fr-section" id="s-rocky">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◈</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Strategy & Valuation</span>
+      <span class="fr-sec-title">Chief Market Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Rocky</span>
+  </div>
+  <div class="fr-sec-body"><h2>📊 ROCKY — Chief Market Strategist</h2>
+<p><strong>Fundamental:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>มิติ</th>
+<th>INTC</th>
+<th>Sector Avg</th>
+<th>ความเห็น</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Forward P/E (non-GAAP)</td>
+<td>~110-136x</td>
+<td>25-28x</td>
+<td>Premium +300-400% vs peers</td>
+</tr>
+<tr>
+<td>Revenue Growth (YoY)</td>
+<td><span style="color:#4ade80;font-weight:600">+7%</span></td>
+<td>~20-25%</td>
+<td>ช้ากว่า sector</td>
+</tr>
+<tr>
+<td>Gross Margin</td>
+<td>34.8%</td>
+<td>~50-55%</td>
+<td>ต่ำกว่า peers ทุกราย</td>
+</tr>
+</tbody></table></div>
+<p>[Sector P/E for Fin: 25-28x — Sector: Semiconductor]</p>
+<p>Rate Sensitivity: HIGH — capex-heavy + negative FCF | 25bps yield ขึ้น → multiple กดดัน 5-8%</p>
+<p><strong>Technical:</strong></p>
+<ul>
+<li>Trend: ATH $132.75 → pullback -18% → downtrend เริ่มต้น</li>
+<li>Key Support: $100 (psychological) / $85 (pre-breakout zone)</li>
+<li>Key Resistance: $115-120 / $132.75 (ATH)</li>
+<li>Volume: 134.5M = institutional distribution signal</li>
+</ul>
+<p><strong>Trade Setup (3Y):</strong> Entry $95-105 | Target $155 | Stop $75 | R/R 2.5:1</p>
+<hr>
+</div>
+</div>
+
+  <div class="fr-grid-2">
+    <div class="fr-section" id="s-diffy">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◑</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Risk & Contrarian</span>
+      <span class="fr-sec-title">Contrarian Risk Strategist</span>
+    </div>
+    <span class="fr-sec-tag">Diffy</span>
+  </div>
+  <div class="fr-sec-body"><h2>⚠️ DIFFY — Contrarian Risk Strategist</h2>
+<p><strong>Hidden Risks:</strong></p>
+<ol>
+<li><strong>Analyst PT Gap:</strong> 36 professionals มอง fair value $65 = INTC แพงเกิน 40% จากราคาปัจจุบัน</li>
+<li><strong>Channel Check Risk (User Data):</strong> OEM front-loading ก่อน memory ราคาขึ้น → Q2+ unit volume ร่วงรุนแรง → อาจ miss guidance ในกรกฎาคม</li>
+<li><strong>Server Share Structural Decay:</strong> ลดจาก 64.4% → 54.9% ใน Q1 เดียว = 940bps ไม่ใช่ cyclical</li>
+<li><strong>GAAP Reality:</strong> $4.1B restructuring ใน Q1 เพียงไตรมาสเดียว — &quot;one-time&quot; ที่เกิดซ้ำ</li>
+<li><strong>IFS Execution Risk:</strong> full-chip customer ยังไม่มีจริง — NVIDIA $5B คือ packaging เท่านั้น</li>
+</ol>
+<p><strong>WORST CASE (3Y) — Perfect Storm:</strong>
+IFS ล้มเหลว + server share &lt;45% + Q2-Q3 miss + recession 2027 + CHIPS Act ล่าช้า
+→ Price: $25-$35 | Probability: ~25% | Downside: -68% to -77% จากปัจจุบัน | Recovery: 3-5 ปี</p>
+<p><strong>Risk Score:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Category</th>
+<th align="center">Score</th>
+<th>Key Concern</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Market/Cycle</td>
+<td align="center">4/5</td>
+<td>PC demand ร่วง Q2+</td>
+</tr>
+<tr>
+<td>Concentration</td>
+<td align="center">3/5</td>
+<td>Product + Foundry พร้อมกัน</td>
+</tr>
+<tr>
+<td>Execution</td>
+<td align="center">5/5</td>
+<td>IFS 14A full-chip customer</td>
+</tr>
+<tr>
+<td>Regulatory</td>
+<td align="center">2/5</td>
+<td>CHIPS Act delivery</td>
+</tr>
+<tr>
+<td>Balance Sheet</td>
+<td align="center">3/5</td>
+<td>Negative FCF + massive capex</td>
+</tr>
+<tr>
+<td><strong>Total: 17/25 — HIGH RISK</strong></td>
+<td align="center"></td>
+<td></td>
+</tr>
+</tbody></table></div>
+<hr>
+</div>
+</div>
+    <div class="fr-section" id="s-fin">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◉</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Fundamental & Verdict</span>
+      <span class="fr-sec-title">Sr. Equity Research Analyst</span>
+    </div>
+    <span class="fr-sec-tag">Fin</span>
+  </div>
+  <div class="fr-sec-body"><h2>📈 FIN — Sr. Equity Research Analyst</h2>
+<p><strong>Data Sufficiency Check:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>ข้อมูล</th>
+<th>สถานะ</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Revenue + EPS Q1 2026</td>
+<td>✓ มี</td>
+</tr>
+<tr>
+<td>FCF breakdown</td>
+<td>❌ ขาด</td>
+</tr>
+<tr>
+<td>IFS segment P&amp;L</td>
+<td>❌ ขาด</td>
+</tr>
+<tr>
+<td>ROIC precise</td>
+<td>❌ ขาด</td>
+</tr>
+<tr>
+<td>IFS customer pipeline</td>
+<td>❌ ขาด</td>
+</tr>
+</tbody></table></div>
+<p>→ 4/5 critical data ขาด → Verdict ห้ามเป็น BUY</p>
+<p><strong>Valuation vs Sector P/E 25-28x:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>INTC</th>
+<th>Sector</th>
+<th>Premium</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Forward P/E</td>
+<td>~110-136x</td>
+<td>25-28x</td>
+<td>+300-400%</td>
+</tr>
+<tr>
+<td>EV/EBITDA</td>
+<td>~35-45x</td>
+<td>15-18x</td>
+<td>+130-150%</td>
+</tr>
+<tr>
+<td>P/FCF</td>
+<td>Negative</td>
+<td>~25x</td>
+<td>N/A</td>
+</tr>
+</tbody></table></div>
+<p><strong>Probability-Weighted Price Target (3Y):</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th align="center">Prob</th>
+<th>3Y Target</th>
+<th align="center">Return vs $108.77</th>
+<th align="center">Return vs Cost $119</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Bull (IFS wins Apple/NVDA full-chip)</td>
+<td align="center">20%</td>
+<td>$180</td>
+<td align="center"><span style="color:#4ade80;font-weight:600">+65.5%</span></td>
+<td align="center"><span style="color:#4ade80;font-weight:600">+51.3%</span></td>
+</tr>
+<tr>
+<td>Base (gradual IFS progress)</td>
+<td align="center">45%</td>
+<td>$85</td>
+<td align="center"><span style="color:#f87171;font-weight:600">-21.8%</span></td>
+<td align="center"><span style="color:#f87171;font-weight:600">-28.6%</span></td>
+</tr>
+<tr>
+<td>Bear (IFS stalls, market share &lt;45%)</td>
+<td align="center">25%</td>
+<td>$45</td>
+<td align="center"><span style="color:#f87171;font-weight:600">-58.6%</span></td>
+<td align="center"><span style="color:#f87171;font-weight:600">-62.2%</span></td>
+</tr>
+<tr>
+<td>Worst (perfect storm)</td>
+<td align="center">10%</td>
+<td>$28</td>
+<td align="center"><span style="color:#f87171;font-weight:600">-74.3%</span></td>
+<td align="center"><span style="color:#f87171;font-weight:600">-76.5%</span></td>
+</tr>
+<tr style="background:rgba(232,114,26,.06)">
+<td><strong>Weighted</strong></td>
+<td align="center">100%</td>
+<td><strong>$87.50</strong></td>
+<td align="center"><strong>-19.6%</strong></td>
+<td align="center"><strong>-26.5%</strong></td>
+</tr>
+</tbody></table></div>
+<p><strong>Probability Summary (3Y):</strong></p>
+<ul>
+<li>โอกาสราคาขึ้น: <strong>~20%</strong></li>
+<li>โอกาสราคาลง: <strong>~80%</strong></li>
+<li>Expected CAGR: <strong>-7% ต่อปี</strong></li>
+</ul>
+<p><strong>Fin Summary:</strong></p>
+<div class="tbl-wrap"><table>
+<thead>
+<tr>
+<th align="left">มิติ</th>
+<th align="center">คะแนน</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Business Quality</td>
+<td align="center">2/5</td>
+</tr>
+<tr>
+<td align="left">Earnings Quality</td>
+<td align="center">1/5</td>
+</tr>
+<tr>
+<td align="left">Valuation</td>
+<td align="center">1/5</td>
+</tr>
+<tr>
+<td align="left">Timing</td>
+<td align="center">1/5</td>
+</tr>
+<tr>
+<td align="left">Risk/Reward</td>
+<td align="center">2/5</td>
+</tr>
+<tr>
+<td align="left">Data Completeness</td>
+<td align="center">2/5</td>
+</tr>
+<tr>
+<td align="left"><strong>Verdict</strong></td>
+<td align="center"><strong>SELL (อย่าเพิ่ม)</strong></td>
+</tr>
+</tbody></table></div>
+<p><strong>Position:</strong> $300 เล็กพอ → HOLD ต่อได้ แต่ห้ามเพิ่มจนกว่าจะมี IFS proof point ชัดเจน</p>
+<hr>
+</div>
+</div>
+  </div>
+
+  <div class="fr-section" id="s-leon">
+  <div class="fr-sec-head">
+    <span class="fr-sec-icon">◌</span>
+    <div class="fr-sec-text">
+      <span class="fr-sec-label">Fact Audit</span>
+      <span class="fr-sec-title">Research Integrity Officer</span>
+    </div>
+    <span class="fr-sec-tag">Leon</span>
+  </div>
+  <div class="fr-sec-body"><p style="color:var(--text3)">ไม่พบรายงานส่วนนี้</p></div>
+</div>
+
+</div>
+
+<div class="fr-foot">Claudy Research · Stock Analysis · ข้อมูลจาก Yahoo Finance · Web Research</div>
+
+<script>
+const sections = document.querySelectorAll('.fr-section[id]');
+const pills = document.querySelectorAll('.fr-pill');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id.replace('s-', '');
+      pills.forEach(p => p.classList.toggle('active', p.getAttribute('href') === '#s-' + id));
+    }
+  });
+}, { rootMargin: '-52px 0px -60% 0px', threshold: 0 });
+sections.forEach(s => io.observe(s));
+</script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+document.querySelectorAll('pre code.language-mermaid').forEach(el=>{
+  const div=document.createElement('div');
+  div.className='mermaid';
+  div.textContent=el.textContent;
+  el.parentElement.replaceWith(div);
+});
+mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{
+  darkMode:true,background:'#0E0D0C',mainBkg:'#161412',
+  nodeBorder:'#3A3530',lineColor:'#4D4742',
+  textColor:'#F0EAE3',primaryColor:'#272320',
+  primaryTextColor:'#F0EAE3',primaryBorderColor:'#E8721A',
+  xyChart:{backgroundColor:'#161412',plotColorPalette:'#E8721A,#4ade80,#f87171,#fbbf24,#60a5fa'}
+}});
+</script>
+</body>
+</html>
